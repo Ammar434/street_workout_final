@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>37349665099-6cfvjnbair3um5p7pg2n43rhs1m2jqe1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.37349665099-6cfvjnbair3um5p7pg2n43rhs1m2jqe1</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>37349665099-9np17cram3hj1b17u03f4qvu8b8mkmmm.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDGf9kRH0V_ov1nHxr6db7usd90DtlA9VY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>37349665099</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ammar434.streetWorkoutFighter.streetWorkoutFinal</string>
+	<key>PROJECT_ID</key>
+	<string>streetworkoutfighter</string>
+	<key>STORAGE_BUCKET</key>
+	<string>streetworkoutfighter.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:37349665099:ios:e7ad40f2ea801dd0cb20ce</string>
+</dict>
+</plist>
