@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../utils/colors.dart';
+import '../utils/constants.dart';
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
@@ -8,11 +8,14 @@ class RoundedButton extends StatelessWidget {
     required this.onTap,
     required this.text,
     this.isLoading = false,
+    this.height = 50,
+    this.fontSize = 18,
   }) : super(key: key);
   final GestureTapCallback onTap;
   final String text;
   final bool isLoading;
-
+  final double height;
+  final double fontSize;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -20,7 +23,7 @@ class RoundedButton extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(6),
         width: double.infinity,
-        height: 50,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
           color: primaryColor,
@@ -30,8 +33,8 @@ class RoundedButton extends StatelessWidget {
               ? const CircularProgressIndicator()
               : Text(
                   text,
-                  style: const TextStyle(
-                    fontSize: 18,
+                  style: TextStyle(
+                    fontSize: fontSize,
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),

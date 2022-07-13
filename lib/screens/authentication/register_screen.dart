@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/authentication/user_information_gathering/welcome_screen.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
-import 'package:street_workout_final/widgets/text_field_input.dart';
+import 'user_information_gathering/welcome_screen.dart';
+import '../../utils/constants.dart';
+import '../../widgets/rounded_button.dart';
+import '../../widgets/text_field_input.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String name = "registerScreen";
@@ -16,7 +16,8 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _passwordConfirmController = TextEditingController();
+  final TextEditingController _passwordConfirmController =
+      TextEditingController();
   final TextEditingController _userNameController = TextEditingController();
 
   void onTap() {
@@ -83,7 +84,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               const CircleAvatar(
                 radius: 64,
-                backgroundImage: NetworkImage("https://images.pexels.com/photos/12339648/pexels-photo-12339648.jpeg"),
+                backgroundImage: NetworkImage(
+                    "https://images.pexels.com/photos/12339648/pexels-photo-12339648.jpeg"),
               ),
               Positioned(
                 bottom: -10,

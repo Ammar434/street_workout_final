@@ -2,18 +2,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:street_workout_final/responsive/mobile_screen_layout.dart';
-import 'package:street_workout_final/responsive/responsive_layout.dart';
-import 'package:street_workout_final/responsive/web_screen_layout.dart';
-import 'package:street_workout_final/screens/authentication/login_screen.dart';
-import 'package:street_workout_final/screens/authentication/recover_password_confirm_screen.dart';
-import 'package:street_workout_final/screens/authentication/recover_password_screen.dart';
-import 'package:street_workout_final/screens/authentication/register_screen.dart';
-import 'package:street_workout_final/screens/authentication/user_information_gathering/gender_screen.dart';
-import 'package:street_workout_final/screens/authentication/user_information_gathering/permission_handler_screen.dart';
-import 'package:street_workout_final/screens/authentication/user_information_gathering/user_personal_data_screen.dart';
-import 'package:street_workout_final/screens/authentication/user_information_gathering/welcome_screen.dart';
-import 'package:street_workout_final/utils/colors.dart';
+import 'responsive/mobile_screen_layout.dart';
+import 'responsive/responsive_layout.dart';
+import 'responsive/web_screen_layout.dart';
+import 'screens/application/home_screen/parc_info/parc_info_screen.dart';
+import 'screens/authentication/login_screen.dart';
+import 'screens/authentication/recover_password_confirm_screen.dart';
+import 'screens/authentication/recover_password_screen.dart';
+import 'screens/authentication/register_screen.dart';
+import 'screens/authentication/user_information_gathering/gender_screen.dart';
+import 'screens/authentication/user_information_gathering/permission_handler_screen.dart';
+import 'screens/authentication/user_information_gathering/user_personal_data_screen.dart';
+import 'screens/authentication/user_information_gathering/welcome_screen.dart';
+import 'utils/colors.dart';
+import 'utils/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,19 +52,28 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Street Workout Fighter',
           theme: ThemeData.dark().copyWith(
+            visualDensity: VisualDensity.adaptivePlatformDensity,
             sliderTheme: SliderThemeData(
               inactiveTickMarkColor: Theme.of(context).disabledColor,
               inactiveTrackColor: Theme.of(context).disabledColor,
-              valueIndicatorShape: PaddleSliderValueIndicatorShape(),
+              valueIndicatorShape: const PaddleSliderValueIndicatorShape(),
               valueIndicatorColor: Colors.black,
               thumbColor: Colors.pinkAccent,
               overlayColor: Colors.pink.withOpacity(0.2),
-              overlayShape: RoundSliderOverlayShape(overlayRadius: 32.0),
-              tickMarkShape: RoundSliderTickMarkShape(),
+              overlayShape: const RoundSliderOverlayShape(overlayRadius: 32.0),
+              tickMarkShape: const RoundSliderTickMarkShape(),
             ),
             scaffoldBackgroundColor: backgroundColor,
             backgroundColor: backgroundColor,
-            textTheme: TextTheme(),
+            textTheme: const TextTheme(),
+            appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            iconTheme: const IconThemeData(
+              color: primaryColor,
+              size: kDefaultIconsSize,
+            ),
           ),
           initialRoute: '/',
           routes: {
@@ -72,12 +83,17 @@ class MyApp extends StatelessWidget {
                 ),
             LoginScreen.name: (context) => const LoginScreen(),
             RegisterScreen.name: (context) => const RegisterScreen(),
-            RecoverPasswordScreen.name: (context) => const RecoverPasswordScreen(),
-            RecoverPasswordConfirmScreen.name: (context) => const RecoverPasswordConfirmScreen(),
+            RecoverPasswordScreen.name: (context) =>
+                const RecoverPasswordScreen(),
+            RecoverPasswordConfirmScreen.name: (context) =>
+                const RecoverPasswordConfirmScreen(),
             WelcomeScreen.name: (context) => const WelcomeScreen(),
             GenderScreen.name: (context) => const GenderScreen(),
-            UserPersonalDataScreen.name: (context) => const UserPersonalDataScreen(),
-            PermissionHandlerScreen.name: (context) => const PermissionHandlerScreen(),
+            UserPersonalDataScreen.name: (context) =>
+                const UserPersonalDataScreen(),
+            PermissionHandlerScreen.name: (context) =>
+                const PermissionHandlerScreen(),
+            ParcInfoScreen.name: (context) => const ParcInfoScreen(),
           },
         );
       },

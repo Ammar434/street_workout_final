@@ -2,7 +2,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:street_workout_final/utils/colors.dart';
+import 'home_screen/home/home_screen.dart';
+import 'map_screen/map_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -83,15 +84,19 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
 
   bool get isPanelVisible {
     final AnimationStatus status = controller.status;
-    return status == AnimationStatus.completed || status == AnimationStatus.forward;
+    return status == AnimationStatus.completed ||
+        status == AnimationStatus.forward;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text("Street Workout Fighters"),
         elevation: 0.0,
+        // backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: const Icon(Icons.menu),
           onPressed: () {
@@ -102,24 +107,8 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
       body: IndexedStack(
         index: index,
         children: [
-          Container(
-            // color: theme.primaryColor,
-            child: const Center(
-              child: Text(
-                "Back Panel",
-                style: TextStyle(fontSize: 24.0, color: Colors.white),
-              ),
-            ),
-          ),
-          Container(
-            color: Colors.pink,
-            child: const Center(
-              child: Text(
-                "Back Panel",
-                style: TextStyle(fontSize: 24.0, color: Colors.white),
-              ),
-            ),
-          ),
+          const HomeScreen(),
+          const MapScreen(),
           Container(
             color: Colors.brown,
             child: const Center(
@@ -150,7 +139,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: backgroundColor,
+        backgroundColor: Colors.transparent,
         buttonBackgroundColor: Colors.white,
         height: 65,
         onTap: (value) {

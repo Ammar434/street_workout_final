@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/rounded_button.dart';
 
 class PermissionHandlerScreen extends StatelessWidget {
   const PermissionHandlerScreen({Key? key}) : super(key: key);

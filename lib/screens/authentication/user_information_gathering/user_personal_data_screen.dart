@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/authentication/user_information_gathering/permission_handler_screen.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
-import 'package:street_workout_final/widgets/slider_widget.dart';
+import 'permission_handler_screen.dart';
+import '../../../utils/colors.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/rounded_button.dart';
+import '../../../widgets/slider_widget.dart';
 
 class UserPersonalDataScreen extends StatefulWidget {
   const UserPersonalDataScreen({Key? key}) : super(key: key);
@@ -168,7 +168,8 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
                 },
               );
             },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
         ),
         Text(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/authentication/login_screen.dart';
-import 'package:street_workout_final/screens/authentication/register_screen.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import 'login_screen.dart';
+import 'register_screen.dart';
+import '../../utils/colors.dart';
+import '../../utils/constants.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);

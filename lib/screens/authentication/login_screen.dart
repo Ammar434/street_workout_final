@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/authentication/recover_password_screen.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
-import 'package:street_workout_final/widgets/text_field_input.dart';
+import 'recover_password_screen.dart';
+import '../../utils/constants.dart';
+import '../../widgets/rounded_button.dart';
+import '../../widgets/text_field_input.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String name = "loginScreen";
@@ -33,7 +33,11 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [buildColumn(), buildColumnInput(), buildColumnBottom(context)],
+            children: [
+              buildColumn(),
+              buildColumnInput(),
+              buildColumnBottom(context)
+            ],
           ),
         ),
       ),

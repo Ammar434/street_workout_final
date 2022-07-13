@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/dimension.dart';
+import '../utils/dimension.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   final Widget webScreenLayout;

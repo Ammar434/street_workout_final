@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/authentication/user_information_gathering/gender_screen.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
+import 'gender_screen.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/rounded_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
