@@ -11,14 +11,16 @@ class DrawerBottomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
+      children: [
         DrawerCategorieTile(
           iconData: FontAwesomeIcons.trophy,
           text: "Rankings",
+          onTap: () {},
         ),
         DrawerCategorieTile(
           iconData: FontAwesomeIcons.gem,
           text: "Rewards",
+          onTap: () {},
         ),
       ],
     );

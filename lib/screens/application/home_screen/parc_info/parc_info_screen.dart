@@ -31,7 +31,12 @@ class ParcInfoScreen extends StatelessWidget {
         ),
         title: Text(parcName),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
+          IconButton(
+            onPressed: () {},
+            icon: const FaIcon(
+              FontAwesomeIcons.bullseye,
+            ),
+          ),
         ],
         headerWidget: ParcInfoHeaderWidget(
           parcImage: parcImage,

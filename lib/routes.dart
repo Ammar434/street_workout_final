@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/screens/application/achievement_screen/achievement_screen.dart';
 import 'package:street_workout_final/screens/application/main_screen.dart';
+import 'package:street_workout_final/screens/application/profile_screen/profile_screen.dart';
 
 import 'package:street_workout_final/screens/authentication/registration_and_log/login_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_confirm_screen.dart';
@@ -31,4 +33,6 @@ Map<String, WidgetBuilder> routes = {
   PermissionHandlerScreen.name: (context) => const PermissionHandlerScreen(),
   MainScreen.name: (context) => const MainScreen(),
   ParcInfoScreen.name: (context) => const ParcInfoScreen(),
+  AchievementScreen.name: (context) => const AchievementScreen(),
+  ProfileScreen.name: (context) => const ProfileScreen(),
 };

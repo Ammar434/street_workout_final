@@ -7,12 +7,13 @@ class RoundedCircleUserProfileWidget extends StatelessWidget {
     required this.radius,
   }) : super(key: key);
 
-  final LinearGradient? gradient;
+  final Gradient? gradient;
   final double radius;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      // padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: gradient,
