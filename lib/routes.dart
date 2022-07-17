@@ -7,9 +7,6 @@ import 'package:street_workout_final/screens/authentication/registration_and_log
 import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_confirm_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/register_screen.dart';
-import 'responsive/mobile_screen_layout.dart';
-import 'responsive/responsive_layout.dart';
-import 'responsive/web_screen_layout.dart';
 import 'screens/application/home_screen/parc_info/parc_info_screen.dart';
 
 import 'screens/authentication/user_information_gathering/gender_screen.dart';
@@ -18,10 +15,10 @@ import 'screens/authentication/user_information_gathering/user_personal_data_scr
 import 'screens/authentication/user_information_gathering/welcome_screen.dart';
 
 Map<String, WidgetBuilder> routes = {
-  '/': (context) => const ResponsiveLayout(
-        webScreenLayout: WebScreenLayout(),
-        mobileScreenLayout: MobileScreenLayout(),
-      ),
+  // '/': (context) => const ResponsiveLayout(
+  //       webScreenLayout: WebScreenLayout(),
+  //       mobileScreenLayout: MobileScreenLayout(),
+  //     ),
   LoginScreen.name: (context) => const LoginScreen(),
   RegisterScreen.name: (context) => const RegisterScreen(),
   RecoverPasswordScreen.name: (context) => const RecoverPasswordScreen(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/services/authentication/authentication_method.dart';
 import 'permission_handler_screen.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/constants.dart';
@@ -47,6 +48,9 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
                 buildMiddle(context),
                 RoundedButton(
                   onTap: () {
+                    temporaryAgeValue = sliderAgeValue;
+                    temporaryHeightValue = sliderHeightValue;
+                    temporaryWeightValue = sliderWeightValue;
                     Navigator.pushNamed(context, PermissionHandlerScreen.name);
                   },
                   text: "Next",

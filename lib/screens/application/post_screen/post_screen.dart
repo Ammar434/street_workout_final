@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:street_workout_final/screens/application/home_screen/parc_info/components/parc_info_equipment_available.dart';
 import 'package:street_workout_final/services/image_picker.dart';
 import 'package:street_workout_final/utils/constants.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
@@ -24,6 +23,14 @@ class PostScreen extends StatefulWidget {
 class _PostScreenState extends State<PostScreen> {
   late TextEditingController textEditingController;
   int selectedCard = -1;
+
+  void publishPost(
+      {required String uid,
+      required String parcName,
+      required String parcAddress,
+      required List materialAvailable}) {
+    try {} catch (e) {}
+  }
 
   @override
   void initState() {

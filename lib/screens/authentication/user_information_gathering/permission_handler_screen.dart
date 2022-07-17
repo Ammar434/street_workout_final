@@ -1,12 +1,52 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:street_workout_final/screens/application/main_screen.dart';
+import 'package:street_workout_final/responsive/mobile_screen_layout.dart';
+import 'package:street_workout_final/responsive/responsive_layout.dart';
+import 'package:street_workout_final/responsive/web_screen_layout.dart';
+import 'package:street_workout_final/services/authentication/authentication_method.dart';
+import 'package:street_workout_final/utils/snackbar.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 
-class PermissionHandlerScreen extends StatelessWidget {
+class PermissionHandlerScreen extends StatefulWidget {
   const PermissionHandlerScreen({Key? key}) : super(key: key);
   static const String name = "PermissionHandlerScreen";
+
+  @override
+  State<PermissionHandlerScreen> createState() =>
+      _PermissionHandlerScreenState();
+}
+
+class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
+  bool isLoading = false;
+  void onTap() async {
+    setState(() {
+      isLoading = true;
+    });
+    String responseCode = await AuthenticationMethod().registerUser();
+
+    if (responseCode == "success") {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            mobileScreenLayout: MobileScreenLayout(),
+            webScreenLayout: WebScreenLayout(),
+          ),
+        ),
+      );
+    } else {
+      showSnackBar(
+        context: context,
+        title: "Warning",
+        content: responseCode,
+        contentType: ContentType.failure,
+      );
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,21 +70,10 @@ class PermissionHandlerScreen extends StatelessWidget {
               RoundedButton(
                 onTap: () async {
                   await Permission.location.shouldShowRequestRationale;
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, MainScreen.name, (route) => false);
-                  // var status = await Permission.location.status;
-                  //
-                  // if (await Permission.speech.isPermanentlyDenied) {
-                  //   // The user opted to never again see the permission request dialog for this
-                  //   // app. The only way to change the permission's status now is to let the
-                  //   // user manually enable it in the system settings.
-                  //   openAppSettings();
-                  // }
-                  // if (await Permission.location.request().isGranted) {
-                  //   Navigator.pushNamed(context, GenderScreen.name);
-                  // }
+                  onTap();
                 },
                 text: "Complete",
+                isLoading: isLoading,
               ),
             ],
           ),

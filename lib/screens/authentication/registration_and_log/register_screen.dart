@@ -1,5 +1,14 @@
+import 'dart:typed_data';
+
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:street_workout_final/services/authentication/authentication_method.dart';
+import 'package:street_workout_final/services/image_picker.dart';
 import 'package:street_workout_final/utils/constants.dart';
+import 'package:street_workout_final/utils/snackbar.dart';
+import 'package:street_workout_final/widgets/loading_widget.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
 import 'package:street_workout_final/widgets/text_field_input.dart';
 
@@ -20,48 +29,105 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _passwordConfirmController =
       TextEditingController();
   final TextEditingController _userNameController = TextEditingController();
+  late Uint8List _image;
 
-  void onTap() {
-    //Verif Et creation des users dans firebase
-    Navigator.pushNamed(context, WelcomeScreen.name);
+  void onTap() async {
+    setState(() {
+      isLoading = true;
+    });
+    String responseCode = await AuthenticationMethod().checkInfoRegisterUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+      passwordConfirm: _passwordConfirmController.text,
+      userName: _userNameController.text,
+      profileImage: _image,
+    );
+
+    if (responseCode == "success") {
+      Navigator.pushNamed(context, WelcomeScreen.name);
+    } else {
+      showSnackBar(
+        context: context,
+        title: "Warning",
+        content: responseCode,
+        contentType: ContentType.failure,
+      );
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  void selectImage() async {
+    Uint8List image = await pickImage(ImageSource.gallery);
+    setState(
+      () {
+        _image = image;
+      },
+    );
+  }
+
+  void loadDefaultImage() async {
+    setState(() {
+      isLoading = true;
+    });
+    ByteData bytes = await rootBundle.load(
+      "assets/images/authentication/default_profile.png",
+    );
+    _image = bytes.buffer.asUint8List();
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadDefaultImage();
   }
 
   @override
   void dispose() {
+    super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _passwordConfirmController.dispose();
     _userNameController.dispose();
-    super.dispose();
   }
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true, // set it to false
-
-      body: Padding(
-        padding: const EdgeInsets.all(kPaddingValue),
-        child: SingleChildScrollView(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              // mainAxisSize: MainAxisSize.max,
-              children: [
-                buildColumn(),
-                buildColumnInput(),
-                RoundedButton(onTap: onTap, text: "Register"),
-              ],
+      body: isLoading
+          ? const LoadingWidget()
+          : Padding(
+              padding: const EdgeInsets.all(kPaddingValue),
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      buildTopColumn(),
+                      buildColumnInput(),
+                      RoundedButton(
+                        onTap: onTap,
+                        text: "Register",
+                        isLoading: isLoading,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 
-  Column buildColumn() {
+  Column buildTopColumn() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -89,17 +155,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
         Center(
           child: Stack(
             children: [
-              const CircleAvatar(
-                radius: 64,
-                backgroundImage: NetworkImage(
-                    "https://images.pexels.com/photos/12339648/pexels-photo-12339648.jpeg"),
+              CircleAvatar(
+                radius: 56,
+                backgroundImage: MemoryImage(_image),
               ),
               Positioned(
                 bottom: -10,
                 right: -10,
                 child: IconButton(
                   icon: const Icon(Icons.add_a_photo),
-                  onPressed: () {},
+                  onPressed: selectImage,
                 ),
               )
             ],
@@ -138,7 +203,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           height: kPaddingValue,
         ),
         TextFieldInput(
-          textEditingController: _passwordController,
+          textEditingController: _passwordConfirmController,
           hintText: "Confirm Password",
           textInputType: TextInputType.visiblePassword,
           isPassword: true,

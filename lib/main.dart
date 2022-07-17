@@ -2,9 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:street_workout_final/provider/user_provider.dart';
 import 'package:street_workout_final/routes.dart';
-import 'utils/colors.dart';
-import 'utils/constants.dart';
+import 'package:street_workout_final/utils/theme.dart';
+import 'authentication_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,35 +39,19 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       designSize: const Size(393, 830),
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Street Workout Fighter',
-          theme: ThemeData.dark().copyWith(
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            sliderTheme: SliderThemeData(
-              inactiveTickMarkColor: Theme.of(context).disabledColor,
-              inactiveTrackColor: Theme.of(context).disabledColor,
-              valueIndicatorShape: const PaddleSliderValueIndicatorShape(),
-              valueIndicatorColor: Colors.black,
-              thumbColor: Colors.pinkAccent,
-              overlayColor: Colors.pink.withOpacity(0.2),
-              overlayShape: const RoundSliderOverlayShape(overlayRadius: 32.0),
-              tickMarkShape: const RoundSliderTickMarkShape(),
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (_) => UserProvider(),
             ),
-            scaffoldBackgroundColor: backgroundColor,
-            backgroundColor: backgroundColor,
-            textTheme: const TextTheme(),
-            appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-            ),
-            iconTheme: const IconThemeData(
-              color: tertiaryColor,
-              size: kDefaultIconsSize,
-            ),
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Street Workout Fighter',
+            theme: appTheme,
+            home: const AuthenticationHandler(),
+            routes: routes,
           ),
-          initialRoute: '/',
-          routes: routes,
         );
       },
     );

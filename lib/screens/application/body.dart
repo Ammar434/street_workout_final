@@ -62,9 +62,9 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent.withOpacity(0.3),
         buttonBackgroundColor: primaryColor,
-        color: backgroundColor,
+        color: primaryColor,
         height: 65,
         onTap: (value) {
           setState(

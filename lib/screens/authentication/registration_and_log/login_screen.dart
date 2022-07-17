@@ -1,4 +1,10 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/responsive/mobile_screen_layout.dart';
+import 'package:street_workout_final/responsive/responsive_layout.dart';
+import 'package:street_workout_final/responsive/web_screen_layout.dart';
+import 'package:street_workout_final/services/authentication/authentication_method.dart';
+import 'package:street_workout_final/utils/snackbar.dart';
 import 'recover_password_screen.dart';
 import 'package:street_workout_final/utils/constants.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
@@ -16,6 +22,36 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool isLoading = false;
+  void loginUser() async {
+    setState(() {
+      isLoading = true;
+    });
+    String res = await AuthenticationMethod().loginUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+    if (res == "success") {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebScreenLayout(),
+            mobileScreenLayout: MobileScreenLayout(),
+          ),
+        ),
+      );
+    } else {
+      showSnackBar(
+        context: context,
+        title: "Warning",
+        content: res,
+        contentType: ContentType.failure,
+      );
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   void dispose() {
@@ -74,8 +110,9 @@ class _LoginScreenState extends State<LoginScreen> {
           height: kPaddingValue,
         ),
         RoundedButton(
-          onTap: () {},
+          onTap: loginUser,
           text: "Log in",
+          isLoading: isLoading,
         ),
       ],
     );

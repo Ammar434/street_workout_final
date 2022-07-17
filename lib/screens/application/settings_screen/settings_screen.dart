@@ -1,6 +1,7 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:street_workout_final/services/authentication/authentication_method.dart';
 import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
@@ -96,9 +97,10 @@ class SettingsScreen extends StatelessWidget {
                 text1: "Logout",
                 text2: "",
                 isArrow: false,
-                press: () {
+                press: () async {
+                  await AuthenticationMethod().signOut();
+
                   // context.read<AuthenticationService>().signOut();
-                  // Navigator.of(context).pop();
                 },
               ),
               SettingsTile(

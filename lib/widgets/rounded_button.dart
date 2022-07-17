@@ -30,7 +30,10 @@ class RoundedButton extends StatelessWidget {
         ),
         child: Center(
           child: isLoading
-              ? const CircularProgressIndicator()
+              ? const CircularProgressIndicator(
+                  backgroundColor: tertiaryColor,
+                  color: primaryColor,
+                )
               : Text(
                   text,
                   style: TextStyle(

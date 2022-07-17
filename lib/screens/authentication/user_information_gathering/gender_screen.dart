@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/services/authentication/authentication_method.dart';
 import 'user_personal_data_screen.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
@@ -43,11 +44,17 @@ class GenderScreen extends StatelessWidget {
                     height: kPaddingValue,
                   ),
                   RoundedButton(
-                    onTap: onTap,
+                    onTap: () {
+                      temporaryGender = "male";
+                      Navigator.pushNamed(context, UserPersonalDataScreen.name);
+                    },
                     text: "Male",
                   ),
                   RoundedButton(
-                    onTap: onTap,
+                    onTap: () {
+                      temporaryGender = "female";
+                      Navigator.pushNamed(context, UserPersonalDataScreen.name);
+                    },
                     text: "Female",
                   ),
                 ],
