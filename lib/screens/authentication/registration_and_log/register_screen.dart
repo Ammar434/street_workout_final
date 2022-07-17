@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'user_information_gathering/welcome_screen.dart';
-import '../../utils/constants.dart';
-import '../../widgets/rounded_button.dart';
-import '../../widgets/text_field_input.dart';
+import 'package:street_workout_final/utils/constants.dart';
+import 'package:street_workout_final/widgets/rounded_button.dart';
+import 'package:street_workout_final/widgets/text_field_input.dart';
+
+import '../user_information_gathering/welcome_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String name = "registerScreen";
@@ -36,18 +37,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(kPaddingValue),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              buildColumn(),
-              buildColumnInput(),
-              RoundedButton(onTap: onTap, text: "Register"),
-            ],
+    return Scaffold(
+      resizeToAvoidBottomInset: true, // set it to false
+
+      body: Padding(
+        padding: const EdgeInsets.all(kPaddingValue),
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              // mainAxisSize: MainAxisSize.max,
+              children: [
+                buildColumn(),
+                buildColumnInput(),
+                RoundedButton(onTap: onTap, text: "Register"),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/constants.dart';
-import '../../widgets/rounded_button.dart';
+import 'package:street_workout_final/utils/constants.dart';
+import 'package:street_workout_final/widgets/rounded_button.dart';
 
 class RecoverPasswordConfirmScreen extends StatelessWidget {
   static const String name = "RecoverPasswordConfirmScreen";
@@ -21,7 +21,8 @@ class RecoverPasswordConfirmScreen extends StatelessWidget {
               buildColumnHeader(context),
               RoundedButton(
                 onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/', (Route<dynamic> route) => false);
                 },
                 text: "Okay",
               ),

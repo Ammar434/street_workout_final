@@ -15,8 +15,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final TextEditingController searchBarEditingController =
-      TextEditingController();
+  late TextEditingController searchBarEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    searchBarEditingController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    searchBarEditingController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

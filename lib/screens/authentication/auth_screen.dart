@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
-import 'register_screen.dart';
+
 import '../../utils/colors.dart';
 import '../../utils/constants.dart';
+import 'registration_and_log/login_screen.dart';
+import 'registration_and_log/register_screen.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -97,7 +98,7 @@ class AuthScreen extends StatelessWidget {
               height: 50,
               decoration: BoxDecoration(
                 color: primaryColor.withOpacity(0.7),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(
                     kRadiusValue,
                   ),
@@ -106,7 +107,7 @@ class AuthScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "Log In",
                   style: TextStyle(

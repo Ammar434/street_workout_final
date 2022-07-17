@@ -33,6 +33,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
             child: TabBarView(
               children: <Widget>[
                 ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: 15,
                   itemBuilder: (context, index) {
                     final faker = Faker.instance;

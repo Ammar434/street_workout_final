@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TextFieldInput extends StatefulWidget {
-  const TextFieldInput(
-      {Key? key,
-      required this.textEditingController,
-      this.isPassword = false,
-      required this.hintText,
-      required this.textInputType})
-      : super(key: key);
+  const TextFieldInput({
+    Key? key,
+    required this.textEditingController,
+    this.isPassword = false,
+    required this.hintText,
+    required this.textInputType,
+  }) : super(key: key);
   final TextEditingController textEditingController;
   final bool isPassword;
   final String hintText;

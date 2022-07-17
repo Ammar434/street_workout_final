@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:street_workout_final/screens/application/main_screen.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 
@@ -29,7 +30,8 @@ class PermissionHandlerScreen extends StatelessWidget {
               RoundedButton(
                 onTap: () async {
                   await Permission.location.shouldShowRequestRationale;
-
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, MainScreen.name, (route) => false);
                   // var status = await Permission.location.status;
                   //
                   // if (await Permission.speech.isPermanentlyDenied) {

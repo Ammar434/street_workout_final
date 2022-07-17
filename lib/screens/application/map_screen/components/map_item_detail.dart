@@ -15,13 +15,18 @@ class MapItemDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(kPaddingValue),
       child: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(kRadiusValue)),
         color: backgroundColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
               children: [
-                Expanded(child: Image.network(item.image)),
+                Expanded(
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(kRadiusValue),
+                        child: Image.network(item.image))),
                 Expanded(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

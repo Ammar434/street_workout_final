@@ -2,18 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'responsive/mobile_screen_layout.dart';
-import 'responsive/responsive_layout.dart';
-import 'responsive/web_screen_layout.dart';
-import 'screens/application/home_screen/parc_info/parc_info_screen.dart';
-import 'screens/authentication/login_screen.dart';
-import 'screens/authentication/recover_password_confirm_screen.dart';
-import 'screens/authentication/recover_password_screen.dart';
-import 'screens/authentication/register_screen.dart';
-import 'screens/authentication/user_information_gathering/gender_screen.dart';
-import 'screens/authentication/user_information_gathering/permission_handler_screen.dart';
-import 'screens/authentication/user_information_gathering/user_personal_data_screen.dart';
-import 'screens/authentication/user_information_gathering/welcome_screen.dart';
+import 'package:street_workout_final/routes.dart';
 import 'utils/colors.dart';
 import 'utils/constants.dart';
 
@@ -71,30 +60,12 @@ class MyApp extends StatelessWidget {
               elevation: 0,
             ),
             iconTheme: const IconThemeData(
-              color: primaryColor,
+              color: tertiaryColor,
               size: kDefaultIconsSize,
             ),
           ),
           initialRoute: '/',
-          routes: {
-            '/': (context) => const ResponsiveLayout(
-                  webScreenLayout: WebScreenLayout(),
-                  mobileScreenLayout: MobileScreenLayout(),
-                ),
-            LoginScreen.name: (context) => const LoginScreen(),
-            RegisterScreen.name: (context) => const RegisterScreen(),
-            RecoverPasswordScreen.name: (context) =>
-                const RecoverPasswordScreen(),
-            RecoverPasswordConfirmScreen.name: (context) =>
-                const RecoverPasswordConfirmScreen(),
-            WelcomeScreen.name: (context) => const WelcomeScreen(),
-            GenderScreen.name: (context) => const GenderScreen(),
-            UserPersonalDataScreen.name: (context) =>
-                const UserPersonalDataScreen(),
-            PermissionHandlerScreen.name: (context) =>
-                const PermissionHandlerScreen(),
-            ParcInfoScreen.name: (context) => const ParcInfoScreen(),
-          },
+          routes: routes,
         );
       },
     );
