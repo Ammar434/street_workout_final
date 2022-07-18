@@ -16,7 +16,7 @@ class AddPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
-      child: articleImageListe.isEmpty
+      child: userSelectedImageList.isEmpty
           ? NoImageSelectedWidget(
               function1: function1,
             )

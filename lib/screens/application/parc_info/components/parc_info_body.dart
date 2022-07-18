@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../home/components/parc_display_card.dart';
 
 import '../../../../../utils/constants.dart';
 
+import '../../home_screen/components/parc_display_card_info.dart';
 import 'parc_info_equipment_available.dart';
 import 'parc_info_tab_display.dart';
 
@@ -14,7 +14,11 @@ class ParcInfoBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: kPaddingValue, left: kPaddingValue),
+      padding: const EdgeInsets.only(
+        top: kPaddingValue,
+        left: kSmallPaddingValue,
+        right: kSmallPaddingValue,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
@@ -28,17 +32,9 @@ class ParcInfoBodyWidget extends StatelessWidget {
           SizedBox(
             height: kPaddingValue,
           ),
-          Text(
-            "Equipements disponible",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
-          ),
-          SizedBox(
-            height: kPaddingValue,
-          ),
           ParcInfoEquipmentAvailableRow(),
+          // ParcInfoPhotosTab(),
+
           ParcInfoTabDisplay(),
         ],
       ),

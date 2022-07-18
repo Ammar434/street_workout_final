@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 import '../../../../../widgets/solid_circle_chevron_left.dart';
-import '../../../../../widgets/solid_circle_heart.dart';
 
 class ParcInfoHeaderWidget extends StatelessWidget {
   const ParcInfoHeaderWidget({
@@ -32,9 +32,10 @@ class ParcInfoHeaderWidget extends StatelessWidget {
           ),
         ),
         const Positioned(
-            right: 5,
-            top: kPaddingValue * 1.5,
-            child: SolidCircleHeart(isLike: false)),
+          right: 5,
+          top: kPaddingValue * 1.5,
+          child: LikeButton(),
+        ),
       ],
     );
   }

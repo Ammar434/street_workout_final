@@ -24,13 +24,22 @@ class HomeHeader extends StatelessWidget {
           style: const TextStyle(
               fontWeight: FontWeight.w900, fontSize: kDefaultTitleSize),
           child: AnimatedTextKit(
+            totalRepeatCount: 434,
+            isRepeatingAnimation: true,
             animatedTexts: [
               WavyAnimatedText(
                 'It all started',
+                speed: const Duration(
+                  milliseconds: 250,
+                ),
               ),
-              WavyAnimatedText('with a pull up'),
+              WavyAnimatedText(
+                'with a pull up',
+                speed: const Duration(
+                  milliseconds: 250,
+                ),
+              ),
             ],
-            isRepeatingAnimation: true,
             onTap: () {},
           ),
         ),

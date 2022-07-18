@@ -18,9 +18,9 @@ class ImageSelectedWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kPaddingValue),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: articleImageListe.length + 1,
+        itemCount: userSelectedImageList.length + 1,
         itemBuilder: (context, index) {
-          if (index == articleImageListe.length) {
+          if (index == userSelectedImageList.length) {
             return Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: IconButton(
@@ -48,7 +48,7 @@ class ImageSelectedWidget extends StatelessWidget {
                     ),
                     image: DecorationImage(
                       image: MemoryImage(
-                        articleImageListe[index],
+                        userSelectedImageList[index],
                       ),
                       fit: BoxFit.cover,
                     ),

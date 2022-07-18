@@ -1,6 +1,7 @@
 import 'package:draggable_home/draggable_home.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 import '../../../../utils/colors.dart';
 import 'components/parc_info_body.dart';
@@ -26,6 +27,7 @@ class ParcInfoScreen extends StatelessWidget {
             },
             child: const FaIcon(
               FontAwesomeIcons.circleChevronLeft,
+              size: kDefaultIconAppBar,
             ),
           ),
         ),
@@ -34,7 +36,8 @@ class ParcInfoScreen extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: const FaIcon(
-              FontAwesomeIcons.bullseye,
+              FontAwesomeIcons.arrowUpFromBracket,
+              size: kDefaultIconAppBar,
             ),
           ),
         ],

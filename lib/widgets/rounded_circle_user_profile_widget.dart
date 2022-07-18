@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class RoundedCircleUserProfileWidget extends StatelessWidget {
   const RoundedCircleUserProfileWidget({
     Key? key,
-    required this.gradient,
+    this.gradient,
     required this.radius,
   }) : super(key: key);
 

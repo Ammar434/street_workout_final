@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:street_workout_final/screens/application/achievement_screen/achievement_screen.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/challenge_screen.dart';
+import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
 
 import 'drawer_categorie_tile.dart';
 
@@ -20,25 +22,29 @@ class DrawerCategorieWidget extends StatelessWidget {
         ),
         DrawerCategorieTile(
           iconData: FontAwesomeIcons.gem,
-          text: "Rewards",
+          text: "Achievements",
           onTap: () {
             Navigator.pushNamed(context, AchievementScreen.name);
           },
         ),
         DrawerCategorieTile(
           iconData: FontAwesomeIcons.calendar,
-          text: "Add availability",
-          onTap: () {},
+          text: "Add new parc",
+          onTap: () {
+            Navigator.pushNamed(context, PostScreen.name);
+          },
         ),
         DrawerCategorieTile(
           iconData: FontAwesomeIcons.briefcase,
-          text: "My contribution",
+          text: "Start a training",
           onTap: () {},
         ),
         DrawerCategorieTile(
           iconData: FontAwesomeIcons.calendar,
-          text: "Add availability",
-          onTap: () {},
+          text: "Start a challenge",
+          onTap: () {
+            Navigator.pushNamed(context, ChallengeScreen.name);
+          },
         ),
       ],
     );

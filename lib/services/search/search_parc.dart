@@ -2,6 +2,6 @@
 
 import 'package:uuid/uuid.dart';
 
-String searchParc() {
+String searchParc(String parcName, String parcAddress) {
   return const Uuid().v1();
 }

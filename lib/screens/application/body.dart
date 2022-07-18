@@ -1,10 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/screens/application/home_screen/home_screen.dart';
 import 'package:street_workout_final/screens/application/leaderboard_screen/leaderboard_screen.dart';
-import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
 import 'package:street_workout_final/screens/application/settings_screen/settings_screen.dart';
 import 'package:street_workout_final/utils/colors.dart';
-import 'home_screen/home/home_screen.dart';
 import 'main_screen.dart';
 import 'map_screen/map_screen.dart';
 
@@ -56,13 +55,13 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
         children: const [
           HomeScreen(),
           MapScreen(),
-          PostScreen(),
+          // PostScreen(),
           LeaderboardScreen(),
           SettingsScreen()
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent.withOpacity(0.3),
+        backgroundColor: Colors.transparent,
         buttonBackgroundColor: primaryColor,
         color: primaryColor,
         height: 65,
@@ -74,7 +73,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
         items: const <Widget>[
           Icon(Icons.home),
           Icon(Icons.location_on),
-          Icon(Icons.add),
+          // Icon(Icons.add),
           Icon(Icons.leaderboard),
           Icon(Icons.settings),
         ],
