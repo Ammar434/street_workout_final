@@ -1,10 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:street_workout_final/services/image_picker.dart';
-import 'package:street_workout_final/utils/constants.dart';
 
 class NoImageSelectedWidget extends StatelessWidget {
   const NoImageSelectedWidget({

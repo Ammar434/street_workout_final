@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:street_workout_final/screens/application/drawer_screen/drawer.dart';
+import 'package:street_workout_final/utils/colors.dart';
 import 'body.dart';
 
 final ZoomDrawerController z = ZoomDrawerController();
@@ -21,7 +22,9 @@ class MainScreenState extends State<MainScreen> {
       controller: z,
       borderRadius: 24,
       style: DrawerStyle.defaultStyle,
+      drawerShadowsBackgroundColor: tertiaryColor,
       showShadow: true,
+      menuBackgroundColor: backgroundColor,
       openCurve: Curves.fastOutSlowIn,
       slideWidth: MediaQuery.of(context).size.width * 0.65,
       duration: const Duration(milliseconds: 500),

@@ -9,15 +9,6 @@ class MapMarker {
   final LatLng location;
 }
 
-final _location = [
-  LatLng(-12, -77),
-  LatLng(-12, -77),
-  LatLng(-12, -77),
-  LatLng(-12, -77),
-  LatLng(-12, -77),
-  LatLng(-12, -77)
-];
-
 final mapMarkers = [
   MapMarker(
     "https://www.guichenpontrean.fr/medias/sites/7/2020/07/image-park.jpg",

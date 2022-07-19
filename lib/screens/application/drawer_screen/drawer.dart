@@ -16,7 +16,7 @@ class DrawerBody extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           DrawerTopWidget(),

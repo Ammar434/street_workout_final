@@ -42,7 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       userName: _userNameController.text,
       profileImage: _image,
     );
-
+    if (!mounted) return;
     if (responseCode == "success") {
       Navigator.pushNamed(context, WelcomeScreen.name);
     } else {

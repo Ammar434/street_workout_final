@@ -11,29 +11,5 @@ class MobileScreenLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomUser customUser = Provider.of<UserProvider>(context).getUser;
     return const MainScreen();
-    // return StreamBuilder(
-    // stream: FirebaseAuth.instance.authStateChanges(),
-    // builder: (context, snapshot) {
-    //   if (snapshot.connectionState == ConnectionState.active) {
-    //     if (snapshot.hasData) {
-    //       return const MainScreen();
-    //     } else if (snapshot.hasError) {
-    //       return const Center(
-    //         child: Text(
-    //           "Some internal error happen please contact the developper",
-    //         ),
-    //       );
-    //     }
-    //   }
-    //   if (snapshot.connectionState == ConnectionState.waiting) {
-    //     return const Center(
-    //       child: CircularProgressIndicator(
-    //         color: primaryColor,
-    //       ),
-    //     );
-    //   }
-    //   return const AuthScreen();
-    // },
-    // )
   }
 }

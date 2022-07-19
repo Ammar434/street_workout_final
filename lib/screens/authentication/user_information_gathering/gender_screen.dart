@@ -10,10 +10,6 @@ class GenderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void onTap() {
-      Navigator.pushNamed(context, UserPersonalDataScreen.name);
-    }
-
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,

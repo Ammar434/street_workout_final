@@ -1,6 +1,6 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
-import '../../../../../utils/constants.dart';
+import '../../../../../../utils/constants.dart';
 
 class ParcInfoPhotosTab extends StatelessWidget {
   const ParcInfoPhotosTab({
@@ -22,6 +22,7 @@ class ParcInfoPhotosTab extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return Image(
           image: NetworkImage(Faker.instance.image.image()),
+          fit: BoxFit.fill,
         );
       },
     );

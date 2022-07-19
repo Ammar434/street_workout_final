@@ -16,7 +16,7 @@ class Post {
   final String datePublished;
   final List<String> postUrl;
   final List<String> materialAvailable;
-  final likes;
+  final List likes;
 
   Map<String, dynamic> toJson() => {
         "postId": postId,

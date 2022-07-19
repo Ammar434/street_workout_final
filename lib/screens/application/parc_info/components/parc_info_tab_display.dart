@@ -1,6 +1,6 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/parc_info/components/parc_info_photos_tab.dart';
+import 'package:street_workout_final/screens/application/parc_info/components/tab_view/parc_info_photos_tab.dart';
 import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
 

@@ -47,7 +47,7 @@ class ParcInfoExpandedBody extends StatelessWidget {
                       ),
                     ],
                     onTap: () {
-                      print("Tap Event");
+                      // print("Tap Event");
                     },
                   ),
                 ),

@@ -7,6 +7,7 @@ import '../../../../utils/colors.dart';
 import 'components/parc_info_body.dart';
 import 'components/parc_info_expanded_body.dart';
 import 'components/parc_info_header_widget.dart';
+import 'components/pop_up/my_pop_up_menu.dart';
 
 class ParcInfoScreen extends StatelessWidget {
   const ParcInfoScreen({Key? key}) : super(key: key);
@@ -26,18 +27,23 @@ class ParcInfoScreen extends StatelessWidget {
               Navigator.pop(context);
             },
             child: const FaIcon(
-              FontAwesomeIcons.circleChevronLeft,
+              FontAwesomeIcons.chevronLeft,
               size: kDefaultIconAppBar,
             ),
           ),
         ),
         title: Text(parcName),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const FaIcon(
-              FontAwesomeIcons.arrowUpFromBracket,
-              size: kDefaultIconAppBar,
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: MyPopupMenu(
+                child: FaIcon(
+                  FontAwesomeIcons.arrowUpFromBracket,
+                  size: kDefaultIconAppBar,
+                  key: GlobalKey(),
+                ),
+              ),
             ),
           ),
         ],

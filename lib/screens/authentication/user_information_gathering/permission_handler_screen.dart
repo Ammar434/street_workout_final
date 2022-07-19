@@ -25,7 +25,7 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
       isLoading = true;
     });
     String responseCode = await AuthenticationMethod().registerUser();
-
+    if (!mounted) return;
     if (responseCode == "success") {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(

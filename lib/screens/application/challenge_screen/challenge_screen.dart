@@ -54,7 +54,7 @@ class ChallengeScreen extends StatelessWidget {
                       ),
                     ],
                     onTap: () {
-                      print("Tap Event");
+                      // print("Tap Event");
                     },
                   ),
                 ),
