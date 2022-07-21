@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
 
 import '../../../../../utils/constants.dart';
 
@@ -20,31 +19,20 @@ class ParcDisplayCardImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Stack(
-        children: [
-          GestureDetector(
-            onTap: onTap,
-            onDoubleTap: onDoubleTap,
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(kRadiusValue),
-                image: DecorationImage(
-                  image: NetworkImage(imageUrl),
-                  fit: BoxFit.fill,
-                ),
-              ),
+      child: GestureDetector(
+        onTap: onTap,
+        onDoubleTap: onDoubleTap,
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(kRadiusValue),
+            image: DecorationImage(
+              image: NetworkImage(imageUrl),
+              fit: BoxFit.cover,
             ),
           ),
-          Positioned(
-            top: 5,
-            right: 5,
-            child: LikeButton(
-              isLiked: isLiked,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

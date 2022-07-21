@@ -1,80 +1,101 @@
+import 'package:draggable_home/draggable_home.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/profile_screen/components/top_part_profile_screen.dart';
+import 'package:street_workout_final/models/custom_user.dart';
+import 'package:street_workout_final/services/firestore_methods.dart';
+import 'package:street_workout_final/services/storage/storage_methods.dart';
+import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
+import 'package:street_workout_final/widgets/loading_widget.dart';
 
-import 'components/staggered_grid_image.dart';
+import 'components/profile_header_widget.dart';
+import 'components/user_profile_body_widget.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key, required this.userUid}) : super(key: key);
   static String name = "ProfileScreen";
+  final String userUid;
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  bool isLoading = false;
+  List<String> listUrlImage = [];
+  late CustomUser user;
+  void loadData() async {
+    setState(() {
+      isLoading = true;
+    });
+    listUrlImage = await StorageMethods().getAllImageOfAUser(widget.userUid);
+
+    user = await FirestoreMethods().findUserByUid(widget.userUid);
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    int userContribution = 124;
-    int userTrainingPoint = 124;
-    int userEvaluation = 23;
-
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            leading: Center(
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const FaIcon(
-                  FontAwesomeIcons.chevronLeft,
-                  size: kDefaultIconAppBar,
-                ),
-              ),
-            ),
-            actions: const [
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(right: kPaddingValue),
-                  child: FaIcon(
-                    FontAwesomeIcons.shareNodes,
-                    size: kDefaultIconAppBar,
+    return SafeArea(
+      child: Scaffold(
+        body: isLoading
+            ? const LoadingWidget()
+            : DraggableHome(
+                leading: Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const FaIcon(
+                      FontAwesomeIcons.chevronLeft,
+                      size: kDefaultIconAppBar,
+                    ),
                   ),
                 ),
-              )
-            ],
-            expandedHeight: 300,
-            // pinned: true,
-            stretch: true,
-            onStretchTrigger: () async {
-              debugPrint("Load more data");
-            },
-
-            flexibleSpace: TopPartProfileScreen(
-              userContribution: userContribution,
-              userTrainingPoint: userTrainingPoint,
-              userEvaluation: userEvaluation,
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: SizedBox(height: kPaddingValue),
-          ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 4.0,
-              crossAxisSpacing: 4.0,
-              childAspectRatio: 1.0,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return StaggeredGridImage(
-                  index: index,
-                  height: (index % 5 + 1) * 100,
-                );
-              },
-              childCount: 120,
-            ),
-          ),
-        ],
+                title: Text(user.userName),
+                // actions: [
+                //   Center(
+                //     child: Padding(
+                //       padding: const EdgeInsets.only(right: 10),
+                //       child: MyPopupMenu(
+                //         child: FaIcon(
+                //           FontAwesomeIcons.arrowUpFromBracket,
+                //           size: kDefaultIconAppBar,
+                //           key: GlobalKey(),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ],
+                headerWidget: ProfileHeaderWidget(
+                  profileImage: user.profileImage,
+                  instagramLink: user.instagramProfile,
+                ),
+                body: [
+                  UserProfileBodyWidget(
+                    name: user.userName,
+                    favoriteParc: user.favoriteParc == ""
+                        ? "The user's favorite park has not been filled in"
+                        : user.favoriteParc,
+                    userContribution: user.numberOfContribution,
+                    userTrainingPoint: user.points,
+                    userEvaluation: user.numberOfEvaluation,
+                    listUrlImage: listUrlImage,
+                  ),
+                ],
+                fullyStretchable: true,
+                // expandedBody: const ParcInfoExpandedBody(),
+                backgroundColor: backgroundColor,
+                appBarColor: primaryColor,
+              ),
       ),
     );
   }

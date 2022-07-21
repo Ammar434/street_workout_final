@@ -1,26 +1,32 @@
 class MaterialAvailable {
   final String name, image;
 
-  MaterialAvailable({required this.name, required this.image});
+  MaterialAvailable({
+    required this.name,
+    required this.image,
+  });
+
+  static List<MaterialAvailable> buildRow(List list) {
+    List<MaterialAvailable> listMaterialAvailable = [];
+    // List<String> tmp = list;
+    for (String s in list) {
+      if (s == materialAvailable0.name) {
+        listMaterialAvailable.add(materialAvailable0);
+      } else if (s == materialAvailable1.name) {
+        listMaterialAvailable.add(materialAvailable1);
+      } else if (s == materialAvailable2.name) {
+        listMaterialAvailable.add(materialAvailable2);
+      } else if (s == materialAvailable3.name) {
+        listMaterialAvailable.add(materialAvailable3);
+      } else if (s == materialAvailable4.name) {
+        listMaterialAvailable.add(materialAvailable4);
+      } else if (s == materialAvailable5.name) {
+        listMaterialAvailable.add(materialAvailable5);
+      }
+    }
+    return listMaterialAvailable;
+  }
 }
-
-// Map<String, MaterialAvailable> materialAvailableMap = {
-//   'traction': materialAvailable1,
-//   'dips': materialAvailable2,
-//   'mediumBar': materialAvailable3,
-//   'bench': materialAvailable4,
-//   'monkeyBar': materialAvailable5,
-//   'highVerticalBar': materialAvailable6,
-// };
-
-List<MaterialAvailable> materialAvailableList = [
-  materialAvailable0,
-  materialAvailable1,
-  materialAvailable2,
-  materialAvailable3,
-  materialAvailable4,
-  materialAvailable5,
-];
 
 MaterialAvailable materialAvailable0 = MaterialAvailable(
   name: "Traction",
@@ -31,7 +37,7 @@ MaterialAvailable materialAvailable1 = MaterialAvailable(
   image: "assets/images/exercices/image_exercice1.png",
 );
 MaterialAvailable materialAvailable2 = MaterialAvailable(
-  name: "MediumBar",
+  name: "Medium bar",
   image: "assets/images/exercices/image_exercice2.png",
 );
 MaterialAvailable materialAvailable3 = MaterialAvailable(
@@ -39,10 +45,19 @@ MaterialAvailable materialAvailable3 = MaterialAvailable(
   image: "assets/images/exercices/image_exercice3.png",
 );
 MaterialAvailable materialAvailable4 = MaterialAvailable(
-  name: "MonkeyBar",
+  name: "Monkey bar",
   image: "assets/images/exercices/image_exercice4.png",
 );
 MaterialAvailable materialAvailable5 = MaterialAvailable(
-  name: "HighVerticalBar",
+  name: "High vertical bar",
   image: "assets/images/exercices/image_exercice5.png",
 );
+
+List<MaterialAvailable> materialAvailableList = [
+  materialAvailable0,
+  materialAvailable1,
+  materialAvailable2,
+  materialAvailable3,
+  materialAvailable4,
+  materialAvailable5,
+];

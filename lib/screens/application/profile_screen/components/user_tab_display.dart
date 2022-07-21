@@ -4,21 +4,23 @@ import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
 import 'package:street_workout_final/widgets/staggered_grid_view.dart';
 
-class ParcInfoTabDisplay extends StatefulWidget {
-  const ParcInfoTabDisplay({
+class UserTabDisplay extends StatefulWidget {
+  const UserTabDisplay({
     Key? key,
+    required this.listUrlImage,
   }) : super(key: key);
+  final List<String> listUrlImage;
 
   @override
-  State<ParcInfoTabDisplay> createState() => _ParcInfoTabDisplayState();
+  State<UserTabDisplay> createState() => _UserTabDisplayState();
 }
 
-class _ParcInfoTabDisplayState extends State<ParcInfoTabDisplay>
+class _UserTabDisplayState extends State<UserTabDisplay>
     with SingleTickerProviderStateMixin {
   final List<Widget> myTabs = [
     const Tab(text: 'Photos'),
-    const Tab(text: 'Athletes'),
-    const Tab(text: "Comments"),
+    const Tab(text: 'Rewards'),
+    // const Tab(text: "Comments"),
   ];
 
   late TabController _tabController;
@@ -32,7 +34,7 @@ class _ParcInfoTabDisplayState extends State<ParcInfoTabDisplay>
 
   @override
   void initState() {
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabSelection);
     super.initState();
   }
@@ -57,8 +59,8 @@ class _ParcInfoTabDisplayState extends State<ParcInfoTabDisplay>
         ),
         Container(
           child: [
-            const StaggeredGridView(
-              listUrlImage: [],
+            StaggeredGridView(
+              listUrlImage: widget.listUrlImage,
             ),
             Column(
               children: List.generate(totalAthlete, (index) {
@@ -94,32 +96,6 @@ class _ParcInfoTabDisplayState extends State<ParcInfoTabDisplay>
                   ),
                 );
               }).toList(),
-            ),
-            Column(
-              children: List.generate(
-                20,
-                (index) => Padding(
-                  padding: const EdgeInsets.all(kSmallPaddingValue),
-                  child: ListTile(
-                    tileColor: tertiaryColor.withOpacity(0.2),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(kRadiusValue),
-                    ),
-                    leading: CircleAvatar(
-                      backgroundImage:
-                          NetworkImage(Faker.instance.image.image()),
-                      radius: 22,
-                    ),
-                    title: Text(
-                      Faker.instance.name.firstName(),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(Faker.instance.datatype.string()),
-                  ),
-                ),
-              ).toList(),
             ),
           ][_tabIndex],
         ),

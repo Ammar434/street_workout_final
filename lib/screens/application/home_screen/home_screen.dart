@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'components/parc_display_card.dart';
+import 'package:street_workout_final/models/parc.dart';
+import 'package:street_workout_final/widgets/loading_widget.dart';
 import '../../../../services/search_bar.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
+import 'components/parc_display_card.dart';
 import 'home_header.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,12 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-          searchBarEditingController.clear();
-        },
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        searchBarEditingController.clear();
+      },
+      child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(kPaddingValue),
           child: Column(
@@ -64,8 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const SizedBox(height: kPaddingValue),
-              const ParcDisplayCard(),
-              const ParcDisplayCard(),
+              const ParcFromFirestore(),
               const SizedBox(
                 height: 80,
               ),
@@ -120,6 +122,49 @@ class _HomeScreenState extends State<HomeScreen> {
           // leading: const Icon(Icons.find_in_page),
           title: Text("The parc you search is not found"),
           // subtitle: Text('\$${suggestion['price']}'),
+        );
+      },
+    );
+  }
+}
+
+class ParcFromFirestore extends StatelessWidget {
+  const ParcFromFirestore({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance.collection("parcs").snapshots(),
+      builder: (BuildContext context,
+          AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox(
+            height: 400,
+            width: double.infinity,
+            child: LoadingWidget(),
+          );
+        }
+        if (snapshot.data!.docs.isEmpty) {
+          return const Center(
+            child: Text("No parcs for the moments"),
+          );
+        }
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: snapshot.data!.docs.length,
+          itemBuilder: (BuildContext context, int index) {
+            Parc parc = Parc.postFromSnapshot(
+              snapshot.data!.docs[index],
+            );
+            debugPrint(parc.mainPhoto);
+
+            return ParcDisplayCard(
+              parc: parc,
+            );
+          },
         );
       },
     );

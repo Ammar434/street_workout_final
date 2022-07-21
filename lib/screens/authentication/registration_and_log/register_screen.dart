@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:street_workout_final/services/authentication/authentication_method.dart';
 import 'package:street_workout_final/services/image_picker.dart';
 import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/snackbar.dart';
+import 'package:street_workout_final/widgets/snackbar.dart';
 import 'package:street_workout_final/widgets/loading_widget.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
 import 'package:street_workout_final/widgets/text_field_input.dart';

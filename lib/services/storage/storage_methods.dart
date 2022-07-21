@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class StorageMethods {
@@ -33,5 +34,27 @@ class StorageMethods {
       res = e.toString();
       return res;
     }
+  }
+
+  Future<List<String>> getAllImageOfAUser(String uid) async {
+    List<String> urlList = [];
+    Reference ref = firebaseStorage
+        .ref()
+        .child("posts")
+        .child(firebaseAuth.currentUser!.uid);
+    try {
+      ListResult result = await ref.listAll();
+
+      // debugPrint("-------------------------------------------");
+      for (var ref in result.items) {
+        String url = await ref.getDownloadURL();
+        urlList.add(url);
+        // print('Found file: $ref.');
+      }
+      // debugPrint("-------------------------------------------");
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return urlList;
   }
 }

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/models/custom_user.dart';
+import 'package:street_workout_final/models/parc.dart';
+import 'package:street_workout_final/services/firestore_methods.dart';
+import 'package:street_workout_final/widgets/loading_widget.dart';
 
 import 'package:street_workout_final/widgets/rounded_button.dart';
 
@@ -11,14 +15,41 @@ import 'parc_display_card_mage.dart';
 class ParcDisplayCard extends StatefulWidget {
   const ParcDisplayCard({
     Key? key,
+    required this.parc,
+    // required this.userWhoPublished,
   }) : super(key: key);
-
+  final Parc parc;
+  // final CustomUser userWhoPublished;
   @override
   State<ParcDisplayCard> createState() => _ParcDisplayCardState();
 }
 
 class _ParcDisplayCardState extends State<ParcDisplayCard> {
   bool isLiked = false;
+  bool isLoading = false;
+  late CustomUser userWhoPublished;
+  late CustomUser userChampion;
+  void loadData() async {
+    setState(() {
+      isLoading = true;
+    });
+    userWhoPublished =
+        await FirestoreMethods().findUserByUid(widget.parc.userUidWhoPublish);
+
+    userChampion =
+        await FirestoreMethods().findUserByUid(widget.parc.userUidChampion);
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,47 +63,57 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
           color: Colors.white10,
         ),
       ),
-      child: Column(
-        children: [
-          ParcDisplayCardImage(
-            imageUrl:
-                "https://images.pexels.com/photos/10159989/pexels-photo-10159989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            isLiked: isLiked,
-            onTap: () {
-              Navigator.pushNamed(context, ParcInfoScreen.name);
-            },
-            onDoubleTap: () {
-              setState(() {
-                isLiked = !isLiked;
-              });
-            },
-          ),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: tertiaryColor.withOpacity(0.1),
-              ),
-              child: Column(
-                children: [
-                  const ParcDisplayCardInfo(
-                    parcName: "Parc de l'ile Saint Denis",
-                    championName: "HOUSSENBAY Ammar",
-                    creatorImage:
-                        "https://images.pexels.com/photos/5611966/pexels-photo-5611966.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                    creatorName: "HOUSSENBAY Ammar",
+      child: isLoading
+          ? const LoadingWidget()
+          : Column(
+              children: [
+                ParcDisplayCardImage(
+                  imageUrl: widget.parc.mainPhoto,
+                  isLiked: isLiked,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ParcInfoScreen(
+                          parc: widget.parc,
+                          champion: userChampion,
+                        ),
+                      ),
+                    );
+                    // Navigator.pushNamed(context, ParcInfoScreen.name);
+                  },
+                  onDoubleTap: () {
+                    setState(() {
+                      isLiked = !isLiked;
+                    });
+                  },
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: tertiaryColor.withOpacity(0.1),
                   ),
-                  RoundedButton(
-                    text: 'More information',
-                    onTap: () {
-                      Navigator.pushNamed(context, ParcInfoScreen.name);
-                    },
-                  )
-                ],
-              ),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: kPaddingValue,
+                      ),
+                      ParcDisplayCardInfo(
+                        parcName: widget.parc.name,
+                        championName: userChampion.userName,
+                        creatorImage: userWhoPublished.profileImage,
+                        creatorName: userWhoPublished.userName,
+                      ),
+                      RoundedButton(
+                        text: 'More information',
+                        onTap: () {
+                          Navigator.pushNamed(context, ParcInfoScreen.name);
+                        },
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
-          )
-        ],
-      ),
     );
   }
 }

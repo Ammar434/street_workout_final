@@ -6,13 +6,30 @@ import 'package:street_workout_final/utils/constants.dart';
 class DrawerTopWidget extends StatelessWidget {
   const DrawerTopWidget({
     Key? key,
+    required this.profileImage,
+    required this.userName,
+    required this.userUid,
   }) : super(key: key);
-
+  final String profileImage;
+  final String userName;
+  final String userUid;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProfileScreen.name);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProfileScreen(userUid: userUid),
+          ),
+        );
+        // Navigator.pushNamed(
+        //   context,
+        //   ProfileScreen.name,
+        //   arguments: {
+        //     'userUid': userUid,
+        //   },
+        // );
       },
       child: Column(
         children: [
@@ -24,9 +41,7 @@ class DrawerTopWidget extends StatelessWidget {
               ),
               CircleAvatar(
                 radius: 26,
-                backgroundImage: NetworkImage(
-                  Faker.instance.image.image(),
-                ),
+                backgroundImage: NetworkImage(profileImage),
               ),
               const SizedBox(
                 width: kPaddingValue,
@@ -35,7 +50,7 @@ class DrawerTopWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    Faker.instance.name.lastName(),
+                    userName,
                     style: const TextStyle(fontWeight: FontWeight.w900),
                     maxLines: 2,
                   ),

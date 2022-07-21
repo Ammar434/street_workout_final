@@ -3,5 +3,5 @@
 import 'package:uuid/uuid.dart';
 
 String searchParc(String parcName, String parcAddress) {
-  return const Uuid().v1();
+  return const Uuid().v4();
 }

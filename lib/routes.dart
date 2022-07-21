@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_workout_final/screens/application/achievement_screen/achievement_screen.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/challenge_screen.dart';
 import 'package:street_workout_final/screens/application/main_screen.dart';
-import 'package:street_workout_final/screens/application/parc_info/parc_info_screen.dart';
 import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
-import 'package:street_workout_final/screens/application/profile_screen/profile_screen.dart';
 
 import 'package:street_workout_final/screens/authentication/registration_and_log/login_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_confirm_screen.dart';
@@ -17,10 +15,6 @@ import 'screens/authentication/user_information_gathering/user_personal_data_scr
 import 'screens/authentication/user_information_gathering/welcome_screen.dart';
 
 Map<String, WidgetBuilder> routes = {
-  // '/': (context) => const ResponsiveLayout(
-  //       webScreenLayout: WebScreenLayout(),
-  //       mobileScreenLayout: MobileScreenLayout(),
-  //     ),
   LoginScreen.name: (context) => const LoginScreen(),
   RegisterScreen.name: (context) => const RegisterScreen(),
   RecoverPasswordScreen.name: (context) => const RecoverPasswordScreen(),
@@ -31,9 +25,9 @@ Map<String, WidgetBuilder> routes = {
   UserPersonalDataScreen.name: (context) => const UserPersonalDataScreen(),
   PermissionHandlerScreen.name: (context) => const PermissionHandlerScreen(),
   MainScreen.name: (context) => const MainScreen(),
-  ParcInfoScreen.name: (context) => const ParcInfoScreen(),
+  // ParcInfoScreen.name: (context) => const ParcInfoScreen(),
   AchievementScreen.name: (context) => const AchievementScreen(),
-  ProfileScreen.name: (context) => const ProfileScreen(),
+  // ProfileScreen.name: (context) => const ProfileScreen(user: ,),
   PostScreen.name: (context) => const PostScreen(),
   ChallengeScreen.name: (context) => const ChallengeScreen(),
 };

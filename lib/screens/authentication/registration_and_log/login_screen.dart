@@ -1,10 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/responsive/mobile_screen_layout.dart';
-import 'package:street_workout_final/responsive/responsive_layout.dart';
-import 'package:street_workout_final/responsive/web_screen_layout.dart';
 import 'package:street_workout_final/services/authentication/authentication_method.dart';
-import 'package:street_workout_final/utils/snackbar.dart';
+import 'package:street_workout_final/widgets/snackbar.dart';
 import 'recover_password_screen.dart';
 import 'package:street_workout_final/utils/constants.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
@@ -34,14 +31,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (!mounted) return;
     if (res == "success") {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const ResponsiveLayout(
-            webScreenLayout: WebScreenLayout(),
-            mobileScreenLayout: MobileScreenLayout(),
-          ),
-        ),
-      );
+      Navigator.pop(context);
+      // Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(
+      //     builder: (context) => const ResponsiveLayout(
+      //       mobileScreenLayout: MobileScreenLayout(),
+      //       webScreenLayout: WebScreenLayout(),
+      //     ),
+      //   ),
+      // );
     } else {
       showSnackBar(
         context: context,

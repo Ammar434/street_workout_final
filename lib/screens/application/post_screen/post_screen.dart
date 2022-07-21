@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 import 'package:street_workout_final/models/material_available.dart';
 import 'package:street_workout_final/provider/user_provider.dart';
 import 'package:street_workout_final/services/image_picker.dart';
-import 'package:street_workout_final/services/storage/firestore_methods.dart';
+import 'package:street_workout_final/services/firestore_methods.dart';
 import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/snackbar.dart';
+import 'package:street_workout_final/widgets/snackbar.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
 import 'package:street_workout_final/widgets/text_field_input_with_autocomplete.dart';
 
@@ -37,6 +37,9 @@ class _PostScreenState extends State<PostScreen> {
       {required String parcName,
       required String parcAddress,
       required String uid}) async {
+    String title = "";
+    String content = "";
+    ContentType contentType;
     try {
       setState(() {
         isLoading = true;
@@ -51,35 +54,33 @@ class _PostScreenState extends State<PostScreen> {
       setState(() {
         isLoading = false;
       });
-
       if (res == "success") {
-        userSelectedImageList = [];
-        selectedMaterial = [];
-        textEditingControllerParcAddress.clear();
-        textEditingControllerParcName.clear();
-        showSnackBar(
-          context: context,
-          title: "Posted",
-          content:
-              "We will examine your content quickly if all is ok we will show it quickly",
-          contentType: ContentType.success,
-        );
+        title = "Posted";
+        content =
+            "We will examine your content quickly if all is ok we will show it quickly";
+        contentType = ContentType.success;
       } else {
-        showSnackBar(
-          context: context,
-          title: "Error",
-          content: "Sommething went wrong please retry to post",
-          contentType: ContentType.failure,
-        );
+        title = "Error";
+        content = "Sommething went wrong please retry to post";
+        contentType = ContentType.failure;
       }
     } catch (e) {
-      showSnackBar(
-        context: context,
-        title: "Error",
-        content: e.toString(),
-        contentType: ContentType.failure,
-      );
+      title = "Error";
+      content = e.toString();
+      contentType = ContentType.failure;
     }
+
+    userSelectedImageList = [];
+    selectedMaterial = [];
+    textEditingControllerParcAddress.clear();
+    textEditingControllerParcName.clear();
+
+    showSnackBar(
+      context: context,
+      title: title,
+      content: content,
+      contentType: contentType,
+    );
   }
 
   selectImage() async {
@@ -107,6 +108,10 @@ class _PostScreenState extends State<PostScreen> {
 
   @override
   void dispose() {
+    userSelectedImageList = [];
+    selectedMaterial = [];
+    textEditingControllerParcAddress.clear();
+    textEditingControllerParcName.clear();
     textEditingControllerParcName.dispose();
     textEditingControllerParcAddress.dispose();
     super.dispose();
@@ -116,7 +121,6 @@ class _PostScreenState extends State<PostScreen> {
   Widget build(BuildContext context) {
     final UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
-      // extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: Center(
           child: IconButton(

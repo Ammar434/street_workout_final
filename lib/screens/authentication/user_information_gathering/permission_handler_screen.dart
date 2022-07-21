@@ -1,11 +1,11 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:street_workout_final/responsive/mobile_screen_layout.dart';
 import 'package:street_workout_final/responsive/responsive_layout.dart';
 import 'package:street_workout_final/responsive/web_screen_layout.dart';
 import 'package:street_workout_final/services/authentication/authentication_method.dart';
-import 'package:street_workout_final/utils/snackbar.dart';
+import 'package:street_workout_final/services/geolocalisation/geolocalisation.dart';
+import 'package:street_workout_final/widgets/snackbar.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 
@@ -25,8 +25,12 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
       isLoading = true;
     });
     String responseCode = await AuthenticationMethod().registerUser();
-    if (!mounted) return;
+    await Geolocalisation().determinePosition();
+
     if (responseCode == "success") {
+      if (!mounted) return;
+      // Navigator.pop(context);
+
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const ResponsiveLayout(
@@ -68,10 +72,11 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
               ),
               buildMiddle(context),
               RoundedButton(
-                onTap: () async {
-                  await Permission.location.shouldShowRequestRationale;
-                  onTap();
-                },
+                onTap: onTap,
+                // onTap: () async {
+                //   // await Permission.location.shouldShowRequestRationale;
+                //   onTap();
+                // },
                 text: "Complete",
                 isLoading: isLoading,
               ),

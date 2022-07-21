@@ -81,7 +81,9 @@ class ParcDisplayCardInfo extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    championName,
+                    championName == "unknown"
+                        ? "No champion yet"
+                        : championName,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -89,17 +91,17 @@ class ParcDisplayCardInfo extends StatelessWidget {
             ],
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(left: kPaddingValue),
-          child: Text(
-            "Equipements disponible",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-            // textAlign: TextAlign.left,
-          ),
-        ),
+        // const Padding(
+        //   padding: EdgeInsets.only(left: kPaddingValue),
+        //   child: Text(
+        //     "Equipements disponible",
+        //     style: TextStyle(
+        //       fontWeight: FontWeight.bold,
+        //       fontSize: 16,
+        //     ),
+        //     // textAlign: TextAlign.left,
+        //   ),
+        // ),
       ],
     );
   }
