@@ -12,9 +12,11 @@ import 'components/profile_header_widget.dart';
 import 'components/user_profile_body_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key, required this.userUid}) : super(key: key);
+  const ProfileScreen({Key? key, required this.userUid, this.userProvided})
+      : super(key: key);
   static String name = "ProfileScreen";
   final String userUid;
+  final CustomUser? userProvided;
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -29,8 +31,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       isLoading = true;
     });
     listUrlImage = await StorageMethods().getAllImageOfAUser(widget.userUid);
-
-    user = await FirestoreMethods().findUserByUid(widget.userUid);
+    if (widget.userProvided != null) {
+      user = widget.userProvided!;
+    } else {
+      user = await FirestoreMethods().findUserByUid(widget.userUid);
+    }
     setState(() {
       isLoading = false;
     });
@@ -61,20 +66,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 title: Text(user.userName),
-                // actions: [
-                //   Center(
-                //     child: Padding(
-                //       padding: const EdgeInsets.only(right: 10),
-                //       child: MyPopupMenu(
-                //         child: FaIcon(
-                //           FontAwesomeIcons.arrowUpFromBracket,
-                //           size: kDefaultIconAppBar,
-                //           key: GlobalKey(),
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ],
                 headerWidget: ProfileHeaderWidget(
                   profileImage: user.profileImage,
                   instagramLink: user.instagramProfile,
@@ -92,7 +83,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ],
                 fullyStretchable: true,
-                // expandedBody: const ParcInfoExpandedBody(),
                 backgroundColor: backgroundColor,
                 appBarColor: primaryColor,
               ),

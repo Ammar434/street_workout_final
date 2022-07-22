@@ -6,7 +6,7 @@ import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/models/material_available.dart';
 import 'package:street_workout_final/models/post_for_existant_parc.dart';
 import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/services/search/search_parc.dart';
+import 'package:street_workout_final/services/search/search_methods.dart';
 import 'package:street_workout_final/services/storage/storage_methods.dart';
 import 'package:uuid/uuid.dart';
 
@@ -138,6 +138,28 @@ class FirestoreMethods {
     return user;
   }
 
+  Future<Parc> findParcrById(String id) async {
+    late Parc parc;
+    try {
+      DocumentSnapshot documentSnapshot =
+          await firebaseFirestore.collection("parcs").doc(id).get();
+
+      parc = Parc.postFromSnapshot(documentSnapshot);
+    } catch (e) {
+      debugPrint(e.toString());
+      // if (user == null) {
+      //   DocumentSnapshot documentSnapshot = await firebaseFirestore
+      //       .collection("users")
+      //       .doc("kEvs6AAbs5Xov7kUHtae5SdEIls1")
+      //       .get();
+
+      //   user = CustomUser.userFromSnapshot(documentSnapshot);
+      // }
+    }
+
+    return parc;
+  }
+
   Future<String> incrementUserContribution(String uid) async {
     CustomUser? user;
     String res = "Some error occured";
@@ -154,6 +176,90 @@ class FirestoreMethods {
       res = e.toString();
     }
 
+    return res;
+  }
+
+  Future<List<String>> getAllImageOfParc(String parcId) async {
+    List<String> listUrl = [];
+    try {
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await firebaseFirestore
+              .collection("parcs")
+              .doc(parcId)
+              .collection("posts")
+              .get();
+      for (var document in querySnapshot.docs) {
+        String s = document.data()['postUrl'];
+        listUrl.add(s);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return listUrl;
+  }
+
+  Future<List<CustomUser>> getAllAthleteOfParc(String parcId) async {
+    List<CustomUser> listUser = [];
+    try {
+      DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
+          await firebaseFirestore.collection("parcs").doc(parcId).get();
+
+      for (String uid
+          in documentSnapshot.data()!['athletesWhoTrainInThisParc']) {
+        CustomUser customUser = await findUserByUid(uid);
+        listUser.add(customUser);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return listUser;
+  }
+
+  Future<String> addAthleteToAParc(String parcUid, String athleteUid) async {
+    String res = "Some error occured";
+    try {
+      firebaseFirestore.collection("parcs").doc(parcUid).update(
+        {
+          "athletesWhoTrainInThisParc": FieldValue.arrayUnion([athleteUid])
+        },
+      );
+      res = "success";
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
+  }
+
+  Future<String> addOrRemoveAthleteToAParc(
+      String parcUid, String athleteUid) async {
+    String res = "Some error occured";
+    try {
+      DocumentReference documentReference =
+          firebaseFirestore.collection("parcs").doc(parcUid);
+      DocumentReference documentReferenceUser =
+          firebaseFirestore.collection("users").doc(athleteUid);
+      DocumentSnapshot documentSnapshot = await documentReference.get();
+
+      List queue = documentSnapshot.get('athletesWhoTrainInThisParc');
+      if (queue.contains(athleteUid) == true) {
+        documentReference.update({
+          "athletesWhoTrainInThisParc": FieldValue.arrayRemove([athleteUid])
+        });
+        documentReferenceUser.update({
+          "favoriteParc": "",
+        });
+      } else {
+        documentReference.update({
+          "athletesWhoTrainInThisParc": FieldValue.arrayUnion([athleteUid])
+        });
+        documentReferenceUser.update({
+          "favoriteParc": parcUid,
+        });
+      }
+      res = "success";
+    } catch (e) {
+      res = e.toString();
+    }
     return res;
   }
 }

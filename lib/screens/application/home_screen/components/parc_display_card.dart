@@ -50,6 +50,18 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
     loadData();
   }
 
+  void onParcTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ParcInfoScreen(
+          parcId: widget.parc.parcId,
+          // champion: userChampion,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,18 +82,7 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
                 ParcDisplayCardImage(
                   imageUrl: widget.parc.mainPhoto,
                   isLiked: isLiked,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ParcInfoScreen(
-                          parc: widget.parc,
-                          champion: userChampion,
-                        ),
-                      ),
-                    );
-                    // Navigator.pushNamed(context, ParcInfoScreen.name);
-                  },
+                  onTap: onParcTap,
                   onDoubleTap: () {
                     setState(() {
                       isLiked = !isLiked;
@@ -99,15 +100,12 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
                       ),
                       ParcDisplayCardInfo(
                         parcName: widget.parc.name,
-                        championName: userChampion.userName,
-                        creatorImage: userWhoPublished.profileImage,
-                        creatorName: userWhoPublished.userName,
+                        champion: userChampion,
+                        creator: userWhoPublished,
                       ),
                       RoundedButton(
                         text: 'More information',
-                        onTap: () {
-                          Navigator.pushNamed(context, ParcInfoScreen.name);
-                        },
+                        onTap: onParcTap,
                       )
                     ],
                   ),

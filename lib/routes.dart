@@ -3,6 +3,7 @@ import 'package:street_workout_final/screens/application/achievement_screen/achi
 import 'package:street_workout_final/screens/application/challenge_screen/challenge_screen.dart';
 import 'package:street_workout_final/screens/application/main_screen.dart';
 import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
+import 'package:street_workout_final/screens/application/settings_screen/account_settings_screen.dart';
 
 import 'package:street_workout_final/screens/authentication/registration_and_log/login_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_confirm_screen.dart';
@@ -30,4 +31,5 @@ Map<String, WidgetBuilder> routes = {
   // ProfileScreen.name: (context) => const ProfileScreen(user: ,),
   PostScreen.name: (context) => const PostScreen(),
   ChallengeScreen.name: (context) => const ChallengeScreen(),
+  AccountSettingsScreen.name: (context) => const AccountSettingsScreen()
 };

@@ -22,7 +22,7 @@ ThemeData appTheme = ThemeData.dark().copyWith(
     elevation: 0,
   ),
   iconTheme: const IconThemeData(
-    color: tertiaryColor,
+    color: iconColor,
     size: kDefaultIconsSize,
   ),
 );

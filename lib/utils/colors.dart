@@ -5,3 +5,4 @@ const primaryColor = Color(0xffE5532E);
 const secondaryColor = Color(0xffD59A72);
 const tertiaryColor = Color(0xff9AABBB);
 const hintTextColor = Color(0xffE6F0E5);
+const iconColor = Color(0xffFAF9F6);

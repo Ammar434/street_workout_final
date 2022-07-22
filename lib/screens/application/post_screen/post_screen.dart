@@ -12,7 +12,6 @@ import 'package:street_workout_final/services/firestore_methods.dart';
 import 'package:street_workout_final/utils/constants.dart';
 import 'package:street_workout_final/widgets/snackbar.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
-import 'package:street_workout_final/widgets/text_field_input_with_autocomplete.dart';
 
 import 'components/add_photo.dart';
 import 'components/parc_info_selectable_row.dart';
@@ -150,16 +149,16 @@ class _PostScreenState extends State<PostScreen> {
                   );
                 },
               ),
-              TextFieldInputWithAutoComplete(
-                textEditingController: textEditingControllerParcName,
-                rowName: 'Name',
-                hintText: "Enter your parc name",
-              ),
-              TextFieldInputWithAutoComplete(
-                textEditingController: textEditingControllerParcAddress,
-                rowName: 'Address',
-                hintText: "Enter your parc address",
-              ),
+              // TextFieldInputWithAutoComplete(
+              //   textEditingController: textEditingControllerParcName,
+              //   rowName: 'Name',
+              //   hintText: "Enter your parc name",
+              // ),
+              // TextFieldInputWithAutoComplete(
+              //   textEditingController: textEditingControllerParcAddress,
+              //   rowName: 'Address',
+              //   hintText: "Enter your parc address",
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: kPaddingValue),
                 child: Column(

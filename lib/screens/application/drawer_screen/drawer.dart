@@ -10,13 +10,16 @@ import 'components/drawer_categorie_widget.dart';
 import 'components/drawer_top_widget.dart';
 
 class DrawerBody extends StatelessWidget {
+  final String? userCity;
   const DrawerBody({
     Key? key,
+    required this.userCity,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     CustomUser customUser = Provider.of<UserProvider>(context).getUser;
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Column(
@@ -27,6 +30,7 @@ class DrawerBody extends StatelessWidget {
             profileImage: customUser.profileImage,
             userName: customUser.userName,
             userUid: customUser.uid,
+            userCity: userCity ?? "Unknwonw",
           ),
           const HorizontalLine(),
           const DrawerCategorieWidget(),

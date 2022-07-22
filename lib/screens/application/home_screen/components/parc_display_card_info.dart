@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:street_workout_final/models/custom_user.dart';
+import 'package:street_workout_final/screens/application/profile_screen/profile_screen.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
@@ -7,15 +9,13 @@ import '../../../../../utils/constants.dart';
 class ParcDisplayCardInfo extends StatelessWidget {
   const ParcDisplayCardInfo({
     Key? key,
-    required this.creatorImage,
+    required this.creator,
+    required this.champion,
     required this.parcName,
-    required this.creatorName,
-    required this.championName,
   }) : super(key: key);
-  final String creatorImage;
+  final CustomUser creator;
+  final CustomUser champion;
   final String parcName;
-  final String creatorName;
-  final String championName;
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +33,40 @@ class ParcDisplayCardInfo extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text("By"),
-            const SizedBox(
-              width: 5,
-            ),
-            CircleAvatar(
-              radius: kRadiusValue,
-              backgroundImage: NetworkImage(creatorImage),
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Text(
-              creatorName,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
+        GestureDetector(
+          onTap: () {
+            if (creator.userName != "unknown") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(
+                    userUid: creator.uid,
+                    userProvided: creator,
+                  ),
+                ),
+              );
+            }
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("By"),
+              const SizedBox(
+                width: 5,
+              ),
+              CircleAvatar(
+                radius: kRadiusValue,
+                backgroundImage: NetworkImage(creator.profileImage),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Text(
+                creator.userName,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(kPaddingValue),
@@ -80,28 +95,32 @@ class ParcDisplayCardInfo extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
-                  Text(
-                    championName == "unknown"
-                        ? "No champion yet"
-                        : championName,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  GestureDetector(
+                    onTap: () {
+                      if (champion.userName != "unknown") {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(
+                              userUid: creator.uid,
+                              userProvided: champion,
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: Text(
+                      champion.userName == "unknown"
+                          ? "No champion yet"
+                          : champion.userName,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),
             ],
           ),
         ),
-        // const Padding(
-        //   padding: EdgeInsets.only(left: kPaddingValue),
-        //   child: Text(
-        //     "Equipements disponible",
-        //     style: TextStyle(
-        //       fontWeight: FontWeight.bold,
-        //       fontSize: 16,
-        //     ),
-        //     // textAlign: TextAlign.left,
-        //   ),
-        // ),
       ],
     );
   }

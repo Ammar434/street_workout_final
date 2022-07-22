@@ -10,7 +10,7 @@ const double kDefaultTitleSize = 25;
 const double kDefaultIconAppBar = 18;
 
 const String mapboxAccessToken =
-    "pk.eyJ1IjoiYW1tYXI0MzQiLCJhIjoiY2w1aWlodHdhMDZmbTNjbnVhbThhMnl0dCJ9.4-yGNTfX9lfI6Dr-fV91xg";
+    "pk.eyJ1IjoiYW1tYXI0MzQiLCJhIjoiY2w1aWlnaTdkMDhoODNidDh0dXRoMHBnbCJ9.kwYEeCiipd3pZPOFpNPmJg";
 
 const String mapBoxId = "ammar434";
 const markerSizeExpanded = 40.0;

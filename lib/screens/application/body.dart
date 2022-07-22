@@ -16,6 +16,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   int index = 0;
+
   late AnimationController controller = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 100),
@@ -38,7 +39,6 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      // extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text("Street Workout Fighters"),
         elevation: 0.0,
@@ -55,7 +55,6 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
         children: const [
           HomeScreen(),
           MapScreen(),
-          // PostScreen(),
           LeaderboardScreen(),
           SettingsScreen()
         ],
@@ -73,7 +72,6 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
         items: const <Widget>[
           Icon(Icons.home),
           Icon(Icons.location_on),
-          // Icon(Icons.add),
           Icon(Icons.leaderboard),
           Icon(Icons.settings),
         ],

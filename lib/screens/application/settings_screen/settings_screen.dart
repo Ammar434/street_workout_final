@@ -1,10 +1,12 @@
-import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:street_workout_final/models/custom_user.dart';
+import 'package:street_workout_final/provider/user_provider.dart';
+import 'package:street_workout_final/screens/application/settings_screen/account_settings_screen.dart';
 import 'package:street_workout_final/services/authentication/authentication_method.dart';
-import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
+import 'components/profile_image_update_setting_screen.dart';
 import 'components/settings_group.dart';
 import 'components/settings_tile.dart';
 
@@ -13,60 +15,14 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CustomUser customUser = Provider.of<UserProvider>(context).getUser;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kPaddingValue),
       child: ListView(
         shrinkWrap: true,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    CircleAvatar(
-                      backgroundImage:
-                          NetworkImage(Faker.instance.image.image()),
-                      radius: kRadiusValue * 5,
-                      backgroundColor: secondaryColor,
-                    ),
-                    Positioned(
-                      right: -5,
-                      top: 0,
-                      child: GestureDetector(
-                        onTap: () {
-                          debugPrint("Change image");
-                        },
-                        child: const CircleAvatar(
-                          backgroundColor: tertiaryColor,
-                          radius: kRadiusValue * 2,
-                          child: Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.pen,
-                              size: 15,
-                              // color: backgroundColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Text(
-                  Faker.instance.name.fullName(),
-                  style: const TextStyle(
-                    // color: primaryColor,
-                    fontWeight: FontWeight.bold,
-                    // fontSize: SizeConfig.textMultiplier * 3,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
+          ProfileImageUpdateSettingScreen(customUser: customUser),
           const SizedBox(
             height: kPaddingValue,
           ),
@@ -80,7 +36,7 @@ class SettingsScreen extends StatelessWidget {
                 text2: "Changer your personal data",
                 isArrow: true,
                 press: () {
-                  // Navigator.pushNamed(context, accountSetting);
+                  Navigator.pushNamed(context, AccountSettingsScreen.name);
                 },
               ),
               SettingsTile(
@@ -92,7 +48,7 @@ class SettingsScreen extends StatelessWidget {
                 press: () {},
               ),
               SettingsTile(
-                icon: Icons.logout,
+                icon: Icons.logout_sharp,
                 iconBackgroundColor: Colors.teal,
                 text1: "Logout",
                 text2: "",

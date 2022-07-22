@@ -13,7 +13,7 @@ class ParcInfoEquipmentAvailableRow extends StatelessWidget {
     List<MaterialAvailable> listMaterialAvailable =
         MaterialAvailable.buildRow(list);
     return SizedBox(
-      height: 75,
+      height: 70,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: list.length,
@@ -24,7 +24,11 @@ class ParcInfoEquipmentAvailableRow extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 8.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: secondaryColor.withOpacity(0.75),
+                color: secondaryColor.withOpacity(0.6),
+                // image: DecorationImage(
+                //   image: AssetImage(listMaterialAvailable[index].image),
+                //   fit: BoxFit.contain,
+                // ),
               ),
               child: Tooltip(
                 message: listMaterialAvailable[index].name,

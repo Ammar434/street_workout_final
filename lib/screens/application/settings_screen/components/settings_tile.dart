@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
@@ -29,9 +30,9 @@ class SettingsTile extends StatelessWidget {
           children: [
             CircleAvatar(
               backgroundColor: iconBackgroundColor,
-              child: Icon(
+              child: FaIcon(
                 icon,
-                color: tertiaryColor,
+                color: iconColor,
               ),
             ),
             const SizedBox(
@@ -54,7 +55,6 @@ class SettingsTile extends StatelessWidget {
                     text2,
                     style: const TextStyle(
                       color: secondaryColor,
-                      // fontSize: SizeConfig.textMultiplier * 2,
                     ),
                   ),
                 ),

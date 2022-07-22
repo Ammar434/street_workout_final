@@ -36,6 +36,7 @@ class StorageMethods {
     }
   }
 
+  //Utiliser dans profile screen
   Future<List<String>> getAllImageOfAUser(String uid) async {
     List<String> urlList = [];
     Reference ref = firebaseStorage
