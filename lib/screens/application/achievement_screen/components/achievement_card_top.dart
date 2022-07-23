@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
 
 class AchievementCardTop extends StatelessWidget {
   const AchievementCardTop({

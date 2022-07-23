@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'map_marker.dart';
+
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_button.dart';
+import 'map_marker.dart';
 
 class MapItemDetails extends StatelessWidget {
   const MapItemDetails({

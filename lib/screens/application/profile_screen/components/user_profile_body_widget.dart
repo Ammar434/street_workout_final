@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/profile_screen/components/user_information_display.dart';
-import 'package:street_workout_final/screens/application/profile_screen/components/user_tab_display.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import 'user_information_display.dart';
+import 'user_tab_display.dart';
+import '../../../../utils/constants.dart';
 
 class UserProfileBodyWidget extends StatelessWidget {
   const UserProfileBodyWidget({

@@ -3,12 +3,14 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/services/image_picker.dart';
-import 'package:street_workout_final/services/storage/storage_methods.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import 'package:provider/provider.dart';
+import '../../../../models/custom_user.dart';
+import '../../../../provider/user_provider.dart';
+import '../../../../services/firestore_methods/user_firestore_methods.dart';
+import '../../../../services/image_picker.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/loading_widget.dart';
 
 class ProfileImageUpdateSettingScreen extends StatefulWidget {
   const ProfileImageUpdateSettingScreen({
@@ -31,6 +33,8 @@ class _ProfileImageUpdateSettingScreenState
 
   @override
   Widget build(BuildContext context) {
+    // CustomUser customUser = Provider.of<UserProvider>(context).getUser;
+
     imageUrl = widget.customUser.profileImage;
     return Row(
       children: [
@@ -53,15 +57,12 @@ class _ProfileImageUpdateSettingScreenState
                   setState(() {
                     isLoading = true;
                   });
-                  await StorageMethods().uploadImageToStorage(
-                    "profilePics",
-                    file,
-                    false,
-                  );
-
+                  await UserFirestoreMethods().updateUserProfileImage(file);
                   setState(() {
                     isLoading = false;
                   });
+                  if (!mounted) return;
+                  Provider.of<UserProvider>(context).refreshUser();
                 },
                 child: const CircleAvatar(
                   backgroundColor: primaryColor,

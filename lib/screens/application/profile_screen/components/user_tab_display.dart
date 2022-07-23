@@ -1,8 +1,8 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/staggered_grid_view.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/staggered_grid_view.dart';
 
 class UserTabDisplay extends StatefulWidget {
   const UserTabDisplay({

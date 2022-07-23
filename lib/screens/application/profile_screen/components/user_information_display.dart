@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/profile_screen/components/items_for_row_profile_screen.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import 'items_for_row_profile_screen.dart';
+import '../../../../utils/constants.dart';
 
 class UserInformationDisplay extends StatelessWidget {
   const UserInformationDisplay({

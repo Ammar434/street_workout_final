@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
 
+import '../../../models/custom_user.dart';
+import '../../../provider/user_provider.dart';
+import '../../../utils/colors.dart';
+import '../../../utils/constants.dart';
 import 'components/leaderboard_sliver_builder.dart';
 
 class LeaderboardScreen extends StatelessWidget {

@@ -12,7 +12,7 @@ void showSnackBar({
     elevation: 0,
     behavior: SnackBarBehavior.floating,
     backgroundColor: Colors.transparent,
-    duration: const Duration(seconds: 3),
+    duration: const Duration(seconds: 5),
     margin: EdgeInsets.zero,
     content: AwesomeSnackbarContent(
       title: title,

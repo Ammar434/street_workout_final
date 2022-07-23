@@ -9,10 +9,6 @@ const double kDefaultIconsSize = 30;
 const double kDefaultTitleSize = 25;
 const double kDefaultIconAppBar = 18;
 
-const String mapboxAccessToken =
-    "pk.eyJ1IjoiYW1tYXI0MzQiLCJhIjoiY2w1aWlnaTdkMDhoODNidDh0dXRoMHBnbCJ9.kwYEeCiipd3pZPOFpNPmJg";
-
-const String mapBoxId = "ammar434";
 const markerSizeExpanded = 40.0;
 const markerSizeShrink = 30.0;
 LatLng myLocation = LatLng(48.856614, 2.3522219);

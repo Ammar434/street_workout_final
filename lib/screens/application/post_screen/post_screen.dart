@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/material_available.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/services/image_picker.dart';
-import 'package:street_workout_final/services/firestore_methods.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
+import 'package:street_workout_final/services/firestore_methods/parc_firestore_methods.dart';
+import '../../../models/material_available.dart';
+import '../../../provider/user_provider.dart';
+import '../../../services/image_picker.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/snackbar.dart';
+import '../../../widgets/rounded_button.dart';
 
 import 'components/add_photo.dart';
 import 'components/parc_info_selectable_row.dart';
@@ -43,7 +43,7 @@ class _PostScreenState extends State<PostScreen> {
       setState(() {
         isLoading = true;
       });
-      String res = await FirestoreMethods().uploadPost(
+      String res = await ParcFirestoreMethods().uploadPost(
         listFile: userSelectedImageList,
         parcName: parcName,
         parcAddress: parcAddress,
@@ -149,16 +149,6 @@ class _PostScreenState extends State<PostScreen> {
                   );
                 },
               ),
-              // TextFieldInputWithAutoComplete(
-              //   textEditingController: textEditingControllerParcName,
-              //   rowName: 'Name',
-              //   hintText: "Enter your parc name",
-              // ),
-              // TextFieldInputWithAutoComplete(
-              //   textEditingController: textEditingControllerParcAddress,
-              //   rowName: 'Address',
-              //   hintText: "Enter your parc address",
-              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: kPaddingValue),
                 child: Column(

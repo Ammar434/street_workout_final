@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../utils/constants.dart';
 
 class SettingsGroup extends StatelessWidget {
   const SettingsGroup({

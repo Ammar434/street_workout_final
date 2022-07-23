@@ -13,6 +13,7 @@ class Parc {
     required this.completeAddress,
     required this.userUidChampion,
     required this.athletesWhoTrainInThisParc,
+    required this.isPublished,
   });
   final String postId;
   final String userUidWhoPublish;
@@ -22,7 +23,7 @@ class Parc {
   final String mainPhoto;
   final List<dynamic> materialAvailable;
   final List<dynamic> athletesWhoTrainInThisParc;
-
+  final bool isPublished;
   final GeoPoint geoPoint;
   final String name;
   final String completeAddress;
@@ -39,6 +40,7 @@ class Parc {
         "name": name,
         "completeAddress": completeAddress,
         "userUidChampion": userUidChampion,
+        "isPublished": isPublished,
       };
 
   static Parc postFromSnapshot(DocumentSnapshot documentSnapshot) {
@@ -55,6 +57,7 @@ class Parc {
       name: snapshot['name'],
       geoPoint: snapshot['geoPoint'],
       userUidChampion: snapshot['userUidChampion'],
+      isPublished: snapshot['isPublished'],
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/rounded_circle_user_profile_widget.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/rounded_circle_user_profile_widget.dart';
 
 class HeaderRankingWIdget extends StatelessWidget {
   const HeaderRankingWIdget({

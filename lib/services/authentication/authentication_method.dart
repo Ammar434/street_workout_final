@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/services/storage/storage_methods.dart';
+import '../../models/custom_user.dart';
+import '../storage/storage_methods.dart';
 
 Uint8List? temporaryUserImage;
 double temporaryWeightValue = 0;
@@ -169,12 +169,5 @@ class AuthenticationMethod {
       res = e.toString();
     }
     return res;
-  }
-
-  Future<CustomUser> getUserDetails() async {
-    User customUser = firebaseAuth.currentUser!;
-    DocumentSnapshot documentSnapshot =
-        await firebaseFirestore.collection("users").doc(customUser.uid).get();
-    return CustomUser.userFromSnapshot(documentSnapshot);
   }
 }

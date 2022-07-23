@@ -1,9 +1,9 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../../provider/user_provider.dart';
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
 
 class ParcInfoCommentsTab extends StatefulWidget {
   const ParcInfoCommentsTab({

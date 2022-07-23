@@ -1,9 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/home_screen/home_screen.dart';
-import 'package:street_workout_final/screens/application/leaderboard_screen/leaderboard_screen.dart';
-import 'package:street_workout_final/screens/application/settings_screen/settings_screen.dart';
-import 'package:street_workout_final/utils/colors.dart';
+import 'home_screen/home_screen.dart';
+import 'leaderboard_screen/leaderboard_screen.dart';
+import 'settings_screen/settings_screen.dart';
+import '../../utils/colors.dart';
 import 'main_screen.dart';
 import 'map_screen/map_screen.dart';
 

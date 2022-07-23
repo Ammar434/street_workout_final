@@ -2,11 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
-
-String searchParc(String parcName, String parcAddress) {
-  return const Uuid().v4();
-}
 
 class SearchMethods {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;

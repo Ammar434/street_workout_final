@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/achievement_screen/achievement_screen.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_screen.dart';
-import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
+import '../../achievement_screen/achievement_screen.dart';
+import '../../post_screen/post_screen.dart';
 
 import 'drawer_categorie_tile.dart';
 
@@ -16,11 +15,6 @@ class DrawerCategorieWidget extends StatelessWidget {
     return Column(
       children: [
         DrawerCategorieTile(
-          iconData: FontAwesomeIcons.trophy,
-          text: "Rankings",
-          onTap: () {},
-        ),
-        DrawerCategorieTile(
           iconData: FontAwesomeIcons.gem,
           text: "Achievements",
           onTap: () {
@@ -28,22 +22,15 @@ class DrawerCategorieWidget extends StatelessWidget {
           },
         ),
         DrawerCategorieTile(
-          iconData: FontAwesomeIcons.calendar,
-          text: "Add new parc",
-          onTap: () {
-            Navigator.pushNamed(context, PostScreen.name);
-          },
-        ),
-        DrawerCategorieTile(
-          iconData: FontAwesomeIcons.briefcase,
-          text: "Start a training",
+          iconData: FontAwesomeIcons.trophy,
+          text: "Favorite parc",
           onTap: () {},
         ),
         DrawerCategorieTile(
           iconData: FontAwesomeIcons.calendar,
-          text: "Start a challenge",
+          text: "Add new parc",
           onTap: () {
-            Navigator.pushNamed(context, ChallengeScreen.name);
+            Navigator.pushNamed(context, PostScreen.name);
           },
         ),
       ],

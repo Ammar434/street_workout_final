@@ -2,16 +2,20 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/models/material_available.dart';
 import 'package:street_workout_final/models/post_for_existant_parc.dart';
-import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/services/search/search_methods.dart';
-import 'package:street_workout_final/services/storage/storage_methods.dart';
+import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
 import 'package:uuid/uuid.dart';
 
-class FirestoreMethods {
-  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+import '../../models/custom_user.dart';
+import '../../models/material_available.dart';
+import '../../models/parc.dart';
+import '../storage/storage_methods.dart';
+
+class ParcFirestoreMethods {
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final UserFirestoreMethods _userFirestoreMethods = UserFirestoreMethods();
+  final StorageMethods _storageMethods = StorageMethods();
+  final Uuid _uuid = const Uuid();
 
   Future<String> uploadPost({
     required List listFile,
@@ -20,7 +24,6 @@ class FirestoreMethods {
     required List<MaterialAvailable> materialAvailable,
     required String uid,
   }) async {
-    List<String> photoUrlList = [];
     List<String> materialAvailableString = [];
     String res = "Some error occured";
 
@@ -28,8 +31,8 @@ class FirestoreMethods {
       for (MaterialAvailable m in materialAvailable) {
         materialAvailableString.add(m.name);
       }
-      String postId = const Uuid().v1();
-      String parcId = searchParc(parcName, parcAddress);
+      String postId = _uuid.v1();
+      String parcId = _uuid.v1();
 
       Parc post = Parc(
         userUidWhoPublish: uid,
@@ -43,9 +46,10 @@ class FirestoreMethods {
         completeAddress: parcAddress,
         geoPoint: const GeoPoint(1, 1),
         userUidChampion: '',
+        isPublished: false,
       );
 
-      await firebaseFirestore
+      await _firebaseFirestore
           .collection("parcs")
           .doc(parcId)
           .set(post.toJson());
@@ -58,23 +62,20 @@ class FirestoreMethods {
       }
 
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await firebaseFirestore
+          await _firebaseFirestore
               .collection("parcs")
               .doc(parcId)
               .collection("posts")
               .orderBy('likes')
               .get();
-      await firebaseFirestore.collection("parcs").doc(parcId).update(
+      await _firebaseFirestore.collection("parcs").doc(parcId).update(
         {
           "mainPhoto": querySnapshot.docs[0].data()['postUrl'],
         },
       );
-      res = await incrementUserContribution(uid);
+      res = await _userFirestoreMethods
+          .incrementUserContribution(listFile.length);
     } catch (e) {
-      debugPrint("-------------------------------------------------");
-      debugPrint(e.toString());
-
-      debugPrint("-------------------------------------------------");
       res = e.toString();
     }
     return res;
@@ -87,12 +88,12 @@ class FirestoreMethods {
   }) async {
     String res = "Some error occured";
     try {
-      String photoUrl = await StorageMethods().uploadImageToStorage(
+      String photoUrl = await _storageMethods.uploadImageToStorage(
         "posts",
         file,
         true,
       );
-      String postId = const Uuid().v1();
+      String postId = _uuid.v1();
 
       PostForExistantParc post = PostForExistantParc(
         userUidWhoPublish: userUidWhoPublish,
@@ -102,7 +103,7 @@ class FirestoreMethods {
         likes: [],
       );
 
-      firebaseFirestore
+      _firebaseFirestore
           .collection("parcs")
           .doc(parcId)
           .collection("posts")
@@ -116,74 +117,25 @@ class FirestoreMethods {
     return res;
   }
 
-  Future<CustomUser> findUserByUid(String uid) async {
-    CustomUser? user;
-    try {
-      DocumentSnapshot documentSnapshot =
-          await firebaseFirestore.collection("users").doc(uid).get();
-
-      user = CustomUser.userFromSnapshot(documentSnapshot);
-    } catch (e) {
-      debugPrint(e.toString());
-      if (user == null) {
-        DocumentSnapshot documentSnapshot = await firebaseFirestore
-            .collection("users")
-            .doc("kEvs6AAbs5Xov7kUHtae5SdEIls1")
-            .get();
-
-        user = CustomUser.userFromSnapshot(documentSnapshot);
-      }
-    }
-
-    return user;
-  }
-
   Future<Parc> findParcrById(String id) async {
     late Parc parc;
     try {
       DocumentSnapshot documentSnapshot =
-          await firebaseFirestore.collection("parcs").doc(id).get();
+          await _firebaseFirestore.collection("parcs").doc(id).get();
 
       parc = Parc.postFromSnapshot(documentSnapshot);
     } catch (e) {
       debugPrint(e.toString());
-      // if (user == null) {
-      //   DocumentSnapshot documentSnapshot = await firebaseFirestore
-      //       .collection("users")
-      //       .doc("kEvs6AAbs5Xov7kUHtae5SdEIls1")
-      //       .get();
-
-      //   user = CustomUser.userFromSnapshot(documentSnapshot);
-      // }
     }
 
     return parc;
-  }
-
-  Future<String> incrementUserContribution(String uid) async {
-    CustomUser? user;
-    String res = "Some error occured";
-    try {
-      await firebaseFirestore.collection("users").doc(uid).update(
-        {
-          "numberOfContribution": FieldValue.increment(1),
-        },
-      );
-
-      res = "success";
-    } catch (e) {
-      debugPrint(e.toString());
-      res = e.toString();
-    }
-
-    return res;
   }
 
   Future<List<String>> getAllImageOfParc(String parcId) async {
     List<String> listUrl = [];
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await firebaseFirestore
+          await _firebaseFirestore
               .collection("parcs")
               .doc(parcId)
               .collection("posts")
@@ -202,11 +154,11 @@ class FirestoreMethods {
     List<CustomUser> listUser = [];
     try {
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
-          await firebaseFirestore.collection("parcs").doc(parcId).get();
+          await _firebaseFirestore.collection("parcs").doc(parcId).get();
 
       for (String uid
           in documentSnapshot.data()!['athletesWhoTrainInThisParc']) {
-        CustomUser customUser = await findUserByUid(uid);
+        CustomUser customUser = await _userFirestoreMethods.findUserByUid(uid);
         listUser.add(customUser);
       }
     } catch (e) {
@@ -215,29 +167,14 @@ class FirestoreMethods {
     return listUser;
   }
 
-  Future<String> addAthleteToAParc(String parcUid, String athleteUid) async {
-    String res = "Some error occured";
-    try {
-      firebaseFirestore.collection("parcs").doc(parcUid).update(
-        {
-          "athletesWhoTrainInThisParc": FieldValue.arrayUnion([athleteUid])
-        },
-      );
-      res = "success";
-    } catch (e) {
-      res = e.toString();
-    }
-    return res;
-  }
-
   Future<String> addOrRemoveAthleteToAParc(
       String parcUid, String athleteUid) async {
     String res = "Some error occured";
     try {
       DocumentReference documentReference =
-          firebaseFirestore.collection("parcs").doc(parcUid);
+          _firebaseFirestore.collection("parcs").doc(parcUid);
       DocumentReference documentReferenceUser =
-          firebaseFirestore.collection("users").doc(athleteUid);
+          _firebaseFirestore.collection("users").doc(athleteUid);
       DocumentSnapshot documentSnapshot = await documentReference.get();
 
       List queue = documentSnapshot.get('athletesWhoTrainInThisParc');

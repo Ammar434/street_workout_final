@@ -4,23 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/routes.dart';
-import 'package:street_workout_final/utils/theme.dart';
+import 'provider/user_provider.dart';
+import 'routes.dart';
+import 'utils/theme.dart';
 import 'authentication_handler.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: ".env");
   if (kIsWeb) {
     await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyD_T8SG6SRXpgMhW5oFAO8RITBVNJmPDFY",
-        authDomain: "streetworkoutfighter.firebaseapp.com",
-        projectId: "streetworkoutfighter",
-        storageBucket: "streetworkoutfighter.appspot.com",
-        messagingSenderId: "37349665099",
-        appId: "1:37349665099:web:e95bb2a482d15d30cb20ce",
-        measurementId: "G-FGTK80JW29",
+      options: FirebaseOptions(
+        apiKey: dotenv.env['apiKey']!,
+        authDomain: dotenv.env['authDomain']!,
+        projectId: dotenv.env['projectId']!,
+        storageBucket: dotenv.env['storageBucket']!,
+        messagingSenderId: dotenv.env['messagingSenderId']!,
+        appId: dotenv.env['appId']!,
+        measurementId: dotenv.env['measurementId']!,
       ),
     );
   } else {
@@ -32,7 +35,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/services/url_launcher.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../services/url_launcher.dart';
+import '../../../../utils/constants.dart';
 
 import '../../../../../widgets/solid_circle_chevron_left.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/parc_info/parc_info_screen.dart';
-import 'package:street_workout_final/services/search/search_methods.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../screens/application/parc_info/parc_info_screen.dart';
+import '../services/search/search_methods.dart';
+import '../utils/constants.dart';
 
 import '../utils/colors.dart';
 

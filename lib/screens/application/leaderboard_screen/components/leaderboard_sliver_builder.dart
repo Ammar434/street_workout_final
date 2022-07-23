@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/leaderboard_screen/components/tile_leaderboard_row.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/gradients.dart';
+import 'tile_leaderboard_row.dart';
+import '../../../../utils/constants.dart';
+import '../../../../utils/gradients.dart';
 
 import 'header_ranking_widget.dart';
 

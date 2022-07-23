@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/widgets/search_field_widget.dart';
+import '../../../widgets/search_field_widget.dart';
 import '../../../../utils/constants.dart';
 
 import 'components/parc_from_firestore.dart';

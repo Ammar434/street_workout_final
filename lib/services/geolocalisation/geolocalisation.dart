@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/dev.dart';
+import '../../utils/dev.dart';
 
 class Geolocalisation {
   /// Determine the current position of the device.
@@ -49,7 +49,7 @@ class Geolocalisation {
 
   Future<String> reverseGeocoding(Position position) async {
     var params = {
-      'access_token': mapboxAccessToken,
+      'access_token': dotenv.env['mapboxAccessToken'],
     };
     var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
     var p = "${position.longitude},${position.latitude}";

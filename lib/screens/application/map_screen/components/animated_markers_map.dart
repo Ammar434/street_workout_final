@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'map_marker.dart';
 import '../../../../utils/constants.dart';
@@ -91,8 +92,8 @@ class _AnimatedMarkersMapState extends State<AnimatedMarkersMap>
               urlTemplate:
                   "https://api.mapbox.com/styles/v1/{id}/cl5ijxc1o003714qpdmfp1kvc/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
               additionalOptions: {
-                "id": mapBoxId,
-                "accessToken": mapboxAccessToken,
+                "id": dotenv.env['mapBoxId']!,
+                "accessToken": dotenv.env['mapboxAccessToken']!,
               },
             ),
             MarkerLayerOptions(

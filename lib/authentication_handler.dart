@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/responsive/mobile_screen_layout.dart';
-import 'package:street_workout_final/responsive/responsive_layout.dart';
-import 'package:street_workout_final/responsive/web_screen_layout.dart';
-import 'package:street_workout_final/screens/authentication/auth_screen.dart';
+import 'responsive/mobile_screen_layout.dart';
+import 'responsive/responsive_layout.dart';
+import 'responsive/web_screen_layout.dart';
+import 'screens/authentication/auth_screen.dart';
 import 'utils/colors.dart';
 
 class AuthenticationHandler extends StatelessWidget {

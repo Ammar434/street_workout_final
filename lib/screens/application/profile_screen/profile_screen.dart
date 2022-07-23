@@ -1,12 +1,12 @@
 import 'package:draggable_home/draggable_home.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/services/firestore_methods.dart';
-import 'package:street_workout_final/services/storage/storage_methods.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import '../../../models/custom_user.dart';
+import '../../../services/firestore_methods/user_firestore_methods.dart';
+import '../../../services/storage/storage_methods.dart';
+import '../../../utils/colors.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/loading_widget.dart';
 
 import 'components/profile_header_widget.dart';
 import 'components/user_profile_body_widget.dart';
@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (widget.userProvided != null) {
       user = widget.userProvided!;
     } else {
-      user = await FirestoreMethods().findUserByUid(widget.userUid);
+      user = await UserFirestoreMethods().findUserByUid(widget.userUid);
     }
     setState(() {
       isLoading = false;

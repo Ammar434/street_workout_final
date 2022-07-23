@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/screens/application/profile_screen/profile_screen.dart';
+import '../../../../models/custom_user.dart';
+import '../../profile_screen/profile_screen.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';

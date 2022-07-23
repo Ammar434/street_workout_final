@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/material_available.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+
+import '../../../../models/material_available.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
 
 class ParcEquipmentSelectableRow extends StatelessWidget {
   const ParcEquipmentSelectableRow(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/profile_screen/profile_screen.dart';
-import 'package:street_workout_final/utils/constants.dart';
+
+import '../../../../utils/constants.dart';
+import '../../../../widgets/loading_widget.dart';
+import '../../profile_screen/profile_screen.dart';
 
 class DrawerTopWidget extends StatelessWidget {
   const DrawerTopWidget({
@@ -9,11 +11,13 @@ class DrawerTopWidget extends StatelessWidget {
     required this.userName,
     required this.userUid,
     required this.userCity,
+    required this.isLoading,
   }) : super(key: key);
   final String profileImage;
   final String userName;
   final String userUid;
   final String userCity;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -48,10 +52,14 @@ class DrawerTopWidget extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.w900),
                     maxLines: 2,
                   ),
-                  Text(
-                    userCity,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  isLoading
+                      ? const LoadingWidget(
+                          isLinear: true,
+                        )
+                      : Text(
+                          userCity,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                 ],
               )
             ],

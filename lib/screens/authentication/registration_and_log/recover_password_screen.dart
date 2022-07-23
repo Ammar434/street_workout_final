@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
-import 'package:street_workout_final/widgets/text_field_input.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/rounded_button.dart';
+import '../../../widgets/text_field_input.dart';
 
 import 'recover_password_confirm_screen.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/services/firestore_methods.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import '../../../../models/custom_user.dart';
+import '../../../../models/parc.dart';
+import '../../../../services/firestore_methods/user_firestore_methods.dart';
+import '../../../../widgets/loading_widget.dart';
 
-import 'package:street_workout_final/widgets/rounded_button.dart';
+import '../../../../widgets/rounded_button.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
@@ -29,15 +29,16 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
   bool isLoading = false;
   late CustomUser userWhoPublished;
   late CustomUser userChampion;
+  late UserFirestoreMethods userFirestoreMethods;
   void loadData() async {
     setState(() {
       isLoading = true;
     });
     userWhoPublished =
-        await FirestoreMethods().findUserByUid(widget.parc.userUidWhoPublish);
+        await userFirestoreMethods.findUserByUid(widget.parc.userUidWhoPublish);
 
     userChampion =
-        await FirestoreMethods().findUserByUid(widget.parc.userUidChampion);
+        await userFirestoreMethods.findUserByUid(widget.parc.userUidChampion);
 
     setState(() {
       isLoading = false;
@@ -47,6 +48,7 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
   @override
   void initState() {
     super.initState();
+    userFirestoreMethods = UserFirestoreMethods();
     loadData();
   }
 

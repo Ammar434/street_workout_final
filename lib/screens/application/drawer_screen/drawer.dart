@@ -1,20 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/widgets/horizontal_line.dart';
+import '../../../models/custom_user.dart';
+import '../../../provider/user_provider.dart';
+import '../../../services/geolocalisation/geolocalisation.dart';
+import '../../../utils/colors.dart';
+import '../../../widgets/horizontal_line.dart';
 
 import 'components/drawer_bottom_widget.dart';
 import 'components/drawer_categorie_widget.dart';
 import 'components/drawer_top_widget.dart';
 
-class DrawerBody extends StatelessWidget {
-  final String? userCity;
+class DrawerBody extends StatefulWidget {
   const DrawerBody({
     Key? key,
-    required this.userCity,
   }) : super(key: key);
+
+  @override
+  State<DrawerBody> createState() => _DrawerBodyState();
+}
+
+class _DrawerBodyState extends State<DrawerBody> {
+  late Geolocalisation geolocalisation;
+  late Position currentPosition;
+  late String? currentUserCity;
+  bool isLoading = true;
+
+  Future<void> loadData() async {
+    currentPosition = await geolocalisation.determinePosition();
+    currentUserCity = await geolocalisation.reverseGeocoding(currentPosition);
+    if (currentUserCity == null || currentUserCity == "") {
+      currentUserCity = "unknown";
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    geolocalisation = Geolocalisation();
+    loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +58,8 @@ class DrawerBody extends StatelessWidget {
             profileImage: customUser.profileImage,
             userName: customUser.userName,
             userUid: customUser.uid,
-            userCity: userCity ?? "Unknwonw",
+            userCity: currentUserCity!,
+            isLoading: isLoading,
           ),
           const HorizontalLine(),
           const DrawerCategorieWidget(),

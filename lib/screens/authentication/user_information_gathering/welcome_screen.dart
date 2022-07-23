@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/services/authentication/authentication_method.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import '../../../services/authentication/authentication_method.dart';
+import '../../../widgets/loading_widget.dart';
 import 'gender_screen.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/settings_screen/account_settings_screen.dart';
-import 'package:street_workout_final/services/authentication/authentication_method.dart';
-import 'package:street_workout_final/utils/constants.dart';
 
+import '../../../models/custom_user.dart';
+import '../../../provider/user_provider.dart';
+import '../../../services/authentication/authentication_method.dart';
+import '../../../utils/constants.dart';
+import 'account_settings_screen.dart';
 import 'components/profile_image_update_setting_screen.dart';
 import 'components/settings_group.dart';
 import 'components/settings_tile.dart';

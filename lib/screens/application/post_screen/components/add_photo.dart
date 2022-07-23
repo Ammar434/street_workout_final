@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/post_screen/components/no_image_selected.dart';
-import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
 
+import '../post_screen.dart';
 import 'image_selected_widget.dart';
+import 'no_image_selected.dart';
 
 class AddPhoto extends StatelessWidget {
   const AddPhoto({

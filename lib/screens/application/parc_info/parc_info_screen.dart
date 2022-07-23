@@ -2,19 +2,20 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/parc_info/components/parc_info_equipment_available.dart';
-import 'package:street_workout_final/screens/application/parc_info/components/parc_info_tab_display.dart';
-import 'package:street_workout_final/screens/application/parc_info/components/pop_up_menu/pop_up_menu.dart';
-import 'package:street_workout_final/services/firestore_methods.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/horizontal_line.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
+import '../../../models/custom_user.dart';
+import '../../../models/parc.dart';
+import '../../../provider/user_provider.dart';
+import '../../../services/firestore_methods/parc_firestore_methods.dart';
+import '../../../services/firestore_methods/user_firestore_methods.dart';
+import 'components/parc_info_equipment_available.dart';
+import 'components/parc_info_tab_display.dart';
+import 'components/pop_up_menu/pop_up_menu.dart';
+import '../../../utils/colors.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/horizontal_line.dart';
+import '../../../widgets/loading_widget.dart';
+import '../../../widgets/rounded_button.dart';
+import '../../../widgets/snackbar.dart';
 
 class ParcInfoScreen extends StatefulWidget {
   const ParcInfoScreen({
@@ -35,9 +36,10 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> {
   late Parc parc;
   bool isLoading = true;
   bool isLoading2 = false;
+
   Future<void> loadData() async {
-    parc = await FirestoreMethods().findParcrById(widget.parcId);
-    champion = await FirestoreMethods().findUserByUid(parc.userUidChampion);
+    parc = await ParcFirestoreMethods().findParcrById(widget.parcId);
+    champion = await UserFirestoreMethods().findUserByUid(parc.userUidChampion);
     setState(() {
       isLoading = false;
     });
@@ -111,8 +113,8 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> {
                         setState(() {
                           isLoading2 = true;
                         });
-                        String res =
-                            await FirestoreMethods().addOrRemoveAthleteToAParc(
+                        String res = await ParcFirestoreMethods()
+                            .addOrRemoveAthleteToAParc(
                           parc.parcId,
                           customUser.uid,
                         );

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+
 import '../../../../utils/colors.dart';
 
 class MyLocationMarker extends AnimatedWidget {

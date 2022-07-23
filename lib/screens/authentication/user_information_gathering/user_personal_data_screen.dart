@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/services/authentication/authentication_method.dart';
+import '../../../services/authentication/authentication_method.dart';
 import 'permission_handler_screen.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/constants.dart';

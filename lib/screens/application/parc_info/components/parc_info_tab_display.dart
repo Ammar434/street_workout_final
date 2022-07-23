@@ -1,12 +1,13 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/services/firestore_methods.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
-import 'package:street_workout_final/widgets/staggered_grid_view.dart';
+import '../../../../models/custom_user.dart';
+import '../../../../models/parc.dart';
+import '../../../../services/firestore_methods/parc_firestore_methods.dart';
+import '../../../../services/firestore_methods/user_firestore_methods.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/staggered_grid_view.dart';
 
 class ParcInfoTabDisplay extends StatefulWidget {
   const ParcInfoTabDisplay({
@@ -58,9 +59,10 @@ class _ParcInfoTabDisplayState extends State<ParcInfoTabDisplay>
     setState(() {
       isLoading = true;
     });
-    listUrl = await FirestoreMethods().getAllImageOfParc(widget.parcId.parcId);
+    listUrl =
+        await ParcFirestoreMethods().getAllImageOfParc(widget.parcId.parcId);
     for (String s in widget.parcId.athletesWhoTrainInThisParc) {
-      CustomUser user = await FirestoreMethods().findUserByUid(s);
+      CustomUser user = await UserFirestoreMethods().findUserByUid(s);
       listUserWhoTrainInThisParc.add(user);
     }
     setState(() {

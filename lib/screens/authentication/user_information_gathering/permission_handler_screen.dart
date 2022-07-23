@@ -1,11 +1,11 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/responsive/mobile_screen_layout.dart';
-import 'package:street_workout_final/responsive/responsive_layout.dart';
-import 'package:street_workout_final/responsive/web_screen_layout.dart';
-import 'package:street_workout_final/services/authentication/authentication_method.dart';
-import 'package:street_workout_final/services/geolocalisation/geolocalisation.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
+import '../../../responsive/mobile_screen_layout.dart';
+import '../../../responsive/responsive_layout.dart';
+import '../../../responsive/web_screen_layout.dart';
+import '../../../services/authentication/authentication_method.dart';
+import '../../../services/geolocalisation/geolocalisation.dart';
+import '../../../widgets/snackbar.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 

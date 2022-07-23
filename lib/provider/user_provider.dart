@@ -1,14 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/services/authentication/authentication_method.dart';
+
+import '../models/custom_user.dart';
 
 class UserProvider with ChangeNotifier {
   CustomUser? _customUser;
-  final AuthenticationMethod _authenticationMethod = AuthenticationMethod();
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   CustomUser get getUser => _customUser!;
+
   Future<void> refreshUser() async {
-    CustomUser customUser = await _authenticationMethod.getUserDetails();
-    _customUser = customUser;
-    notifyListeners();
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .snapshots()
+        .listen((event) {
+      _customUser = CustomUser.userFromSnapshot(event);
+      notifyListeners();
+    });
   }
 }
