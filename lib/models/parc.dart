@@ -24,7 +24,7 @@ class Parc {
   final List<dynamic> materialAvailable;
   final List<dynamic> athletesWhoTrainInThisParc;
   final bool isPublished;
-  final GeoPoint geoPoint;
+  final GeoPoint? geoPoint;
   final String name;
   final String completeAddress;
 

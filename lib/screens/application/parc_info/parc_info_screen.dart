@@ -1,45 +1,75 @@
+import 'dart:typed_data';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/screens/application/parc_info/components/parc_info_top_part.dart';
+import 'package:street_workout_final/services/image_picker.dart';
+import 'package:street_workout_final/widgets/snackbar.dart';
 import '../../../models/custom_user.dart';
 import '../../../models/parc.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/firestore_methods/parc_firestore_methods.dart';
 import '../../../services/firestore_methods/user_firestore_methods.dart';
-import 'components/parc_info_equipment_available.dart';
 import 'components/parc_info_tab_display.dart';
 import 'components/pop_up_menu/pop_up_menu.dart';
-import '../../../utils/colors.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/horizontal_line.dart';
 import '../../../widgets/loading_widget.dart';
-import '../../../widgets/rounded_button.dart';
-import '../../../widgets/snackbar.dart';
 
 class ParcInfoScreen extends StatefulWidget {
   const ParcInfoScreen({
     Key? key,
     required this.parcId,
-    // required this.champion,
+    this.parc,
   }) : super(key: key);
   static const String name = "ParcInfoScreen";
-  // final CustomUser champion;
   final String parcId;
+  final Parc? parc;
 
   @override
   State<ParcInfoScreen> createState() => _ParcInfoScreenState();
 }
 
-class _ParcInfoScreenState extends State<ParcInfoScreen> {
+class _ParcInfoScreenState extends State<ParcInfoScreen>
+    with SingleTickerProviderStateMixin {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
+  late ParcFirestoreMethods parcFirestoreMethods;
+  late UserFirestoreMethods userFirestoreMethods;
+
   late CustomUser champion;
   late Parc parc;
   bool isLoading = true;
   bool isLoading2 = false;
+  late TabController _tabController;
+  int _tabIndex = 0;
+  List<String> listUrlImage = [];
+  List<CustomUser> listCustomUser = [];
+
+  _handleTabSelection() {
+    if (_tabController.indexIsChanging) {
+      setState(() {
+        _tabIndex = _tabController.index;
+      });
+    }
+  }
 
   Future<void> loadData() async {
-    parc = await ParcFirestoreMethods().findParcrById(widget.parcId);
-    champion = await UserFirestoreMethods().findUserByUid(parc.userUidChampion);
+    setState(() {
+      isLoading = true;
+    });
+    if (widget.parc != null) {
+      parc = widget.parc!;
+    } else {
+      parc = await parcFirestoreMethods.findParcrById(widget.parcId);
+    }
+    champion = await userFirestoreMethods.findUserByUid(parc.userUidChampion);
+    listUrlImage = await parcFirestoreMethods.getAllImageOfParc(widget.parcId);
+    listCustomUser =
+        await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
     setState(() {
       isLoading = false;
     });
@@ -48,223 +78,136 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> {
   @override
   void initState() {
     super.initState();
+    parcFirestoreMethods = ParcFirestoreMethods();
+    userFirestoreMethods = UserFirestoreMethods();
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(_handleTabSelection);
     loadData();
   }
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(parc.materialAvailable.toString());
     CustomUser customUser = Provider.of<UserProvider>(context).getUser;
-    bool isMyFavoriteParc =
-        parc.athletesWhoTrainInThisParc.contains(customUser.uid);
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Center(
-              child: FaIcon(
-                FontAwesomeIcons.chevronLeft,
-                size: kDefaultIconAppBar,
+    bool isMyFavoriteParc = false;
+
+    if (isLoading) {
+      return const LoadingWidget();
+    } else {
+      isMyFavoriteParc =
+          parc.athletesWhoTrainInThisParc.contains(customUser.uid);
+
+      return SafeArea(
+        child: Scaffold(
+          key: _scaffoldKey,
+          appBar: AppBar(
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Center(
+                child: FaIcon(
+                  FontAwesomeIcons.chevronLeft,
+                  size: kDefaultIconAppBar,
+                ),
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: PopUpMenuWidget(
+                  function1: () async {
+                    Navigator.pop(context);
+                    Uint8List file = await pickImage(ImageSource.gallery);
+
+                    setState(() {
+                      isLoading2 = true;
+                    });
+                    String res =
+                        await parcFirestoreMethods.uploadImageToAExistingParc(
+                      file: file,
+                      parcId: widget.parcId,
+                      userUidWhoPublish: customUser.uid,
+                    );
+                    setState(() {
+                      isLoading2 = false;
+                    });
+                    if (res == "success") {
+                      customShowSnackBar(
+                        title: "Thank's",
+                        content: "Your content will appear soon",
+                        contentType: ContentType.success,
+                        globalKey: _scaffoldKey,
+                      );
+                    } else {
+                      customShowSnackBar(
+                        title: "Error",
+                        content: "Some error happened please retry",
+                        contentType: ContentType.failure,
+                        globalKey: _scaffoldKey,
+                      );
+                    }
+                  },
+                  function2: () {},
+                  function3: () async {
+                    Navigator.pop(context);
+
+                    setState(() {
+                      isLoading2 = true;
+                    });
+                    String res =
+                        await parcFirestoreMethods.addOrRemoveAthleteToAParc(
+                            widget.parcId, parc.name, customUser.uid);
+                    setState(() {
+                      isLoading2 = false;
+                    });
+                    if (res == "success") {
+                      listCustomUser = await parcFirestoreMethods
+                          .getAllAthleteOfParc(widget.parcId);
+                      setState(() {});
+                      customShowSnackBar(
+                        title: "Good job",
+                        content: "You can start compete in this parc",
+                        contentType: ContentType.success,
+                        globalKey: _scaffoldKey,
+                      );
+                    } else {
+                      customShowSnackBar(
+                        title: "Error",
+                        content: "Some error happened please retry",
+                        contentType: ContentType.failure,
+                        globalKey: _scaffoldKey,
+                      );
+                    }
+                  },
+                  favorite: isMyFavoriteParc,
+                  isLoading: isLoading2,
+                ),
+              ),
+            ],
+          ),
+          body: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: const EdgeInsets.all(kRadiusValue),
+              child: ListView(
+                // shrinkWrap: true,
+                children: [
+                  ParcInfoTopPart(parc: parc, champion: champion),
+                  const HorizontalLine(),
+                  ParcInfoTabDisplay(
+                    parc: parc,
+                    tabController: _tabController,
+                    index: _tabIndex,
+                    listCustomUser: listCustomUser,
+                    listUrlImage: listUrlImage,
+                  )
+                ],
               ),
             ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: PopUpMenuWidget(
-                menuList: [
-                  const PopupMenuItem(
-                    child: ListTile(
-                      leading: FaIcon(
-                        FontAwesomeIcons.camera,
-                        color: primaryColor,
-                      ),
-                      title: Text(
-                        "Add photo",
-                        style: TextStyle(color: backgroundColor),
-                      ),
-                    ),
-                  ),
-                  const PopupMenuItem(
-                    child: ListTile(
-                      leading: FaIcon(
-                        FontAwesomeIcons.shareNodes,
-                        color: primaryColor,
-                      ),
-                      title: Text(
-                        "Share now",
-                        style: TextStyle(color: backgroundColor),
-                      ),
-                    ),
-                  ),
-                  const PopupMenuDivider(),
-                  PopupMenuItem(
-                    child: RoundedButton(
-                      height: 100,
-                      color: isMyFavoriteParc ? tertiaryColor : primaryColor,
-                      text: isMyFavoriteParc
-                          ? "Remove from my favorite"
-                          : "Set as my favorite",
-                      isLoading: isLoading2,
-                      onTap: () async {
-                        setState(() {
-                          isLoading2 = true;
-                        });
-                        String res = await ParcFirestoreMethods()
-                            .addOrRemoveAthleteToAParc(
-                          parc.parcId,
-                          customUser.uid,
-                        );
-
-                        if (res == "success") {
-                          showSnackBar(
-                            context: context,
-                            title: "Good job",
-                            content:
-                                "You select your favorite parc, you can start to compete againts other now",
-                            contentType: ContentType.success,
-                          );
-                        } else {
-                          showSnackBar(
-                            context: context,
-                            title: "Error",
-                            content: "Some error happened please retry",
-                            contentType: ContentType.warning,
-                          );
-                        }
-                        Navigator.pop(context, false);
-                        setState(() {
-                          isLoading2 = false;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-                child: const Center(
-                  child: FaIcon(
-                    FontAwesomeIcons.arrowUpFromBracket,
-                    size: kDefaultIconAppBar,
-                  ),
-                ),
-              ),
-            ),
-          ],
         ),
-        body: isLoading
-            ? const LoadingWidget()
-            : Padding(
-                padding: const EdgeInsets.all(kRadiusValue),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    AspectRatio(
-                      aspectRatio: 3 / 2,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(kRadiusValue),
-                          image: DecorationImage(
-                              image: NetworkImage(parc.mainPhoto),
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: kPaddingValue,
-                    ),
-                    Text(
-                      parc.name,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        letterSpacing: 1.2,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: kSmallPaddingValue,
-                    ),
-                    Row(
-                      children: [
-                        const FaIcon(
-                          FontAwesomeIcons.locationDot,
-                          color: primaryColor,
-                          size: kDefaultIconsSize / 1.5,
-                        ),
-                        const SizedBox(
-                          width: kSmallPaddingValue,
-                        ),
-                        Text(
-                          parc.completeAddress,
-                          style: const TextStyle(
-                            // fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: kPaddingValue,
-                    ),
-                    const Text(
-                      "About this parc",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: kSmallPaddingValue,
-                    ),
-                    ParcInfoEquipmentAvailableRow(
-                      list: parc.materialAvailable,
-                    ),
-                    const HorizontalLine(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CircleAvatar(
-                          backgroundColor: primaryColor,
-                          child: FaIcon(
-                            FontAwesomeIcons.trophy,
-                            size: 25,
-                            color: Colors.white70,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: kPaddingValue,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Current Champion",
-                              style: TextStyle(
-                                fontSize: 15,
-                                letterSpacing: 0.01,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            Text(
-                              champion.userName == "unknown"
-                                  ? "No champion yet"
-                                  : champion.userName,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const HorizontalLine(),
-                    ParcInfoTabDisplay(
-                      parcId: parc,
-                    )
-                  ],
-                ),
-              ),
-      ),
-    );
+      );
+    }
   }
 }

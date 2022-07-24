@@ -29,13 +29,9 @@ class ParcFromFirestore extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (BuildContext context, int index) {
-              Parc parc = Parc.postFromSnapshot(
-                snapshot.data!.docs[index],
-              );
+              Parc parc = Parc.postFromSnapshot(snapshot.data!.docs[index]);
 
-              return ParcDisplayCard(
-                parc: parc,
-              );
+              return ParcDisplayCard(parc: parc);
             },
           );
         }

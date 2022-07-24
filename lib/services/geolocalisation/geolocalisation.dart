@@ -1,11 +1,17 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_place/google_place.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/dev.dart';
 
 class Geolocalisation {
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
   /// Determine the current position of the device.
   ///
   /// When the location services are not enabled or permissions
@@ -74,4 +80,70 @@ class Geolocalisation {
 
   //   return position.
   // }
+
+  Future<List<AutocompletePrediction>> autocompletQuery(String input) async {
+    List<AutocompletePrediction> list = [];
+    var googlePlace = GooglePlace(dotenv.env['googleMapKey']!);
+    if (input.isNotEmpty) {
+      var result = await googlePlace.autocomplete.get(input);
+      if (result != null && result.predictions != null) {
+        debugPrint(result.predictions!.toString());
+
+        list = result.predictions!;
+      }
+    }
+    return list;
+  }
+
+  Future<DetailsResult?> getDetailsResultFromGooglePlaceId(
+      String placeId) async {
+    var googlePlace = GooglePlace(dotenv.env['googleMapKey']!);
+    DetailsResult? detailsResult;
+    var result = await googlePlace.details.get(placeId);
+    if (result != null && result.result != null) {
+      detailsResult = result.result;
+      debugPrint(detailsResult!.geometry!.location!.lat.toString());
+      debugPrint(detailsResult.addressComponents.toString());
+      debugPrint(detailsResult.formattedAddress.toString());
+    }
+    return detailsResult;
+  }
+
+  Future<Set<Marker>> getAllMarker(Function(String) onTap) async {
+    Set<Marker> markers = {};
+    DocumentSnapshot documentSnapshot = await firebaseFirestore
+        .collection("datas")
+        .doc("all_parcs_references")
+        .get();
+    Map<String, dynamic> map = documentSnapshot.data() as Map<String, dynamic>;
+
+    try {
+      map.forEach(
+        (key, value) {
+          debugPrint(key.toString());
+          debugPrint(value.toString());
+          GeoPoint geoPoint = value['geoPoint'] as GeoPoint;
+
+          Marker marker = Marker(
+            markerId: MarkerId(value['id']),
+            position: LatLng(geoPoint.latitude, geoPoint.longitude),
+            infoWindow: InfoWindow(
+              title: value['name'],
+              snippet: value['completeAddress'],
+              onTap: () => onTap(value["id"]),
+            ),
+          );
+          markers.add(marker);
+        },
+      );
+    } catch (e) {
+      // debugPrint("------------------------------------");
+      // debugPrint("------------------------------------");
+      debugPrint(e.toString());
+    }
+    debugPrint("------------------------------------");
+    debugPrint(markers.length.toString());
+    debugPrint("------------------------------------");
+    return markers;
+  }
 }

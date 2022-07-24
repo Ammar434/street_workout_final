@@ -12,6 +12,7 @@ class RoundedButton extends StatelessWidget {
     this.height = 50,
     this.fontSize = 18,
     this.color = primaryColor,
+    this.width = double.infinity,
   }) : super(key: key);
   final GestureTapCallback onTap;
   final String text;
@@ -19,13 +20,14 @@ class RoundedButton extends StatelessWidget {
   final double height;
   final double fontSize;
   final Color? color;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: !isLoading ? onTap : null,
       child: Container(
         margin: const EdgeInsets.all(6),
-        width: double.infinity,
+        width: width,
         height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),

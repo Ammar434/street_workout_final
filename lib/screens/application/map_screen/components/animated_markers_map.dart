@@ -90,9 +90,9 @@ class _AnimatedMarkersMapState extends State<AnimatedMarkersMap>
           nonRotatedLayers: [
             TileLayerOptions(
               urlTemplate:
-                  "https://api.mapbox.com/styles/v1/{id}/cl5ijxc1o003714qpdmfp1kvc/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
+                  "https://api.mapbox.com/styles/v1/ammar434/cl5y4vc7o001s14og43x49sqg/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
               additionalOptions: {
-                "id": dotenv.env['mapBoxId']!,
+                "id": "mapbox.country-boundaries-v1",
                 "accessToken": dotenv.env['mapboxAccessToken']!,
               },
             ),

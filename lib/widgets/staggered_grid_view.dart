@@ -56,7 +56,7 @@ class Tile extends StatelessWidget {
         borderRadius: BorderRadius.circular(kRadiusValue * 2),
         child: Image.network(
           image,
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
           loadingBuilder: (BuildContext context, Widget child,
               ImageChunkEvent? loadingProgress) {
             if (loadingProgress == null) return child;

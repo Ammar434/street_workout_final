@@ -4,7 +4,6 @@ import 'package:street_workout_final/screens/application/challenge_screen/challe
 import 'package:street_workout_final/screens/application/favorite_parc/favorite_parc_screen.dart';
 import 'package:street_workout_final/screens/application/main_screen.dart';
 import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
-import 'package:street_workout_final/screens/application/settings_screen/account_settings_screen.dart';
 import 'package:street_workout_final/screens/application/start_training/start_training_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/login_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_confirm_screen.dart';
@@ -30,7 +29,7 @@ Map<String, WidgetBuilder> routes = {
   AchievementScreen.name: (context) => const AchievementScreen(),
   PostScreen.name: (context) => const PostScreen(),
   ChallengeScreen.name: (context) => const ChallengeScreen(),
-  AccountSettingsScreen.name: (context) => const AccountSettingsScreen(),
+  // AccountSettingsScreen.name: (context) => const AccountSettingsScreen(),
   StartTrainingScreen.name: (context) => const StartTrainingScreen(),
   FavoriteParcScreen.name: (context) => const FavoriteParcScreen(),
 };

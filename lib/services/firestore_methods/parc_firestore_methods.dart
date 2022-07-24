@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_place/google_place.dart';
 import 'package:street_workout_final/models/post_for_existant_parc.dart';
 import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
 import 'package:uuid/uuid.dart';
@@ -9,6 +10,7 @@ import 'package:uuid/uuid.dart';
 import '../../models/custom_user.dart';
 import '../../models/material_available.dart';
 import '../../models/parc.dart';
+import '../geolocalisation/geolocalisation.dart';
 import '../storage/storage_methods.dart';
 
 class ParcFirestoreMethods {
@@ -23,17 +25,49 @@ class ParcFirestoreMethods {
     required String parcAddress,
     required List<MaterialAvailable> materialAvailable,
     required String uid,
+    required placeId,
   }) async {
     List<String> materialAvailableString = [];
     String res = "Some error occured";
-
+    if (materialAvailable.isEmpty &&
+        parcName.isEmpty &&
+        parcAddress.isEmpty &&
+        listFile.isEmpty) {
+      return "Please complete all infos";
+    }
+    if (materialAvailable.isEmpty) {
+      return "Please select one material";
+    }
+    if (parcName.isEmpty) {
+      return "Please enter parc name";
+    }
+    if (parcAddress.isEmpty) {
+      return "Please enter parc address";
+    }
+    if (listFile.isEmpty) {
+      return "Please sent one photo";
+    }
+    if (placeId == "") {
+      return "Please enter a valid place";
+    }
     try {
+      DetailsResult? detailsResult =
+          await Geolocalisation().getDetailsResultFromGooglePlaceId(placeId);
       for (MaterialAvailable m in materialAvailable) {
         materialAvailableString.add(m.name);
       }
       String postId = _uuid.v1();
       String parcId = _uuid.v1();
 
+      GeoPoint geoPoint;
+      if (detailsResult != null) {
+        geoPoint = GeoPoint(
+          detailsResult.geometry!.location!.lat!,
+          detailsResult.geometry!.location!.lng!,
+        );
+      } else {
+        geoPoint = const GeoPoint(0, 0);
+      }
       Parc post = Parc(
         userUidWhoPublish: uid,
         postId: postId,
@@ -43,8 +77,10 @@ class ParcFirestoreMethods {
         materialAvailable: materialAvailableString,
         mainPhoto: '',
         name: parcName,
-        completeAddress: parcAddress,
-        geoPoint: const GeoPoint(1, 1),
+        completeAddress: detailsResult != null
+            ? detailsResult.formattedAddress!
+            : parcAddress,
+        geoPoint: geoPoint,
         userUidChampion: '',
         isPublished: false,
       );
@@ -53,6 +89,18 @@ class ParcFirestoreMethods {
           .collection("parcs")
           .doc(parcId)
           .set(post.toJson());
+
+      await _firebaseFirestore
+          .collection("datas")
+          .doc("all_parcs_references")
+          .update({
+        parcId: {
+          "completeAddress": parcAddress,
+          "name": parcName,
+          "id": parcId,
+          "geoPoint": geoPoint,
+        }
+      });
       for (Uint8List file in listFile) {
         await uploadImageToAExistingParc(
           file: file,
@@ -101,6 +149,7 @@ class ParcFirestoreMethods {
         datePublished: DateTime.now().toString(),
         postUrl: photoUrl,
         likes: [],
+        isPublished: false,
       );
 
       _firebaseFirestore
@@ -118,7 +167,7 @@ class ParcFirestoreMethods {
   }
 
   Future<Parc> findParcrById(String id) async {
-    late Parc parc;
+    Parc? parc;
     try {
       DocumentSnapshot documentSnapshot =
           await _firebaseFirestore.collection("parcs").doc(id).get();
@@ -128,7 +177,7 @@ class ParcFirestoreMethods {
       debugPrint(e.toString());
     }
 
-    return parc;
+    return parc!;
   }
 
   Future<List<String>> getAllImageOfParc(String parcId) async {
@@ -139,6 +188,10 @@ class ParcFirestoreMethods {
               .collection("parcs")
               .doc(parcId)
               .collection("posts")
+              .where(
+                "isPublished",
+                isEqualTo: true,
+              )
               .get();
       for (var document in querySnapshot.docs) {
         String s = document.data()['postUrl'];
@@ -168,13 +221,12 @@ class ParcFirestoreMethods {
   }
 
   Future<String> addOrRemoveAthleteToAParc(
-      String parcUid, String athleteUid) async {
+      String parcUid, String parcName, String athleteUid) async {
     String res = "Some error occured";
     try {
       DocumentReference documentReference =
           _firebaseFirestore.collection("parcs").doc(parcUid);
-      DocumentReference documentReferenceUser =
-          _firebaseFirestore.collection("users").doc(athleteUid);
+
       DocumentSnapshot documentSnapshot = await documentReference.get();
 
       List queue = documentSnapshot.get('athletesWhoTrainInThisParc');
@@ -182,18 +234,13 @@ class ParcFirestoreMethods {
         documentReference.update({
           "athletesWhoTrainInThisParc": FieldValue.arrayRemove([athleteUid])
         });
-        documentReferenceUser.update({
-          "favoriteParc": "",
-        });
+        res = await _userFirestoreMethods.changeUserFavoriteParc("");
       } else {
         documentReference.update({
           "athletesWhoTrainInThisParc": FieldValue.arrayUnion([athleteUid])
         });
-        documentReferenceUser.update({
-          "favoriteParc": parcUid,
-        });
+        res = await _userFirestoreMethods.changeUserFavoriteParc(parcName);
       }
-      res = "success";
     } catch (e) {
       res = e.toString();
     }

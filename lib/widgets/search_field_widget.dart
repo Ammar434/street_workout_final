@@ -7,8 +7,8 @@ import '../utils/constants.dart';
 
 import '../utils/colors.dart';
 
-class SearchFieldWidget extends StatelessWidget {
-  const SearchFieldWidget({Key? key}) : super(key: key);
+class SearchFieldWidgetForParc extends StatelessWidget {
+  const SearchFieldWidgetForParc({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +74,13 @@ class SearchFieldWidget extends StatelessWidget {
         );
       },
       onSuggestionSelected: (Map<String, dynamic> suggestion) {
-        Navigator.of(context).push(
+        Navigator.push(
+          context,
           MaterialPageRoute(
             builder: (context) => ParcInfoScreen(
               parcId: suggestion['id'],
+              parc: null,
+              // champion: userChampion,
             ),
           ),
         );

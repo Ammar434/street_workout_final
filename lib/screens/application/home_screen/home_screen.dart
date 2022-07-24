@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               const HomeHeader(),
-              const SearchFieldWidget(),
+              const SearchFieldWidgetForParc(),
               const SizedBox(height: kPaddingValue),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

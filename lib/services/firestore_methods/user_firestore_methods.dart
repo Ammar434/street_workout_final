@@ -7,21 +7,21 @@ import '../../models/custom_user.dart';
 import '../storage/storage_methods.dart';
 
 class UserFirestoreMethods {
-  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final StorageMethods storageMethods = StorageMethods();
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final StorageMethods _storageMethods = StorageMethods();
 
   Future<CustomUser> findUserByUid(String uid) async {
     CustomUser? user;
     try {
       DocumentSnapshot documentSnapshot =
-          await firebaseFirestore.collection("users").doc(uid).get();
+          await _firebaseFirestore.collection("users").doc(uid).get();
 
       user = CustomUser.userFromSnapshot(documentSnapshot);
     } catch (e) {
       debugPrint(e.toString());
       if (user == null) {
-        DocumentSnapshot documentSnapshot = await firebaseFirestore
+        DocumentSnapshot documentSnapshot = await _firebaseFirestore
             .collection("users")
             .doc("kEvs6AAbs5Xov7kUHtae5SdEIls1")
             .get();
@@ -36,9 +36,9 @@ class UserFirestoreMethods {
   Future<String> incrementUserContribution(int value) async {
     String res = "Some error occured";
     try {
-      await firebaseFirestore
+      await _firebaseFirestore
           .collection("users")
-          .doc(firebaseAuth.currentUser!.uid)
+          .doc(_firebaseAuth.currentUser!.uid)
           .update(
         {
           "numberOfContribution": FieldValue.increment(value),
@@ -59,18 +59,39 @@ class UserFirestoreMethods {
   ) async {
     String res = "Some error occured";
     try {
-      String url = await storageMethods.uploadImageToStorage(
+      String url = await _storageMethods.uploadImageToStorage(
         "profilePics",
         file,
         false,
       );
 
-      await firebaseFirestore
+      await _firebaseFirestore
           .collection("users")
-          .doc(firebaseAuth.currentUser!.uid)
+          .doc(_firebaseAuth.currentUser!.uid)
           .update(
         {
           "profileImage": url,
+        },
+      );
+
+      res = "success";
+    } catch (e) {
+      debugPrint(e.toString());
+      res = e.toString();
+    }
+
+    return res;
+  }
+
+  Future<String> changeUserFavoriteParc(String parcId) async {
+    String res = "Some error occured";
+    try {
+      _firebaseFirestore
+          .collection("users")
+          .doc(_firebaseAuth.currentUser!.uid)
+          .update(
+        {
+          "favoriteParc": parcId,
         },
       );
 

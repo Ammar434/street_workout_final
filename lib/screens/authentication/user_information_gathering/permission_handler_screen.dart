@@ -1,11 +1,9 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import '../../../responsive/mobile_screen_layout.dart';
 import '../../../responsive/responsive_layout.dart';
 import '../../../responsive/web_screen_layout.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
-import '../../../widgets/snackbar.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 
@@ -29,7 +27,6 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
 
     if (responseCode == "success") {
       if (!mounted) return;
-      // Navigator.pop(context);
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -40,12 +37,12 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
         ),
       );
     } else {
-      showSnackBar(
-        context: context,
-        title: "Warning",
-        content: responseCode,
-        contentType: ContentType.failure,
-      );
+      // showSnackBar(
+      //   context: context,
+      //   title: "Warning",
+      //   content: responseCode,
+      //   contentType: ContentType.failure,
+      // );
     }
     setState(() {
       isLoading = false;

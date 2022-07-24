@@ -21,7 +21,7 @@ class SearchMethods {
     try {
       map.forEach((key, value) {
         // debugPrint(key.toString());
-        debugPrint(value.toString());
+        // debugPrint(value.toString());
         list.add(value);
       });
 

@@ -1,15 +1,15 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 
-void showSnackBar({
-  required BuildContext context,
+void customShowSnackBar({
+  required GlobalKey<ScaffoldState> globalKey,
   required String title,
   required String content,
   // required Color backgroundColor,
   required ContentType contentType,
 }) {
   SnackBar snackBar = SnackBar(
-    elevation: 0,
+    elevation: 4,
     behavior: SnackBarBehavior.floating,
     backgroundColor: Colors.transparent,
     duration: const Duration(seconds: 5),
@@ -20,5 +20,5 @@ void showSnackBar({
       contentType: contentType,
     ),
   );
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(snackBar);
 }

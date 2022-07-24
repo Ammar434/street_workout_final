@@ -6,7 +6,6 @@ import '../../../provider/user_provider.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../utils/constants.dart';
 import 'account_settings_screen.dart';
-import 'components/profile_image_update_setting_screen.dart';
 import 'components/settings_group.dart';
 import 'components/settings_tile.dart';
 
@@ -22,7 +21,6 @@ class SettingsScreen extends StatelessWidget {
       child: ListView(
         shrinkWrap: true,
         children: [
-          ProfileImageUpdateSettingScreen(customUser: customUser),
           const SizedBox(
             height: kPaddingValue,
           ),
@@ -36,7 +34,12 @@ class SettingsScreen extends StatelessWidget {
                 text2: "Changer your personal data",
                 isArrow: true,
                 press: () {
-                  Navigator.pushNamed(context, AccountSettingsScreen.name);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          AccountSettingsScreen(customUser: customUser),
+                    ),
+                  );
                 },
               ),
               SettingsTile(

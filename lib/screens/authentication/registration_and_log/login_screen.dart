@@ -1,7 +1,10 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/responsive/mobile_screen_layout.dart';
+import 'package:street_workout_final/responsive/web_screen_layout.dart';
+import 'package:street_workout_final/widgets/snackbar.dart';
+import '../../../responsive/responsive_layout.dart';
 import '../../../services/authentication/authentication_method.dart';
-import '../../../widgets/snackbar.dart';
 import 'recover_password_screen.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
@@ -17,6 +20,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
@@ -31,18 +36,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (!mounted) return;
     if (res == "success") {
-      Navigator.pop(context);
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(
-      //     builder: (context) => const ResponsiveLayout(
-      //       mobileScreenLayout: MobileScreenLayout(),
-      //       webScreenLayout: WebScreenLayout(),
-      //     ),
-      //   ),
-      // );
+      // Navigator.pop(context);
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            mobileScreenLayout: MobileScreenLayout(),
+            webScreenLayout: WebScreenLayout(),
+          ),
+        ),
+      );
     } else {
-      showSnackBar(
-        context: context,
+      customShowSnackBar(
+        globalKey: _scaffoldKey,
         title: "Warning",
         content: res,
         contentType: ContentType.failure,
@@ -64,6 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         body: Padding(
           padding: const EdgeInsets.all(kPaddingValue),
           child: Column(
