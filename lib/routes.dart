@@ -15,6 +15,7 @@ import 'screens/authentication/user_information_gathering/permission_handler_scr
 import 'screens/authentication/user_information_gathering/user_personal_data_screen.dart';
 import 'screens/authentication/user_information_gathering/welcome_screen.dart';
 
+//Only for test
 Map<String, WidgetBuilder> routes = {
   LoginScreen.name: (context) => const LoginScreen(),
   RegisterScreen.name: (context) => const RegisterScreen(),
