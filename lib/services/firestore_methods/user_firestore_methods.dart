@@ -23,7 +23,7 @@ class UserFirestoreMethods {
       if (user == null) {
         DocumentSnapshot documentSnapshot = await _firebaseFirestore
             .collection("users")
-            .doc("kEvs6AAbs5Xov7kUHtae5SdEIls1")
+            .doc("tzCpksXtJIQie4ujOgHliT3VJmA3")
             .get();
 
         user = CustomUser.userFromSnapshot(documentSnapshot);
@@ -92,6 +92,35 @@ class UserFirestoreMethods {
           .update(
         {
           "favoriteParc": parcId,
+        },
+      );
+
+      res = "success";
+    } catch (e) {
+      debugPrint(e.toString());
+      res = e.toString();
+    }
+
+    return res;
+  }
+
+  Future<String> updateUserData({
+    required int age,
+    required double weight,
+    required double height,
+    required bool gender,
+  }) async {
+    String res = "Some error occured";
+    try {
+      _firebaseFirestore
+          .collection("users")
+          .doc(_firebaseAuth.currentUser!.uid)
+          .update(
+        {
+          "gender": gender ? "male" : "female",
+          "height": height,
+          "weight": weight,
+          "age": age,
         },
       );
 

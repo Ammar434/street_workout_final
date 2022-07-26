@@ -26,31 +26,32 @@ class _ParcInfoCommentsTabState extends State<ParcInfoCommentsTab> {
       child: Scaffold(
         bottomNavigationBar: buildBottomNavigationBar(userProvider),
         body: ListView.builder(
-            itemCount: 30,
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(kSmallPaddingValue),
-                child: ListTile(
-                  tileColor: tertiaryColor.withOpacity(0.1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(kRadiusValue),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(Faker.instance.image.image()),
-                    radius: 22,
-                  ),
-                  title: Text(
-                    Faker.instance.name.firstName(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  subtitle: Text(Faker.instance.datatype.string()),
+          itemCount: 30,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(kSmallPaddingValue),
+              child: ListTile(
+                tileColor: tertiaryColor.withOpacity(0.1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(kRadiusValue),
                 ),
-              );
-            }),
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(Faker.instance.image.image()),
+                  radius: 22,
+                ),
+                title: Text(
+                  Faker.instance.name.firstName(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: Text(Faker.instance.datatype.string()),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

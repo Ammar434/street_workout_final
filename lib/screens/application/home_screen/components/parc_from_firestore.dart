@@ -30,6 +30,9 @@ class ParcFromFirestore extends StatelessWidget {
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (BuildContext context, int index) {
               Parc parc = Parc.postFromSnapshot(snapshot.data!.docs[index]);
+              debugPrint("-----------------------------------------");
+              debugPrint(parc.name);
+              debugPrint("-----------------------------------------");
 
               return ParcDisplayCard(parc: parc);
             },

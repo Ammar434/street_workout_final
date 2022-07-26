@@ -1,4 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:street_workout_final/provider/user_provider.dart';
+import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
+import 'package:street_workout_final/services/image_picker.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../utils/colors.dart';
@@ -64,37 +71,23 @@ class _ProfileImageUpdateSettingScreenState
                   width: kPaddingValue,
                 ),
                 RoundedButton(
-                  onTap: () {},
+                  onTap: () async {
+                    Uint8List file = await pickImage(ImageSource.gallery);
+                    setState(() {
+                      isLoading = true;
+                    });
+                    await UserFirestoreMethods().updateUserProfileImage(file);
+                    setState(() {
+                      isLoading = false;
+                    });
+                    if (!mounted) return;
+                    Provider.of<UserProvider>(context).refreshUser();
+                  },
                   text: "Change profile image",
                   color: primaryColor,
                   width: MediaQuery.of(context).size.width / 2,
                   fontSize: 14,
                 ),
-                // GestureDetector(
-                //   onTap: () async {
-                //     Uint8List file = await pickImage(ImageSource.gallery);
-                //     setState(() {
-                //       isLoading = true;
-                //     });
-                //     await UserFirestoreMethods().updateUserProfileImage(file);
-                //     setState(() {
-                //       isLoading = false;
-                //     });
-                //     if (!mounted) return;
-                //     Provider.of<UserProvider>(context).refreshUser();
-                //   },
-                //   child: const CircleAvatar(
-                //     backgroundColor: primaryColor,
-                //     radius: kRadiusValue * 2,
-                //     child: Center(
-                //       child: FaIcon(
-                //         FontAwesomeIcons.pen,
-                //         size: kDefaultIconAppBar,
-                //         color: iconColor,
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),

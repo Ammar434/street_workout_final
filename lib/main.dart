@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'provider/user_provider.dart';
-import 'routes.dart';
-import 'utils/theme.dart';
+import 'package:street_workout_final/routes.dart';
 import 'authentication_handler.dart';
+import 'provider/user_provider.dart';
+import 'utils/theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
