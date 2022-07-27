@@ -1,3 +1,8 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:street_workout_final/models/challenge.dart';
+import 'package:street_workout_final/models/custom_user.dart';
+import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
 import 'package:uuid/uuid.dart';
 
 class RealtimeDatabaseMethods {
@@ -7,15 +12,19 @@ class RealtimeDatabaseMethods {
     String res = "Some error occured";
 
     try {
-      _firebaseDatabse.ref("$parcId/$evaluatorUid").update(
-        {
-          "parcId": parcId,
-          "challengeId": const Uuid().v1(),
-          "challengerId": '',
-          "evaluatorId": evaluatorUid,
-          "isChallengeSuccessed": null,
-        },
+      debugPrint("evaluator");
+      final database = FirebaseDatabase.instance.ref();
+
+      Challenge challenge = Challenge(
+        challengeId: const Uuid().v1(),
+        challengerUid: "",
+        evaluatorUid: evaluatorUid,
+        parcId: parcId,
+        // challengerProfileImage: '',
+        // evaluatorProfileImage: evaluator.profileImage,
       );
+
+      await _firebaseDatabse.ref().child("/$parcId/$evaluatorUid").set(challenge.toJson());
       res = "success";
     } catch (error) {
       res = error.toString();
@@ -23,4 +32,63 @@ class RealtimeDatabaseMethods {
 
     return res;
   }
+
+  Future<String> deleteParcReference(String parcId, String evaluatorUid) async {
+    String res = "Some error occured";
+
+    try {
+      await _firebaseDatabse.ref().child("/$parcId/$evaluatorUid").remove();
+      res = "success";
+    } catch (error) {
+      res = error.toString();
+    }
+
+    return res;
+  }
+
+  Stream<List<Challenge>> getChallengeStream(String parcId) {
+    final Stream<DatabaseEvent> challengeStream = _firebaseDatabse.ref().child(parcId).onValue;
+
+    final Stream<List<Challenge>> results = challengeStream.map((event) {
+      final challengeMap = Map<dynamic, dynamic>.from(event.snapshot.value as Map<dynamic, dynamic>);
+      final challengeList = challengeMap.entries.map((e) {
+        return Challenge.challengeFromSnapshot(
+          Map<String, dynamic>.from(e.value),
+        );
+      }).toList();
+      return challengeList;
+    });
+
+    return results;
+  }
+
+  Future<List<CustomUser>> getListCustomUser(List<Challenge> listChallenge) async {
+    List<CustomUser> list = [];
+    try {
+      for (int i = 0; i < listChallenge.length; i++) {
+        CustomUser c = await UserFirestoreMethods().findUserByUid(listChallenge[i].evaluatorUid);
+        list.add(c);
+      }
+    } catch (error) {
+      debugPrint(error.toString());
+    }
+    return list;
+  }
+  // Future<String> getAllEvaluatorReference(
+  //   String parcId,
+  // ) async {
+  //   String res = "Some error occured";
+
+  //   try {
+  //     debugPrint("evaluator");
+  //     final database = FirebaseDatabase.instance.ref();
+
+  //     )
+  //     res = "success";
+  //   } catch (error) {
+  //     res = error.toString();
+  //   }
+
+  //   return res;
+  // }
 }

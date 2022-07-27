@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_workout_final/screens/application/achievement_screen/achievement_screen.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_screen.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/challenge_screen.dart';
 import 'package:street_workout_final/screens/application/favorite_parc/favorite_parc_screen.dart';
 import 'package:street_workout_final/screens/application/main_screen.dart';
 import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
@@ -20,8 +20,7 @@ Map<String, WidgetBuilder> routes = {
   LoginScreen.name: (context) => const LoginScreen(),
   RegisterScreen.name: (context) => const RegisterScreen(),
   RecoverPasswordScreen.name: (context) => const RecoverPasswordScreen(),
-  RecoverPasswordConfirmScreen.name: (context) =>
-      const RecoverPasswordConfirmScreen(),
+  RecoverPasswordConfirmScreen.name: (context) => const RecoverPasswordConfirmScreen(),
   WelcomeScreen.name: (context) => const WelcomeScreen(),
   GenderScreen.name: (context) => const GenderScreen(),
   UserPersonalDataScreen.name: (context) => const UserPersonalDataScreen(),

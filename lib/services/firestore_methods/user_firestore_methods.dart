@@ -14,17 +14,12 @@ class UserFirestoreMethods {
   Future<CustomUser> findUserByUid(String uid) async {
     CustomUser? user;
     try {
-      DocumentSnapshot documentSnapshot =
-          await _firebaseFirestore.collection("users").doc(uid).get();
+      DocumentSnapshot documentSnapshot = await _firebaseFirestore.collection("users").doc(uid).get();
 
       user = CustomUser.userFromSnapshot(documentSnapshot);
     } catch (e) {
-      debugPrint(e.toString());
       if (user == null) {
-        DocumentSnapshot documentSnapshot = await _firebaseFirestore
-            .collection("users")
-            .doc("tzCpksXtJIQie4ujOgHliT3VJmA3")
-            .get();
+        DocumentSnapshot documentSnapshot = await _firebaseFirestore.collection("users").doc("tzCpksXtJIQie4ujOgHliT3VJmA3").get();
 
         user = CustomUser.userFromSnapshot(documentSnapshot);
       }
@@ -36,10 +31,7 @@ class UserFirestoreMethods {
   Future<String> incrementUserContribution(int value) async {
     String res = "Some error occured";
     try {
-      await _firebaseFirestore
-          .collection("users")
-          .doc(_firebaseAuth.currentUser!.uid)
-          .update(
+      await _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
         {
           "numberOfContribution": FieldValue.increment(value),
         },
@@ -65,10 +57,7 @@ class UserFirestoreMethods {
         false,
       );
 
-      await _firebaseFirestore
-          .collection("users")
-          .doc(_firebaseAuth.currentUser!.uid)
-          .update(
+      await _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
         {
           "profileImage": url,
         },
@@ -86,10 +75,7 @@ class UserFirestoreMethods {
   Future<String> changeUserFavoriteParc(String parcId) async {
     String res = "Some error occured";
     try {
-      _firebaseFirestore
-          .collection("users")
-          .doc(_firebaseAuth.currentUser!.uid)
-          .update(
+      _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
         {
           "favoriteParc": parcId,
         },
@@ -112,10 +98,7 @@ class UserFirestoreMethods {
   }) async {
     String res = "Some error occured";
     try {
-      _firebaseFirestore
-          .collection("users")
-          .doc(_firebaseAuth.currentUser!.uid)
-          .update(
+      _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
         {
           "gender": gender ? "male" : "female",
           "height": height,

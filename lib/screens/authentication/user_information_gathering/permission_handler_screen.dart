@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../responsive/mobile_screen_layout.dart';
-import '../../../responsive/responsive_layout.dart';
-import '../../../responsive/web_screen_layout.dart';
+import '../../../authentication_handler.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
 import '../../../utils/constants.dart';
@@ -30,10 +28,7 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const ResponsiveLayout(
-            mobileScreenLayout: MobileScreenLayout(),
-            webScreenLayout: WebScreenLayout(),
-          ),
+          builder: (context) => const AuthenticationHandler(),
         ),
       );
     } else {

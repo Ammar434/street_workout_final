@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "37349665099",
+    "firebase_url": "https://streetworkoutfighter-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "streetworkoutfighter",
     "storage_bucket": "streetworkoutfighter.appspot.com"
   },
@@ -37,6 +38,13 @@
             {
               "client_id": "37349665099-ggha18drm4jl744lr3b5v7sgnbnmdl27.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "37349665099-6cfvjnbair3um5p7pg2n43rhs1m2jqe1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ammar434.streetWorkoutFighter.streetWorkoutFinal"
+              }
             }
           ]
         }

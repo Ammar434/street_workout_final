@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/provider/challenge_provider.dart';
 import 'package:street_workout_final/routes.dart';
 import 'authentication_handler.dart';
 import 'provider/user_provider.dart';
@@ -48,8 +49,12 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return MultiProvider(
           providers: [
+            ChangeNotifierProvider(create: (_) => UserProvider()),
             ChangeNotifierProvider(
-              create: (_) => UserProvider(),
+              create: (context) => ChallengeProvider(
+                evaluator: Provider.of<UserProvider>(context, listen: false).getUser,
+                // favoriteParc: context.read<UserProvider>().getUser.favoriteParc,
+              ),
             ),
           ],
           child: MaterialApp(

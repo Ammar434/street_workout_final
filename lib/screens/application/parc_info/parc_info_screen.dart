@@ -156,7 +156,10 @@ class _ParcInfoScreenState extends State<ParcInfoScreen>
                     });
                     String res =
                         await parcFirestoreMethods.addOrRemoveAthleteToAParc(
-                            widget.parcId, parc.name, customUser.uid);
+                      parcUid: widget.parcId,
+                      parcName: parc.name,
+                      athleteUid: customUser.uid,
+                    );
                     setState(() {
                       isLoading2 = false;
                     });

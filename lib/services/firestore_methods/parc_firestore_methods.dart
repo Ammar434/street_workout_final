@@ -220,8 +220,11 @@ class ParcFirestoreMethods {
     return listUser;
   }
 
-  Future<String> addOrRemoveAthleteToAParc(
-      String parcUid, String parcName, String athleteUid) async {
+  Future<String> addOrRemoveAthleteToAParc({
+    required String parcUid,
+    required String parcName,
+    required String athleteUid,
+  }) async {
     String res = "Some error occured";
     try {
       DocumentReference documentReference =
@@ -239,7 +242,7 @@ class ParcFirestoreMethods {
         documentReference.update({
           "athletesWhoTrainInThisParc": FieldValue.arrayUnion([athleteUid])
         });
-        res = await _userFirestoreMethods.changeUserFavoriteParc(parcName);
+        res = await _userFirestoreMethods.changeUserFavoriteParc(parcUid);
       }
     } catch (e) {
       res = e.toString();

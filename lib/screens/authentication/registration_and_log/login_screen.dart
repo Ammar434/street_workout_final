@@ -1,5 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/authentication_handler.dart';
 import 'package:street_workout_final/responsive/mobile_screen_layout.dart';
 import 'package:street_workout_final/responsive/web_screen_layout.dart';
 import 'package:street_workout_final/widgets/snackbar.dart';
@@ -39,10 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Navigator.pop(context);
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const ResponsiveLayout(
-            mobileScreenLayout: MobileScreenLayout(),
-            webScreenLayout: WebScreenLayout(),
-          ),
+          builder: (context) => const AuthenticationHandler(),
         ),
       );
     } else {

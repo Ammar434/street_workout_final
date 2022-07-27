@@ -11,11 +11,7 @@ class UserProvider with ChangeNotifier {
   CustomUser get getUser => _customUser!;
 
   Future<void> refreshUser() async {
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(firebaseAuth.currentUser!.uid)
-        .snapshots()
-        .listen((event) {
+    FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).snapshots().listen((event) {
       _customUser = CustomUser.userFromSnapshot(event);
       notifyListeners();
     });
