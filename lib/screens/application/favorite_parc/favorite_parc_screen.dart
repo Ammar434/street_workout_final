@@ -10,6 +10,7 @@ class FavoriteParcScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
+            Text("Favorite PArc Select"),
             Text("We will develod this screen soon"),
           ],
         ),

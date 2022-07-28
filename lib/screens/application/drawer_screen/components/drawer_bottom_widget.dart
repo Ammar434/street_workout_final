@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/challenge_screen.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';
 
 import '../../start_training/start_training_screen.dart';
 import 'drawer_categorie_tile.dart';
@@ -25,7 +25,7 @@ class DrawerBottomWidget extends StatelessWidget {
           iconData: FontAwesomeIcons.calendar,
           text: "Start a challenge",
           onTap: () {
-            Navigator.pushNamed(context, ChallengeScreen.name);
+            Navigator.pushNamed(context, ChallengeStartScreen.name);
           },
         ),
       ],

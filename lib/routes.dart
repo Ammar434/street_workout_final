@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:street_workout_final/screens/application/achievement_screen/achievement_screen.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/challenge_screen.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/global_waitting_room/global_waitting_room_screen.dart';
 import 'package:street_workout_final/screens/application/favorite_parc/favorite_parc_screen.dart';
 import 'package:street_workout_final/screens/application/main_screen.dart';
 import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
@@ -16,7 +18,6 @@ import 'screens/authentication/user_information_gathering/user_personal_data_scr
 import 'screens/authentication/user_information_gathering/welcome_screen.dart';
 
 //Only for test
-//AMMMAR
 Map<String, WidgetBuilder> routes = {
   LoginScreen.name: (context) => const LoginScreen(),
   RegisterScreen.name: (context) => const RegisterScreen(),
@@ -29,8 +30,10 @@ Map<String, WidgetBuilder> routes = {
   MainScreen.name: (context) => const MainScreen(),
   AchievementScreen.name: (context) => const AchievementScreen(),
   PostScreen.name: (context) => const PostScreen(),
-  ChallengeScreen.name: (context) => const ChallengeScreen(),
+  ChallengeStartScreen.name: (context) => const ChallengeStartScreen(),
   // AccountSettingsScreen.name: (context) => const AccountSettingsScreen(),
   StartTrainingScreen.name: (context) => const StartTrainingScreen(),
   FavoriteParcScreen.name: (context) => const FavoriteParcScreen(),
+  EvaluatorWaittingRoomScreen.name: (context) => const EvaluatorWaittingRoomScreen(),
+  GlobalWaittingRoomScreen.name: (context) => const GlobalWaittingRoomScreen(),
 };

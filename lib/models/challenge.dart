@@ -4,40 +4,35 @@ class Challenge {
   final String challengeId;
   final String challengerUid;
   final String evaluatorUid;
-  // final String challengerProfileImage;
-  // final String evaluatorProfileImage;
   final String parcId;
+  final bool isChallengerReady;
+  final bool isEvaluatorReady;
 
   Challenge({
     required this.challengeId,
     required this.challengerUid,
     required this.evaluatorUid,
     required this.parcId,
-    // required this.challengerProfileImage,
-    // required this.evaluatorProfileImage,
+    required this.isChallengerReady,
+    required this.isEvaluatorReady,
   });
   Map<String, dynamic> toJson() => {
         "challengeId": challengeId,
         "challengerUid": challengerUid,
         "evaluatorUid": evaluatorUid,
         "parcId": parcId,
-        // "challengerProfileImage": challengerProfileImage,
-        // " evaluatorProfileImage": evaluatorProfileImage,
+        "isChallengerReady": isChallengerReady,
+        "isEvaluatorReady": isEvaluatorReady,
       };
 
   static Challenge challengeFromSnapshot(Map<String, dynamic> snapshot) {
-    // var snapshot = asyncSnapshot.snapshot.d.data() as ;
-
-    // debugPrint("-----------------------------------------");
-    // debugPrint(snapshot.toString());
-    // debugPrint("-----------------------------------------");
     return Challenge(
       challengeId: snapshot["challengeId"],
       challengerUid: snapshot["challengerUid"],
       evaluatorUid: snapshot["evaluatorUid"],
       parcId: snapshot["parcId"],
-      // evaluatorProfileImage: snapshot["evaluatorProfileImage"],
-      // challengerProfileImage: snapshot["challengerProfileImage"],
+      isChallengerReady: snapshot["isChallengerReady"],
+      isEvaluatorReady: snapshot["isEvaluatorReady"],
     );
   }
 }

@@ -12,16 +12,13 @@ class RealtimeDatabaseMethods {
     String res = "Some error occured";
 
     try {
-      debugPrint("evaluator");
-      final database = FirebaseDatabase.instance.ref();
-
       Challenge challenge = Challenge(
         challengeId: const Uuid().v1(),
         challengerUid: "",
         evaluatorUid: evaluatorUid,
         parcId: parcId,
-        // challengerProfileImage: '',
-        // evaluatorProfileImage: evaluator.profileImage,
+        isChallengerReady: false,
+        isEvaluatorReady: true,
       );
 
       await _firebaseDatabse.ref().child("/$parcId/$evaluatorUid").set(challenge.toJson());
@@ -74,21 +71,23 @@ class RealtimeDatabaseMethods {
     }
     return list;
   }
-  // Future<String> getAllEvaluatorReference(
-  //   String parcId,
-  // ) async {
-  //   String res = "Some error occured";
 
-  //   try {
-  //     debugPrint("evaluator");
-  //     final database = FirebaseDatabase.instance.ref();
+  Future<String> addChallengerToChallenge({
+    required String parcId,
+    required String evaluatorUid,
+    required String challengerUid,
+  }) async {
+    String res = "success";
 
-  //     )
-  //     res = "success";
-  //   } catch (error) {
-  //     res = error.toString();
-  //   }
-
-  //   return res;
-  // }
+    List<CustomUser> list = [];
+    try {
+      await _firebaseDatabse.ref().child("/$parcId/$evaluatorUid").update({
+        'challengerUid': challengerUid,
+      });
+    } catch (error) {
+      debugPrint(error.toString());
+      res = error.toString();
+    }
+    return res;
+  }
 }
