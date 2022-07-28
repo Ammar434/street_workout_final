@@ -16,6 +16,7 @@ import 'screens/authentication/user_information_gathering/user_personal_data_scr
 import 'screens/authentication/user_information_gathering/welcome_screen.dart';
 
 //Only for test
+//AMMMAR
 Map<String, WidgetBuilder> routes = {
   LoginScreen.name: (context) => const LoginScreen(),
   RegisterScreen.name: (context) => const RegisterScreen(),
