@@ -2,14 +2,19 @@ import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/widgets.dart';
+import 'package:street_workout_final/models/challenge.dart';
 import 'package:street_workout_final/models/custom_user.dart';
+import 'package:street_workout_final/services/realtime_database/realtime_database_methods.dart';
 
 class ChallengeProvider extends ChangeNotifier {
   final DatabaseReference _databaseReference = FirebaseDatabase.instance.ref();
+  final RealtimeDatabaseMethods realtimeDatabaseMethods = RealtimeDatabaseMethods();
   late StreamSubscription<DatabaseEvent> _streamSubscription;
 
   bool? _isRoomEmpty;
   bool get isRoomEmpty => _isRoomEmpty!;
+  late Challenge _challenge;
+  Challenge get getChallenge => _challenge;
 
   @override
   void dispose() {
@@ -42,49 +47,53 @@ class ChallengeProvider extends ChangeNotifier {
     );
   }
 
-  // Future<void> _listenToRoomDelete() async {
-  //   String path = "${evaluator.favoriteParc}/${evaluator.uid}";
+  Future<void> writeChallegerUidToRealtimeDatabase({
+    required CustomUser currentUserAsChallenger,
+    required String evaluatorReference,
+  }) async {
+    String path = "${currentUserAsChallenger.favoriteParc}/$evaluatorReference";
+    await realtimeDatabaseMethods.addChallengerToChallenge(
+      evaluatorUid: evaluatorReference,
+      challenger: currentUserAsChallenger,
+    );
+    _isRoomEmpty = false;
+    notifyListeners();
+  }
 
-  //   _streamSubscription = _databaseReference.child(path).onChildRemoved.listen((event) async {
-  //     _isRoomEmpty = false;
+  Future<void> deleteRoom(CustomUser evaluator) async {
+    // String path = "${evaluator.favoriteParc}/${evaluator.uid}";
+    await realtimeDatabaseMethods.deleteParcReference(
+      evaluator.favoriteParc,
+      evaluator.uid,
+    );
 
-  //     notifyListeners();
-  //   });
-  // }
+    notifyListeners();
+  }
 
-  // Future<void> _listenToListChallenge() async {
-  //   _streamSubscription = _databaseReference.child(evaluator.favoriteParc).onValue.listen((event) async {
-  //     final challengeMap = Map<dynamic, dynamic>.from(event.snapshot.value as Map<dynamic, dynamic>);
+  Future<void> listenToChallenge() async {
+    _streamSubscription = _databaseReference.child(evaluator.favoriteParc).onValue.listen((event) async {
+      final challengeMap = Map<dynamic, dynamic>.from(event.snapshot.value as Map<dynamic, dynamic>);
 
-  //     // for (int i = 0; i < challengeMap.length; i++) {
-  //     //   CustomUser? evaluator = await UserFirestoreMethods().findUserByUid(challengeMap.values.elementAt(i)['evaluatorUid']);
-  //     //   CustomUser? challenger = await UserFirestoreMethods().findUserByUid(challengeMap.values.elementAt(i)['challengerUid']);
-  //     //   ChallengeWithCustomUser c = ChallengeWithCustomUser(
-  //     //     evaluatorUid: challengeMap.values.elementAt(i)['evaluatorUid'],
-  //     //     parcId: challengeMap.values.elementAt(i)['parcId'],
-  //     //     evaluator: evaluator,
-  //     //     challenger: challenger,
-  //     //     challengeId: challengeMap.values.elementAt(i)['challengeId'],
-  //     //     challengerUid: challengeMap.values.elementAt(i)['challengerUid'],
-  //     //   );
-  //     //   _listChallenge.add(c);
-  //     //   notifyListeners();
-  //     // }
-  //     _listChallenge = challengeMap.values.map((e) {
-  //       return Challenge.challengeFromSnapshot(Map<String, dynamic>.from(e));
-  //     }).toList();
-  //     notifyListeners();
-  //   });
-  // }
+      Map<dynamic, dynamic> m = challengeMap.values.elementAt(0) as Map<dynamic, dynamic>;
+      Challenge challenge = Challenge.challengeFromSnapshot(m);
+      _challenge = challenge;
 
-  // void removeListChallenge() {
-  //   debugPrint("a-----------------------------------------");
-  //   debugPrint("v-----------------------------------------");
-  //   debugPrint("d-----------------------------------------");
-  //   debugPrint(evaluator.favoriteParc.toString());
-  //   debugPrint(evaluator.uid.toString());
-  //   debugPrint("-----------------------------------------");
-  //   RealtimeDatabaseMethods().deleteParcReference(evaluator.favoriteParc, evaluator.uid);
-  //   notifyListeners();
-  // }
+      notifyListeners();
+    });
+  }
+
+  Future<void> getReadyForTheChallenge({
+    required bool isEvaluator,
+    required String path,
+  }) async {
+    // String path = "${_challenge.parcId}/${_challenge.evaluatorUid}";
+    debugPrint("path$path");
+    await realtimeDatabaseMethods.getReadyForTheChallenge(
+      isEvaluator: isEvaluator,
+      path: path,
+      value: isEvaluator ? !_challenge.isEvaluatorReady : !_challenge.isChallengerReady,
+    );
+
+    notifyListeners();
+  }
 }

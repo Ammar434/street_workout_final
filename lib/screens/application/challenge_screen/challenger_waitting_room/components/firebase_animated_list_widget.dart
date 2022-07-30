@@ -2,10 +2,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:street_workout_final/models/challenge.dart';
 import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/global_waitting_room/global_waitting_room_screen.dart';
-import 'package:street_workout_final/services/realtime_database/realtime_database_methods.dart';
+import 'package:street_workout_final/provider/challenge_provider.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 class FirebaseAnimatedListWidget extends StatelessWidget {
@@ -18,9 +18,9 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ChallengeProvider challengeProvider = Provider.of<ChallengeProvider>(context, listen: true);
     return Expanded(
       child: FirebaseAnimatedList(
-        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.zero,
         duration: const Duration(seconds: 1),
         query: FirebaseDatabase.instance.ref().child(currentUser.favoriteParc),
@@ -40,20 +40,41 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
               ),
             ),
             child: ListTile(
-              title: Text(challenge.evaluatorUid),
+              title: Text(challenge.evaluatorName),
+              subtitle: Text(
+                challenge.evaluatorUid,
+                style: const TextStyle(
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(
+                  challenge.evaluatorImageUrl,
+                ),
+              ),
               trailing: const FaIcon(
                 FontAwesomeIcons.chevronRight,
                 size: kDefaultIconAppBar,
               ),
-              onTap: () async {
-                String res = await RealtimeDatabaseMethods().addChallengerToChallenge(
-                  parcId: currentUser.favoriteParc,
-                  evaluatorUid: challenge.evaluatorUid,
-                  challengerUid: currentUser.uid,
+              onTap: () {
+                challengeProvider.writeChallegerUidToRealtimeDatabase(
+                  currentUserAsChallenger: currentUser,
+                  evaluatorReference: challenge.evaluatorUid,
                 );
-                if (res == "success") {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const GlobalWaittingRoomScreen()));
-                }
+
+                // if (!mounted) return;
+                // if (res == "success") {
+                //   // ignore: use_build_context_synchronously
+                //   Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: ((context) => GlobalWaittingRoomScreen(
+                //             parcReference: currentUser.favoriteParc,
+                //             userReference: challenge.evaluatorUid,
+                //           )),
+                //     ),
+                //   );
+                // }
               },
             ),
           );

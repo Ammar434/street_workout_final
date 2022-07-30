@@ -8,20 +8,24 @@ import 'package:uuid/uuid.dart';
 class RealtimeDatabaseMethods {
   final FirebaseDatabase _firebaseDatabse = FirebaseDatabase.instance;
 
-  Future<String> createParcReference(String parcId, String evaluatorUid) async {
+  Future<String> createParcReference(CustomUser evaluator) async {
     String res = "Some error occured";
 
     try {
       Challenge challenge = Challenge(
         challengeId: const Uuid().v1(),
         challengerUid: "",
-        evaluatorUid: evaluatorUid,
-        parcId: parcId,
+        challengerName: '',
+        challengerImageUrl: '',
+        evaluatorUid: evaluator.uid,
+        evaluatorName: evaluator.userName,
+        evaluatorImageUrl: evaluator.profileImage,
+        parcId: evaluator.favoriteParc,
         isChallengerReady: false,
-        isEvaluatorReady: true,
+        isEvaluatorReady: false,
       );
 
-      await _firebaseDatabse.ref().child("/$parcId/$evaluatorUid").set(challenge.toJson());
+      await _firebaseDatabse.ref().child("/${evaluator.favoriteParc}/${evaluator.uid}").set(challenge.toJson());
       res = "success";
     } catch (error) {
       res = error.toString();
@@ -73,17 +77,40 @@ class RealtimeDatabaseMethods {
   }
 
   Future<String> addChallengerToChallenge({
-    required String parcId,
     required String evaluatorUid,
-    required String challengerUid,
+    required CustomUser challenger,
   }) async {
-    String res = "success";
+    String res = "Some error happened";
 
-    List<CustomUser> list = [];
     try {
-      await _firebaseDatabse.ref().child("/$parcId/$evaluatorUid").update({
-        'challengerUid': challengerUid,
+      await _firebaseDatabse.ref().child("/${challenger.favoriteParc}/$evaluatorUid").update({
+        'challengerUid': challenger.uid,
+        "challengerImageUrl": challenger.profileImage,
+        "challengerName": challenger.userName,
       });
+      res = "success";
+    } catch (error) {
+      debugPrint(error.toString());
+      res = error.toString();
+    }
+    return res;
+  }
+
+  Future<String> getReadyForTheChallenge({required bool isEvaluator, required String path, required bool value}) async {
+    String res = "Some error happened";
+
+    try {
+      if (isEvaluator) {
+        await _firebaseDatabse.ref().child(path).update({
+          'isEvaluatorReady': value,
+        });
+      } else {
+        await _firebaseDatabse.ref().child(path).update({
+          'isChallengerReady': value,
+        });
+      }
+
+      res = "success";
     } catch (error) {
       debugPrint(error.toString());
       res = error.toString();

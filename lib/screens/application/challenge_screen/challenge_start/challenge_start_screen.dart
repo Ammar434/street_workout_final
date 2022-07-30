@@ -1,18 +1,18 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/provider/challenge_provider.dart';
 import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/components/bottom_challenge_screen.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/challenger_waitting_room/challenger_waitting_room_screen.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
 import 'package:street_workout_final/screens/application/favorite_parc/favorite_parc_screen.dart';
-import 'package:street_workout_final/services/realtime_database/realtime_database_methods.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import 'package:street_workout_final/widgets/loading_widget.dart';
 import 'package:street_workout_final/widgets/snackbar.dart';
 
 import '../../../../widgets/app_bar.dart';
+import 'components/challenge_is_not_start_widget.dart';
 
 class ChallengeStartScreen extends StatefulWidget {
   const ChallengeStartScreen({Key? key}) : super(key: key);
@@ -23,49 +23,55 @@ class ChallengeStartScreen extends StatefulWidget {
 }
 
 class _ChallengeStartScreenState extends State<ChallengeStartScreen> with SingleTickerProviderStateMixin {
-  final RealtimeDatabaseMethods realtimeDatabaseMethods = RealtimeDatabaseMethods();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
-  late AnimationController animationController;
   late CustomUser currentUser;
 
-  bool flag = true;
   bool isLoading = true;
+  bool isNearAPark = false;
 
-  int searchingDuration = 15;
+  //TODO:reactivate
 
-  void challengerFunction() {
-    if (currentUser.favoriteParc.isEmpty) {
-      Navigator.pushNamed(context, FavoriteParcScreen.name);
-    } else {
-      setState(() {
-        flag = !flag;
-      });
-      animationController.repeat();
-      Future.delayed(Duration(seconds: searchingDuration)).whenComplete(
-        () {
-          animationController.reset();
-          animationController.stop();
+  Future<void> checkDistanceBetwweenUserAndPark() async {
+    // isNearAPark = await Geolocalisation().checkDistanceBetwweenUserAndPark(currentUser.favoriteParc);
+    isNearAPark = true;
+  }
 
-          setState(() {
-            flag = !flag;
-          });
-          customShowSnackBar(
-            globalKey: _scaffoldKey,
-            title: "No man's land",
-            content: "No person arround found",
-            contentType: ContentType.help,
-          );
-        },
+  void challengerFunction() async {
+    await checkDistanceBetwweenUserAndPark();
+    if (isNearAPark == false) {
+      customShowSnackBar(
+        globalKey: _scaffoldKey,
+        title: "Not near a parc",
+        content: "Please go near the parc",
+        contentType: ContentType.failure,
       );
+    } else {
+      if (!mounted) return;
+      if (currentUser.favoriteParc.isEmpty) {
+        Navigator.pushNamed(context, FavoriteParcScreen.name);
+      } else {
+        Navigator.of(context).pushNamed(ChallengerWaittinRoomScreen.name);
+      }
     }
   }
 
   void evaluatorFunction() async {
-    if (currentUser.favoriteParc.isEmpty) {
-      Navigator.pushNamed(context, FavoriteParcScreen.name);
+    await checkDistanceBetwweenUserAndPark();
+    if (isNearAPark == false) {
+      customShowSnackBar(
+        globalKey: _scaffoldKey,
+        title: "Not near a parc",
+        content: "Please go near the parc",
+        contentType: ContentType.failure,
+      );
     } else {
-      Navigator.of(context).pushNamed(EvaluatorWaittingRoomScreen.name);
+      if (!mounted) return;
+      if (currentUser.favoriteParc.isEmpty) {
+        Navigator.pushNamed(context, FavoriteParcScreen.name);
+      } else {
+        Navigator.of(context).pushNamed(EvaluatorWaittingRoomScreen.name);
+      }
     }
   }
 
@@ -81,13 +87,6 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
   void initState() {
     super.initState();
     loadData();
-    animationController = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    animationController.dispose();
-    super.dispose();
   }
 
   @override
@@ -102,16 +101,14 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
           : Column(
               children: [
                 Expanded(
-                  child: Lottie.network(
-                    "https://assets9.lottiefiles.com/packages/lf20_WVGdOg.json",
-                    controller: animationController,
-                    onLoaded: (composition) {
-                      animationController.duration = composition.duration;
-                    },
+                  child: Padding(
+                    padding: const EdgeInsets.all(kPaddingValue * 2),
+                    child: Image.asset(
+                      "assets/images/challenge/asset_1.png",
+                    ),
                   ),
                 ),
-                BottomPartChallengeScreen(
-                  widgetToDisplay: flag,
+                ChallengeIsNotStartWidget(
                   challengerOnTap: challengerFunction,
                   evaluatorOnTap: evaluatorFunction,
                 ),

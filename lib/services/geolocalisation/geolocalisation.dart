@@ -7,6 +7,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
 import 'package:http/http.dart' as http;
+import 'package:street_workout_final/models/parc.dart';
+import 'package:street_workout_final/services/firestore_methods/parc_firestore_methods.dart';
 import '../../utils/dev.dart';
 
 class Geolocalisation {
@@ -44,8 +46,7 @@ class Geolocalisation {
 
     if (permission == LocationPermission.deniedForever) {
       // Permissions are denied forever, handle appropriately.
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
     }
 
     // When we reach here, permissions are granted and we can
@@ -59,8 +60,7 @@ class Geolocalisation {
     };
     var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
     var p = "${position.longitude},${position.latitude}";
-    var url = Uri.parse(
-        'https://api.mapbox.com/geocoding/v5/mapbox.places/$p.json?$query');
+    var url = Uri.parse('https://api.mapbox.com/geocoding/v5/mapbox.places/$p.json?$query');
     var res = await http.get(url);
 
     if (res.statusCode != 200) {
@@ -95,8 +95,7 @@ class Geolocalisation {
     return list;
   }
 
-  Future<DetailsResult?> getDetailsResultFromGooglePlaceId(
-      String placeId) async {
+  Future<DetailsResult?> getDetailsResultFromGooglePlaceId(String placeId) async {
     var googlePlace = GooglePlace(dotenv.env['googleMapKey']!);
     DetailsResult? detailsResult;
     var result = await googlePlace.details.get(placeId);
@@ -111,10 +110,7 @@ class Geolocalisation {
 
   Future<Set<Marker>> getAllMarker(Function(String) onTap) async {
     Set<Marker> markers = {};
-    DocumentSnapshot documentSnapshot = await firebaseFirestore
-        .collection("datas")
-        .doc("all_parcs_references")
-        .get();
+    DocumentSnapshot documentSnapshot = await firebaseFirestore.collection("datas").doc("all_parcs_references").get();
     Map<String, dynamic> map = documentSnapshot.data() as Map<String, dynamic>;
 
     try {
@@ -145,5 +141,22 @@ class Geolocalisation {
     debugPrint(markers.length.toString());
     debugPrint("------------------------------------");
     return markers;
+  }
+
+  Future<bool> checkDistanceBetwweenUserAndPark(String parcId) async {
+    double? distance;
+    Parc userFavoriteParc = await ParcFirestoreMethods().findParcrById(parcId);
+
+    Position userCurrentPosition = await determinePosition();
+    GeoPoint userPark = userFavoriteParc.geoPoint!;
+
+    distance = Geolocator.distanceBetween(
+      userCurrentPosition.latitude,
+      userCurrentPosition.longitude,
+      userPark.latitude,
+      userPark.longitude,
+    );
+
+    return (distance < 100);
   }
 }

@@ -64,6 +64,7 @@ dependencies:
   google_place: ^0.4.7
   google_maps_flutter: ^2.1.9
   firebase_database: ^9.0.20
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -95,6 +96,7 @@ flutter:
     - assets/images/exercices/
     - assets/images/leaderboard/
     - assets/images/authentication/
+    - assets/images/challenge/
     - assets/maps/
     - assets/rive/
     - assets/images/achievements/

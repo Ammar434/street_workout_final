@@ -84,10 +84,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
   }
 
   void loadData() async {
-    String res = await _realtimeDatabaseMethods.createParcReference(
-      _customUser.favoriteParc,
-      _customUser.uid,
-    );
+    String res = await _realtimeDatabaseMethods.createParcReference(_customUser);
 
     if (res != "success") {
       if (!mounted) return;
@@ -123,10 +120,10 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
 
   @override
   void dispose() {
-    _realtimeDatabaseMethods.deleteParcReference(
-      _customUser.favoriteParc,
-      _customUser.uid,
-    );
+    // _realtimeDatabaseMethods.deleteParcReference(
+    //   _customUser.favoriteParc,
+    //   _customUser.uid,
+    // );
     timer.cancel();
     super.dispose();
   }
@@ -134,7 +131,6 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: buildAppBar(context, ""),
       body: isLoading
           ? const LoadingWidget()
@@ -187,8 +183,21 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                         height: kPaddingValue,
                       ),
                       AnimatedOpacity(
+                        opacity: 1 - opacityLevel,
+                        duration: const Duration(seconds: 1),
+                        child: const Text(
+                          "Finding athletes arround you",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: kDefaultTitleSize * 0.75,
+                          ),
+                        ),
+                      ),
+                      AnimatedOpacity(
                         opacity: opacityLevel,
                         duration: const Duration(seconds: 5),
+                        curve: Curves.linearToEaseOut,
                         child: const Text(
                           "The athlete who was to be evaluated failed to join the challenge. Please try again.",
                           textAlign: TextAlign.center,
@@ -210,7 +219,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                       Navigator.of(context).pop();
                     },
                     child: const Text(
-                      "Stop rating",
+                      "Stop challenge",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: kDefaultTitleSize * 0.75,
