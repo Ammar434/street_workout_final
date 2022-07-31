@@ -13,6 +13,8 @@ class ChallengeProvider extends ChangeNotifier {
 
   bool? _isRoomEmpty;
   bool get isRoomEmpty => _isRoomEmpty!;
+  bool? _isChallengeEnd;
+  bool get isChallengeEnd => _isChallengeEnd!;
   late Challenge _challenge;
   Challenge get getChallenge => _challenge;
 
@@ -23,10 +25,7 @@ class ChallengeProvider extends ChangeNotifier {
   }
 
   final CustomUser evaluator;
-  ChallengeProvider({required this.evaluator}) {
-    // _listenToRoomComplete();
-    // _listenToRoomDelete();
-  }
+  ChallengeProvider({required this.evaluator});
 
   Future<void> listenToRoomComplete() async {
     String path = "${evaluator.favoriteParc}/${evaluator.uid}";
@@ -61,7 +60,6 @@ class ChallengeProvider extends ChangeNotifier {
   }
 
   Future<void> deleteRoom(CustomUser evaluator) async {
-    // String path = "${evaluator.favoriteParc}/${evaluator.uid}";
     await realtimeDatabaseMethods.deleteParcReference(
       evaluator.favoriteParc,
       evaluator.uid,
@@ -86,12 +84,26 @@ class ChallengeProvider extends ChangeNotifier {
     required bool isEvaluator,
     required String path,
   }) async {
-    // String path = "${_challenge.parcId}/${_challenge.evaluatorUid}";
     debugPrint("path$path");
     await realtimeDatabaseMethods.getReadyForTheChallenge(
       isEvaluator: isEvaluator,
       path: path,
       value: isEvaluator ? !_challenge.isEvaluatorReady : !_challenge.isChallengerReady,
+    );
+
+    notifyListeners();
+  }
+
+  Future<void> endTheChallenge({
+    required String path,
+    required double repetionRating,
+    required double executionRating,
+  }) async {
+    debugPrint("path$path");
+    await realtimeDatabaseMethods.endTheChallenge(
+      path: path,
+      executionRating: executionRating,
+      repetionRating: repetionRating,
     );
 
     notifyListeners();

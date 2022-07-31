@@ -23,6 +23,9 @@ class RealtimeDatabaseMethods {
         parcId: evaluator.favoriteParc,
         isChallengerReady: false,
         isEvaluatorReady: false,
+        isChallengeEnd: false,
+        executionRating: 1,
+        repetionRating: 1,
       );
 
       await _firebaseDatabse.ref().child("/${evaluator.favoriteParc}/${evaluator.uid}").set(challenge.toJson());
@@ -109,6 +112,28 @@ class RealtimeDatabaseMethods {
           'isChallengerReady': value,
         });
       }
+
+      res = "success";
+    } catch (error) {
+      debugPrint(error.toString());
+      res = error.toString();
+    }
+    return res;
+  }
+
+  Future<String> endTheChallenge({
+    required String path,
+    required double repetionRating,
+    required double executionRating,
+  }) async {
+    String res = "Some error happened";
+
+    try {
+      await _firebaseDatabse.ref().child(path).update({
+        'isChallengeEnd': true,
+        "repetionRating": repetionRating,
+        "executionRating": executionRating,
+      });
 
       res = "success";
     } catch (error) {

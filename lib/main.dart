@@ -62,6 +62,7 @@ class MyApp extends StatelessWidget {
             title: 'Street Workout Fighter',
             theme: appTheme,
             home: const AuthenticationHandler(),
+            // home: const ChallengeEndChallengerScreen(isChallengeSucceed: false),
             routes: routes,
           ),
         );

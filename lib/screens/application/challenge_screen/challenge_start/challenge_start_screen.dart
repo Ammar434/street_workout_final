@@ -104,7 +104,7 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
                   child: Padding(
                     padding: const EdgeInsets.all(kPaddingValue * 2),
                     child: Image.asset(
-                      "assets/images/challenge/asset_1.png",
+                      "assets/images/challenge/asset_0.png",
                     ),
                   ),
                 ),

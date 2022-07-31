@@ -91,7 +91,7 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                   children: [
                     AspectRatio(
                       aspectRatio: 3 / 2,
-                      child: Image.asset("assets/images/challenge/asset_2.png"),
+                      child: Image.asset("assets/images/challenge/asset_1.png"),
                     ),
                     const Text(
                       "Challenge #423424",

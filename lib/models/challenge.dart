@@ -10,6 +10,9 @@ class Challenge {
   final String parcId;
   final bool isChallengerReady;
   final bool isEvaluatorReady;
+  final bool isChallengeEnd;
+  final int repetionRating;
+  final int executionRating;
 
   Challenge({
     required this.challengeId,
@@ -22,6 +25,9 @@ class Challenge {
     required this.challengerName,
     required this.evaluatorName,
     required this.evaluatorImageUrl,
+    required this.isChallengeEnd,
+    required this.repetionRating,
+    required this.executionRating,
   });
   Map<String, dynamic> toJson() => {
         "challengeId": challengeId,
@@ -34,6 +40,9 @@ class Challenge {
         "parcId": parcId,
         "isChallengerReady": isChallengerReady,
         "isEvaluatorReady": isEvaluatorReady,
+        "isChallengeEnd": isChallengeEnd,
+        "repetionRating": repetionRating,
+        "executionRating": executionRating,
       };
 
   static Challenge challengeFromSnapshot(Map<dynamic, dynamic> snapshot) {
@@ -48,6 +57,9 @@ class Challenge {
       parcId: snapshot["parcId"],
       isChallengerReady: snapshot["isChallengerReady"],
       isEvaluatorReady: snapshot["isEvaluatorReady"],
+      isChallengeEnd: snapshot['isChallengeEnd'],
+      repetionRating: snapshot["repetionRating"],
+      executionRating: snapshot["executionRating"],
     );
   }
 }
