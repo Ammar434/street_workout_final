@@ -32,7 +32,7 @@ class CustomUser {
   final int numberOfContribution;
   final int numberOfEvaluation;
   final String instagramProfile;
-  final Map<String, dynamic> rewards;
+  final List rewards;
 
   //Pour poster sur firebase en json
   Map<String, dynamic> toJson() => {

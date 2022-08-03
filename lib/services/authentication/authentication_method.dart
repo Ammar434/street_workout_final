@@ -26,9 +26,7 @@ class AuthenticationMethod {
     required Uint8List profileImage,
   }) async {
     String res = "Some error occured";
-    bool isEmailValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
+    bool isEmailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
     if (email.isEmpty && isEmailValid) {
       res = "Please check you're email ";
     } else if (password.isEmpty || passwordConfirm.isEmpty) {
@@ -84,8 +82,7 @@ class AuthenticationMethod {
       String? password = await getUserPasswordFromSecureStorage();
       String? email = await getUserEmailromSecureStorage();
       debugPrint("-----------------------");
-      UserCredential credential =
-          await firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential credential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -110,17 +107,9 @@ class AuthenticationMethod {
         numberOfContribution: 0,
         numberOfEvaluation: 0,
         instagramProfile: "",
-        rewards: {
-          "strength": [],
-          "social": [],
-          "mental": [],
-          "others": [],
-        },
+        rewards: [],
       );
-      await firebaseFirestore
-          .collection('users')
-          .doc(credential.user!.uid)
-          .set(customUser.toJson());
+      await firebaseFirestore.collection('users').doc(credential.user!.uid).set(customUser.toJson());
       res = "success";
     } on FirebaseAuthException catch (error) {
       if (error.code == "invalid-email") {
@@ -149,8 +138,7 @@ class AuthenticationMethod {
     String res = "Some error occured";
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
-        await firebaseAuth.signInWithEmailAndPassword(
-            email: email, password: password);
+        await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
         res = "success";
       } else {
         res = "Please enter all the field";

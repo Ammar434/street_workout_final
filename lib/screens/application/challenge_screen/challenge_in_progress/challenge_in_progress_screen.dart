@@ -6,7 +6,8 @@ import 'package:street_workout_final/models/challenge.dart';
 import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/provider/challenge_provider.dart';
 import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_end/challenge_end_screen_challenger.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/challenge_end/challenge_end_screen_challenger/challenge_end_screen_challenger.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/challenge_end/challenge_end_screen_evaluator/challenge_end_screen_evaluator.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/challenge_in_progress/components/selectable_row_emoji.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/components/user_detail_column_widget.dart';
 import 'package:street_workout_final/utils/colors.dart';
@@ -42,18 +43,28 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ChallengeProvider challengeProvider = Provider.of<ChallengeProvider>(context);
     Challenge challenge = challengeProvider.getChallenge;
+    CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
 
     double repetionRating = 0;
     double executionRating = 0;
     if (challenge.isChallengeEnd) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ChallengeEndChallengerScreen(
-            isChallengeSucceed: (challenge.executionRating + challenge.repetionRating) >= 5,
+      if (currentUser.uid == challenge.challengerUid) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChallengeEndChallengerScreen(
+              isChallengeSucceed: (challenge.executionRating + challenge.repetionRating) >= 5,
+            ),
           ),
-        ),
-      );
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ChallengeEndScreenEvaluator(),
+          ),
+        );
+      }
     }
     return Scaffold(
       appBar: buildAppBar(context, "Rate your experience"),
