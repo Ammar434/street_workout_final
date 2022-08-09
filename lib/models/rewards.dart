@@ -1,42 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 class RewardsCategory {
   final String name;
-  final List<Rewards> rewards;
+  final List<Reward> rewardsList;
   double offsetFrom;
   double offsetTo;
   RewardsCategory({
     required this.name,
-    required this.rewards,
+    required this.rewardsList,
     required this.offsetFrom,
     required this.offsetTo,
   });
-  static RewardsCategory rewardsCategoryFromSnapshot(DocumentSnapshot documentSnapshot) {
+  static RewardsCategory rewardsCategoryFromSnapshot(DocumentSnapshot documentSnapshot, QuerySnapshot querySnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
-    double offsetFrom = 0.0;
-    debugPrint(snapshot['rewardsList'].length.toString());
-    List listFromSnapshot = snapshot['rewardsList'] as List;
 
-    int length = (snapshot['rewardsList'] as List).length;
-    List<Rewards> listRewards = [];
+    List<Reward> listRewards = [];
 
-    for (int i = 0; i < length; i++) {
-      listRewards.add(
-        Rewards.rewardsFromSnapshot(listFromSnapshot[i]),
-      );
+    for (DocumentSnapshot documentSnapshot in querySnapshot.docs) {
+      listRewards.add(Reward.rewardsFromSnapshot(documentSnapshot.data() as Map<String, dynamic>));
     }
+
     return RewardsCategory(
       name: snapshot['categoryName'],
-      rewards: listRewards,
-      offsetFrom: offsetFrom,
+      rewardsList: listRewards,
+      offsetFrom: 0.0,
       offsetTo: 0,
     );
   }
 }
 
-class Rewards {
-  Rewards({
+class Reward {
+  Reward({
     required this.id,
     required this.title,
     required this.subtitle,
@@ -58,16 +52,15 @@ class Rewards {
         "id": id,
         "title": title,
         "subtitle": subtitle,
-        // "categorie": categorie,
         "imageUrl": imageUrl,
         "descriptionForChallenger": descriptionForChallenger,
         "descriptionForEvaluator": descriptionForEvaluator,
       };
 
 //Recupere user depuis firebase et le converti en CustomUser
-  static Rewards rewardsFromSnapshot(Map<String, dynamic> snapshot) {
+  static Reward rewardsFromSnapshot(Map<String, dynamic> snapshot) {
     // var snapshot = documentSnapshot.data() as Map<String, dynamic>;
-    return Rewards(
+    return Reward(
       id: snapshot["id"],
       title: snapshot["title"],
       subtitle: snapshot["subtitle"],

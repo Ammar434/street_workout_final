@@ -57,7 +57,7 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
                 size: kDefaultIconAppBar,
               ),
               onTap: () {
-                challengeProvider.writeChallegerUidToRealtimeDatabase(
+                challengeProvider.writeChallengerUidToRealtimeDatabase(
                   currentUserAsChallenger: currentUser,
                   evaluatorReference: challenge.evaluatorUid,
                 );

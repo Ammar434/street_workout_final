@@ -5,6 +5,7 @@ import 'package:street_workout_final/provider/challenge_provider.dart';
 import 'package:street_workout_final/provider/user_provider.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/challenger_waitting_room/components/challenger_waitting_room_body.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/global_waitting_room/global_waitting_room_screen.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/select_challenge_screen/select_challenge_screen.dart';
 
 class ChallengerWaittinRoomScreen extends StatefulWidget {
   const ChallengerWaittinRoomScreen({Key? key}) : super(key: key);
@@ -23,9 +24,7 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
     if (isRoomEmpty) {
       return const ChallengerWaittingRoomBody();
     }
-    return GlobalWaittingRoomScreen(
-      parcReference: customUser.favoriteParc,
-      userReference: customUser.uid,
-    );
+    return const SelectChallengeScreen();
+    // return const GlobalWaittingRoomScreen();
   }
 }

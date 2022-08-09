@@ -46,11 +46,10 @@ class ChallengeProvider extends ChangeNotifier {
     );
   }
 
-  Future<void> writeChallegerUidToRealtimeDatabase({
+  Future<void> writeChallengerUidToRealtimeDatabase({
     required CustomUser currentUserAsChallenger,
     required String evaluatorReference,
   }) async {
-    String path = "${currentUserAsChallenger.favoriteParc}/$evaluatorReference";
     await realtimeDatabaseMethods.addChallengerToChallenge(
       evaluatorUid: evaluatorReference,
       challenger: currentUserAsChallenger,
@@ -80,11 +79,23 @@ class ChallengeProvider extends ChangeNotifier {
     });
   }
 
+  Future<void> writeChallengeIdToRealtimeDatabase({
+    required CustomUser currentUserAsChallenger,
+    required String evaluatorReference,
+    required String challengeId,
+  }) async {
+    String path = "/${currentUserAsChallenger.favoriteParc}/${_challenge.evaluatorUid}";
+    await realtimeDatabaseMethods.writeChallengeId(
+      path: path,
+      challengeId: challengeId,
+    );
+    notifyListeners();
+  }
+
   Future<void> getReadyForTheChallenge({
     required bool isEvaluator,
     required String path,
   }) async {
-    debugPrint("path$path");
     await realtimeDatabaseMethods.getReadyForTheChallenge(
       isEvaluator: isEvaluator,
       path: path,
@@ -99,7 +110,6 @@ class ChallengeProvider extends ChangeNotifier {
     required double repetionRating,
     required double executionRating,
   }) async {
-    debugPrint("path$path");
     await realtimeDatabaseMethods.endTheChallenge(
       path: path,
       executionRating: executionRating,

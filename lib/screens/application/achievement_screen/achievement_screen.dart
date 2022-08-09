@@ -40,16 +40,12 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
   }
 
   void onScrollListener() {
-    
     for (int i = 0; i < listRewardCategory.length; i++) {
       final category = listRewardCategory[i];
-    debugPrint(scrollController.offset.toString());
 
       if (scrollController.offset >= category.offsetFrom && scrollController.offset <= category.offsetTo && tabController.index != i) {
         tabController.animateTo(i);
-        debugPrint(i.toString());
 
-        debugPrint("hhhhhhhhhhhhhhhhhhh");
         break;
       }
     }
@@ -120,13 +116,6 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
                       itemCount: list.data!.length,
                       controller: scrollController,
                       itemBuilder: (context, index) {
-                        // if (scrollController.offset >= listRewardsCategory.data![index].offsetFrom &&
-                        //     scrollController.offset <= listRewardsCategory.data![index].offsetTo &&
-                        //     tabController.index != index) {
-                        //   debugPrint("hkjhbkjn");
-                        //   tabController.animateTo(index);
-                        // }
-
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -144,9 +133,9 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
                               ),
                             ),
                             ...List.generate(
-                              list.data![index].rewards.length,
+                              list.data![index].rewardsList.length,
                               (index2) => CustomTileForAchievement(
-                                rewards: list.data![index].rewards[index2],
+                                rewards: list.data![index].rewardsList[index2],
                                 height: rewardsTileHeight,
                               ),
                             ),

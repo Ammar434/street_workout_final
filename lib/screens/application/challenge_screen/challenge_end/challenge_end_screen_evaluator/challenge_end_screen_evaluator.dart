@@ -39,7 +39,7 @@ class ChallengeEndScreenEvaluator extends StatelessWidget {
           children: [
             LottieBuilder.network(
               "https://assets9.lottiefiles.com/packages/lf20_36zspn0e.json",
-              repeat: false,
+              repeat: true,
             ),
             const SizedBox(
               height: kPaddingValue,

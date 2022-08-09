@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:street_workout_final/models/challenge.dart';
 import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
-import 'package:uuid/uuid.dart';
+
+// String kChallengeId = "";
 
 class RealtimeDatabaseMethods {
   final FirebaseDatabase _firebaseDatabse = FirebaseDatabase.instance;
@@ -13,7 +14,7 @@ class RealtimeDatabaseMethods {
 
     try {
       Challenge challenge = Challenge(
-        challengeId: const Uuid().v1(),
+        challengeId: "",
         challengerUid: "",
         challengerName: '',
         challengerImageUrl: '',
@@ -133,6 +134,28 @@ class RealtimeDatabaseMethods {
         'isChallengeEnd': true,
         "repetionRating": repetionRating,
         "executionRating": executionRating,
+      });
+
+      res = "success";
+    } catch (error) {
+      debugPrint(error.toString());
+      res = error.toString();
+    }
+    return res;
+  }
+
+  Future<String> writeChallengeId({
+    required String path,
+    required String challengeId,
+  }) async {
+    String res = "Some error happened";
+
+    try {
+      await _firebaseDatabse.ref().child(path).update({
+        "challengeId": challengeId
+        // 'isChallengeEnd': true,
+        // "repetionRating": repetionRating,
+        // "executionRating": executionRating,
       });
 
       res = "success";

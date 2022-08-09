@@ -30,9 +30,9 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
   bool isLoading = true;
   bool isNearAPark = false;
 
-  //TODO:reactivate
-
   Future<void> checkDistanceBetwweenUserAndPark() async {
+    //TODO:reactivate
+
     // isNearAPark = await Geolocalisation().checkDistanceBetwweenUserAndPark(currentUser.favoriteParc);
     isNearAPark = true;
   }
@@ -51,6 +51,7 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
       if (currentUser.favoriteParc.isEmpty) {
         Navigator.pushNamed(context, FavoriteParcScreen.name);
       } else {
+        // Navigator.of(context).pushNamed(SelectChallengeScreen.name);
         Navigator.of(context).pushNamed(ChallengerWaittinRoomScreen.name);
       }
     }

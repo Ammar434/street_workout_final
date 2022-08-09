@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_circle_user_profile_widget.dart';
 
@@ -21,17 +22,14 @@ class HeaderRankingWIdget extends StatelessWidget {
         clipBehavior: Clip.none,
         alignment: Alignment.center,
         children: [
-          Image.asset("assets/images/leaderboard/star_explosion.png"),
+          LottieBuilder.network(
+            "https://assets8.lottiefiles.com/private_files/lf30_rjuv1b.json",
+            repeat: true,
+          ),
+          // Image.asset("assets/images/leaderboard/star_explosion.png"),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // const Text(
-              //   "The best",
-              //   style: TextStyle(
-              //     fontWeight: FontWeight.bold,
-              //     fontSize: 18,
-              //   ),
-              // ),
               const SizedBox(
                 height: kPaddingValue,
               ),
@@ -53,13 +51,12 @@ class HeaderRankingWIdget extends StatelessWidget {
                 userScore.toString(),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 18,
                 ),
               ),
               const SizedBox(
                 height: kPaddingValue,
               )
-              // const HorizontalLine(),
             ],
           ),
         ],

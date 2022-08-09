@@ -1,35 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/models/rewards.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/achievement_screen/components/custom_dialog_body_widget.dart';
-import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
-class CustomTileForAchievement extends StatelessWidget {
-  const CustomTileForAchievement({
+class CustomTileForSelectChallenge extends StatelessWidget {
+  const CustomTileForSelectChallenge({
     Key? key,
     required this.rewards,
-    required this.height,
+    required this.onTap,
   }) : super(key: key);
 
   final Reward rewards;
-  final double height;
-  // final
+  final GestureTapCallback onTap;
+
   @override
   Widget build(BuildContext context) {
-    CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
-    bool isAchievementComplete = currentUser.rewards.contains(rewards.id);
     return GestureDetector(
-      onTap: () {
-        const CustomDialogBodyWidget();
-      },
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(kPaddingValue / 2),
         margin: const EdgeInsets.symmetric(vertical: kPaddingValue / 2),
-        height: height,
+        height: 85,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
@@ -77,16 +68,13 @@ class CustomTileForAchievement extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            isAchievementComplete
-                ? const FaIcon(
-                    FontAwesomeIcons.solidCircleCheck,
-                    size: kDefaultIconAppBar,
-                    color: primaryColor,
-                  )
-                : const FaIcon(
-                    FontAwesomeIcons.circleCheck,
-                    size: kDefaultIconAppBar,
-                  ),
+            const FaIcon(
+              FontAwesomeIcons.chevronRight,
+              size: kDefaultIconAppBar,
+            ),
+            const SizedBox(
+              width: kSmallPaddingValue,
+            ),
           ],
         ),
       ),

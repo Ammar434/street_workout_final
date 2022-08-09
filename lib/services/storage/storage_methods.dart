@@ -3,7 +3,9 @@ import 'dart:typed_data';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
+import 'dart:ui' as ui;
 
 class StorageMethods {
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
@@ -15,10 +17,7 @@ class StorageMethods {
     bool isPost,
   ) async {
     String res = "Some error occured";
-    Reference ref = firebaseStorage
-        .ref()
-        .child(childName)
-        .child(firebaseAuth.currentUser!.uid);
+    Reference ref = firebaseStorage.ref().child(childName).child(firebaseAuth.currentUser!.uid);
 
     if (isPost == true) {
       String id = const Uuid().v1();
@@ -39,10 +38,7 @@ class StorageMethods {
   //Utiliser dans profile screen
   Future<List<String>> getAllImageOfAUser(String uid) async {
     List<String> urlList = [];
-    Reference ref = firebaseStorage
-        .ref()
-        .child("posts")
-        .child(firebaseAuth.currentUser!.uid);
+    Reference ref = firebaseStorage.ref().child("posts").child(firebaseAuth.currentUser!.uid);
     try {
       ListResult result = await ref.listAll();
 
@@ -57,5 +53,12 @@ class StorageMethods {
       debugPrint(e.toString());
     }
     return urlList;
+  }
+
+  Future<Uint8List> getBytesFromAsset(String path, int width) async {
+    ByteData data = await rootBundle.load(path);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
   }
 }

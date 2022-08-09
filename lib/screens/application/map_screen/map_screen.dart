@@ -24,16 +24,17 @@ class _MapScreenState extends State<MapScreen> {
   void loadData() async {
     Position p = await Geolocalisation().determinePosition();
     userCurrentPosition = LatLng(p.latitude, p.longitude);
-    markers = await Geolocalisation().getAllMarker((String s) {
-      debugPrint('hiuhiukhnm');
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => ParcInfoScreen(
-            parcId: s,
+    markers = await Geolocalisation().getAllMarker(
+      (String s) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ParcInfoScreen(
+              parcId: s,
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
 
     setState(() {
       isLoading = false;
@@ -64,8 +65,7 @@ class _MapScreenState extends State<MapScreen> {
               zoomControlsEnabled: false,
               markers: markers,
               onMapCreated: ((GoogleMapController controller) async {
-                String syle = await DefaultAssetBundle.of(context)
-                    .loadString("assets/maps/map_template.json");
+                String syle = await DefaultAssetBundle.of(context).loadString("assets/maps/map_template.json");
                 controller.setMapStyle(syle);
               }),
               initialCameraPosition: CameraPosition(

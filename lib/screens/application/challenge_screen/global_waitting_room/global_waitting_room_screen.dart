@@ -14,11 +14,8 @@ import 'package:street_workout_final/widgets/rounded_button.dart';
 import '../components/user_detail_column_widget.dart';
 
 class GlobalWaittingRoomScreen extends StatefulWidget {
-  const GlobalWaittingRoomScreen({Key? key, required this.parcReference, required this.userReference}) : super(key: key);
+  const GlobalWaittingRoomScreen({Key? key}) : super(key: key);
   static String name = "GlobalWaittingRoomScreen";
-
-  final String parcReference;
-  final String userReference;
 
   @override
   State<GlobalWaittingRoomScreen> createState() => _GlobalWaittingRoomScreenState();
@@ -136,12 +133,10 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                     const SizedBox(
                       height: kSmallPaddingValue,
                     ),
-                    Expanded(
+                    const Expanded(
                       child: SingleChildScrollView(
-                        child: Container(
-                          child: const Text(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-                          ),
+                        child: Text(
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
                         ),
                       ),
                     ),

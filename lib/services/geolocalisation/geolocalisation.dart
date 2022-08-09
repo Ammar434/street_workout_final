@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:google_place/google_place.dart';
 import 'package:http/http.dart' as http;
 import 'package:street_workout_final/models/parc.dart';
 import 'package:street_workout_final/services/firestore_methods/parc_firestore_methods.dart';
+import 'package:street_workout_final/services/storage/storage_methods.dart';
 import '../../utils/dev.dart';
 
 class Geolocalisation {
@@ -73,14 +75,6 @@ class Geolocalisation {
     return responseJason["features"][2]['text'].toString();
   }
 
-  // Future<String> determineUserCity() async {
-  //   Position position = await Geolocator.getCurrentPosition(
-  //     desiredAccuracy: LocationAccuracy.low,
-  //   );
-
-  //   return position.
-  // }
-
   Future<List<AutocompletePrediction>> autocompletQuery(String input) async {
     List<AutocompletePrediction> list = [];
     var googlePlace = GooglePlace(dotenv.env['googleMapKey']!);
@@ -112,10 +106,12 @@ class Geolocalisation {
     Set<Marker> markers = {};
     DocumentSnapshot documentSnapshot = await firebaseFirestore.collection("datas").doc("all_parcs_references").get();
     Map<String, dynamic> map = documentSnapshot.data() as Map<String, dynamic>;
+    Uint8List markerIcon = await StorageMethods().getBytesFromAsset('assets/maps/location_marker.png', 150);
 
+    BitmapDescriptor bitmapDescriptor = BitmapDescriptor.fromBytes(markerIcon);
     try {
       map.forEach(
-        (key, value) {
+        (key, value) async {
           debugPrint(key.toString());
           debugPrint(value.toString());
           GeoPoint geoPoint = value['geoPoint'] as GeoPoint;
@@ -123,6 +119,7 @@ class Geolocalisation {
           Marker marker = Marker(
             markerId: MarkerId(value['id']),
             position: LatLng(geoPoint.latitude, geoPoint.longitude),
+            icon: bitmapDescriptor,
             infoWindow: InfoWindow(
               title: value['name'],
               snippet: value['completeAddress'],
@@ -133,13 +130,9 @@ class Geolocalisation {
         },
       );
     } catch (e) {
-      // debugPrint("------------------------------------");
-      // debugPrint("------------------------------------");
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
     }
-    debugPrint("------------------------------------");
-    debugPrint(markers.length.toString());
-    debugPrint("------------------------------------");
+    // debugPrint(markers.length.toString());
     return markers;
   }
 

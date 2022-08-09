@@ -32,9 +32,6 @@ class _EvaluatorWaittingRoomScreenState extends State<EvaluatorWaittingRoomScree
     challengeProvider = Provider.of<ChallengeProvider>(context, listen: false);
 
     if (isRoomEmpty) return const EvaluatorWaittingRoomScreenBody();
-    return GlobalWaittingRoomScreen(
-      userReference: _customUser.uid,
-      parcReference: _customUser.favoriteParc,
-    );
+    return const GlobalWaittingRoomScreen();
   }
 }
