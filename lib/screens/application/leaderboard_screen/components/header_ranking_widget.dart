@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:street_workout_final/models/leaderboard.dart';
 import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_circle_user_profile_widget.dart';
 
 class HeaderRankingWIdget extends StatelessWidget {
   const HeaderRankingWIdget({
     Key? key,
-    required this.userName,
-    required this.userScore,
     this.gradient,
+    required this.leaderboard,
   }) : super(key: key);
 
-  final String userName;
-  final int userScore;
+  final Leaderboard leaderboard;
   final LinearGradient? gradient;
 
   @override
@@ -36,19 +35,20 @@ class HeaderRankingWIdget extends StatelessWidget {
               RoundedCircleUserProfileWidget(
                 gradient: gradient,
                 radius: kRadiusValue * 6,
+                imageUrl: leaderboard.userProfileImage,
               ),
               const SizedBox(
                 height: kPaddingValue,
               ),
               Text(
-                userName,
+                leaderboard.userName,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
               Text(
-                userScore.toString(),
+                leaderboard.userPoint.toString(),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

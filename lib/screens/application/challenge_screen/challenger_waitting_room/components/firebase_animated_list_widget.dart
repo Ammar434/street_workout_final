@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:street_workout_final/models/challenge.dart';
 import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/provider/challenge_provider.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/select_challenge_screen/select_challenge_screen.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 class FirebaseAnimatedListWidget extends StatelessWidget {
@@ -56,11 +57,16 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
                 FontAwesomeIcons.chevronRight,
                 size: kDefaultIconAppBar,
               ),
-              onTap: () {
-                challengeProvider.writeChallengerUidToRealtimeDatabase(
-                  currentUserAsChallenger: currentUser,
-                  evaluatorReference: challenge.evaluatorUid,
-                );
+              onTap: () async {
+                await challengeProvider
+                    .writeChallengerUidToRealtimeDatabase(
+                      currentUserAsChallenger: currentUser,
+                      evaluatorReference: challenge.evaluatorUid,
+                    )
+                    .then((value) => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SelectChallengeScreen(
+                              evaluatorId: challenge.evaluatorUid,
+                            ))));
 
                 // if (!mounted) return;
                 // if (res == "success") {

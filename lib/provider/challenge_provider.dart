@@ -38,8 +38,9 @@ class ChallengeProvider extends ChangeNotifier {
           final challengeMap = Map<dynamic, dynamic>.from(event.snapshot.value as Map<dynamic, dynamic>);
           Map<dynamic, dynamic> map = challengeMap;
           String s = map['challengerUid'];
+          String s2 = map['challengeId'];
 
-          _isRoomEmpty = s == "";
+          _isRoomEmpty = s == "" && s2 == "";
         }
         notifyListeners();
       },
@@ -54,7 +55,7 @@ class ChallengeProvider extends ChangeNotifier {
       evaluatorUid: evaluatorReference,
       challenger: currentUserAsChallenger,
     );
-    _isRoomEmpty = false;
+    // _isRoomEmpty = false;
     notifyListeners();
   }
 
@@ -89,6 +90,7 @@ class ChallengeProvider extends ChangeNotifier {
       path: path,
       challengeId: challengeId,
     );
+    _isRoomEmpty = false;
     notifyListeners();
   }
 

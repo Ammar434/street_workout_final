@@ -5,7 +5,6 @@ import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/models/rewards.dart';
 import 'package:street_workout_final/provider/challenge_provider.dart';
 import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/global_waitting_room/global_waitting_room_screen.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/select_challenge_screen/components/custom_tile_for_select_challenge.dart';
 import 'package:street_workout_final/services/firestore_methods/rewards_firestore_methods.dart';
 import 'package:street_workout_final/utils/constants.dart';
@@ -13,14 +12,18 @@ import 'package:street_workout_final/widgets/app_bar.dart';
 import 'package:street_workout_final/widgets/loading_widget.dart';
 
 class SelectChallengeScreen extends StatelessWidget {
-  const SelectChallengeScreen({Key? key}) : super(key: key);
+  const SelectChallengeScreen({Key? key, required this.evaluatorId}) : super(key: key);
+  final String evaluatorId;
   static String name = "SelectChallengeScreen";
   @override
   Widget build(BuildContext context) {
     List<Reward> listRewards = [];
     CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
     ChallengeProvider challengeProvider = Provider.of<ChallengeProvider>(context);
-    Challenge challenge = Provider.of<ChallengeProvider>(context).getChallenge;
+    // Challenge challenge = Provider.of<ChallengeProvider>(context).getChallenge;
+
+    // debugPrint(challenge.evaluatorUid);
+
     return SafeArea(
       child: Scaffold(
         appBar: buildAppBar(context, "Select a challenge"),
@@ -46,13 +49,11 @@ class SelectChallengeScreen extends StatelessWidget {
                     rewards: listRewards[index],
                     onTap: () async {
                       //Write to rtmdb
-                      await challengeProvider
-                          .writeChallengeIdToRealtimeDatabase(
-                            currentUserAsChallenger: currentUser,
-                            evaluatorReference: challenge.evaluatorUid,
-                            challengeId: listRewards[index].id,
-                          )
-                          .then((value) => Navigator.of(context).pushNamed(GlobalWaittingRoomScreen.name));
+                      await challengeProvider.writeChallengeIdToRealtimeDatabase(
+                        currentUserAsChallenger: currentUser,
+                        evaluatorReference: evaluatorId,
+                        challengeId: listRewards[index].id,
+                      );
                       //Navigate to global waiting room
                     },
                   );

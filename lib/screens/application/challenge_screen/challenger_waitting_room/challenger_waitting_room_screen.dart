@@ -7,15 +7,32 @@ import 'package:street_workout_final/screens/application/challenge_screen/challe
 import 'package:street_workout_final/screens/application/challenge_screen/global_waitting_room/global_waitting_room_screen.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/select_challenge_screen/select_challenge_screen.dart';
 
-class ChallengerWaittinRoomScreen extends StatefulWidget {
+// class ChallengerWaittinRoomScreen extends StatefulWidget {
+//   const ChallengerWaittinRoomScreen({Key? key}) : super(key: key);
+//   static String name = "ChallengerWaittinRoomScreen";
+
+//   @override
+//   State<ChallengerWaittinRoomScreen> createState() => _ChallengerWaittinRoomScreenState();
+// }
+
+// class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScreen> {
+//   @override
+//   Widget build(BuildContext context) {
+//     bool isRoomEmpty = Provider.of<ChallengeProvider>(context).isRoomEmpty;
+//     CustomUser customUser = Provider.of<UserProvider>(context).getUser;
+
+//     if (isRoomEmpty) {
+//       return const ChallengerWaittingRoomBody();
+//     }
+//     return const SelectChallengeScreen();
+//     // return const GlobalWaittingRoomScreen();
+//   }
+// }
+
+class ChallengerWaittinRoomScreen extends StatelessWidget {
   const ChallengerWaittinRoomScreen({Key? key}) : super(key: key);
   static String name = "ChallengerWaittinRoomScreen";
 
-  @override
-  State<ChallengerWaittinRoomScreen> createState() => _ChallengerWaittinRoomScreenState();
-}
-
-class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScreen> {
   @override
   Widget build(BuildContext context) {
     bool isRoomEmpty = Provider.of<ChallengeProvider>(context).isRoomEmpty;
@@ -24,7 +41,7 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
     if (isRoomEmpty) {
       return const ChallengerWaittingRoomBody();
     }
-    return const SelectChallengeScreen();
-    // return const GlobalWaittingRoomScreen();
+    // return const SelectChallengeScreen();
+    return const GlobalWaittingRoomScreen();
   }
 }

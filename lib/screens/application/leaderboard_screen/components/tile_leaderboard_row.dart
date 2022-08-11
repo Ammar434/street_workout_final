@@ -1,5 +1,5 @@
-import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/models/leaderboard.dart';
 
 import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_circle_user_profile_widget.dart';
@@ -9,10 +9,10 @@ class TileLeaderboardRow extends StatelessWidget {
     Key? key,
     required this.index,
     this.gradient,
-    required this.userScore,
+    required this.leaderboard,
   }) : super(key: key);
   final int index;
-  final int userScore;
+  final Leaderboard leaderboard;
   final LinearGradient? gradient;
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,7 @@ class TileLeaderboardRow extends StatelessWidget {
           RoundedCircleUserProfileWidget(
             gradient: gradient,
             radius: kRadiusValue * 2.5,
+            imageUrl: leaderboard.userProfileImage,
           ),
           const SizedBox(
             width: kPaddingValue,
@@ -37,7 +38,7 @@ class TileLeaderboardRow extends StatelessWidget {
           SizedBox(
             width: 100,
             child: Text(
-              Faker.instance.name.fullName(),
+              leaderboard.userName,
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
               ),
@@ -45,7 +46,7 @@ class TileLeaderboardRow extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            userScore.toString(),
+            leaderboard.userPoint.toString(),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,

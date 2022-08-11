@@ -5,10 +5,12 @@ class RoundedCircleUserProfileWidget extends StatelessWidget {
     Key? key,
     this.gradient,
     required this.radius,
+    required this.imageUrl,
   }) : super(key: key);
 
   final Gradient? gradient;
   final double radius;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,8 @@ class RoundedCircleUserProfileWidget extends StatelessWidget {
         padding: const EdgeInsets.all(4.0),
         child: CircleAvatar(
           radius: radius,
-          backgroundImage: const NetworkImage(
-            "https://images.pexels.com/photos/6833828/pexels-photo-6833828.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          backgroundImage: NetworkImage(
+            imageUrl,
           ),
         ),
       ),

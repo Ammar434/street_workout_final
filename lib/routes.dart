@@ -3,7 +3,6 @@ import 'package:street_workout_final/screens/application/achievement_screen/achi
 import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/challenger_waitting_room/challenger_waitting_room_screen.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/select_challenge_screen/select_challenge_screen.dart';
 import 'package:street_workout_final/screens/application/favorite_parc/favorite_parc_screen.dart';
 import 'package:street_workout_final/screens/application/main_screen.dart';
 import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
@@ -37,5 +36,5 @@ Map<String, WidgetBuilder> routes = {
   FavoriteParcScreen.name: (context) => const FavoriteParcScreen(),
   EvaluatorWaittingRoomScreen.name: (context) => const EvaluatorWaittingRoomScreen(),
   ChallengerWaittinRoomScreen.name: (context) => const ChallengerWaittinRoomScreen(),
-  SelectChallengeScreen.name: (context) => const SelectChallengeScreen(),
+  // SelectChallengeScreen.name: (context) => const SelectChallengeScreen(),
 };
