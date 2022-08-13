@@ -12,6 +12,8 @@ import '../../parc_info/parc_info_screen.dart';
 import 'parc_display_card_info.dart';
 import 'parc_display_card_mage.dart';
 
+double pacrDisplayCardHeight = 400;
+
 class ParcDisplayCard extends StatefulWidget {
   const ParcDisplayCard({
     Key? key,
@@ -34,11 +36,9 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
     setState(() {
       isLoading = true;
     });
-    userWhoPublished =
-        await userFirestoreMethods.findUserByUid(widget.parc.userUidWhoPublish);
+    userWhoPublished = await userFirestoreMethods.findUserByUid(widget.parc.userUidWhoPublish);
 
-    userChampion =
-        await userFirestoreMethods.findUserByUid(widget.parc.userUidChampion);
+    userChampion = await userFirestoreMethods.findUserByUid(widget.parc.userUidChampion);
 
     setState(() {
       isLoading = false;
@@ -70,7 +70,7 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
     return Container(
       margin: const EdgeInsets.only(bottom: kPaddingValue),
       width: double.infinity,
-      height: 400,
+      height: pacrDisplayCardHeight,
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(kRadiusValue),

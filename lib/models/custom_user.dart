@@ -17,6 +17,7 @@ class CustomUser {
     required this.numberOfEvaluation,
     required this.instagramProfile,
     required this.rewards,
+    required this.lastPosition,
   });
   final String uid;
   final String userName;
@@ -33,6 +34,7 @@ class CustomUser {
   final int numberOfEvaluation;
   final String instagramProfile;
   final List rewards;
+  final GeoPoint lastPosition;
 
   //Pour poster sur firebase en json
   Map<String, dynamic> toJson() => {
@@ -51,6 +53,7 @@ class CustomUser {
         "numberOfEvaluation": numberOfEvaluation,
         "instagramProfile": instagramProfile,
         "rewards": rewards,
+        "lastPosition": lastPosition,
       };
 
 //Recupere user depuis firebase et le converti en CustomUser
@@ -72,6 +75,7 @@ class CustomUser {
       numberOfEvaluation: snapshot['numberOfEvaluation'],
       instagramProfile: snapshot['instagramProfile'],
       rewards: snapshot['rewards'],
+      lastPosition: snapshot['lastPosition'],
     );
   }
 }

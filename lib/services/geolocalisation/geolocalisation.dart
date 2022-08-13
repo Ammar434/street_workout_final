@@ -10,6 +10,7 @@ import 'package:google_place/google_place.dart';
 import 'package:http/http.dart' as http;
 import 'package:street_workout_final/models/parc.dart';
 import 'package:street_workout_final/services/firestore_methods/parc_firestore_methods.dart';
+import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
 import 'package:street_workout_final/services/storage/storage_methods.dart';
 import '../../utils/dev.dart';
 
@@ -53,7 +54,11 @@ class Geolocalisation {
 
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
-    return await Geolocator.getCurrentPosition();
+    Position position = await Geolocator.getCurrentPosition();
+
+    //Update lastknown position
+    await UserFirestoreMethods().updateLastPosition(position: position);
+    return position;
   }
 
   Future<String> reverseGeocoding(Position position) async {

@@ -14,6 +14,7 @@ class Parc {
     required this.userUidChampion,
     required this.athletesWhoTrainInThisParc,
     required this.isPublished,
+    required this.geoHash,
   });
   final String postId;
   final String userUidWhoPublish;
@@ -27,6 +28,7 @@ class Parc {
   final GeoPoint? geoPoint;
   final String name;
   final String completeAddress;
+  final String geoHash;
 
   Map<String, dynamic> toJson() => {
         "postId": postId,
@@ -41,6 +43,7 @@ class Parc {
         "completeAddress": completeAddress,
         "userUidChampion": userUidChampion,
         "isPublished": isPublished,
+        "geoHash": geoHash,
       };
 
   static Parc postFromSnapshot(DocumentSnapshot documentSnapshot) {
@@ -58,6 +61,7 @@ class Parc {
       geoPoint: snapshot['geoPoint'],
       userUidChampion: snapshot['userUidChampion'],
       isPublished: snapshot['isPublished'],
+      geoHash: snapshot['geoHash'],
     );
   }
 }

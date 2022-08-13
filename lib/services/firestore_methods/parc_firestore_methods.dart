@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
 import 'package:street_workout_final/models/post_for_existant_parc.dart';
@@ -27,12 +28,10 @@ class ParcFirestoreMethods {
     required String uid,
     required placeId,
   }) async {
+    GeoHasher geoHasher = GeoHasher();
     List<String> materialAvailableString = [];
     String res = "Some error occured";
-    if (materialAvailable.isEmpty &&
-        parcName.isEmpty &&
-        parcAddress.isEmpty &&
-        listFile.isEmpty) {
+    if (materialAvailable.isEmpty && parcName.isEmpty && parcAddress.isEmpty && listFile.isEmpty) {
       return "Please complete all infos";
     }
     if (materialAvailable.isEmpty) {
@@ -51,8 +50,7 @@ class ParcFirestoreMethods {
       return "Please enter a valid place";
     }
     try {
-      DetailsResult? detailsResult =
-          await Geolocalisation().getDetailsResultFromGooglePlaceId(placeId);
+      DetailsResult? detailsResult = await Geolocalisation().getDetailsResultFromGooglePlaceId(placeId);
       for (MaterialAvailable m in materialAvailable) {
         materialAvailableString.add(m.name);
       }
@@ -68,6 +66,7 @@ class ParcFirestoreMethods {
       } else {
         geoPoint = const GeoPoint(0, 0);
       }
+
       Parc post = Parc(
         userUidWhoPublish: uid,
         postId: postId,
@@ -77,23 +76,16 @@ class ParcFirestoreMethods {
         materialAvailable: materialAvailableString,
         mainPhoto: '',
         name: parcName,
-        completeAddress: detailsResult != null
-            ? detailsResult.formattedAddress!
-            : parcAddress,
+        completeAddress: detailsResult != null ? detailsResult.formattedAddress! : parcAddress,
         geoPoint: geoPoint,
         userUidChampion: '',
         isPublished: false,
+        geoHash: geoHasher.encode(geoPoint.longitude, geoPoint.latitude, precision: 5),
       );
 
-      await _firebaseFirestore
-          .collection("parcs")
-          .doc(parcId)
-          .set(post.toJson());
+      await _firebaseFirestore.collection("parcs").doc(parcId).set(post.toJson());
 
-      await _firebaseFirestore
-          .collection("datas")
-          .doc("all_parcs_references")
-          .update({
+      await _firebaseFirestore.collection("datas").doc("all_parcs_references").update({
         parcId: {
           "completeAddress": parcAddress,
           "name": parcName,
@@ -109,20 +101,13 @@ class ParcFirestoreMethods {
         );
       }
 
-      QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await _firebaseFirestore
-              .collection("parcs")
-              .doc(parcId)
-              .collection("posts")
-              .orderBy('likes')
-              .get();
+      QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firebaseFirestore.collection("parcs").doc(parcId).collection("posts").orderBy('likes').get();
       await _firebaseFirestore.collection("parcs").doc(parcId).update(
         {
           "mainPhoto": querySnapshot.docs[0].data()['postUrl'],
         },
       );
-      res = await _userFirestoreMethods
-          .incrementUserContribution(listFile.length);
+      res = await _userFirestoreMethods.incrementUserContribution(listFile.length);
     } catch (e) {
       res = e.toString();
     }
@@ -152,12 +137,7 @@ class ParcFirestoreMethods {
         isPublished: false,
       );
 
-      _firebaseFirestore
-          .collection("parcs")
-          .doc(parcId)
-          .collection("posts")
-          .doc(postId)
-          .set(post.toJson());
+      _firebaseFirestore.collection("parcs").doc(parcId).collection("posts").doc(postId).set(post.toJson());
 
       res = "success";
     } catch (e) {
@@ -169,8 +149,7 @@ class ParcFirestoreMethods {
   Future<Parc> findParcrById(String id) async {
     Parc? parc;
     try {
-      DocumentSnapshot documentSnapshot =
-          await _firebaseFirestore.collection("parcs").doc(id).get();
+      DocumentSnapshot documentSnapshot = await _firebaseFirestore.collection("parcs").doc(id).get();
 
       parc = Parc.postFromSnapshot(documentSnapshot);
     } catch (e) {
@@ -183,16 +162,15 @@ class ParcFirestoreMethods {
   Future<List<String>> getAllImageOfParc(String parcId) async {
     List<String> listUrl = [];
     try {
-      QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await _firebaseFirestore
-              .collection("parcs")
-              .doc(parcId)
-              .collection("posts")
-              .where(
-                "isPublished",
-                isEqualTo: true,
-              )
-              .get();
+      QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firebaseFirestore
+          .collection("parcs")
+          .doc(parcId)
+          .collection("posts")
+          .where(
+            "isPublished",
+            isEqualTo: true,
+          )
+          .get();
       for (var document in querySnapshot.docs) {
         String s = document.data()['postUrl'];
         listUrl.add(s);
@@ -206,11 +184,9 @@ class ParcFirestoreMethods {
   Future<List<CustomUser>> getAllAthleteOfParc(String parcId) async {
     List<CustomUser> listUser = [];
     try {
-      DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
-          await _firebaseFirestore.collection("parcs").doc(parcId).get();
+      DocumentSnapshot<Map<String, dynamic>> documentSnapshot = await _firebaseFirestore.collection("parcs").doc(parcId).get();
 
-      for (String uid
-          in documentSnapshot.data()!['athletesWhoTrainInThisParc']) {
+      for (String uid in documentSnapshot.data()!['athletesWhoTrainInThisParc']) {
         CustomUser customUser = await _userFirestoreMethods.findUserByUid(uid);
         listUser.add(customUser);
       }
@@ -227,8 +203,7 @@ class ParcFirestoreMethods {
   }) async {
     String res = "Some error occured";
     try {
-      DocumentReference documentReference =
-          _firebaseFirestore.collection("parcs").doc(parcUid);
+      DocumentReference documentReference = _firebaseFirestore.collection("parcs").doc(parcUid);
 
       DocumentSnapshot documentSnapshot = await documentReference.get();
 

@@ -7,6 +7,7 @@ import 'package:street_workout_final/screens/application/favorite_parc/favorite_
 import 'package:street_workout_final/screens/application/main_screen.dart';
 import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
 import 'package:street_workout_final/screens/application/start_training/start_training_screen.dart';
+import 'package:street_workout_final/screens/application/view_all_parc/view_all_parc_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/login_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_confirm_screen.dart';
 import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_screen.dart';
@@ -37,4 +38,5 @@ Map<String, WidgetBuilder> routes = {
   EvaluatorWaittingRoomScreen.name: (context) => const EvaluatorWaittingRoomScreen(),
   ChallengerWaittinRoomScreen.name: (context) => const ChallengerWaittinRoomScreen(),
   // SelectChallengeScreen.name: (context) => const SelectChallengeScreen(),
+  ViewAllParcScreen.name: (context) => const ViewAllParcScreen(),
 };

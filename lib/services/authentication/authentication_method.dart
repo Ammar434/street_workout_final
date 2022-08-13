@@ -74,7 +74,7 @@ class AuthenticationMethod {
     return a ?? "UNKNOWN";
   }
 
-  Future<String> registerUser() async {
+  Future<String> registerUser(GeoPoint geoPoint) async {
     String res = "Some error occured";
 
     try {
@@ -108,6 +108,7 @@ class AuthenticationMethod {
         numberOfEvaluation: 0,
         instagramProfile: "",
         rewards: [],
+        lastPosition: geoPoint,
       );
       await firebaseFirestore.collection('users').doc(credential.user!.uid).set(customUser.toJson());
       res = "success";

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/screens/application/view_all_parc/view_all_parc_screen.dart';
 import '../../../widgets/search_field_widget.dart';
 import '../../../../utils/constants.dart';
 
@@ -30,13 +31,12 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, ViewAllParcScreen.name);
+                    },
                     child: const Text(
                       "See all",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white70),
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Colors.white70),
                     ),
                   ),
                 ],

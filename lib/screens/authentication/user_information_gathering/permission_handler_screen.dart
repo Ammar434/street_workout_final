@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import '../../../authentication_handler.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
@@ -10,8 +12,7 @@ class PermissionHandlerScreen extends StatefulWidget {
   static const String name = "PermissionHandlerScreen";
 
   @override
-  State<PermissionHandlerScreen> createState() =>
-      _PermissionHandlerScreenState();
+  State<PermissionHandlerScreen> createState() => _PermissionHandlerScreenState();
 }
 
 class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
@@ -20,8 +21,9 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
     setState(() {
       isLoading = true;
     });
-    String responseCode = await AuthenticationMethod().registerUser();
-    await Geolocalisation().determinePosition();
+    Position position = await Geolocalisation().determinePosition();
+    GeoPoint geoPoint = GeoPoint(position.latitude, position.longitude);
+    String responseCode = await AuthenticationMethod().registerUser(geoPoint);
 
     if (responseCode == "success") {
       if (!mounted) return;

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import '../../models/custom_user.dart';
 import '../storage/storage_methods.dart';
 
@@ -104,6 +105,24 @@ class UserFirestoreMethods {
           "height": height,
           "weight": weight,
           "age": age,
+        },
+      );
+
+      res = "success";
+    } catch (e) {
+      debugPrint(e.toString());
+      res = e.toString();
+    }
+
+    return res;
+  }
+
+  Future<String> updateLastPosition({required Position position}) async {
+    String res = "Some error occured";
+    try {
+      _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
+        {
+          'lastPosition': GeoPoint(position.latitude, position.longitude),
         },
       );
 
