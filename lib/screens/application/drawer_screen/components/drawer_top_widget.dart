@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
-import '../../../../utils/constants.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../profile_screen/profile_screen.dart';
 
 class DrawerTopWidget extends StatelessWidget {
-  const DrawerTopWidget({
+  DrawerTopWidget({
     Key? key,
     required this.profileImage,
     required this.userName,
@@ -34,14 +34,14 @@ class DrawerTopWidget extends StatelessWidget {
           Row(
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const SizedBox(
+              SizedBox(
                 width: 5,
               ),
               CircleAvatar(
                 radius: 26,
                 backgroundImage: NetworkImage(profileImage),
               ),
-              const SizedBox(
+              SizedBox(
                 width: kPaddingValue,
               ),
               Column(
@@ -49,11 +49,11 @@ class DrawerTopWidget extends StatelessWidget {
                 children: [
                   Text(
                     userName,
-                    style: const TextStyle(fontWeight: FontWeight.w900),
+                    style: TextStyle(fontWeight: FontWeight.w900),
                     maxLines: 2,
                   ),
                   isLoading
-                      ? const LoadingWidget(
+                      ? LoadingWidget(
                           isLinear: true,
                         )
                       : Text(

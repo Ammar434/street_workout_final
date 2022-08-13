@@ -66,9 +66,9 @@ class PopUpMenuWidget extends StatelessWidget {
           height: MediaQuery.of(context).size.height / 4,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Center(child: LoadingWidget()),
-              Text(
+              const Text(
                 "Upload in progress",
                 style: TextStyle(color: backgroundColor),
               )
@@ -98,8 +98,8 @@ class PopUpMenuWidget extends StatelessWidget {
       // icon: icon,
       child: Center(
         child: isLoading
-            ? const LoadingWidget()
-            : const FaIcon(
+            ? LoadingWidget()
+            : FaIcon(
                 FontAwesomeIcons.arrowUpFromBracket,
                 size: kDefaultIconAppBar,
               ),

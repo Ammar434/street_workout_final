@@ -8,7 +8,7 @@ import 'package:street_workout_final/screens/application/challenge_screen/global
 import 'package:street_workout_final/screens/application/challenge_screen/select_challenge_screen/select_challenge_screen.dart';
 
 // class ChallengerWaittinRoomScreen extends StatefulWidget {
-//   const ChallengerWaittinRoomScreen({Key? key}) : super(key: key);
+//     ChallengerWaittinRoomScreen({Key? key}) : super(key: key);
 //   static String name = "ChallengerWaittinRoomScreen";
 
 //   @override
@@ -22,15 +22,15 @@ import 'package:street_workout_final/screens/application/challenge_screen/select
 //     CustomUser customUser = Provider.of<UserProvider>(context).getUser;
 
 //     if (isRoomEmpty) {
-//       return const ChallengerWaittingRoomBody();
+//       return   ChallengerWaittingRoomBody();
 //     }
-//     return const SelectChallengeScreen();
-//     // return const GlobalWaittingRoomScreen();
+//     return   SelectChallengeScreen();
+//     // return   GlobalWaittingRoomScreen();
 //   }
 // }
 
 class ChallengerWaittinRoomScreen extends StatelessWidget {
-  const ChallengerWaittinRoomScreen({Key? key}) : super(key: key);
+  ChallengerWaittinRoomScreen({Key? key}) : super(key: key);
   static String name = "ChallengerWaittinRoomScreen";
 
   @override
@@ -39,9 +39,9 @@ class ChallengerWaittinRoomScreen extends StatelessWidget {
     CustomUser customUser = Provider.of<UserProvider>(context).getUser;
 
     if (isRoomEmpty) {
-      return const ChallengerWaittingRoomBody();
+      return ChallengerWaittingRoomBody();
     }
-    // return const SelectChallengeScreen();
-    return const GlobalWaittingRoomScreen();
+    // return   SelectChallengeScreen();
+    return GlobalWaittingRoomScreen();
   }
 }

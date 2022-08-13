@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class DrawerCategorieTile extends StatelessWidget {
-  const DrawerCategorieTile({
+  DrawerCategorieTile({
     Key? key,
     required this.iconData,
     required this.text,
@@ -15,7 +15,7 @@ class DrawerCategorieTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(kPaddingValue),
+      padding: EdgeInsets.all(kPaddingValue),
       child: GestureDetector(
         onTap: onTap,
         child: Row(
@@ -29,12 +29,12 @@ class DrawerCategorieTile extends StatelessWidget {
                 size: 26,
               ),
             ),
-            const SizedBox(
+            SizedBox(
               width: kPaddingValue * 1.5,
             ),
             Text(
               text,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),

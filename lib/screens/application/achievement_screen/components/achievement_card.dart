@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import 'achievement_card_top.dart';
 import 'achievement_logo_widget.dart';
 
@@ -18,7 +18,7 @@ class AchievementCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kPaddingValue),
+      padding: EdgeInsets.symmetric(vertical: kPaddingValue),
       child: Column(
         children: [
           Container(
@@ -36,7 +36,7 @@ class AchievementCard extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(kPaddingValue),
+              padding: EdgeInsets.all(kPaddingValue),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -44,7 +44,7 @@ class AchievementCard extends StatelessWidget {
                     title: title,
                     progressionLvl: progressionLvl,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: kPaddingValue,
                   ),
                   Expanded(
@@ -56,13 +56,12 @@ class AchievementCard extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return AchievementLogoWidget(
                           isAchieve: Random().nextBool(),
-                          image:
-                              "assets/images/achievements/asset_${Random().nextInt(30)}.png",
+                          image: "assets/images/achievements/asset_${Random().nextInt(30)}.png",
                         );
                       },
                     ),
                   ),
-                  // const AchievementLogoWidget(),
+                  //   AchievementLogoWidget(),
                 ],
               ),
             ),

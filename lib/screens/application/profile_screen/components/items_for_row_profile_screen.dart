@@ -25,7 +25,7 @@ class ItemForRowProfileScreen extends StatelessWidget {
               fontSize: 20,
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: kSmallPaddingValue,
           ),
           Text(

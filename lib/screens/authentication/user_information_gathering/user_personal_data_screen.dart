@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import '../../../services/authentication/authentication_method.dart';
 import 'permission_handler_screen.dart';
 import '../../../utils/colors.dart';
-import '../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 import '../../../widgets/slider_widget.dart';
 
 class UserPersonalDataScreen extends StatefulWidget {
-  const UserPersonalDataScreen({Key? key}) : super(key: key);
-  static const String name = "UserPersonalDataScreen";
+  UserPersonalDataScreen({Key? key}) : super(key: key);
+  static String name = "UserPersonalDataScreen";
 
   @override
   State<UserPersonalDataScreen> createState() => _UserPersonalDataScreenState();
@@ -33,7 +33,7 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
         extendBodyBehindAppBar: true,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(kPaddingValue),
+            padding: EdgeInsets.all(kPaddingValue),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -122,7 +122,7 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
   Column buildColumnText(BuildContext context) {
     return Column(
       children: [
-        const Text(
+        Text(
           "Tell us about yourself",
           style: TextStyle(
             fontSize: 20,
@@ -130,7 +130,7 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
           ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(
+        SizedBox(
           height: 5,
         ),
         Text(
@@ -172,8 +172,7 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
                 },
               );
             },
-            controlAffinity:
-                ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
         ),
         Text(

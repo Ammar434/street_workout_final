@@ -7,7 +7,7 @@ import '../../post_screen/post_screen.dart';
 import 'drawer_categorie_tile.dart';
 
 class DrawerCategorieWidget extends StatelessWidget {
-  const DrawerCategorieWidget({
+  DrawerCategorieWidget({
     Key? key,
   }) : super(key: key);
 

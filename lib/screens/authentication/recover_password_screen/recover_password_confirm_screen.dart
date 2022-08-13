@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 
 class RecoverPasswordConfirmScreen extends StatelessWidget {
-  static const String name = "RecoverPasswordConfirmScreen";
+  static String name = "RecoverPasswordConfirmScreen";
 
   const RecoverPasswordConfirmScreen({Key? key}) : super(key: key);
 
@@ -13,7 +13,7 @@ class RecoverPasswordConfirmScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(kPaddingValue),
+          padding: EdgeInsets.all(kPaddingValue),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -21,8 +21,7 @@ class RecoverPasswordConfirmScreen extends StatelessWidget {
               buildColumnHeader(context),
               RoundedButton(
                 onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, '/', (Route<dynamic> route) => false);
+                  Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
                 },
                 text: "Okay",
               ),

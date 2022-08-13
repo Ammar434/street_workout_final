@@ -9,7 +9,7 @@ import '../../../../utils/gradients.dart';
 import 'header_ranking_widget.dart';
 
 class LeaderboardSliverBuilder extends StatelessWidget {
-  const LeaderboardSliverBuilder({
+  LeaderboardSliverBuilder({
     Key? key,
     required this.categorie,
   }) : super(key: key);
@@ -21,19 +21,14 @@ class LeaderboardSliverBuilder extends StatelessWidget {
     return FutureBuilder<List<Leaderboard>>(
       future: LeaderboardFirestoreMethods().leaderboardList(categorie),
       builder: (context, snapshot) {
-        // if (snapshot.connectionState == ConnectionState.done || snapshot.connectionState == ConnectionState.active) {
         if (snapshot.hasData) {
-          debugPrint("hello");
-
           List<Leaderboard> leaderboardList = snapshot.data!;
 
-          debugPrint("hello${leaderboardList.length}");
-
           if (leaderboardList.isEmpty) {
-            return const Center(child: Text("Some internal error happen"));
+            return Center(child: Text("Some internal error happen"));
           }
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kPaddingValue),
+            padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
             child: CustomScrollView(
               slivers: [
                 HeaderRankingWIdget(
@@ -67,50 +62,11 @@ class LeaderboardSliverBuilder extends StatelessWidget {
                 ),
               ],
             ),
-
-            // CustomScrollView(
-            //   slivers: List.generate(
-            //     leaderboardList.length,
-            //     (index) {
-            //       if (index == 0) {
-            //         return HeaderRankingWIdget(
-            //           leaderboard: leaderboardList[index],
-            //           gradient: goldGradient,
-            //         );
-            //       }
-            //       return SliverList(
-            //         delegate: SliverChildBuilderDelegate(
-            //           childCount: leaderboardList.length - 1,
-            //           ((context, index2) {
-            //             if (index2 == 0) {
-            //               return TileLeaderboardRow(
-            //                 index: index2 + 2,
-            //                 gradient: silverGradient,
-            //                 leaderboard: leaderboardList[index],
-            //               );
-            //             }
-            //             if (index2 == 1) {
-            //               return TileLeaderboardRow(
-            //                 index: index2 + 2,
-            //                 gradient: bronzeGradient,
-            //                 leaderboard: leaderboardList[index],
-            //               );
-            //             }
-            //             return TileLeaderboardRow(
-            //               index: index2 + 2,
-            //               leaderboard: leaderboardList[index],
-            //             );
-            //           }),
-            //         ),
-            //       );
-            //     },
-            //   ),
-            // ),
           );
         }
         // }
 
-        return const Center(
+        return Center(
           child: LoadingWidget(),
         );
       },

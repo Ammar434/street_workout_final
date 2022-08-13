@@ -15,7 +15,7 @@ import '../../../../widgets/app_bar.dart';
 import 'components/challenge_is_not_start_widget.dart';
 
 class ChallengeStartScreen extends StatefulWidget {
-  const ChallengeStartScreen({Key? key}) : super(key: key);
+  ChallengeStartScreen({Key? key}) : super(key: key);
   static String name = "ChallengeStartScreen";
 
   @override
@@ -98,12 +98,12 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
       key: _scaffoldKey,
       appBar: buildAppBar(context, "Challenge"),
       body: isLoading
-          ? const LoadingWidget()
+          ? LoadingWidget()
           : Column(
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(kPaddingValue * 2),
+                    padding: EdgeInsets.all(kPaddingValue * 2),
                     child: Image.asset(
                       "assets/images/challenge/asset_0.png",
                     ),

@@ -6,7 +6,7 @@ import '../../start_training/start_training_screen.dart';
 import 'drawer_categorie_tile.dart';
 
 class DrawerBottomWidget extends StatelessWidget {
-  const DrawerBottomWidget({
+  DrawerBottomWidget({
     Key? key,
   }) : super(key: key);
 

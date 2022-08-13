@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import 'custom_dialog_body_widget.dart';
 
 class AchievementLogoWidget extends StatelessWidget {
@@ -43,10 +43,10 @@ class AchievementLogoWidget extends StatelessWidget {
               ),
               Visibility(
                 visible: isAchieve,
-                child: const Positioned(
+                child: Positioned(
                   bottom: 0,
                   right: kPaddingValue,
-                  child: FaIcon(
+                  child: const FaIcon(
                     FontAwesomeIcons.solidCircleCheck,
                     color: tertiaryColor,
                   ),
@@ -63,7 +63,7 @@ class AchievementLogoWidget extends StatelessWidget {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
-        return const CustomDialogBodyWidget();
+        return CustomDialogBodyWidget();
       },
     );
   }

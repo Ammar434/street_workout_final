@@ -4,7 +4,7 @@ import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 class BodyChallengeFailed extends StatelessWidget {
-  const BodyChallengeFailed({
+  BodyChallengeFailed({
     Key? key,
     required this.currentUser,
   }) : super(key: key);
@@ -20,27 +20,27 @@ class BodyChallengeFailed extends StatelessWidget {
           "https://assets2.lottiefiles.com/packages/lf20_ed9D2z.json",
           repeat: false,
         ),
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
         Text(
           "Ahh so close ${currentUser.userName}!",
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: kDefaultTitleSize,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const Text(
+        Text(
           "Always remmenber",
           style: TextStyle(
             fontSize: kDefaultTitleSize,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
-        const Text(
+        Text(
           "In life, there is no such thing as impossible; it’s always possible. ~",
           textAlign: TextAlign.center,
           style: TextStyle(

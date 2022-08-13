@@ -4,7 +4,7 @@ import 'user_tab_display.dart';
 import '../../../../utils/constants.dart';
 
 class UserProfileBodyWidget extends StatelessWidget {
-  const UserProfileBodyWidget({
+  UserProfileBodyWidget({
     Key? key,
     required this.name,
     required this.favoriteParc,
@@ -22,7 +22,7 @@ class UserProfileBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
+      padding: EdgeInsets.only(
         top: kPaddingValue,
         left: kSmallPaddingValue,
         right: kSmallPaddingValue,
@@ -37,7 +37,7 @@ class UserProfileBodyWidget extends StatelessWidget {
             userTrainingPoint: userTrainingPoint,
             userEvaluation: userEvaluation,
           ),
-          const SizedBox(
+          SizedBox(
             height: kPaddingValue,
           ),
           UserTabDisplay(

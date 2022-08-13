@@ -4,7 +4,7 @@ import 'package:street_workout_final/models/rewards.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 class CustomTileForSelectChallenge extends StatelessWidget {
-  const CustomTileForSelectChallenge({
+  CustomTileForSelectChallenge({
     Key? key,
     required this.rewards,
     required this.onTap,
@@ -18,21 +18,21 @@ class CustomTileForSelectChallenge extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(kPaddingValue / 2),
-        margin: const EdgeInsets.symmetric(vertical: kPaddingValue / 2),
+        padding: EdgeInsets.all(kPaddingValue / 2),
+        margin: EdgeInsets.symmetric(vertical: kPaddingValue / 2),
         height: 85,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
-          color: const Color(0xff181A1E),
+          color: Color(0xff181A1E),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               children: [
-                const Icon(Icons.drag_indicator_rounded),
-                const SizedBox(
+                Icon(Icons.drag_indicator_rounded),
+                SizedBox(
                   width: kSmallPaddingValue,
                 ),
                 AspectRatio(
@@ -43,7 +43,7 @@ class CustomTileForSelectChallenge extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
+            SizedBox(
               width: kSmallPaddingValue,
             ),
             Column(
@@ -52,14 +52,14 @@ class CustomTileForSelectChallenge extends StatelessWidget {
               children: [
                 Text(
                   rewards.title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
                 ),
                 Text(
                   rewards.subtitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     // fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.w200,
                     fontSize: 14,
@@ -67,12 +67,12 @@ class CustomTileForSelectChallenge extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(),
-            const FaIcon(
+            Spacer(),
+            FaIcon(
               FontAwesomeIcons.chevronRight,
               size: kDefaultIconAppBar,
             ),
-            const SizedBox(
+            SizedBox(
               width: kSmallPaddingValue,
             ),
           ],

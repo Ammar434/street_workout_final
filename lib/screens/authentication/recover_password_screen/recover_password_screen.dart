@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 import '../../../widgets/text_field_input.dart';
 
 import 'recover_password_confirm_screen.dart';
 
 class RecoverPasswordScreen extends StatefulWidget {
-  static const String name = "RecoverPasswordScreen";
+  static String name = "RecoverPasswordScreen";
 
   const RecoverPasswordScreen({Key? key}) : super(key: key);
 
@@ -28,7 +28,7 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(kPaddingValue),
+          padding: EdgeInsets.all(kPaddingValue),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -41,8 +41,7 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
               ),
               RoundedButton(
                 onTap: () {
-                  Navigator.pushReplacementNamed(
-                      context, RecoverPasswordConfirmScreen.name);
+                  Navigator.pushReplacementNamed(context, RecoverPasswordConfirmScreen.name);
                 },
                 text: "Reset",
               ),

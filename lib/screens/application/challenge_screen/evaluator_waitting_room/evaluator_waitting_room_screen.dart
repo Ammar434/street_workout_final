@@ -8,7 +8,7 @@ import 'package:street_workout_final/screens/application/challenge_screen/global
 import 'components/evaluator_waitting_room_body.dart';
 
 class EvaluatorWaittingRoomScreen extends StatefulWidget {
-  const EvaluatorWaittingRoomScreen({Key? key}) : super(key: key);
+  EvaluatorWaittingRoomScreen({Key? key}) : super(key: key);
   static String name = "EvaluatorWaittingRoomScreen";
 
   @override
@@ -31,7 +31,7 @@ class _EvaluatorWaittingRoomScreenState extends State<EvaluatorWaittingRoomScree
     _customUser = Provider.of<UserProvider>(context).getUser;
     challengeProvider = Provider.of<ChallengeProvider>(context, listen: false);
 
-    if (isRoomEmpty) return const EvaluatorWaittingRoomScreenBody();
-    return const GlobalWaittingRoomScreen();
+    if (isRoomEmpty) return EvaluatorWaittingRoomScreenBody();
+    return GlobalWaittingRoomScreen();
   }
 }

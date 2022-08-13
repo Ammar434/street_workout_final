@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 AppBar buildAppBar(BuildContext context, String title) {
   return AppBar(
@@ -10,7 +9,7 @@ AppBar buildAppBar(BuildContext context, String title) {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: const FaIcon(
+        icon: FaIcon(
           FontAwesomeIcons.chevronLeft,
           size: kDefaultIconAppBar,
         ),

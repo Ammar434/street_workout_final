@@ -4,7 +4,7 @@ import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 class BodyForChallengeSucceeded extends StatelessWidget {
-  const BodyForChallengeSucceeded({
+  BodyForChallengeSucceeded({
     Key? key,
     required this.currentUser,
   }) : super(key: key);
@@ -20,30 +20,30 @@ class BodyForChallengeSucceeded extends StatelessWidget {
           "https://assets6.lottiefiles.com/packages/lf20_jbrw3hcz.json",
           repeat: false,
         ),
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
         Text(
           "Congrats ${currentUser.userName}!",
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: kDefaultTitleSize,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const Text(
+        Text(
           "You're succedeed the challenge !",
           style: TextStyle(
             fontSize: kDefaultTitleSize,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
         Text(
           "That's your ${currentUser.rewards.length} challenge. Keep going you're a beast",
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: kDefaultTitleSize * 0.6,
             fontWeight: FontWeight.bold,
             fontStyle: FontStyle.italic,

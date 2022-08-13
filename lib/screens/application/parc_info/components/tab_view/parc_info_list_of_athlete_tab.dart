@@ -5,7 +5,7 @@ import '../../../../../../utils/colors.dart';
 import '../../../../../../utils/constants.dart';
 
 class ParcInfoListOfAthleteTab extends StatelessWidget {
-  const ParcInfoListOfAthleteTab({
+  ParcInfoListOfAthleteTab({
     Key? key,
     required this.totalAthlete,
   }) : super(key: key);
@@ -16,14 +16,14 @@ class ParcInfoListOfAthleteTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
         Padding(
-          padding: const EdgeInsets.all(kSmallPaddingValue),
+          padding: EdgeInsets.all(kSmallPaddingValue),
           child: Text(
             "Total athlete who train in this park $totalAthlete",
-            style: const TextStyle(
+            style: TextStyle(
               fontStyle: FontStyle.italic,
               color: secondaryColor,
             ),
@@ -31,12 +31,12 @@ class ParcInfoListOfAthleteTab extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             itemCount: totalAthlete,
             itemBuilder: (context, index) {
               Faker faker = Faker.instance;
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
+                padding: EdgeInsets.symmetric(vertical: 5),
                 child: Row(
                   children: [
                     CircleAvatar(
@@ -44,12 +44,12 @@ class ParcInfoListOfAthleteTab extends StatelessWidget {
                         faker.image.image(),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: kPaddingValue,
                     ),
                     Text(
                       faker.name.fullName(),
-                      style: const TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 15),
                     )
                   ],
                 ),

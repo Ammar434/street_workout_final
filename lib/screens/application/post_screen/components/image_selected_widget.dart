@@ -15,7 +15,7 @@ class ImageSelectedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kPaddingValue),
+      padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: userSelectedImageList.length + 1,
@@ -40,7 +40,7 @@ class ImageSelectedWidget extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 Container(
-                  margin: const EdgeInsets.all(kPaddingValue * 1),
+                  margin: EdgeInsets.all(kPaddingValue * 1),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(

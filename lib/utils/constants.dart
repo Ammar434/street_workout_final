@@ -1,14 +1,16 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
 
-const kVerticalSpacing = 25;
-const double kRadiusValue = 10;
-const double kRadiusValueImageProfile = 56;
-const double kPaddingValue = 15;
-const double kSmallPaddingValue = 4;
-const double kDefaultIconsSize = 30;
-const double kDefaultTitleSize = 25;
-const double kDefaultIconAppBar = 18;
+double kVerticalSpacing = 25.sp;
+double kRadiusValue = 10.sp;
+double kRadiusValueImageProfile = 64.sp;
+double kPaddingValue = 15.sp;
+double kSmallPaddingValue = 4.sp;
+double kDefaultIconsSize = 30.sp;
+double kDefaultTitleSize = 25.sp;
+double kDefaultIconAppBar = 18.sp;
+double kDefaultButtonSize = 50.sp;
 
-const markerSizeExpanded = 40.0;
-const markerSizeShrink = 30.0;
+double markerSizeExpanded = 40.0.sp;
+double markerSizeShrink = 30.0.sp;
 LatLng myLocation = LatLng(48.856614, 2.3522219);

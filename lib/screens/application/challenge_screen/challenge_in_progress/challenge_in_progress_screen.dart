@@ -17,7 +17,7 @@ import 'package:street_workout_final/widgets/horizontal_line.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
 
 class ChallengeInProgressScreen extends StatelessWidget {
-  const ChallengeInProgressScreen({Key? key, required this.challenge}) : super(key: key);
+  ChallengeInProgressScreen({Key? key, required this.challenge}) : super(key: key);
   final Challenge challenge;
 
   @override
@@ -30,12 +30,12 @@ class ChallengeInProgressScreen extends StatelessWidget {
         ? ChallengeInProgressChallengerScreen(
             challenge: challenge,
           )
-        : const ChallengeInProgressEvaluatorScreen();
+        : ChallengeInProgressEvaluatorScreen();
   }
 }
 
 class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
-  const ChallengeInProgressEvaluatorScreen({
+  ChallengeInProgressEvaluatorScreen({
     Key? key,
   }) : super(key: key);
 
@@ -61,7 +61,7 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ChallengeEndScreenEvaluator(),
+            builder: (context) => ChallengeEndScreenEvaluator(),
           ),
         );
       }
@@ -79,23 +79,23 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
             imageRadius: kRadiusValueImageProfile,
             fontSize: 18,
           ),
-          const SizedBox(
+          SizedBox(
             height: kPaddingValue * 2,
           ),
           Text(
             "Tell us how ${challenge.evaluatorName} perform remmenber you have to evaluate if ${challenge.evaluatorName} can do 10 pull ups",
-            style: const TextStyle(
+            style: TextStyle(
               fontStyle: FontStyle.italic,
             ),
             textAlign: TextAlign.center,
           ),
-          const HorizontalLine(),
+          HorizontalLine(),
           Text(
             "${challenge.evaluatorName} managed to do the number of repetitions indicated?",
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
+          SizedBox(
             height: kSmallPaddingValue,
           ),
           Center(
@@ -105,8 +105,8 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
-              itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => const FaIcon(
+              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              itemBuilder: (context, _) => FaIcon(
                 FontAwesomeIcons.solidStar,
                 color: Colors.amber,
               ),
@@ -116,15 +116,15 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
               },
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: kPaddingValue * 1,
           ),
-          const Text(
+          Text(
             "In your opinion how was the global form of the mouvement",
             style: TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
+          SizedBox(
             height: kSmallPaddingValue,
           ),
           Center(
@@ -134,8 +134,8 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
-              itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => const FaIcon(
+              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              itemBuilder: (context, _) => FaIcon(
                 FontAwesomeIcons.solidStar,
                 color: Colors.amber,
               ),
@@ -144,7 +144,7 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
               },
             ),
           ),
-          const HorizontalLine(),
+          HorizontalLine(),
           SelectableEmojiRow(challenge: challenge),
           RoundedButton(
             onTap: () {
@@ -165,7 +165,7 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
 }
 
 class ChallengeInProgressChallengerScreen extends StatelessWidget {
-  const ChallengeInProgressChallengerScreen({
+  ChallengeInProgressChallengerScreen({
     Key? key,
     required this.challenge,
   }) : super(key: key);
@@ -184,7 +184,7 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
     }
     return Scaffold(
       appBar: buildAppBar(context, ""),
-      body: const Center(
+      body: Center(
         child: Text(
           'You re being evaluated now, do your best champion but always remmenber there is no honor and no progress in cheating. ',
         ),
@@ -194,7 +194,7 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
 }
 
 class SelectableEmojiRow extends StatefulWidget {
-  const SelectableEmojiRow({
+  SelectableEmojiRow({
     Key? key,
     required this.challenge,
   }) : super(key: key);
@@ -214,7 +214,7 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
         children: [
           Text(
             "Describe ${widget.challenge.challengerName} with one emoji",
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
 
@@ -225,8 +225,8 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
               itemCount: mapEmoji.length,
               itemBuilder: (context, index) => Container(
                 width: 100,
-                margin: const EdgeInsets.all(kPaddingValue),
-                padding: const EdgeInsets.all(kSmallPaddingValue),
+                margin: EdgeInsets.all(kPaddingValue),
+                padding: EdgeInsets.all(kSmallPaddingValue),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(kRadiusValue),
                   color: selectIndex == index ? iconColor.withOpacity(0.25) : null,
@@ -245,13 +245,13 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
                         width: 100,
                         height: 80,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: kPaddingValue,
                       ),
                       Text(
                         mapEmoji.values.elementAt(index).emojiText,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
@@ -260,7 +260,7 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
             ),
           ),
 
-          // const SelectableRowEmoji(),
+          //   SelectableRowEmoji(),
         ],
       ),
     );

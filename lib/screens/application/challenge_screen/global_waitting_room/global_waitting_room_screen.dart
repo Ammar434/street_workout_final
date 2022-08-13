@@ -14,7 +14,7 @@ import 'package:street_workout_final/widgets/rounded_button.dart';
 import '../components/user_detail_column_widget.dart';
 
 class GlobalWaittingRoomScreen extends StatefulWidget {
-  const GlobalWaittingRoomScreen({Key? key}) : super(key: key);
+  GlobalWaittingRoomScreen({Key? key}) : super(key: key);
   static String name = "GlobalWaittingRoomScreen";
 
   @override
@@ -58,18 +58,18 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
               Navigator.pop(context);
               Navigator.pop(context);
             },
-            icon: const FaIcon(
+            icon: FaIcon(
               FontAwesomeIcons.chevronLeft,
               size: kDefaultIconAppBar,
             ),
           ),
         ),
-        title: const Text("Lobby"),
+        title: Text("Lobby"),
       ),
       body: isLoading
-          ? const LoadingWidget()
+          ? LoadingWidget()
           : Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -83,26 +83,26 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(kPaddingValue),
+                padding: EdgeInsets.all(kPaddingValue),
                 child: Column(
                   children: [
                     AspectRatio(
                       aspectRatio: 3 / 2,
                       child: Image.asset("assets/images/challenge/asset_1.png"),
                     ),
-                    const Text(
+                    Text(
                       "Challenge #423424",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: kDefaultTitleSize,
                       ),
                     ),
-                    const Text("We will develod this screen soon"),
-                    const SizedBox(
+                    Text("We will develod this screen soon"),
+                    SizedBox(
                       height: kPaddingValue * 2,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: kPaddingValue * 5),
+                      padding: EdgeInsets.symmetric(horizontal: kPaddingValue * 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -117,10 +117,10 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: kPaddingValue * 1,
                     ),
-                    const Align(
+                    Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'What you have to do:',
@@ -130,10 +130,10 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: kSmallPaddingValue,
                     ),
-                    const Expanded(
+                    Expanded(
                       child: SingleChildScrollView(
                         child: Text(
                           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
@@ -155,7 +155,7 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                       text: buttonAnimation ? "Ready" : "Not ready yet",
                       shouldAnimate: buttonAnimation,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: kPaddingValue,
                     )
                   ],

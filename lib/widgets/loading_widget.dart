@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../utils/colors.dart';
-import '../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({
+  LoadingWidget({
     Key? key,
     this.isLinear = false,
   }) : super(key: key);
@@ -15,14 +15,14 @@ class LoadingWidget extends StatelessWidget {
         child: SizedBox(
           height: kSmallPaddingValue,
           width: MediaQuery.of(context).size.width / 3,
-          child: const LinearProgressIndicator(
+          child: LinearProgressIndicator(
             color: tertiaryColor,
             backgroundColor: primaryColor,
           ),
         ),
       );
     }
-    return const Center(
+    return Center(
       child: CircularProgressIndicator(
         color: tertiaryColor,
         backgroundColor: primaryColor,

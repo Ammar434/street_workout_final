@@ -31,8 +31,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
 
   bool get isPanelVisible {
     final AnimationStatus status = controller.status;
-    return status == AnimationStatus.completed ||
-        status == AnimationStatus.forward;
+    return status == AnimationStatus.completed || status == AnimationStatus.forward;
   }
 
   @override
@@ -52,12 +51,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
       ),
       body: IndexedStack(
         index: index,
-        children: const [
-          HomeScreen(),
-          MapScreen(),
-          LeaderboardScreen(),
-          SettingsScreen()
-        ],
+        children: [HomeScreen(), MapScreen(), LeaderboardScreen(), SettingsScreen()],
       ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,

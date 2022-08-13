@@ -7,7 +7,7 @@ class UserDetailColumnItem extends StatelessWidget {
     required this.imageUrl,
     required this.userName,
     this.fontSize = 14,
-    this.imageRadius = kRadiusValueImageProfile / 2,
+    this.imageRadius = 32,
   }) : super(key: key);
 
   final String imageUrl;
@@ -19,7 +19,7 @@ class UserDetailColumnItem extends StatelessWidget {
     return Column(
       children: [
         CircleAvatar(backgroundImage: NetworkImage(imageUrl), radius: imageRadius),
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
         Text(

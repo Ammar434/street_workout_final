@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 class RewardsFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   // final UserFirestoreMethods _userFirestoreMethods = UserFirestoreMethods();
-  final Uuid _uuid = const Uuid();
+  final Uuid _uuid = Uuid();
 
   Future<void> addRewards(String categorie, int orderNum) async {
     Reward rewards = Reward(

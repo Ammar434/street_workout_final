@@ -5,7 +5,7 @@ import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_circle_user_profile_widget.dart';
 
 class HeaderRankingWIdget extends StatelessWidget {
-  const HeaderRankingWIdget({
+  HeaderRankingWIdget({
     Key? key,
     this.gradient,
     required this.leaderboard,
@@ -22,14 +22,14 @@ class HeaderRankingWIdget extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           LottieBuilder.network(
-            "https://assets8.lottiefiles.com/private_files/lf30_rjuv1b.json",
+            "https://assets1.lottiefiles.com/private_files/lf30_i5wfnbcg.json",
             repeat: true,
           ),
           // Image.asset("assets/images/leaderboard/star_explosion.png"),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
+              SizedBox(
                 height: kPaddingValue,
               ),
               RoundedCircleUserProfileWidget(
@@ -37,24 +37,24 @@ class HeaderRankingWIdget extends StatelessWidget {
                 radius: kRadiusValue * 6,
                 imageUrl: leaderboard.userProfileImage,
               ),
-              const SizedBox(
+              SizedBox(
                 height: kPaddingValue,
               ),
               Text(
                 leaderboard.userName,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
               Text(
                 leaderboard.userPoint.toString(),
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: kPaddingValue,
               )
             ],

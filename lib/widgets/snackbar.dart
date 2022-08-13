@@ -9,10 +9,10 @@ void customShowSnackBar({
   required ContentType contentType,
 }) {
   SnackBar snackBar = SnackBar(
-    elevation: 4,
+    elevation: 0,
     behavior: SnackBarBehavior.floating,
     backgroundColor: Colors.transparent,
-    duration: const Duration(seconds: 5),
+    duration: const Duration(seconds: 2),
     margin: EdgeInsets.zero,
     content: AwesomeSnackbarContent(
       title: title,

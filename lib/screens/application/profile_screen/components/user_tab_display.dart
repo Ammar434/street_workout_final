@@ -15,12 +15,11 @@ class UserTabDisplay extends StatefulWidget {
   State<UserTabDisplay> createState() => _UserTabDisplayState();
 }
 
-class _UserTabDisplayState extends State<UserTabDisplay>
-    with SingleTickerProviderStateMixin {
+class _UserTabDisplayState extends State<UserTabDisplay> with SingleTickerProviderStateMixin {
   final List<Widget> myTabs = [
     const Tab(text: 'Photos'),
     const Tab(text: 'Rewards'),
-    // const Tab(text: "Comments"),
+    //   Tab(text: "Comments"),
   ];
 
   late TabController _tabController;
@@ -66,7 +65,7 @@ class _UserTabDisplayState extends State<UserTabDisplay>
               children: List.generate(totalAthlete, (index) {
                 if (index == 0) {
                   return Padding(
-                    padding: const EdgeInsets.all(kSmallPaddingValue),
+                    padding: EdgeInsets.all(kSmallPaddingValue),
                     child: Text(
                       "Total athlete who train in this park $totalAthlete",
                       style: const TextStyle(
@@ -85,7 +84,7 @@ class _UserTabDisplayState extends State<UserTabDisplay>
                           Faker.instance.image.image(),
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: kPaddingValue,
                       ),
                       Text(

@@ -7,7 +7,7 @@ import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/rounded_button.dart';
 
 import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import '../../parc_info/parc_info_screen.dart';
 import 'parc_display_card_info.dart';
 import 'parc_display_card_mage.dart';
@@ -68,7 +68,7 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: kPaddingValue),
+      margin: EdgeInsets.only(bottom: kPaddingValue),
       width: double.infinity,
       height: pacrDisplayCardHeight,
       decoration: BoxDecoration(
@@ -79,7 +79,7 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
         ),
       ),
       child: isLoading
-          ? const LoadingWidget()
+          ? LoadingWidget()
           : Column(
               children: [
                 ParcDisplayCardImage(
@@ -98,7 +98,7 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
                   ),
                   child: Column(
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         height: kPaddingValue,
                       ),
                       ParcDisplayCardInfo(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 class CategorieBuilder extends StatelessWidget {
-  const CategorieBuilder({
+  CategorieBuilder({
     Key? key,
   }) : super(key: key);
 
@@ -13,20 +13,20 @@ class CategorieBuilder extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Discover"),
+          Text("Discover"),
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => Container(
-                margin: const EdgeInsets.all(kPaddingValue / 2),
+                margin: EdgeInsets.all(kPaddingValue / 2),
                 width: 150,
                 height: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(kRadiusValue),
                   color: Colors.blueAccent.shade100,
                 ),
-                child: const Center(child: Text('bar')),
+                child: Center(child: Text('bar')),
               ),
             ),
           ),

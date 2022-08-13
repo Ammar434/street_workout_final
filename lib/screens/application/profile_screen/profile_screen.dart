@@ -1,9 +1,9 @@
 import 'package:draggable_home/draggable_home.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
 import '../../../models/custom_user.dart';
 import '../../../services/firestore_methods/user_firestore_methods.dart';
-import '../../../services/storage/storage_methods.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/loading_widget.dart';
@@ -12,8 +12,7 @@ import 'components/profile_header_widget.dart';
 import 'components/user_profile_body_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key, required this.userUid, this.userProvided})
-      : super(key: key);
+  const ProfileScreen({Key? key, required this.userUid, this.userProvided}) : super(key: key);
   static String name = "ProfileScreen";
   final String userUid;
   final CustomUser? userProvided;
@@ -30,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       isLoading = true;
     });
-    listUrlImage = await StorageMethods().getAllImageOfAUser(widget.userUid);
+    listUrlImage = await FirebaseStorageMethods().getAllImageOfAUser(widget.userUid);
     if (widget.userProvided != null) {
       user = widget.userProvided!;
     } else {
@@ -52,14 +51,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return SafeArea(
       child: Scaffold(
         body: isLoading
-            ? const LoadingWidget()
+            ? LoadingWidget()
             : DraggableHome(
                 leading: Center(
                   child: GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: const FaIcon(
+                    child: FaIcon(
                       FontAwesomeIcons.chevronLeft,
                       size: kDefaultIconAppBar,
                     ),
@@ -73,9 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 body: [
                   UserProfileBodyWidget(
                     name: user.userName,
-                    favoriteParc: user.favoriteParc == ""
-                        ? "The user's favorite park has not been filled in"
-                        : user.favoriteParc,
+                    favoriteParc: user.favoriteParc == "" ? "The user's favorite park has not been filled in" : user.favoriteParc,
                     userContribution: user.numberOfContribution,
                     userTrainingPoint: user.points,
                     userEvaluation: user.numberOfEvaluation,

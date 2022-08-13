@@ -10,7 +10,7 @@ import 'package:street_workout_final/screens/application/challenge_screen/select
 import 'package:street_workout_final/utils/constants.dart';
 
 class FirebaseAnimatedListWidget extends StatelessWidget {
-  const FirebaseAnimatedListWidget({
+  FirebaseAnimatedListWidget({
     Key? key,
     required this.currentUser,
   }) : super(key: key);
@@ -23,7 +23,7 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
     return Expanded(
       child: FirebaseAnimatedList(
         padding: EdgeInsets.zero,
-        duration: const Duration(seconds: 1),
+        duration: Duration(seconds: 1),
         query: FirebaseDatabase.instance.ref().child(currentUser.favoriteParc),
         itemBuilder: (context, snapshot, animation, index) {
           final Challenge challenge = Challenge.challengeFromSnapshot(
@@ -31,8 +31,8 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
           );
           return SlideTransition(
             position: Tween<Offset>(
-              begin: const Offset(1, 0),
-              end: const Offset(0, 0),
+              begin: Offset(1, 0),
+              end: Offset(0, 0),
             ).animate(
               CurvedAnimation(
                 parent: animation,
@@ -44,7 +44,7 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
               title: Text(challenge.evaluatorName),
               subtitle: Text(
                 challenge.evaluatorUid,
-                style: const TextStyle(
+                style: TextStyle(
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -53,7 +53,7 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
                   challenge.evaluatorImageUrl,
                 ),
               ),
-              trailing: const FaIcon(
+              trailing: FaIcon(
                 FontAwesomeIcons.chevronRight,
                 size: kDefaultIconAppBar,
               ),

@@ -14,7 +14,7 @@ import 'package:street_workout_final/widgets/loading_widget.dart';
 import 'package:street_workout_final/widgets/snackbar.dart';
 
 class EvaluatorWaittingRoomScreenBody extends StatefulWidget {
-  const EvaluatorWaittingRoomScreenBody({Key? key}) : super(key: key);
+  EvaluatorWaittingRoomScreenBody({Key? key}) : super(key: key);
   @override
   State<EvaluatorWaittingRoomScreenBody> createState() => _EvaluatorWaittingRoomScreenBodyState();
 }
@@ -36,7 +36,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
       return Center(
         child: Text(
           timeDuration.toString(),
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: kDefaultTitleSize * 3,
             // color: primaryColor,
@@ -45,7 +45,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
       );
     } else {
       if (isChallengerFound) {
-        return const Center(
+        return Center(
           child: FaIcon(
             FontAwesomeIcons.check,
             color: Colors.greenAccent,
@@ -53,7 +53,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
           ),
         );
       } else {
-        return const Center(
+        return Center(
           child: FaIcon(
             FontAwesomeIcons.xmark,
             color: Colors.redAccent,
@@ -70,7 +70,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
 
   void startTimer() {
     timer = Timer.periodic(
-      const Duration(seconds: 1),
+      Duration(seconds: 1),
       (timer) {
         if (timeDuration > 0) {
           setState(() {
@@ -133,13 +133,13 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
     return Scaffold(
       appBar: buildAppBar(context, ""),
       body: isLoading
-          ? const LoadingWidget()
+          ? LoadingWidget()
           : Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     FaIcon(
                       FontAwesomeIcons.clock,
                       size: kDefaultIconsSize,
@@ -179,13 +179,13 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                           ],
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: kPaddingValue,
                       ),
                       AnimatedOpacity(
                         opacity: 1 - opacityLevel,
-                        duration: const Duration(seconds: 1),
-                        child: const Text(
+                        duration: Duration(seconds: 1),
+                        child: Text(
                           "Finding athletes arround you",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -196,9 +196,9 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                       ),
                       AnimatedOpacity(
                         opacity: opacityLevel,
-                        duration: const Duration(seconds: 5),
+                        duration: Duration(seconds: 5),
                         curve: Curves.linearToEaseOut,
-                        child: const Text(
+                        child: Text(
                           "The athlete who was to be evaluated failed to join the challenge. Please try again.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -218,7 +218,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text(
+                    child: Text(
                       "Stop challenge",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,

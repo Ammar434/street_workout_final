@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../utils/colors.dart';
 
 class MyLocationMarker extends AnimatedWidget {
-  const MyLocationMarker(
+  MyLocationMarker(
     Animation<double> animation, {
     Key? key,
   }) : super(key: key, listenable: animation);
@@ -21,7 +21,7 @@ class MyLocationMarker extends AnimatedWidget {
           child: Container(
             width: 20,
             height: 20,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: primaryColor,
               shape: BoxShape.circle,
             ),

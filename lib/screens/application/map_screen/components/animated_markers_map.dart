@@ -8,14 +8,13 @@ import 'map_item_detail.dart';
 import 'my_location_marker.dart';
 
 class AnimatedMarkersMap extends StatefulWidget {
-  const AnimatedMarkersMap({Key? key}) : super(key: key);
+  AnimatedMarkersMap({Key? key}) : super(key: key);
 
   @override
   State<AnimatedMarkersMap> createState() => _AnimatedMarkersMapState();
 }
 
-class _AnimatedMarkersMapState extends State<AnimatedMarkersMap>
-    with SingleTickerProviderStateMixin {
+class _AnimatedMarkersMapState extends State<AnimatedMarkersMap> with SingleTickerProviderStateMixin {
   late MapController mapController;
 
   late AnimationController animationController;
@@ -40,7 +39,7 @@ class _AnimatedMarkersMapState extends State<AnimatedMarkersMap>
                 });
                 pageController.animateToPage(
                   i,
-                  duration: const Duration(milliseconds: 1500),
+                  duration: Duration(milliseconds: 1500),
                   curve: Curves.elasticOut,
                 );
               },
@@ -61,7 +60,7 @@ class _AnimatedMarkersMapState extends State<AnimatedMarkersMap>
     mapController = MapController();
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(
+      duration: Duration(
         seconds: 1,
       ),
     );
@@ -89,8 +88,7 @@ class _AnimatedMarkersMapState extends State<AnimatedMarkersMap>
           ),
           nonRotatedLayers: [
             TileLayerOptions(
-              urlTemplate:
-                  "https://api.mapbox.com/styles/v1/ammar434/cl5y4vc7o001s14og43x49sqg/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
+              urlTemplate: "https://api.mapbox.com/styles/v1/ammar434/cl5y4vc7o001s14og43x49sqg/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
               additionalOptions: {
                 "id": "mapbox.country-boundaries-v1",
                 "accessToken": dotenv.env['mapboxAccessToken']!,
@@ -121,7 +119,7 @@ class _AnimatedMarkersMapState extends State<AnimatedMarkersMap>
             right: 0,
             height: 200,
             child: PageView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               controller: pageController,
               itemCount: mapMarkers.length,
               itemBuilder: (context, index) {

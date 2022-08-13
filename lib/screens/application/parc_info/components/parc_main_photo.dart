@@ -3,7 +3,7 @@ import 'package:street_workout_final/models/parc.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 class ParcMainPhoto extends StatelessWidget {
-  const ParcMainPhoto({
+  ParcMainPhoto({
     Key? key,
     required this.parc,
   }) : super(key: key);

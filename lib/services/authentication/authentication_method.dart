@@ -3,9 +3,10 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
+import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
+import 'package:street_workout_final/services/secure_storage/secure_storage_methods.dart';
 import '../../models/custom_user.dart';
-import '../storage/storage_methods.dart';
 
 Uint8List? temporaryUserImage;
 double temporaryWeightValue = 0;
@@ -14,9 +15,10 @@ double temporaryHeightValue = 0;
 String temporaryGender = "male";
 
 class AuthenticationMethod {
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  final storage = const FlutterSecureStorage();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseStorageMethods _firebaseStorageMethods = FirebaseStorageMethods();
+  final SecureStorageMethods _secureStorageMethods = SecureStorageMethods();
 
   Future<String> checkInfoRegisterUser({
     required String email,
@@ -25,69 +27,48 @@ class AuthenticationMethod {
     required String userName,
     required Uint8List profileImage,
   }) async {
-    String res = "Some error occured";
     bool isEmailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
-    if (email.isEmpty && isEmailValid) {
-      res = "Please check you're email ";
-    } else if (password.isEmpty || passwordConfirm.isEmpty) {
-      res = "Please enter a password";
-    } else if (password.length < 8) {
-      res = "Please enter a password of at least 8 characters";
-    } else if (password != passwordConfirm) {
-      res = "You're password are not the same";
-    } else if (userName.isEmpty) {
-      res = "Please enter a username";
-    } else {
-      temporaryUserImage = profileImage;
-      await writeSecureUserData(
-        email: email,
-        password: password,
-        userName: userName,
-      );
-      res = "success";
+
+    if (email.isEmpty || !isEmailValid) {
+      return "Please check you're email ";
     }
-    return res;
-  }
+    if (userName.isEmpty || userName.length < 4) {
+      return "Please enter a longer name";
+    }
+    if (password.isEmpty || passwordConfirm.isEmpty) {
+      return "Please enter a password";
+    }
+    if (password.length < 8) {
+      return "Please enter a password of at least 8 characters";
+    }
+    if (password != passwordConfirm) {
+      return "You're password are not the same";
+    }
 
-  Future<void> writeSecureUserData({
-    required String email,
-    required String password,
-    required String userName,
-  }) async {
-    await storage.write(key: "KEY_EMAIL", value: email);
-    await storage.write(key: "KEY_PASSWORD", value: password);
-    await storage.write(key: "KEY_USER_NAME", value: userName);
-  }
+    temporaryUserImage = profileImage;
+    await _secureStorageMethods.writeSecureUserData(
+      email: email,
+      password: password,
+      userName: userName,
+    );
 
-  Future<String?> getUserNameFromSecureStorage() async {
-    String? a = await storage.read(key: "KEY_USER_NAME");
-    return a;
-  }
-
-  Future<String> getUserPasswordFromSecureStorage() async {
-    String? a = await storage.read(key: "KEY_PASSWORD");
-    return a ?? "UNKNOWN";
-  }
-
-  Future<String> getUserEmailromSecureStorage() async {
-    String? a = await storage.read(key: "KEY_EMAIL");
-    return a ?? "UNKNOWN";
+    return "success";
   }
 
   Future<String> registerUser(GeoPoint geoPoint) async {
     String res = "Some error occured";
 
     try {
-      String? userName = await getUserNameFromSecureStorage();
-      String? password = await getUserPasswordFromSecureStorage();
-      String? email = await getUserEmailromSecureStorage();
+      String? userName = await _secureStorageMethods.getUserNameFromSecureStorage();
+      String? password = await _secureStorageMethods.getUserPasswordFromSecureStorage();
+      String? email = await _secureStorageMethods.getUserEmailromSecureStorage();
       debugPrint("-----------------------");
-      UserCredential credential = await firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      String profileImageUrl = await StorageMethods().uploadImageToStorage(
+      String profileImageUrl = await _firebaseStorageMethods.uploadImageToStorage(
         "profilePics",
         temporaryUserImage!,
         false,
@@ -110,7 +91,7 @@ class AuthenticationMethod {
         rewards: [],
         lastPosition: geoPoint,
       );
-      await firebaseFirestore.collection('users').doc(credential.user!.uid).set(customUser.toJson());
+      await _firebaseFirestore.collection('users').doc(credential.user!.uid).set(customUser.toJson());
       res = "success";
     } on FirebaseAuthException catch (error) {
       if (error.code == "invalid-email") {
@@ -128,7 +109,8 @@ class AuthenticationMethod {
     temporaryAgeValue = 0;
     temporaryHeightValue = 0;
     temporaryGender = "male";
-    await storage.deleteAll();
+
+    await _secureStorageMethods.deleteAll();
     return res;
   }
 
@@ -139,7 +121,7 @@ class AuthenticationMethod {
     String res = "Some error occured";
     try {
       if (email.isNotEmpty && password.isNotEmpty) {
-        await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+        await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
         res = "success";
       } else {
         res = "Please enter all the field";
@@ -153,7 +135,48 @@ class AuthenticationMethod {
   Future<String> signOut() async {
     String res = "Some error occured";
     try {
-      await firebaseAuth.signOut();
+      await _firebaseAuth.signOut();
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
+  }
+
+  Future<String> deleteUser({
+    required String password,
+  }) async {
+    String res = "Some error occured";
+    try {
+      if (password.isNotEmpty) {
+        User firebaseUser = _firebaseAuth.currentUser!;
+        String userEmail = firebaseUser.email!;
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: userEmail, password: password);
+
+        await UserFirestoreMethods().deleteUserData();
+        await _firebaseStorageMethods.deleteUserStorage();
+        await firebaseUser.delete();
+
+        res = "success";
+      } else {
+        res = "Please enter a password";
+      }
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
+  }
+
+  Future<String> resetPassword({
+    required String email,
+  }) async {
+    String res = "Some error occured";
+    try {
+      if (email.isNotEmpty) {
+        await _firebaseAuth.sendPasswordResetEmail(email: email);
+        res = "success";
+      } else {
+        res = "Please enter all the field";
+      }
     } catch (e) {
       res = e.toString();
     }

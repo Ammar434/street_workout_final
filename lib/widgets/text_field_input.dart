@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/utils/colors.dart';
 
 class TextFieldInput extends StatefulWidget {
-  const TextFieldInput({
+  TextFieldInput({
     Key? key,
     required this.textEditingController,
     this.isPassword = false,
@@ -33,10 +34,11 @@ class _TextFieldInputState extends State<TextFieldInput> {
         focusedBorder: inputBorder,
         enabledBorder: inputBorder,
         filled: true,
-        contentPadding: const EdgeInsets.all(8),
+        contentPadding: EdgeInsets.all(8),
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),
+                color: primaryColor,
                 onPressed: () {
                   setState(
                     () {
@@ -47,6 +49,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
               )
             : null,
       ),
+      cursorColor: primaryColor,
       keyboardType: widget.textInputType,
       obscureText: isObscure && widget.isPassword,
     );

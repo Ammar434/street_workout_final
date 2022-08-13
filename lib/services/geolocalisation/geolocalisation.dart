@@ -9,9 +9,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
 import 'package:http/http.dart' as http;
 import 'package:street_workout_final/models/parc.dart';
+import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
 import 'package:street_workout_final/services/firestore_methods/parc_firestore_methods.dart';
 import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
-import 'package:street_workout_final/services/storage/storage_methods.dart';
 import '../../utils/dev.dart';
 
 class Geolocalisation {
@@ -111,7 +111,7 @@ class Geolocalisation {
     Set<Marker> markers = {};
     DocumentSnapshot documentSnapshot = await firebaseFirestore.collection("datas").doc("all_parcs_references").get();
     Map<String, dynamic> map = documentSnapshot.data() as Map<String, dynamic>;
-    Uint8List markerIcon = await StorageMethods().getBytesFromAsset('assets/maps/location_marker.png', 150);
+    Uint8List markerIcon = await FirebaseStorageMethods().getBytesFromAsset('assets/maps/location_marker.png', 150);
 
     BitmapDescriptor bitmapDescriptor = BitmapDescriptor.fromBytes(markerIcon);
     try {

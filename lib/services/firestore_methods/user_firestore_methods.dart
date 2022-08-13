@@ -4,13 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
 import '../../models/custom_user.dart';
-import '../storage/storage_methods.dart';
 
 class UserFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final StorageMethods _storageMethods = StorageMethods();
+  final FirebaseStorageMethods _storageMethods = FirebaseStorageMethods();
 
   Future<CustomUser> findUserByUid(String uid) async {
     CustomUser? user;
@@ -125,6 +125,20 @@ class UserFirestoreMethods {
           'lastPosition': GeoPoint(position.latitude, position.longitude),
         },
       );
+
+      res = "success";
+    } catch (e) {
+      debugPrint(e.toString());
+      res = e.toString();
+    }
+
+    return res;
+  }
+
+  Future<String> deleteUserData() async {
+    String res = "Some error occured";
+    try {
+      _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).delete();
 
       res = "success";
     } catch (e) {

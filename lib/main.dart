@@ -30,11 +30,11 @@ void main() async {
   } else {
     await Firebase.initializeApp();
   }
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,24 +45,18 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
-      designSize: const Size(393, 830),
+      designSize: Size(393, 830),
       builder: (BuildContext context, Widget? child) {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (_) => UserProvider()),
-            ChangeNotifierProvider(
-              create: (context) => ChallengeProvider(
-                evaluator: Provider.of<UserProvider>(context, listen: false).getUser,
-                // favoriteParc: context.read<UserProvider>().getUser.favoriteParc,
-              ),
-            ),
+            ChangeNotifierProvider(create: (context) => ChallengeProvider(evaluator: Provider.of<UserProvider>(context, listen: false).getUser)),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Street Workout Fighter',
             theme: appTheme,
-            home: const AuthenticationHandler(),
-            // home: const ViewAllParcScreen(),
+            home: AuthenticationHandler(),
             routes: routes,
           ),
         );

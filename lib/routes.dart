@@ -8,10 +8,10 @@ import 'package:street_workout_final/screens/application/main_screen.dart';
 import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
 import 'package:street_workout_final/screens/application/start_training/start_training_screen.dart';
 import 'package:street_workout_final/screens/application/view_all_parc/view_all_parc_screen.dart';
-import 'package:street_workout_final/screens/authentication/registration_and_log/login_screen.dart';
-import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_confirm_screen.dart';
-import 'package:street_workout_final/screens/authentication/registration_and_log/recover_password_screen.dart';
-import 'package:street_workout_final/screens/authentication/registration_and_log/register_screen.dart';
+import 'package:street_workout_final/screens/authentication/login_screen/login_screen.dart';
+import 'package:street_workout_final/screens/authentication/recover_password_screen/recover_password_confirm_screen.dart';
+import 'package:street_workout_final/screens/authentication/recover_password_screen/recover_password_screen.dart';
+import 'package:street_workout_final/screens/authentication/register_screen/register_screen.dart';
 
 import 'screens/authentication/user_information_gathering/gender_screen.dart';
 import 'screens/authentication/user_information_gathering/permission_handler_screen.dart';
@@ -24,19 +24,19 @@ Map<String, WidgetBuilder> routes = {
   RegisterScreen.name: (context) => const RegisterScreen(),
   RecoverPasswordScreen.name: (context) => const RecoverPasswordScreen(),
   RecoverPasswordConfirmScreen.name: (context) => const RecoverPasswordConfirmScreen(),
-  WelcomeScreen.name: (context) => const WelcomeScreen(),
-  GenderScreen.name: (context) => const GenderScreen(),
-  UserPersonalDataScreen.name: (context) => const UserPersonalDataScreen(),
+  WelcomeScreen.name: (context) => WelcomeScreen(),
+  GenderScreen.name: (context) => GenderScreen(),
+  UserPersonalDataScreen.name: (context) => UserPersonalDataScreen(),
   PermissionHandlerScreen.name: (context) => const PermissionHandlerScreen(),
-  MainScreen.name: (context) => const MainScreen(),
+  MainScreen.name: (context) => MainScreen(),
   AchievementScreen.name: (context) => const AchievementScreen(),
   PostScreen.name: (context) => const PostScreen(),
-  ChallengeStartScreen.name: (context) => const ChallengeStartScreen(),
-  // AccountSettingsScreen.name: (context) => const AccountSettingsScreen(),
-  StartTrainingScreen.name: (context) => const StartTrainingScreen(),
-  FavoriteParcScreen.name: (context) => const FavoriteParcScreen(),
-  EvaluatorWaittingRoomScreen.name: (context) => const EvaluatorWaittingRoomScreen(),
-  ChallengerWaittinRoomScreen.name: (context) => const ChallengerWaittinRoomScreen(),
-  // SelectChallengeScreen.name: (context) => const SelectChallengeScreen(),
-  ViewAllParcScreen.name: (context) => const ViewAllParcScreen(),
+  ChallengeStartScreen.name: (context) => ChallengeStartScreen(),
+  // AccountSettingsScreen.name: (context) =>   AccountSettingsScreen(),
+  StartTrainingScreen.name: (context) => StartTrainingScreen(),
+  FavoriteParcScreen.name: (context) => FavoriteParcScreen(),
+  EvaluatorWaittingRoomScreen.name: (context) => EvaluatorWaittingRoomScreen(),
+  ChallengerWaittinRoomScreen.name: (context) => ChallengerWaittinRoomScreen(),
+  // SelectChallengeScreen.name: (context) =>   SelectChallengeScreen(),
+  ViewAllParcScreen.name: (context) => ViewAllParcScreen(),
 };

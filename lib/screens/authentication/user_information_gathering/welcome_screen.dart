@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../../services/authentication/authentication_method.dart';
+import 'package:street_workout_final/services/secure_storage/secure_storage_methods.dart';
 import '../../../widgets/loading_widget.dart';
 import 'gender_screen.dart';
-import '../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
-  static const String name = "WelcomeScreen";
+  static String name = "WelcomeScreen";
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
@@ -21,8 +21,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     setState(() {
       isLoading = true;
     });
-    userName = await AuthenticationMethod().getUserNameFromSecureStorage() ??
-        "UNKNOWN";
+    userName = await SecureStorageMethods().getUserNameFromSecureStorage();
     setState(() {
       isLoading = false;
     });
@@ -40,9 +39,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         body: isLoading
-            ? const LoadingWidget()
+            ? LoadingWidget()
             : Padding(
-                padding: const EdgeInsets.all(kPaddingValue),
+                padding: EdgeInsets.all(kPaddingValue),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

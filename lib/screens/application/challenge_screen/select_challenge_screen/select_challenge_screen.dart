@@ -12,7 +12,7 @@ import 'package:street_workout_final/widgets/app_bar.dart';
 import 'package:street_workout_final/widgets/loading_widget.dart';
 
 class SelectChallengeScreen extends StatelessWidget {
-  const SelectChallengeScreen({Key? key, required this.evaluatorId}) : super(key: key);
+  SelectChallengeScreen({Key? key, required this.evaluatorId}) : super(key: key);
   final String evaluatorId;
   static String name = "SelectChallengeScreen";
   @override
@@ -31,7 +31,7 @@ class SelectChallengeScreen extends StatelessWidget {
           future: RewardsFirestoreMethods().getRewardsStrengthSnapshot(),
           builder: (context, AsyncSnapshot<RewardsCategory> rewardsStrenghCategory) {
             if (rewardsStrenghCategory.connectionState == ConnectionState.waiting) {
-              return const Center(child: LoadingWidget());
+              return Center(child: LoadingWidget());
             }
             for (Reward rewards in rewardsStrenghCategory.data!.rewardsList) {
               if (!currentUser.rewards.contains(rewards.id)) {
@@ -40,7 +40,7 @@ class SelectChallengeScreen extends StatelessWidget {
             }
 
             return Padding(
-              padding: const EdgeInsets.all(kPaddingValue),
+              padding: EdgeInsets.all(kPaddingValue),
               child: ListView.builder(
                 itemCount: listRewards.length,
                 shrinkWrap: true,

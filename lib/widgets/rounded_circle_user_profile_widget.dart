@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RoundedCircleUserProfileWidget extends StatelessWidget {
-  const RoundedCircleUserProfileWidget({
+  RoundedCircleUserProfileWidget({
     Key? key,
     this.gradient,
     required this.radius,
@@ -15,13 +15,13 @@ class RoundedCircleUserProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: const EdgeInsets.all(8),
+      // padding:   EdgeInsets.all(8),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: gradient,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: EdgeInsets.all(4.0),
         child: CircleAvatar(
           radius: radius,
           backgroundImage: NetworkImage(

@@ -6,7 +6,7 @@ import 'package:street_workout_final/utils/constants.dart';
 import 'package:street_workout_final/widgets/app_bar.dart';
 
 class ChallengerWaittingRoomBody extends StatefulWidget {
-  const ChallengerWaittingRoomBody({Key? key}) : super(key: key);
+  ChallengerWaittingRoomBody({Key? key}) : super(key: key);
   @override
   State<ChallengerWaittingRoomBody> createState() => _ChallengerWaittingRoomBodyState();
 }
@@ -18,9 +18,9 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
   late Future t;
   Widget _renderWidget() {
     if (flag) {
-      return const ChallengeIsStartWidget();
+      return ChallengeIsStartWidget();
     } else {
-      return const Text(
+      return Text(
         "The athlete who was to be evaluated failed to join the challenge. Please try again.",
         textAlign: TextAlign.center,
         key: Key("2"),
@@ -40,7 +40,7 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
       animationController.stop();
       setState(() {
         flag = !flag;
-        Future.delayed(const Duration(seconds: 5)).whenComplete(
+        Future.delayed(Duration(seconds: 5)).whenComplete(
           () => Navigator.of(context).pop(),
         );
       });
@@ -75,7 +75,7 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
               transitionBuilder: (Widget child, Animation<double> animation) {
                 return ScaleTransition(scale: animation, child: child);
               },
-              duration: const Duration(seconds: 1),
+              duration: Duration(seconds: 1),
               child: _renderWidget(),
             ),
           ),
@@ -83,7 +83,7 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text(
+            child: Text(
               "Stop rating",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -92,7 +92,7 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
               ),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: kPaddingValue,
           ),
         ],

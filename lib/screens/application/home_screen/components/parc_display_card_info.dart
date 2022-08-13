@@ -4,7 +4,7 @@ import '../../../../models/custom_user.dart';
 import '../../profile_screen/profile_screen.dart';
 
 import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class ParcDisplayCardInfo extends StatelessWidget {
   const ParcDisplayCardInfo({
@@ -69,7 +69,7 @@ class ParcDisplayCardInfo extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(kPaddingValue),
+          padding: EdgeInsets.all(kPaddingValue),
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -81,7 +81,7 @@ class ParcDisplayCardInfo extends StatelessWidget {
                   color: Colors.white70,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: kPaddingValue,
               ),
               Column(
@@ -110,9 +110,7 @@ class ParcDisplayCardInfo extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      champion.userName == "unknown"
-                          ? "No champion yet"
-                          : champion.userName,
+                      champion.userName == "unknown" ? "No champion yet" : champion.userName,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PostForExistantParc {
-  const PostForExistantParc({
+  PostForExistantParc({
     required this.postId,
     required this.userUidWhoPublish,
     required this.datePublished,
@@ -24,8 +24,7 @@ class PostForExistantParc {
         "isPublished": isPublished,
       };
 
-  static PostForExistantParc postFromSnapshot(
-      DocumentSnapshot documentSnapshot) {
+  static PostForExistantParc postFromSnapshot(DocumentSnapshot documentSnapshot) {
     var snapshot = documentSnapshot.data() as Map<String, dynamic>;
     return PostForExistantParc(
       postId: snapshot['postId'],

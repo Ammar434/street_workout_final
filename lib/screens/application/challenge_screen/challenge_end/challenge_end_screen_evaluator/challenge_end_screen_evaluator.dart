@@ -9,7 +9,7 @@ import 'package:street_workout_final/utils/constants.dart';
 import '../../challenge_start/challenge_start_screen.dart';
 
 class ChallengeEndScreenEvaluator extends StatelessWidget {
-  const ChallengeEndScreenEvaluator({Key? key}) : super(key: key);
+  ChallengeEndScreenEvaluator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +21,11 @@ class ChallengeEndScreenEvaluator extends StatelessWidget {
             onTap: () {
               Navigator.pushNamedAndRemoveUntil(context, ChallengeStartScreen.name, (route) => true);
             },
-            child: const Center(
+            child: Center(
               child: FaIcon(FontAwesomeIcons.xmark),
             ),
           ),
-          actions: const [
+          actions: [
             Center(
               child: Padding(
                 padding: EdgeInsets.only(right: 10),
@@ -41,27 +41,27 @@ class ChallengeEndScreenEvaluator extends StatelessWidget {
               "https://assets9.lottiefiles.com/packages/lf20_36zspn0e.json",
               repeat: true,
             ),
-            const SizedBox(
+            SizedBox(
               height: kPaddingValue,
             ),
             Text(
               "You're the best ${currentUser.userName}!",
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: kDefaultTitleSize,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Text(
+            Text(
               "Always remmenber",
               style: TextStyle(
                 fontSize: kDefaultTitleSize,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: kPaddingValue,
             ),
-            const Text(
+            Text(
               "You just raised yourself by lifting others.",
               textAlign: TextAlign.center,
               style: TextStyle(

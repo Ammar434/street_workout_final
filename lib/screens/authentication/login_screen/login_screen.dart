@@ -1,15 +1,15 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:street_workout_final/authentication_handler.dart';
+import 'package:street_workout_final/screens/authentication/recover_password_screen/recover_password_screen.dart';
 import 'package:street_workout_final/widgets/snackbar.dart';
 import '../../../services/authentication/authentication_method.dart';
-import 'recover_password_screen.dart';
-import '../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 import '../../../widgets/text_field_input.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String name = "loginScreen";
+  static String name = "loginScreen";
 
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Navigator.pop(context);
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const AuthenticationHandler(),
+          builder: (context) => AuthenticationHandler(),
         ),
       );
     } else {
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         key: _scaffoldKey,
         body: Padding(
-          padding: const EdgeInsets.all(kPaddingValue),
+          padding: EdgeInsets.all(kPaddingValue),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
             )
           ],
         ),
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
         RoundedButton(
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
           hintText: "Email",
           textInputType: TextInputType.emailAddress,
         ),
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
         TextFieldInput(
@@ -139,11 +139,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Column buildColumn() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         SizedBox(
           height: kPaddingValue,
         ),
-        Text(
+        const Text(
           "Let's sign you in",
           style: TextStyle(
             fontWeight: FontWeight.w600,
@@ -151,24 +151,24 @@ class _LoginScreenState extends State<LoginScreen> {
             fontSize: 35,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        Text(
+        const Text(
           "Welcome back",
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.w400,
           ),
         ),
-        Text(
+        const Text(
           "You've been missed!",
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.w400,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 64,
         ),
       ],

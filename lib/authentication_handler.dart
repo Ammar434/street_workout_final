@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/widgets/loading_widget.dart';
 import 'responsive/mobile_screen_layout.dart';
 import 'responsive/responsive_layout.dart';
 import 'responsive/web_screen_layout.dart';
-import 'screens/authentication/auth_screen.dart';
-import 'utils/colors.dart';
+import 'screens/authentication/auth_screen/auth_screen.dart';
 
 class AuthenticationHandler extends StatelessWidget {
-  const AuthenticationHandler({
+  AuthenticationHandler({
     Key? key,
   }) : super(key: key);
 
@@ -18,12 +18,12 @@ class AuthenticationHandler extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           if (snapshot.hasData) {
-            return const ResponsiveLayout(
+            return ResponsiveLayout(
               webScreenLayout: WebScreenLayout(),
               mobileScreenLayout: MobileScreenLayout(),
             );
           } else if (snapshot.hasError) {
-            return const Center(
+            return Center(
               child: Text(
                 "Some internal error happen please contact the developper",
               ),
@@ -31,13 +31,11 @@ class AuthenticationHandler extends StatelessWidget {
           }
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: primaryColor,
-            ),
+          return Center(
+            child: LoadingWidget(),
           );
         }
-        return const AuthScreen();
+        return AuthScreen();
       },
     );
   }

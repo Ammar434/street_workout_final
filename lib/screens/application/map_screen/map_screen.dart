@@ -9,7 +9,7 @@ import 'package:street_workout_final/widgets/loading_widget.dart';
 import '../parc_info/parc_info_screen.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key}) : super(key: key);
+  MapScreen({Key? key}) : super(key: key);
 
   @override
   State<MapScreen> createState() => _MapScreenState();
@@ -50,7 +50,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? const LoadingWidget()
+        ? LoadingWidget()
         : SizedBox(
             height: MediaQuery.of(context).size.height,
             width: double.infinity,
@@ -75,6 +75,6 @@ class _MapScreenState extends State<MapScreen> {
             ),
           );
 
-    // return const AnimatedMarkersMap();
+    // return   AnimatedMarkersMap();
   }
 }

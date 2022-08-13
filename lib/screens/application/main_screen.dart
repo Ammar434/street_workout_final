@@ -8,8 +8,8 @@ import 'body.dart';
 final ZoomDrawerController z = ZoomDrawerController();
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
-  static const String name = "MainScreen";
+  MainScreen({Key? key}) : super(key: key);
+  static String name = "MainScreen";
 
   @override
   MainScreenState createState() => MainScreenState();
@@ -27,10 +27,10 @@ class MainScreenState extends State<MainScreen> {
       menuBackgroundColor: backgroundColor,
       openCurve: Curves.fastOutSlowIn,
       slideWidth: MediaQuery.of(context).size.width * 0.65,
-      duration: const Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 500),
       angle: 0.0,
-      mainScreen: const Body(),
-      menuScreen: const DrawerBody(),
+      mainScreen: Body(),
+      menuScreen: DrawerBody(),
     );
   }
 }

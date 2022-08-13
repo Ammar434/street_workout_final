@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class StartTrainingScreen extends StatelessWidget {
-  const StartTrainingScreen({Key? key}) : super(key: key);
+  StartTrainingScreen({Key? key}) : super(key: key);
   static String name = "StartTrainingScreen";
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,7 @@ class StartTrainingScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text("We will develod this screen soon"),
           ],
         ),

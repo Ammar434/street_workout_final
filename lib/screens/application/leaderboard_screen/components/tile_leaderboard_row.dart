@@ -5,7 +5,7 @@ import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_circle_user_profile_widget.dart';
 
 class TileLeaderboardRow extends StatelessWidget {
-  const TileLeaderboardRow({
+  TileLeaderboardRow({
     Key? key,
     required this.index,
     this.gradient,
@@ -17,14 +17,14 @@ class TileLeaderboardRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kSmallPaddingValue),
+      padding: EdgeInsets.symmetric(vertical: kSmallPaddingValue),
       child: Row(
         children: [
           Text(
             index.toString(),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
+          SizedBox(
             width: kPaddingValue,
           ),
           RoundedCircleUserProfileWidget(
@@ -32,22 +32,22 @@ class TileLeaderboardRow extends StatelessWidget {
             radius: kRadiusValue * 2.5,
             imageUrl: leaderboard.userProfileImage,
           ),
-          const SizedBox(
+          SizedBox(
             width: kPaddingValue,
           ),
           SizedBox(
             width: 100,
             child: Text(
               leaderboard.userName,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
-          const Spacer(),
+          Spacer(),
           Text(
             leaderboard.userPoint.toString(),
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),

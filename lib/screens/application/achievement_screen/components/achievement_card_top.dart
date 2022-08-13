@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class AchievementCardTop extends StatelessWidget {
   const AchievementCardTop({
@@ -18,7 +18,7 @@ class AchievementCardTop extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: kPaddingValue),
+          padding: EdgeInsets.only(left: kPaddingValue),
           child: Text(
             title,
             style: const TextStyle(
@@ -31,7 +31,7 @@ class AchievementCardTop extends StatelessWidget {
         SizedBox(
           width: 80,
           child: ClipRRect(
-            borderRadius: const BorderRadius.all(
+            borderRadius: BorderRadius.all(
               Radius.circular(kRadiusValue),
             ),
             child: LinearProgressIndicator(

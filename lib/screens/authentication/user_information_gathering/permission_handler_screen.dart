@@ -1,21 +1,24 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:street_workout_final/widgets/snackbar.dart';
 import '../../../authentication_handler.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
-import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class PermissionHandlerScreen extends StatefulWidget {
   const PermissionHandlerScreen({Key? key}) : super(key: key);
-  static const String name = "PermissionHandlerScreen";
+  static String name = "PermissionHandlerScreen";
 
   @override
   State<PermissionHandlerScreen> createState() => _PermissionHandlerScreenState();
 }
 
 class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
   bool isLoading = false;
   void onTap() async {
     setState(() {
@@ -30,16 +33,16 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const AuthenticationHandler(),
+          builder: (context) => AuthenticationHandler(),
         ),
       );
     } else {
-      // showSnackBar(
-      //   context: context,
-      //   title: "Warning",
-      //   content: responseCode,
-      //   contentType: ContentType.failure,
-      // );
+      customShowSnackBar(
+        title: "Warning",
+        content: responseCode,
+        contentType: ContentType.failure,
+        globalKey: _scaffoldkey,
+      );
     }
     setState(() {
       isLoading = false;
@@ -50,9 +53,10 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldkey,
         extendBodyBehindAppBar: true,
         body: Padding(
-          padding: const EdgeInsets.all(kPaddingValue),
+          padding: EdgeInsets.all(kPaddingValue),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -67,10 +71,6 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
               buildMiddle(context),
               RoundedButton(
                 onTap: onTap,
-                // onTap: () async {
-                //   // await Permission.location.shouldShowRequestRationale;
-                //   onTap();
-                // },
                 text: "Complete",
                 isLoading: isLoading,
               ),

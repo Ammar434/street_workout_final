@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/screens/application/settings_screen/components/custom_alert_dialog.dart';
+import 'package:street_workout_final/services/url_launcher.dart';
+import 'package:street_workout_final/utils/icons.dart';
 
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
@@ -10,18 +13,18 @@ import 'components/settings_group.dart';
 import 'components/settings_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     CustomUser customUser = Provider.of<UserProvider>(context).getUser;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kPaddingValue),
+      padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
       child: ListView(
         shrinkWrap: true,
         children: [
-          const SizedBox(
+          SizedBox(
             height: kPaddingValue,
           ),
           SettingsGroup(
@@ -36,8 +39,7 @@ class SettingsScreen extends StatelessWidget {
                 press: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) =>
-                          AccountSettingsScreen(customUser: customUser),
+                      builder: (context) => AccountSettingsScreen(customUser: customUser),
                     ),
                   );
                 },
@@ -58,8 +60,6 @@ class SettingsScreen extends StatelessWidget {
                 isArrow: false,
                 press: () async {
                   await AuthenticationMethod().signOut();
-
-                  // context.read<AuthenticationService>().signOut();
                 },
               ),
               SettingsTile(
@@ -69,9 +69,10 @@ class SettingsScreen extends StatelessWidget {
                 text2: "",
                 isArrow: false,
                 press: () {
-                  // context.read<AuthenticationService>().deleteUser();
-
-                  // Navigator.of(context).pop();
+                  showDialog(
+                    context: context,
+                    builder: (context) => CustomDialogBox(),
+                  );
                 },
               ),
             ],
@@ -94,6 +95,31 @@ class SettingsScreen extends StatelessWidget {
                 text2: "",
                 isArrow: false,
                 press: () {},
+              ),
+            ],
+          ),
+          SettingsGroup(
+            textSettingGroup: 'Donate us',
+            widgetList: [
+              SettingsTile(
+                icon: Icons.paypal_rounded,
+                iconBackgroundColor: Color(0xff009cde),
+                text1: "Donate with paypal",
+                text2: "",
+                isArrow: false,
+                press: () async {
+                  await openUrl(context, paypalUrl);
+                },
+              ),
+              SettingsTile(
+                icon: CustomIcon.ko_fi,
+                iconBackgroundColor: Color(0xffFF5F5F),
+                text1: "Support me on Ko-fi",
+                text2: "",
+                isArrow: false,
+                press: () async {
+                  await openUrl(context, paypalUrl);
+                },
               ),
             ],
           ),

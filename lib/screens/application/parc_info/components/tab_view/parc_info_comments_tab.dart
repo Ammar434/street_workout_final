@@ -31,7 +31,7 @@ class _ParcInfoCommentsTabState extends State<ParcInfoCommentsTab> {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.all(kSmallPaddingValue),
+              padding: EdgeInsets.all(kSmallPaddingValue),
               child: ListTile(
                 tileColor: tertiaryColor.withOpacity(0.1),
                 shape: RoundedRectangleBorder(
@@ -58,8 +58,7 @@ class _ParcInfoCommentsTabState extends State<ParcInfoCommentsTab> {
 
   Padding buildBottomNavigationBar(UserProvider userProvider) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: kSmallPaddingValue, vertical: kPaddingValue),
+      padding: EdgeInsets.symmetric(horizontal: kSmallPaddingValue, vertical: kPaddingValue),
       child: TextField(
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -71,7 +70,7 @@ class _ParcInfoCommentsTabState extends State<ParcInfoCommentsTab> {
             borderRadius: BorderRadius.circular(30.0),
             borderSide: const BorderSide(color: tertiaryColor),
           ),
-          contentPadding: const EdgeInsets.all(kPaddingValue),
+          contentPadding: EdgeInsets.all(kPaddingValue),
           hintText: 'Add a comment',
           prefixIcon: Container(
             margin: const EdgeInsets.all(4.0),

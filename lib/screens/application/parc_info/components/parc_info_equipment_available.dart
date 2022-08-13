@@ -3,15 +3,14 @@ import '../../../../models/material_available.dart';
 import '../../../../../utils/colors.dart';
 
 class ParcInfoEquipmentAvailableRow extends StatelessWidget {
-  const ParcInfoEquipmentAvailableRow({
+  ParcInfoEquipmentAvailableRow({
     Key? key,
     required this.list,
   }) : super(key: key);
   final List list;
   @override
   Widget build(BuildContext context) {
-    List<MaterialAvailable> listMaterialAvailable =
-        MaterialAvailable.buildRow(list);
+    List<MaterialAvailable> listMaterialAvailable = MaterialAvailable.buildRow(list);
     return SizedBox(
       height: 70,
       child: ListView.builder(
@@ -21,7 +20,7 @@ class ParcInfoEquipmentAvailableRow extends StatelessWidget {
           return AspectRatio(
             aspectRatio: 1,
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8.0),
+              margin: EdgeInsets.symmetric(horizontal: 8.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: secondaryColor.withOpacity(0.6),

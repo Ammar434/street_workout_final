@@ -32,6 +32,12 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
+        },
+        {
+            "name": "Flutter profile mode",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
         }
     ],
     "compounds": [

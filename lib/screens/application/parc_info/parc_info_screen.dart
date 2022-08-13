@@ -20,12 +20,12 @@ import '../../../widgets/horizontal_line.dart';
 import '../../../widgets/loading_widget.dart';
 
 class ParcInfoScreen extends StatefulWidget {
-  const ParcInfoScreen({
+  ParcInfoScreen({
     Key? key,
     required this.parcId,
     this.parc,
   }) : super(key: key);
-  static const String name = "ParcInfoScreen";
+  static String name = "ParcInfoScreen";
   final String parcId;
   final Parc? parc;
 
@@ -33,8 +33,7 @@ class ParcInfoScreen extends StatefulWidget {
   State<ParcInfoScreen> createState() => _ParcInfoScreenState();
 }
 
-class _ParcInfoScreenState extends State<ParcInfoScreen>
-    with SingleTickerProviderStateMixin {
+class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   late ParcFirestoreMethods parcFirestoreMethods;
@@ -68,8 +67,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen>
     }
     champion = await userFirestoreMethods.findUserByUid(parc.userUidChampion);
     listUrlImage = await parcFirestoreMethods.getAllImageOfParc(widget.parcId);
-    listCustomUser =
-        await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
+    listCustomUser = await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
     setState(() {
       isLoading = false;
     });
@@ -91,10 +89,9 @@ class _ParcInfoScreenState extends State<ParcInfoScreen>
     bool isMyFavoriteParc = false;
 
     if (isLoading) {
-      return const LoadingWidget();
+      return LoadingWidget();
     } else {
-      isMyFavoriteParc =
-          parc.athletesWhoTrainInThisParc.contains(customUser.uid);
+      isMyFavoriteParc = parc.athletesWhoTrainInThisParc.contains(customUser.uid);
 
       return SafeArea(
         child: Scaffold(
@@ -104,7 +101,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen>
               onTap: () {
                 Navigator.pop(context);
               },
-              child: const Center(
+              child: Center(
                 child: FaIcon(
                   FontAwesomeIcons.chevronLeft,
                   size: kDefaultIconAppBar,
@@ -113,7 +110,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen>
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: PopUpMenuWidget(
                   function1: () async {
                     Navigator.pop(context);
@@ -122,8 +119,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen>
                     setState(() {
                       isLoading2 = true;
                     });
-                    String res =
-                        await parcFirestoreMethods.uploadImageToAExistingParc(
+                    String res = await parcFirestoreMethods.uploadImageToAExistingParc(
                       file: file,
                       parcId: widget.parcId,
                       userUidWhoPublish: customUser.uid,
@@ -154,8 +150,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen>
                     setState(() {
                       isLoading2 = true;
                     });
-                    String res =
-                        await parcFirestoreMethods.addOrRemoveAthleteToAParc(
+                    String res = await parcFirestoreMethods.addOrRemoveAthleteToAParc(
                       parcUid: widget.parcId,
                       parcName: parc.name,
                       athleteUid: customUser.uid,
@@ -164,8 +159,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen>
                       isLoading2 = false;
                     });
                     if (res == "success") {
-                      listCustomUser = await parcFirestoreMethods
-                          .getAllAthleteOfParc(widget.parcId);
+                      listCustomUser = await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
                       setState(() {});
                       customShowSnackBar(
                         title: "Good job",
@@ -192,12 +186,12 @@ class _ParcInfoScreenState extends State<ParcInfoScreen>
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Padding(
-              padding: const EdgeInsets.all(kRadiusValue),
+              padding: EdgeInsets.all(kRadiusValue),
               child: ListView(
                 // shrinkWrap: true,
                 children: [
                   ParcInfoTopPart(parc: parc, champion: champion),
-                  const HorizontalLine(),
+                  HorizontalLine(),
                   ParcInfoTabDisplay(
                     parc: parc,
                     tabController: _tabController,

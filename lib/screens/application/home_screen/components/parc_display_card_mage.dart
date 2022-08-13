@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class ParcDisplayCardImage extends StatelessWidget {
   const ParcDisplayCardImage({

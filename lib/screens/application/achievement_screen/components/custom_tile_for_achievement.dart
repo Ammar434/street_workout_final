@@ -9,7 +9,7 @@ import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 class CustomTileForAchievement extends StatelessWidget {
-  const CustomTileForAchievement({
+  CustomTileForAchievement({
     Key? key,
     required this.rewards,
     required this.height,
@@ -24,24 +24,24 @@ class CustomTileForAchievement extends StatelessWidget {
     bool isAchievementComplete = currentUser.rewards.contains(rewards.id);
     return GestureDetector(
       onTap: () {
-        const CustomDialogBodyWidget();
+        CustomDialogBodyWidget();
       },
       child: Container(
-        padding: const EdgeInsets.all(kPaddingValue / 2),
-        margin: const EdgeInsets.symmetric(vertical: kPaddingValue / 2),
+        padding: EdgeInsets.all(kPaddingValue / 2),
+        margin: EdgeInsets.symmetric(vertical: kPaddingValue / 2),
         height: height,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
-          color: const Color(0xff181A1E),
+          color: Color(0xff181A1E),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               children: [
-                const Icon(Icons.drag_indicator_rounded),
-                const SizedBox(
+                Icon(Icons.drag_indicator_rounded),
+                SizedBox(
                   width: kSmallPaddingValue,
                 ),
                 AspectRatio(
@@ -52,7 +52,7 @@ class CustomTileForAchievement extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
+            SizedBox(
               width: kSmallPaddingValue,
             ),
             Column(
@@ -61,14 +61,14 @@ class CustomTileForAchievement extends StatelessWidget {
               children: [
                 Text(
                   rewards.title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
                 ),
                 Text(
                   rewards.subtitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     // fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.w200,
                     fontSize: 14,
@@ -76,14 +76,14 @@ class CustomTileForAchievement extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(),
+            Spacer(),
             isAchievementComplete
-                ? const FaIcon(
+                ? FaIcon(
                     FontAwesomeIcons.solidCircleCheck,
                     size: kDefaultIconAppBar,
                     color: primaryColor,
                   )
-                : const FaIcon(
+                : FaIcon(
                     FontAwesomeIcons.circleCheck,
                     size: kDefaultIconAppBar,
                   ),

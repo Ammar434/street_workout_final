@@ -6,10 +6,10 @@ import 'package:street_workout_final/services/firestore_methods/rewards_firestor
 import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/widgets/loading_widget.dart';
 
-import '../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
-const double categoryHeight = 30;
-const double rewardsTileHeight = 80;
+double categoryHeight = 30;
+double rewardsTileHeight = 80;
 
 class AchievementScreen extends StatefulWidget {
   const AchievementScreen({Key? key}) : super(key: key);
@@ -61,7 +61,7 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.chevronLeft,
                 size: kDefaultIconAppBar,
               ),
@@ -73,7 +73,7 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
           future: RewardsFirestoreMethods().getRewardsSnapshot(),
           builder: (context, AsyncSnapshot<List<RewardsCategory>> list) {
             if (list.connectionState == ConnectionState.waiting) {
-              return const Center(child: LoadingWidget());
+              return Center(child: LoadingWidget());
             }
             listRewardCategory = list.data!;
 
@@ -83,7 +83,7 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
             );
 
             return Padding(
-              padding: const EdgeInsets.all(kPaddingValue),
+              padding: EdgeInsets.all(kPaddingValue),
               child: Column(
                 children: [
                   TabBar(
@@ -125,7 +125,7 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
                                 height: categoryHeight,
                                 child: Text(
                                   list.data![index].name,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: kDefaultTitleSize * 0.75,
                                   ),

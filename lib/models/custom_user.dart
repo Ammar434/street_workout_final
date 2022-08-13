@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CustomUser {
-  const CustomUser({
+  CustomUser({
     required this.uid,
     required this.userName,
     required this.profileImage,

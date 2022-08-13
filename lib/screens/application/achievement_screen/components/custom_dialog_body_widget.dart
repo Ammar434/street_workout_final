@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
-
+import 'package:street_workout_final/utils/constants.dart';
 import 'alert_dialog_button_widget.dart';
 
 class CustomDialogBodyWidget extends StatelessWidget {
@@ -33,11 +32,9 @@ class CustomDialogBodyWidget extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: primaryColor.withOpacity(0.5),
                       radius: 80,
-                      child: Lottie.network(
-                          "https://assets7.lottiefiles.com/packages/lf20_touohxv0.json",
-                          repeat: false),
+                      child: Lottie.network("https://assets7.lottiefiles.com/packages/lf20_touohxv0.json", repeat: false),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: kPaddingValue,
                     ),
                     const Text(
@@ -59,8 +56,8 @@ class CustomDialogBodyWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              // const Spacer(),
-              const AlertDialogButtonWidget(),
+              //   Spacer(),
+              AlertDialogButtonWidget(),
             ],
           ),
         ),

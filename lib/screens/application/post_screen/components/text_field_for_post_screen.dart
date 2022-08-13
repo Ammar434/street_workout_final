@@ -15,12 +15,11 @@ class TextFIeldForPostScreen extends StatelessWidget {
     return TextField(
       controller: textEditingControllerParcName,
       style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 15),
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: "Enter parc name",
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
+        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: tertiaryColor),
+          borderSide: const BorderSide(color: tertiaryColor),
           borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
         ),
       ),

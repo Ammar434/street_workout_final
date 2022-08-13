@@ -3,7 +3,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../screens/application/parc_info/parc_info_screen.dart';
 import '../services/search/search_methods.dart';
-import '../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 import '../utils/colors.dart';
 
@@ -13,7 +13,7 @@ class SearchFieldWidgetForParc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TypeAheadField(
-      suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+      suggestionsBoxDecoration: SuggestionsBoxDecoration(
         color: iconColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
@@ -23,19 +23,16 @@ class SearchFieldWidgetForParc extends StatelessWidget {
       ),
       textFieldConfiguration: TextFieldConfiguration(
         autofocus: false,
-        style: DefaultTextStyle.of(context)
-            .style
-            .copyWith(fontStyle: FontStyle.italic),
-        decoration: const InputDecoration(
+        style: DefaultTextStyle.of(context).style.copyWith(fontStyle: FontStyle.italic),
+        decoration: InputDecoration(
           hintText: "Find your parc by typing name or address",
-          suffixIcon: Icon(
+          suffixIcon: const Icon(
             Icons.search,
             color: secondaryColor,
           ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
+          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: tertiaryColor),
+            borderSide: const BorderSide(color: tertiaryColor),
             borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
           ),
         ),
@@ -46,10 +43,10 @@ class SearchFieldWidgetForParc extends StatelessWidget {
       itemBuilder: (BuildContext context, Map<String, dynamic> suggestion) {
         return ListTile(
           tileColor: Colors.transparent,
-          leading: const SizedBox(
+          leading: SizedBox(
             height: double.maxFinite,
             width: kPaddingValue,
-            child: Align(
+            child: const Align(
               alignment: Alignment.centerLeft,
               child: FaIcon(
                 FontAwesomeIcons.dumbbell,

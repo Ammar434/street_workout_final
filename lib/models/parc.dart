@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Parc {
-  const Parc({
+  Parc({
     required this.postId,
     required this.userUidWhoPublish,
     required this.parcId,

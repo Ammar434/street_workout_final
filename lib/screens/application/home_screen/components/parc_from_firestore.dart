@@ -9,7 +9,7 @@ import 'parc_display_card.dart';
 import '../../../../widgets/loading_widget.dart';
 
 class ParcFromFirestore extends StatelessWidget {
-  const ParcFromFirestore({
+  ParcFromFirestore({
     Key? key,
   }) : super(key: key);
 
@@ -33,7 +33,7 @@ class ParcFromFirestore extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           if (snapshot.data!.docs.isEmpty) {
-            return const Center(
+            return Center(
               child: Text("No parcs for the moments"),
             );
           }
@@ -41,7 +41,7 @@ class ParcFromFirestore extends StatelessWidget {
 
           return ListView.builder(
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (BuildContext context, int index) {
               Parc parc = Parc.postFromSnapshot(snapshot.data!.docs[index]);
@@ -50,7 +50,7 @@ class ParcFromFirestore extends StatelessWidget {
             },
           );
         }
-        return const SizedBox(
+        return SizedBox(
           height: 400,
           width: double.infinity,
           child: LoadingWidget(),

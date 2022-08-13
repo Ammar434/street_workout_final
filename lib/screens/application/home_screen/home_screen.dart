@@ -17,12 +17,12 @@ class HomeScreen extends StatelessWidget {
       },
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(kPaddingValue),
+          padding: EdgeInsets.all(kPaddingValue),
           child: Column(
             children: [
               const HomeHeader(),
               const SearchFieldWidgetForParc(),
-              const SizedBox(height: kPaddingValue),
+              SizedBox(height: kPaddingValue),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -41,8 +41,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: kPaddingValue),
-              const ParcFromFirestore(),
+              SizedBox(height: kPaddingValue),
+              ParcFromFirestore(),
               const SizedBox(
                 height: 80,
               ),

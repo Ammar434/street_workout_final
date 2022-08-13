@@ -4,7 +4,7 @@ import 'package:street_workout_final/utils/constants.dart';
 import '../../../../utils/colors.dart';
 
 class UserPersonalInformationSettingsScreen extends StatelessWidget {
-  const UserPersonalInformationSettingsScreen({
+  UserPersonalInformationSettingsScreen({
     Key? key,
     required this.child,
   }) : super(key: key);
@@ -13,11 +13,11 @@ class UserPersonalInformationSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(kPaddingValue),
+      padding: EdgeInsets.all(kPaddingValue),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "USER PERSONAL INFORMATION",
             style: TextStyle(
               // color: primaryColor,
@@ -25,7 +25,7 @@ class UserPersonalInformationSettingsScreen extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: kPaddingValue,
           ),
           Container(
@@ -33,7 +33,7 @@ class UserPersonalInformationSettingsScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(kRadiusValue),
               color: tertiaryColor.withOpacity(0.1),
             ),
-            padding: const EdgeInsets.all(kPaddingValue),
+            padding: EdgeInsets.all(kPaddingValue),
             child: child,
           ),
         ],

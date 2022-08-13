@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
-import '../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
@@ -9,17 +9,16 @@ class RoundedButton extends StatelessWidget {
     required this.onTap,
     required this.text,
     this.isLoading = false,
-    this.height = 50,
     this.fontSize = 18,
     this.color = primaryColor,
     this.width = double.infinity,
     this.shouldAnimate = false,
-    // this.secondaryColor = secondaryColor,
+    this.height,
   }) : super(key: key);
   final GestureTapCallback onTap;
   final String text;
   final bool isLoading;
-  final double height;
+  final double? height;
   final double fontSize;
   final Color? color;
   final double? width;
@@ -32,7 +31,7 @@ class RoundedButton extends StatelessWidget {
       child: AnimatedContainer(
         margin: const EdgeInsets.all(6),
         width: width,
-        height: height,
+        height: height ?? kDefaultButtonSize,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
           color: shouldAnimate ? Colors.green : color,

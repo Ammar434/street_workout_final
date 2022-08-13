@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class AlertDialogButtonWidget extends StatelessWidget {
-  const AlertDialogButtonWidget({
+  AlertDialogButtonWidget({
     Key? key,
   }) : super(key: key);
 
@@ -17,7 +17,7 @@ class AlertDialogButtonWidget extends StatelessWidget {
       child: Container(
         height: 50,
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: primaryColor,
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(
@@ -28,7 +28,7 @@ class AlertDialogButtonWidget extends StatelessWidget {
             ),
           ),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
             "Claim",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

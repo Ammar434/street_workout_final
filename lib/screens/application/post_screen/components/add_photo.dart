@@ -5,7 +5,7 @@ import 'image_selected_widget.dart';
 import 'no_image_selected.dart';
 
 class AddPhoto extends StatelessWidget {
-  const AddPhoto({
+  AddPhoto({
     Key? key,
     required this.function1,
     required this.function2,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 
 class SliderWidget extends StatelessWidget {
-  const SliderWidget({
+  SliderWidget({
     Key? key,
     required this.sliderDefaultValue,
     required this.min,
@@ -26,7 +26,7 @@ class SliderWidget extends StatelessWidget {
         children: [
           Text(
             '$sliderName : ${sliderDefaultValue.round()} $sliderUnits',
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),

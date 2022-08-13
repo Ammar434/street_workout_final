@@ -12,7 +12,7 @@ import 'components/drawer_categorie_widget.dart';
 import 'components/drawer_top_widget.dart';
 
 class DrawerBody extends StatefulWidget {
-  const DrawerBody({
+  DrawerBody({
     Key? key,
   }) : super(key: key);
 
@@ -61,10 +61,10 @@ class _DrawerBodyState extends State<DrawerBody> {
             userCity: currentUserCity!,
             isLoading: isLoading,
           ),
-          const HorizontalLine(),
-          const DrawerCategorieWidget(),
-          const HorizontalLine(),
-          const DrawerBottomWidget(),
+          HorizontalLine(),
+          DrawerCategorieWidget(),
+          HorizontalLine(),
+          DrawerBottomWidget(),
         ],
       ),
     );

@@ -13,7 +13,7 @@ class GenderSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(kPaddingValue),
+      padding: EdgeInsets.all(kPaddingValue),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,7 +25,7 @@ class GenderSettingsScreen extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: kPaddingValue,
           ),
           Container(
@@ -41,10 +41,8 @@ class GenderSettingsScreen extends StatelessWidget {
                     onTap: onTap,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: isMale
-                            ? tertiaryColor
-                            : primaryColor.withOpacity(0.75),
-                        borderRadius: const BorderRadius.only(
+                        color: isMale ? tertiaryColor : primaryColor.withOpacity(0.75),
+                        borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(
                             kRadiusValue,
                           ),
@@ -69,10 +67,8 @@ class GenderSettingsScreen extends StatelessWidget {
                     onTap: onTap,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: !isMale
-                            ? tertiaryColor
-                            : primaryColor.withOpacity(0.75),
-                        borderRadius: const BorderRadius.only(
+                        color: !isMale ? tertiaryColor : primaryColor.withOpacity(0.75),
+                        borderRadius: BorderRadius.only(
                           topRight: Radius.circular(
                             kRadiusValue,
                           ),

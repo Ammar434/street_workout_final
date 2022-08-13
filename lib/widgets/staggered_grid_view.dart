@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
-import '../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class StaggeredGridView extends StatelessWidget {
   const StaggeredGridView({
@@ -13,7 +13,7 @@ class StaggeredGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kPaddingValue),
+      padding: EdgeInsets.symmetric(vertical: kPaddingValue),
       child: MasonryGridView.count(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
@@ -57,15 +57,11 @@ class Tile extends StatelessWidget {
         child: Image.network(
           image,
           fit: BoxFit.contain,
-          loadingBuilder: (BuildContext context, Widget child,
-              ImageChunkEvent? loadingProgress) {
+          loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
             if (loadingProgress == null) return child;
             return Center(
               child: CircularProgressIndicator(
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
+                value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
               ),
             );
           },

@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
@@ -22,8 +22,7 @@ class HomeHeader extends StatelessWidget {
           ),
         ),
         DefaultTextStyle(
-          style: const TextStyle(
-              fontWeight: FontWeight.w900, fontSize: kDefaultTitleSize),
+          style: TextStyle(fontWeight: FontWeight.w900, fontSize: kDefaultTitleSize),
           child: AnimatedTextKit(
             totalRepeatCount: 434,
             isRepeatingAnimation: true,

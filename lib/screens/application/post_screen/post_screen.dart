@@ -74,7 +74,7 @@ class _PostScreenState extends State<PostScreen> {
       content = e.toString();
       contentType = ContentType.failure;
     }
-    // await Future.delayed(const Duration(seconds: 3));
+    // await Future.delayed(  Duration(seconds: 3));
 
     setState(() {
       isLoading = false;
@@ -138,7 +138,7 @@ class _PostScreenState extends State<PostScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const FaIcon(
+            icon: FaIcon(
               FontAwesomeIcons.chevronLeft,
               size: kDefaultIconAppBar,
             ),
@@ -150,7 +150,7 @@ class _PostScreenState extends State<PostScreen> {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kPaddingValue),
+            padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
             child: Column(
               children: [
                 AddPhoto(
@@ -163,7 +163,7 @@ class _PostScreenState extends State<PostScreen> {
                     );
                   },
                 ),
-                const SizedBox(
+                SizedBox(
                   height: kPaddingValue,
                 ),
                 Row(
@@ -177,7 +177,7 @@ class _PostScreenState extends State<PostScreen> {
                       ),
                     ),
                     IconButton(
-                      icon: const FaIcon(
+                      icon: FaIcon(
                         FontAwesomeIcons.solidCircleQuestion,
                         size: kDefaultIconsSize / 1.5,
                       ),
@@ -187,26 +187,24 @@ class _PostScreenState extends State<PostScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   height: kPaddingValue,
                 ),
                 TextFIeldForPostScreen(
                   textEditingControllerParcName: textEditingControllerParcName,
                 ),
-                const SizedBox(
+                SizedBox(
                   height: kPaddingValue,
                 ),
                 SearchFieldForPostScreen(
-                  textEditingControllerParcAddress:
-                      textEditingControllerParcAddress,
+                  textEditingControllerParcAddress: textEditingControllerParcAddress,
                   function: (AutocompletePrediction suggestion) {
-                    textEditingControllerParcAddress.text =
-                        suggestion.description!;
+                    textEditingControllerParcAddress.text = suggestion.description!;
                     placeID = suggestion.placeId!;
                   },
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: kPaddingValue),
+                  padding: EdgeInsets.symmetric(vertical: kPaddingValue),
                   child: Column(
                     children: [
                       Row(
@@ -220,7 +218,7 @@ class _PostScreenState extends State<PostScreen> {
                             ),
                           ),
                           IconButton(
-                            icon: const FaIcon(
+                            icon: FaIcon(
                               FontAwesomeIcons.solidCircleQuestion,
                               size: kDefaultIconsSize / 1.5,
                             ),

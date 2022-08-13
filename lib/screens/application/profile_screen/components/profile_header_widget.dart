@@ -6,7 +6,7 @@ import '../../../../utils/constants.dart';
 import '../../../../../widgets/solid_circle_chevron_left.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
-  const ProfileHeaderWidget({
+  ProfileHeaderWidget({
     Key? key,
     required this.profileImage,
     required this.instagramLink,
@@ -20,29 +20,28 @@ class ProfileHeaderWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         // color: Colors.red,
-        gradient: const LinearGradient(colors: [
+        gradient: LinearGradient(colors: [
           Color(0xff232526),
           Color(0xff414345),
         ]),
-        image: DecorationImage(
-            image: NetworkImage(profileImage), fit: BoxFit.fitWidth),
+        image: DecorationImage(image: NetworkImage(profileImage), fit: BoxFit.fitWidth),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(bottom: kPaddingValue),
+        padding: EdgeInsets.only(bottom: kPaddingValue),
         child: Padding(
-          padding: const EdgeInsets.all(kPaddingValue),
+          padding: EdgeInsets.all(kPaddingValue),
           child: Align(
             alignment: Alignment.topCenter,
             child: Row(
               children: [
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
-                  child: const SolidCircleChevronLeft(),
+                  child: SolidCircleChevronLeft(),
                 ),
-                const Spacer(),
+                Spacer(),
                 GestureDetector(
-                  onTap: () => launchInstagramUrl(context, instagramLink),
-                  child: const FaIcon(
+                  onTap: () => openUrl(context, instagramLink),
+                  child: FaIcon(
                     FontAwesomeIcons.instagram,
                     color: Color(0xffE1306C),
                   ),

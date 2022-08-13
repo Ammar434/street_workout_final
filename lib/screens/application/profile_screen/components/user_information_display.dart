@@ -44,7 +44,7 @@ class UserInformationDisplay extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: kPaddingValue),
+          padding: EdgeInsets.only(top: kPaddingValue),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

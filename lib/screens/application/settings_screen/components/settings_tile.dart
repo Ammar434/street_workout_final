@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
 class SettingsTile extends StatelessWidget {
-  const SettingsTile({
+  SettingsTile({
     Key? key,
     required this.isArrow,
     required this.icon,
@@ -13,7 +12,7 @@ class SettingsTile extends StatelessWidget {
     required this.text2,
     required this.press,
   }) : super(key: key);
-  final IconData icon;
+  final icon;
   final Color iconBackgroundColor;
   final String text1;
   final String text2;
@@ -23,19 +22,19 @@ class SettingsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kPaddingValue),
+      padding: EdgeInsets.symmetric(vertical: kPaddingValue),
       child: GestureDetector(
         onTap: press,
         child: Row(
           children: [
             CircleAvatar(
               backgroundColor: iconBackgroundColor,
-              child: FaIcon(
+              child: Icon(
                 icon,
                 color: iconColor,
               ),
             ),
-            const SizedBox(
+            SizedBox(
               width: kPaddingValue,
             ),
             Column(
@@ -43,9 +42,7 @@ class SettingsTile extends StatelessWidget {
               children: [
                 Text(
                   text1,
-                  style: const TextStyle(
-                    // color: primaryColor,
-                    // fontSize: SizeConfig.textMultiplier * 2,
+                  style: TextStyle(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -53,14 +50,14 @@ class SettingsTile extends StatelessWidget {
                   visible: text2.isNotEmpty ? true : false,
                   child: Text(
                     text2,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: secondaryColor,
                     ),
                   ),
                 ),
               ],
             ),
-            const Spacer(),
+            Spacer(),
             Icon(
               isArrow ? Icons.arrow_forward_ios_rounded : null,
               color: secondaryColor,

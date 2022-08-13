@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:ui' as ui;
 
-class StorageMethods {
+class FirebaseStorageMethods {
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
@@ -20,7 +20,7 @@ class StorageMethods {
     Reference ref = firebaseStorage.ref().child(childName).child(firebaseAuth.currentUser!.uid);
 
     if (isPost == true) {
-      String id = const Uuid().v1();
+      String id = Uuid().v1();
       ref = ref.child(id);
     }
     try {
@@ -60,5 +60,21 @@ class StorageMethods {
     ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
     ui.FrameInfo fi = await codec.getNextFrame();
     return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
+  }
+
+  Future<String> deleteUserStorage() async {
+    String res = "Some error occured";
+    try {
+      Reference ref = firebaseStorage.ref().child("profilePics").child(firebaseAuth.currentUser!.uid);
+
+      await ref.delete();
+
+      res = "success";
+    } catch (e) {
+      debugPrint(e.toString());
+      res = e.toString();
+    }
+
+    return res;
   }
 }

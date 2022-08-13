@@ -5,7 +5,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
 class LocationMarker extends StatelessWidget {
-  const LocationMarker({
+  LocationMarker({
     Key? key,
     this.isSelected = false,
   }) : super(key: key);
@@ -16,7 +16,7 @@ class LocationMarker extends StatelessWidget {
     double size = isSelected ? markerSizeExpanded : markerSizeShrink;
     return Center(
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 1500),
+        duration: Duration(milliseconds: 1500),
         curve: Curves.elasticOut,
         child: FaIcon(
           size: size,

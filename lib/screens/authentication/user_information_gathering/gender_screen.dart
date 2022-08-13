@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../../services/authentication/authentication_method.dart';
 import 'user_personal_data_screen.dart';
-import '../../../utils/constants.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 
 class GenderScreen extends StatelessWidget {
-  const GenderScreen({Key? key}) : super(key: key);
-  static const String name = "GenderScreen";
+  GenderScreen({Key? key}) : super(key: key);
+  static String name = "GenderScreen";
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class GenderScreen extends StatelessWidget {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         body: Padding(
-          padding: const EdgeInsets.all(kPaddingValue),
+          padding: EdgeInsets.all(kPaddingValue),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -28,7 +28,7 @@ class GenderScreen extends StatelessWidget {
               ),
               Column(
                 children: [
-                  const Text(
+                  Text(
                     "Tell us about yourself",
                     style: TextStyle(
                       fontSize: 20,
@@ -36,7 +36,7 @@ class GenderScreen extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: kPaddingValue,
                   ),
                   RoundedButton(

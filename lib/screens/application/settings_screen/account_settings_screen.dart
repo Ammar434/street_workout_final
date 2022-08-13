@@ -15,7 +15,7 @@ import 'components/gender_setting_screen.dart';
 import 'components/profile_image_update_setting_screen.dart';
 
 class AccountSettingsScreen extends StatefulWidget {
-  const AccountSettingsScreen({
+  AccountSettingsScreen({
     Key? key,
     required this.customUser,
   }) : super(key: key);
@@ -66,12 +66,12 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                icon: const FaIcon(
+                icon: FaIcon(
                   FontAwesomeIcons.chevronLeft,
                   size: kDefaultIconAppBar,
                 ),
               ),
-              title: const Text("Settings"),
+              title: Text("Settings"),
             ),
             SliverList(
               delegate: SliverChildListDelegate(
@@ -90,7 +90,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                     isMale: isMale,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(kPaddingValue),
+                    padding: EdgeInsets.all(kPaddingValue),
                     child: RoundedButton(
                       isLoading: isLoading,
                       onTap: () async {
@@ -98,8 +98,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                           isLoading = true;
                         });
 
-                        String res =
-                            await UserFirestoreMethods().updateUserData(
+                        String res = await UserFirestoreMethods().updateUserData(
                           age: sliderAgeValue.toInt(),
                           height: sliderHeightValue,
                           weight: sliderWeightValue,

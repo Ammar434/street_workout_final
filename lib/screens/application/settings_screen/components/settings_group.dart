@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../utils/constants.dart';
 
 class SettingsGroup extends StatelessWidget {
-  const SettingsGroup({
+  SettingsGroup({
     Key? key,
     required this.textSettingGroup,
     // required this.isArrow,
@@ -25,19 +25,19 @@ class SettingsGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kPaddingValue),
+      padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             textSettingGroup,
-            style: const TextStyle(
+            style: TextStyle(
               // color: primaryColor,
               // fontSize: SizeConfig.textMultiplier * 2,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           ...List.generate(

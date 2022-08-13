@@ -5,9 +5,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
 class ParcEquipmentSelectableRow extends StatelessWidget {
-  const ParcEquipmentSelectableRow(
-      {Key? key, required this.function, required this.selectedIndex})
-      : super(key: key);
+  const ParcEquipmentSelectableRow({Key? key, required this.function, required this.selectedIndex}) : super(key: key);
 
   final void Function(MaterialAvailable) function;
   final List<MaterialAvailable> selectedIndex;
@@ -32,9 +30,7 @@ class ParcEquipmentSelectableRow extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 8.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: selectedIndex.contains(materialAvailableList[index])
-                      ? primaryColor
-                      : secondaryColor,
+                  color: selectedIndex.contains(materialAvailableList[index]) ? primaryColor : secondaryColor,
                 ),
                 child: Image.asset(
                   materialAvailableList[index].image,

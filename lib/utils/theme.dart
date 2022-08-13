@@ -21,7 +21,7 @@ ThemeData appTheme = ThemeData.dark().copyWith(
     backgroundColor: Colors.transparent,
     elevation: 0,
   ),
-  iconTheme: const IconThemeData(
+  iconTheme: IconThemeData(
     color: iconColor,
     size: kDefaultIconsSize,
   ),

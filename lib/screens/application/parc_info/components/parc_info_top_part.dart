@@ -10,7 +10,7 @@ import 'parc_info_equipment_available.dart';
 import 'parc_main_photo.dart';
 
 class ParcInfoTopPart extends StatelessWidget {
-  const ParcInfoTopPart({
+  ParcInfoTopPart({
     Key? key,
     required this.parc,
     required this.champion,
@@ -25,60 +25,60 @@ class ParcInfoTopPart extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ParcMainPhoto(parc: parc),
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
         Text(
           parc.name,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
             letterSpacing: 1.2,
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: kSmallPaddingValue,
         ),
         Row(
           children: [
-            const FaIcon(
+            FaIcon(
               FontAwesomeIcons.locationDot,
               color: primaryColor,
               size: kDefaultIconsSize / 1.5,
             ),
-            const SizedBox(
+            SizedBox(
               width: kSmallPaddingValue,
             ),
             Text(
               parc.completeAddress,
-              style: const TextStyle(
+              style: TextStyle(
                 // fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
             ),
           ],
         ),
-        const SizedBox(
+        SizedBox(
           height: kPaddingValue,
         ),
-        const Text(
+        Text(
           "About this parc",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: kSmallPaddingValue,
         ),
         ParcInfoEquipmentAvailableRow(
           list: parc.materialAvailable,
         ),
-        const HorizontalLine(),
+        HorizontalLine(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               backgroundColor: primaryColor,
               child: FaIcon(
                 FontAwesomeIcons.trophy,
@@ -86,13 +86,13 @@ class ParcInfoTopPart extends StatelessWidget {
                 color: Colors.white70,
               ),
             ),
-            const SizedBox(
+            SizedBox(
               width: kPaddingValue,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Current Champion",
                   style: TextStyle(
                     fontSize: 15,
@@ -101,10 +101,8 @@ class ParcInfoTopPart extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  champion.userName == "unknown"
-                      ? "No champion yet"
-                      : champion.userName,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  champion.userName == "unknown" ? "No champion yet" : champion.userName,
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
             ),

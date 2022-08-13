@@ -20,7 +20,7 @@ class SearchFieldForPostScreen extends StatelessWidget {
     return TypeAheadField(
       minCharsForSuggestions: 4,
       getImmediateSuggestions: true,
-      suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+      suggestionsBoxDecoration: SuggestionsBoxDecoration(
         color: iconColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
@@ -32,12 +32,11 @@ class SearchFieldForPostScreen extends StatelessWidget {
         controller: textEditingControllerParcAddress,
         autofocus: false,
         style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 15),
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           hintText: "Enter your parc address",
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
+          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: tertiaryColor),
+            borderSide: const BorderSide(color: tertiaryColor),
             borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
           ),
         ),
@@ -46,12 +45,12 @@ class SearchFieldForPostScreen extends StatelessWidget {
         return await Geolocalisation().autocompletQuery(pattern);
       },
       noItemsFoundBuilder: (context) {
-        return const ListTile(
+        return ListTile(
           tileColor: Colors.transparent,
           leading: SizedBox(
             height: double.maxFinite,
             width: kPaddingValue,
-            child: Align(
+            child: const Align(
               alignment: Alignment.centerLeft,
               child: FaIcon(
                 FontAwesomeIcons.locationDot,
@@ -59,7 +58,7 @@ class SearchFieldForPostScreen extends StatelessWidget {
               ),
             ),
           ),
-          title: Text(
+          title: const Text(
             "No place found please try with other word",
             style: TextStyle(
               color: backgroundColor,
@@ -71,10 +70,10 @@ class SearchFieldForPostScreen extends StatelessWidget {
       itemBuilder: (BuildContext context, AutocompletePrediction suggestion) {
         return ListTile(
           tileColor: Colors.transparent,
-          leading: const SizedBox(
+          leading: SizedBox(
             height: double.maxFinite,
             width: kPaddingValue,
-            child: Align(
+            child: const Align(
               alignment: Alignment.centerLeft,
               child: FaIcon(
                 FontAwesomeIcons.locationDot,

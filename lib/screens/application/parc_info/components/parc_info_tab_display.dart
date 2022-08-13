@@ -6,7 +6,7 @@ import '../../../../utils/colors.dart';
 import 'build_athlete_tab.dart';
 
 class ParcInfoTabDisplay extends StatelessWidget {
-  const ParcInfoTabDisplay({
+  ParcInfoTabDisplay({
     Key? key,
     required this.parc,
     required this.tabController,
@@ -23,9 +23,9 @@ class ParcInfoTabDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> myTabs = [
-      const Tab(text: 'Photos'),
-      const Tab(text: 'Athletes'),
-      const Tab(text: "Comments"),
+      Tab(text: 'Photos'),
+      Tab(text: 'Athletes'),
+      Tab(text: "Comments"),
     ];
     return Column(
       children: [
@@ -48,7 +48,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
 
 
 // class ParcInfoTabDisplay extends StatefulWidget {
-//   const ParcInfoTabDisplay({
+//     ParcInfoTabDisplay({
 //     Key? key,
 //     required this.parcId,
 //   }) : super(key: key);
@@ -105,7 +105,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
 //     return isLoading
-//         ? const LoadingWidget()
+//         ?   LoadingWidget()
 //         : Column(
 //             children: [
 //               TabBar(
@@ -123,12 +123,12 @@ class ParcInfoTabDisplay extends StatelessWidget {
 //                         listUserWhoTrainInThisParc.length + 1, (index) {
 //                       if (index == 0) {
 //                         return Padding(
-//                           padding: const EdgeInsets.only(top: kPaddingValue),
+//                           padding:   EdgeInsets.only(top: kPaddingValue),
 //                           child: Text(
 //                             listUserWhoTrainInThisParc.isEmpty
 //                                 ? "No user train in this parc for the moment"
 //                                 : "Total athlete who train in this park ${listUserWhoTrainInThisParc.length}",
-//                             style: const TextStyle(
+//                             style:   TextStyle(
 //                               fontStyle: FontStyle.italic,
 //                               color: secondaryColor,
 //                             ),
@@ -137,7 +137,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
 //                       }
 
 //                       return Padding(
-//                         padding: const EdgeInsets.symmetric(vertical: 5),
+//                         padding:   EdgeInsets.symmetric(vertical: 5),
 //                         child: Row(
 //                           children: [
 //                             CircleAvatar(
@@ -146,12 +146,12 @@ class ParcInfoTabDisplay extends StatelessWidget {
 //                                     .profileImage,
 //                               ),
 //                             ),
-//                             const SizedBox(
+//                               SizedBox(
 //                               width: kPaddingValue,
 //                             ),
 //                             Text(
 //                               listUserWhoTrainInThisParc[index - 1].userName,
-//                               style: const TextStyle(fontSize: 15),
+//                               style:   TextStyle(fontSize: 15),
 //                             )
 //                           ],
 //                         ),
@@ -162,7 +162,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
 //                     children: List.generate(
 //                       20,
 //                       (index) => Padding(
-//                         padding: const EdgeInsets.all(kSmallPaddingValue),
+//                         padding:   EdgeInsets.all(kSmallPaddingValue),
 //                         child: ListTile(
 //                           tileColor: tertiaryColor.withOpacity(0.2),
 //                           shape: RoundedRectangleBorder(
@@ -175,7 +175,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
 //                           ),
 //                           title: Text(
 //                             Faker.instance.name.firstName(),
-//                             style: const TextStyle(
+//                             style:   TextStyle(
 //                               fontWeight: FontWeight.bold,
 //                             ),
 //                           ),

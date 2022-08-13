@@ -4,7 +4,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
 class BuildAthleteTab extends StatelessWidget {
-  const BuildAthleteTab({
+  BuildAthleteTab({
     Key? key,
     required this.listCustomUser,
   }) : super(key: key);
@@ -17,12 +17,10 @@ class BuildAthleteTab extends StatelessWidget {
       children: List.generate(listCustomUser.length + 1, (index) {
         if (index == 0) {
           return Padding(
-            padding: const EdgeInsets.only(top: kPaddingValue),
+            padding: EdgeInsets.only(top: kPaddingValue),
             child: Text(
-              listCustomUser.isEmpty
-                  ? "No user train in this parc for the moment"
-                  : "Total athlete who train in this park ${listCustomUser.length}",
-              style: const TextStyle(
+              listCustomUser.isEmpty ? "No user train in this parc for the moment" : "Total athlete who train in this park ${listCustomUser.length}",
+              style: TextStyle(
                 fontStyle: FontStyle.italic,
                 color: secondaryColor,
               ),
@@ -31,7 +29,7 @@ class BuildAthleteTab extends StatelessWidget {
         }
 
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+          padding: EdgeInsets.symmetric(vertical: 5),
           child: Row(
             children: [
               CircleAvatar(
@@ -39,12 +37,12 @@ class BuildAthleteTab extends StatelessWidget {
                   listCustomUser[index - 1].profileImage,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: kPaddingValue,
               ),
               Text(
                 listCustomUser[index - 1].userName,
-                style: const TextStyle(fontSize: 15),
+                style: TextStyle(fontSize: 15),
               )
             ],
           ),

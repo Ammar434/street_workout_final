@@ -9,7 +9,7 @@ import 'package:street_workout_final/widgets/horizontal_line.dart';
 import 'firebase_animated_list_widget.dart';
 
 class ChallengeIsStartWidget extends StatelessWidget {
-  const ChallengeIsStartWidget({
+  ChallengeIsStartWidget({
     Key? key,
   }) : super(key: key);
 
@@ -17,8 +17,8 @@ class ChallengeIsStartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
     return Container(
-      key: const Key("1"),
-      margin: const EdgeInsets.all(kRadiusValue),
+      key: Key("1"),
+      margin: EdgeInsets.all(kRadiusValue),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kRadiusValue),
         color: tertiaryColor.withOpacity(0.15),
@@ -26,17 +26,17 @@ class ChallengeIsStartWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(
+          SizedBox(
             height: kPaddingValue,
           ),
-          const Text(
+          Text(
             "Finding people arround you",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
             ),
           ),
-          const HorizontalLine(),
+          HorizontalLine(),
           FirebaseAnimatedListWidget(currentUser: currentUser),
         ],
       ),

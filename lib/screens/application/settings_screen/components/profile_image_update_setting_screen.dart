@@ -13,7 +13,7 @@ import '../../../../utils/constants.dart';
 import '../../../../widgets/loading_widget.dart';
 
 class ProfileImageUpdateSettingScreen extends StatefulWidget {
-  const ProfileImageUpdateSettingScreen({
+  ProfileImageUpdateSettingScreen({
     Key? key,
     required this.customUser,
   }) : super(key: key);
@@ -21,12 +21,10 @@ class ProfileImageUpdateSettingScreen extends StatefulWidget {
   final CustomUser customUser;
 
   @override
-  State<ProfileImageUpdateSettingScreen> createState() =>
-      _ProfileImageUpdateSettingScreenState();
+  State<ProfileImageUpdateSettingScreen> createState() => _ProfileImageUpdateSettingScreenState();
 }
 
-class _ProfileImageUpdateSettingScreenState
-    extends State<ProfileImageUpdateSettingScreen> {
+class _ProfileImageUpdateSettingScreenState extends State<ProfileImageUpdateSettingScreen> {
   bool isLoading = false;
 
   String imageUrl = "";
@@ -37,11 +35,11 @@ class _ProfileImageUpdateSettingScreenState
 
     imageUrl = widget.customUser.profileImage;
     return Padding(
-      padding: const EdgeInsets.all(kPaddingValue),
+      padding: EdgeInsets.all(kPaddingValue),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "PHOTO",
             style: TextStyle(
               // color: primaryColor,
@@ -49,7 +47,7 @@ class _ProfileImageUpdateSettingScreenState
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: kPaddingValue,
           ),
           Container(
@@ -57,7 +55,7 @@ class _ProfileImageUpdateSettingScreenState
               borderRadius: BorderRadius.circular(kRadiusValue),
               color: tertiaryColor.withOpacity(0.1),
             ),
-            padding: const EdgeInsets.all(kPaddingValue),
+            padding: EdgeInsets.all(kPaddingValue),
             child: Row(
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -65,9 +63,9 @@ class _ProfileImageUpdateSettingScreenState
                   backgroundImage: NetworkImage(imageUrl),
                   radius: kRadiusValue * 5,
                   backgroundColor: secondaryColor,
-                  child: isLoading ? const LoadingWidget() : null,
+                  child: isLoading ? LoadingWidget() : null,
                 ),
-                const SizedBox(
+                SizedBox(
                   width: kPaddingValue,
                 ),
                 RoundedButton(
