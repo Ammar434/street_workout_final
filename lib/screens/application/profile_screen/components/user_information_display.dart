@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'items_for_row_profile_screen.dart';
 import '../../../../utils/constants.dart';
 
@@ -25,9 +26,9 @@ class UserInformationDisplay extends StatelessWidget {
         Center(
           child: Text(
             name,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w900,
-              fontSize: 18,
+              fontSize: 18.sp,
             ),
             textAlign: TextAlign.center,
           ),
@@ -35,10 +36,10 @@ class UserInformationDisplay extends StatelessWidget {
         Center(
           child: Text(
             favoriteParc,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.italic,
-              fontSize: 16,
+              fontSize: 16.sp,
             ),
             textAlign: TextAlign.center,
           ),
@@ -50,7 +51,7 @@ class UserInformationDisplay extends StatelessWidget {
             children: [
               ItemForRowProfileScreen(
                 value: userContribution,
-                categorieName: "CONTRIBUTIONS",
+                categorieName: "Contributions",
               ),
               ItemForRowProfileScreen(
                 value: userTrainingPoint,

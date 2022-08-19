@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'home_screen/home_screen.dart';
 import 'leaderboard_screen/leaderboard_screen.dart';
 import 'settings_screen/settings_screen.dart';
@@ -51,13 +52,18 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
       ),
       body: IndexedStack(
         index: index,
-        children: [HomeScreen(), MapScreen(), LeaderboardScreen(), SettingsScreen()],
+        children: const [
+          HomeScreen(),
+          MapScreen(),
+          LeaderboardScreen(),
+          SettingsScreen(),
+        ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
         buttonBackgroundColor: primaryColor,
         color: primaryColor,
-        height: 65,
+        height: 56.sp,
         onTap: (value) {
           setState(
             () => index = value,

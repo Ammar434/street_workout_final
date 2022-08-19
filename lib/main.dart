@@ -30,11 +30,11 @@ void main() async {
   } else {
     await Firebase.initializeApp();
   }
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       minTextAdapt: true,
       splitScreenMode: true,
-      designSize: Size(393, 830),
+      designSize: const Size(393, 830),
       builder: (BuildContext context, Widget? child) {
         return MultiProvider(
           providers: [
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Street Workout Fighter',
             theme: appTheme,
-            home: AuthenticationHandler(),
+            home: const AuthenticationHandler(),
             routes: routes,
           ),
         );

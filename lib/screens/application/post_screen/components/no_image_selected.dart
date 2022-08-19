@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NoImageSelectedWidget extends StatelessWidget {
-  NoImageSelectedWidget({
+  const NoImageSelectedWidget({
     Key? key,
     required this.function1,
   }) : super(key: key);
@@ -15,7 +15,7 @@ class NoImageSelectedWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+        children: const [
           Icon(
             FontAwesomeIcons.circlePlus,
             // size: SizeConfig.heightMultiplier * 5,

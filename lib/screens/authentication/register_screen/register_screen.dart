@@ -4,12 +4,11 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:street_workout_final/authentication_handler.dart';
 import 'package:street_workout_final/widgets/snackbar.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/image_picker.dart';
-import '../../../widgets/loading_widget.dart';
 
-import '../user_information_gathering/welcome_screen.dart';
 import 'components/register_screen_body.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -28,7 +27,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordConfirmController = TextEditingController();
   final TextEditingController _userNameController = TextEditingController();
+
   late Uint8List _image;
+  bool isLoading = false;
 
   void onTap() async {
     setState(() {
@@ -43,7 +44,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
     if (!mounted) return;
     if (responseCode == "success") {
-      Navigator.pushNamed(context, WelcomeScreen.name);
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const AuthenticationHandler()),
+        (route) => false,
+      );
     } else {
       customShowSnackBar(
         title: "Warning",
@@ -94,25 +98,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _userNameController.dispose();
   }
 
-  bool isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomInset: true, // set it to false
-      body: isLoading
-          ? LoadingWidget()
-          : RegisterScreenBody(
-              image: _image,
-              selectImage: selectImage,
-              emailController: _emailController,
-              passwordConfirmController: _passwordConfirmController,
-              passwordController: _passwordController,
-              userNameController: _userNameController,
-              isLoading: isLoading,
-              onPageTransition: onTap,
-            ),
+      body: RegisterScreenBody(
+        image: _image,
+        selectImage: selectImage,
+        emailController: _emailController,
+        passwordConfirmController: _passwordConfirmController,
+        passwordController: _passwordController,
+        userNameController: _userNameController,
+        isLoading: isLoading,
+        onPageTransition: onTap,
+      ),
     );
   }
 }

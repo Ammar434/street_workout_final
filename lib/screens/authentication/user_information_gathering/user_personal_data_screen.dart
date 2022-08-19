@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/utils/text_style.dart';
 import '../../../services/authentication/authentication_method.dart';
 import 'permission_handler_screen.dart';
 import '../../../utils/colors.dart';
@@ -7,7 +8,7 @@ import '../../../widgets/rounded_button.dart';
 import '../../../widgets/slider_widget.dart';
 
 class UserPersonalDataScreen extends StatefulWidget {
-  UserPersonalDataScreen({Key? key}) : super(key: key);
+  const UserPersonalDataScreen({Key? key}) : super(key: key);
   static String name = "UserPersonalDataScreen";
 
   @override
@@ -35,15 +36,17 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
           child: Padding(
             padding: EdgeInsets.all(kPaddingValue),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 AspectRatio(
-                  aspectRatio: 3 / 2.5,
+                  aspectRatio: 4 / 3,
                   child: Image.asset(
                     "assets/images/authentication/image3_authentication.png",
                   ),
+                ),
+                SizedBox(
+                  height: kPaddingValue * 2,
                 ),
                 buildMiddle(context),
                 RoundedButton(
@@ -67,8 +70,34 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
     return Column(
       children: [
         buildColumnText(context),
+        SizedBox(
+          height: kPaddingValue,
+        ),
         buildColumnSlider(),
+        SizedBox(
+          height: kPaddingValue,
+        ),
         buildColumnForDefault(context),
+      ],
+    );
+  }
+
+  Column buildColumnText(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          "Tell us about yourself",
+          style: kTextStyleImportance3,
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: kSmallPaddingValue,
+        ),
+        Text(
+          "We'd like the following information to provide more accurate results, such as your final score in a tournament",
+          style: kTextStyleHintTextImportance3,
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }
@@ -119,69 +148,38 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
     );
   }
 
-  Column buildColumnText(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Tell us about yourself",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        Text(
-          "We'd like the following information to provide more accurate results, such as your final score in a tournament",
-          style: TextStyle(
-            color: Theme.of(context).disabledColor,
-            fontSize: 15,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    );
-  }
-
   Column buildColumnForDefault(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          width: 200,
-          child: CheckboxListTile(
-            title: Text(
-              "Use default",
-              style: TextStyle(
-                color: Theme.of(context).disabledColor,
-                fontSize: 15,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            checkColor: Colors.white,
-            activeColor: primaryColor,
-            value: checkedValue,
-            onChanged: (newValue) {
-              sliderWeightValue = 76;
-              sliderAgeValue = 21;
-              sliderHeightValue = 176;
-              setState(
-                () {
-                  checkedValue = newValue!;
-                },
-              );
-            },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+        CheckboxListTile(
+          title: Text(
+            "Use default",
+            style: kTextStyleHintTextImportance4,
           ),
+          checkColor: Colors.white,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
+          activeColor: primaryColor,
+          value: checkedValue,
+
+          onChanged: (newValue) {
+            sliderWeightValue = 76;
+            sliderAgeValue = 21;
+            sliderHeightValue = 176;
+            setState(
+              () {
+                checkedValue = newValue!;
+              },
+            );
+          },
+          controlAffinity: ListTileControlAffinity.platform, //  <-- leading Checkbox
         ),
         Text(
           "If you don't wish to enter your personal information, select the default option and we will use a default value to perform these calculations.",
-          style: TextStyle(
-            color: Theme.of(context).disabledColor,
-            fontSize: 12,
-          ),
+          style: kTextStyleHintTextImportance5,
           textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: kPaddingValue,
         ),
       ],
     );

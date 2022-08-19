@@ -8,18 +8,33 @@ import '../../../../models/parc.dart';
 import 'parc_display_card.dart';
 import '../../../../widgets/loading_widget.dart';
 
-class ParcFromFirestore extends StatelessWidget {
-  ParcFromFirestore({
+class ParcFromFirestore extends StatefulWidget {
+  const ParcFromFirestore({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
+  State<ParcFromFirestore> createState() => _ParcFromFirestoreState();
+}
 
-    GeoHasher geoHasher = GeoHasher();
-    String geoHash = geoHasher.encode(currentUser.lastPosition.longitude, currentUser.lastPosition.latitude, precision: 5);
-    print("geoHAsh$geoHash");
+class _ParcFromFirestoreState extends State<ParcFromFirestore> {
+  late CustomUser currentUser;
+  late GeoHasher geoHasher;
+  String geoHash = "";
+  loadData() async {
+    currentUser = Provider.of<UserProvider>(context, listen: false).getUser;
+    geoHasher = GeoHasher();
+    geoHash = geoHasher.encode(currentUser.lastPosition.longitude, currentUser.lastPosition.latitude, precision: 5);
+  }
+
+  @override
+  void initState() {
+    loadData();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection("parcs")
@@ -31,29 +46,35 @@ class ParcFromFirestore extends StatelessWidget {
           .limit(10)
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.active) {
-          if (snapshot.data!.docs.isEmpty) {
-            return Center(
-              child: Text("No parcs for the moments"),
-            );
-          }
-          List<Parc> listParc = [];
-
-          return ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (BuildContext context, int index) {
-              Parc parc = Parc.postFromSnapshot(snapshot.data!.docs[index]);
-
-              return ParcDisplayCard(parc: parc);
-            },
+        if (snapshot.connectionState == ConnectionState.waiting || snapshot.connectionState == ConnectionState.none) {
+          return const SizedBox(
+            height: 200,
+            width: double.infinity,
+            child: LoadingWidget(),
           );
         }
-        return SizedBox(
-          height: 400,
-          width: double.infinity,
-          child: LoadingWidget(),
+        if (snapshot.data!.docs.isEmpty) {
+          return const SizedBox(
+            height: 200,
+            width: double.infinity,
+            child: Center(
+              child: Text(
+                "No parcs arround you for the moments, please check the See all section",
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+        }
+
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: snapshot.data!.docs.length,
+          itemBuilder: (BuildContext context, int index) {
+            Parc parc = Parc.postFromSnapshot(snapshot.data!.docs[index]);
+
+            return ParcDisplayCard(parc: parc);
+          },
         );
       },
     );

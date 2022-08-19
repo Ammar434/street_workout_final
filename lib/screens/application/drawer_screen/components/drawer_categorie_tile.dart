@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:street_workout_final/utils/constants.dart';
 
 class DrawerCategorieTile extends StatelessWidget {
-  DrawerCategorieTile({
+  const DrawerCategorieTile({
     Key? key,
     required this.iconData,
     required this.text,
@@ -34,7 +34,7 @@ class DrawerCategorieTile extends StatelessWidget {
             ),
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),

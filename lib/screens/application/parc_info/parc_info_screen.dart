@@ -20,7 +20,7 @@ import '../../../widgets/horizontal_line.dart';
 import '../../../widgets/loading_widget.dart';
 
 class ParcInfoScreen extends StatefulWidget {
-  ParcInfoScreen({
+  const ParcInfoScreen({
     Key? key,
     required this.parcId,
     this.parc,
@@ -43,6 +43,8 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
   late Parc parc;
   bool isLoading = true;
   bool isLoading2 = false;
+  bool isMyFavoriteParc = false;
+
   late TabController _tabController;
   int _tabIndex = 0;
   List<String> listUrlImage = [];
@@ -86,10 +88,9 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
   @override
   Widget build(BuildContext context) {
     CustomUser customUser = Provider.of<UserProvider>(context).getUser;
-    bool isMyFavoriteParc = false;
 
     if (isLoading) {
-      return LoadingWidget();
+      return const LoadingWidget();
     } else {
       isMyFavoriteParc = parc.athletesWhoTrainInThisParc.contains(customUser.uid);
 
@@ -110,11 +111,11 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
             ),
             actions: [
               Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: PopUpMenuWidget(
                   function1: () async {
-                    Navigator.pop(context);
                     Uint8List file = await pickImage(ImageSource.gallery);
+                    Navigator.pop(context);
 
                     setState(() {
                       isLoading2 = true;
@@ -124,10 +125,13 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
                       parcId: widget.parcId,
                       userUidWhoPublish: customUser.uid,
                     );
+
                     setState(() {
                       isLoading2 = false;
                     });
+
                     if (res == "success") {
+                      await userFirestoreMethods.incrementUserContribution(1);
                       customShowSnackBar(
                         title: "Thank's",
                         content: "Your content will appear soon",
@@ -145,8 +149,6 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
                   },
                   function2: () {},
                   function3: () async {
-                    Navigator.pop(context);
-
                     setState(() {
                       isLoading2 = true;
                     });
@@ -155,18 +157,17 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
                       parcName: parc.name,
                       athleteUid: customUser.uid,
                     );
-                    setState(() {
-                      isLoading2 = false;
-                    });
                     if (res == "success") {
-                      listCustomUser = await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
-                      setState(() {});
                       customShowSnackBar(
-                        title: "Good job",
-                        content: "You can start compete in this parc",
+                        title: "Update",
+                        content: "Your update has been take",
                         contentType: ContentType.success,
                         globalKey: _scaffoldKey,
                       );
+                      parc = await parcFirestoreMethods.findParcrById(widget.parcId);
+                      isMyFavoriteParc = parc.athletesWhoTrainInThisParc.contains(customUser.uid);
+                      Navigator.pop(context);
+                      listCustomUser = await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
                     } else {
                       customShowSnackBar(
                         title: "Error",
@@ -175,9 +176,14 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
                         globalKey: _scaffoldKey,
                       );
                     }
+
+                    setState(() {
+                      isLoading2 = false;
+                    });
                   },
-                  favorite: isMyFavoriteParc,
+                  isFavoriteParc: isMyFavoriteParc,
                   isLoading: isLoading2,
+                  // isLoading: isLoading2,
                 ),
               ),
             ],
@@ -191,7 +197,6 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
                 // shrinkWrap: true,
                 children: [
                   ParcInfoTopPart(parc: parc, champion: champion),
-                  HorizontalLine(),
                   ParcInfoTabDisplay(
                     parc: parc,
                     tabController: _tabController,

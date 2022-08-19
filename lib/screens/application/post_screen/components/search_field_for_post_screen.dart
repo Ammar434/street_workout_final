@@ -5,6 +5,7 @@ import 'package:google_place/google_place.dart';
 import 'package:street_workout_final/services/geolocalisation/geolocalisation.dart';
 import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
+import 'package:street_workout_final/utils/text_style.dart';
 
 class SearchFieldForPostScreen extends StatelessWidget {
   const SearchFieldForPostScreen({
@@ -19,7 +20,7 @@ class SearchFieldForPostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return TypeAheadField(
       minCharsForSuggestions: 4,
-      getImmediateSuggestions: true,
+      // getImmediateSuggestions: true,
       suggestionsBoxDecoration: SuggestionsBoxDecoration(
         color: iconColor,
         shape: RoundedRectangleBorder(
@@ -31,7 +32,7 @@ class SearchFieldForPostScreen extends StatelessWidget {
       textFieldConfiguration: TextFieldConfiguration(
         controller: textEditingControllerParcAddress,
         autofocus: false,
-        style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 15),
+        style: kTextStyleImportance4,
         decoration: InputDecoration(
           hintText: "Enter your parc address",
           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),

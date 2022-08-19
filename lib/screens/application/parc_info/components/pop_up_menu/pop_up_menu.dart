@@ -11,14 +11,14 @@ class PopUpMenuWidget extends StatelessWidget {
     required this.function1,
     required this.function2,
     required this.function3,
-    required this.favorite,
+    required this.isFavoriteParc,
     required this.isLoading,
   }) : super(key: key);
 
   final void Function() function1;
   final void Function() function2;
   final void Function() function3;
-  final bool favorite;
+  final bool isFavoriteParc;
   final bool isLoading;
 
   @override
@@ -54,8 +54,9 @@ class PopUpMenuWidget extends StatelessWidget {
         child: RoundedButton(
           height: 100,
           onTap: function3,
-          text: favorite ? "Remove as main parc" : "Set as main parc",
-          color: favorite ? primaryColor : tertiaryColor,
+          text: isFavoriteParc ? "Remove as main parc" : "Set as main parc",
+          color: isFavoriteParc ? primaryColor : tertiaryColor,
+          isLoading: isLoading,
         ),
       ),
     ];
@@ -64,11 +65,11 @@ class PopUpMenuWidget extends StatelessWidget {
       PopupMenuItem(
         child: SizedBox(
           height: MediaQuery.of(context).size.height / 4,
-          child: Column(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Center(child: LoadingWidget()),
-              const Text(
+              Text(
                 "Upload in progress",
                 style: TextStyle(color: backgroundColor),
               )
@@ -83,24 +84,18 @@ class PopUpMenuWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(kRadiusValue),
       ),
       constraints: BoxConstraints(
-        // maxWidth: MediaQuery.of(context).size.width / 1.25,
-        // maxHeight: MediaQuery.of(context).size.height / 3,
-        // minHeight: MediaQuery.of(context).size.height / 3,
         minWidth: MediaQuery.of(context).size.width / 1.45,
       ),
       color: iconColor,
       itemBuilder: (BuildContext context) {
-        if (isLoading) {
-          return loadingList;
-        }
         return menuList;
       },
       // icon: icon,
       child: Center(
         child: isLoading
-            ? LoadingWidget()
+            ? SizedBox(width: kDefaultIconAppBar, height: kDefaultIconAppBar, child: const LoadingWidget())
             : FaIcon(
-                FontAwesomeIcons.arrowUpFromBracket,
+                FontAwesomeIcons.barsStaggered,
                 size: kDefaultIconAppBar,
               ),
       ),

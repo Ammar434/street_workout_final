@@ -7,7 +7,7 @@ import 'package:street_workout_final/widgets/app_bar.dart';
 import 'package:street_workout_final/widgets/loading_widget.dart';
 
 class ViewAllParcScreen extends StatefulWidget {
-  ViewAllParcScreen({Key? key}) : super(key: key);
+  const ViewAllParcScreen({Key? key}) : super(key: key);
   static String name = "ViewAllParcScreen";
   @override
   State<ViewAllParcScreen> createState() => _ViewAllParcScreenState();
@@ -45,7 +45,7 @@ class _ViewAllParcScreenState extends State<ViewAllParcScreen> {
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data!.docs.isEmpty) {
-                  return Center(
+                  return const Center(
                     child: Text("No parcs for the moments"),
                   );
                 }
@@ -79,11 +79,7 @@ class _ViewAllParcScreenState extends State<ViewAllParcScreen> {
                   ),
                 );
               }
-              return SizedBox(
-                height: 400,
-                width: double.infinity,
-                child: LoadingWidget(),
-              );
+              return const Center(child: LoadingWidget());
             }),
       ),
     );

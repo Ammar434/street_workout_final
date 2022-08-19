@@ -2,8 +2,8 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:street_workout_final/utils/text_style.dart';
 import 'package:street_workout_final/widgets/snackbar.dart';
-import '../../../authentication_handler.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
 import '../../../widgets/rounded_button.dart';
@@ -30,12 +30,6 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
 
     if (responseCode == "success") {
       if (!mounted) return;
-
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => AuthenticationHandler(),
-        ),
-      );
     } else {
       customShowSnackBar(
         title: "Warning",
@@ -58,12 +52,12 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
         body: Padding(
           padding: EdgeInsets.all(kPaddingValue),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const Flexible(child: SizedBox()),
               AspectRatio(
-                aspectRatio: 3 / 2.5,
+                aspectRatio: 4 / 3,
                 child: Image.asset(
                   "assets/images/authentication/image1_authentication.png",
                 ),
@@ -84,23 +78,17 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
   Column buildMiddle(BuildContext context) {
     return Column(
       children: [
-        const Text(
+        Text(
           "Location",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style: kTextStyleImportance3,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(
-          height: 5,
+        SizedBox(
+          height: kSmallPaddingValue,
         ),
         Text(
           "Allow access to your location so we can accurately track your trainings via GPS signal",
-          style: TextStyle(
-            color: Theme.of(context).disabledColor,
-            fontSize: 18,
-          ),
+          style: kTextStyleHintTextImportance3,
           textAlign: TextAlign.center,
         ),
       ],

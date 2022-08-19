@@ -1,15 +1,15 @@
-import 'package:draggable_home/draggable_home.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:street_workout_final/models/rewards.dart';
+import 'package:street_workout_final/screens/application/profile_screen/profile_screen_body_top.dart';
 import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
+import 'package:street_workout_final/services/firestore_methods/rewards_firestore_methods.dart';
+import 'package:street_workout_final/services/url_launcher.dart';
+import 'package:street_workout_final/widgets/solid_circle_chevron_left.dart';
 import '../../../models/custom_user.dart';
 import '../../../services/firestore_methods/user_firestore_methods.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/constants.dart';
 import '../../../widgets/loading_widget.dart';
-
-import 'components/profile_header_widget.dart';
-import 'components/user_profile_body_widget.dart';
+import 'components/profile_screen_body_tab.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key, required this.userUid, this.userProvided}) : super(key: key);
@@ -23,18 +23,24 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isLoading = false;
+  final int tabCategorieLenght = 3;
+
   List<String> listUrlImage = [];
+  List<Reward> listReward = [];
   late CustomUser user;
   void loadData() async {
     setState(() {
       isLoading = true;
     });
-    listUrlImage = await FirebaseStorageMethods().getAllImageOfAUser(widget.userUid);
+
     if (widget.userProvided != null) {
       user = widget.userProvided!;
     } else {
       user = await UserFirestoreMethods().findUserByUid(widget.userUid);
     }
+    listUrlImage = await FirebaseStorageMethods().getAllImageOfAUser(user.uid);
+
+    listReward = await RewardsFirestoreMethods().getAllRewardsOfAUser(user);
     setState(() {
       isLoading = false;
     });
@@ -42,47 +48,73 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
-    super.initState();
     loadData();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: isLoading
-            ? LoadingWidget()
-            : DraggableHome(
-                leading: Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: FaIcon(
-                      FontAwesomeIcons.chevronLeft,
-                      size: kDefaultIconAppBar,
-                    ),
-                  ),
-                ),
-                title: Text(user.userName),
-                headerWidget: ProfileHeaderWidget(
-                  profileImage: user.profileImage,
-                  instagramLink: user.instagramProfile,
-                ),
-                body: [
-                  UserProfileBodyWidget(
-                    name: user.userName,
-                    favoriteParc: user.favoriteParc == "" ? "The user's favorite park has not been filled in" : user.favoriteParc,
-                    userContribution: user.numberOfContribution,
-                    userTrainingPoint: user.points,
-                    userEvaluation: user.numberOfEvaluation,
-                    listUrlImage: listUrlImage,
-                  ),
-                ],
-                fullyStretchable: true,
-                backgroundColor: backgroundColor,
-                appBarColor: primaryColor,
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: const SolidCircleIcon(
+                iconData: FontAwesomeIcons.chevronLeft,
               ),
+            ),
+            GestureDetector(
+              onTap: () => openUrl(context, "instagramLink"),
+              child: const SolidCircleIcon(
+                iconData: FontAwesomeIcons.instagram,
+              ),
+            ),
+          ],
+        ),
+      ),
+      body: isLoading
+          ? const LoadingWidget()
+          : ProfileScreenBody(
+              tabCategorieLenght: tabCategorieLenght,
+              user: user,
+              listUrlImage: listUrlImage,
+              listReward: listReward,
+            ),
+    );
+  }
+}
+
+class ProfileScreenBody extends StatelessWidget {
+  const ProfileScreenBody({
+    Key? key,
+    required this.tabCategorieLenght,
+    required this.user,
+    required this.listUrlImage,
+    required this.listReward,
+  }) : super(key: key);
+
+  final int tabCategorieLenght;
+  final CustomUser user;
+  final List<String> listUrlImage;
+  final List<Reward> listReward;
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: tabCategorieLenght,
+      child: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            ProfileScreenBodyTop(user: user),
+          ];
+        },
+        body: ProfileScreenBodyTab(
+          listUrlImage: listUrlImage,
+          listReward: listReward,
+        ),
       ),
     );
   }

@@ -20,7 +20,7 @@ class AuthScreenMidPart extends StatelessWidget {
         ),
         Text(
           "Whatever your fitness level, achieve your goals quickly and build healthy habits with our app",
-          style: kTextStyleHintText,
+          style: kTextStyleHintTextImportance3,
           textAlign: TextAlign.center,
         ),
       ],

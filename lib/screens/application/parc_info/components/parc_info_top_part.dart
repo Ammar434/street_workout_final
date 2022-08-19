@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:street_workout_final/screens/application/profile_screen/profile_screen.dart';
 import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
+import 'package:street_workout_final/utils/text_style.dart';
 
 import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';
@@ -10,7 +12,7 @@ import 'parc_info_equipment_available.dart';
 import 'parc_main_photo.dart';
 
 class ParcInfoTopPart extends StatelessWidget {
-  ParcInfoTopPart({
+  const ParcInfoTopPart({
     Key? key,
     required this.parc,
     required this.champion,
@@ -30,11 +32,7 @@ class ParcInfoTopPart extends StatelessWidget {
         ),
         Text(
           parc.name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-            letterSpacing: 1.2,
-          ),
+          style: kTextStyleImportance3,
         ),
         SizedBox(
           height: kSmallPaddingValue,
@@ -51,7 +49,7 @@ class ParcInfoTopPart extends StatelessWidget {
             ),
             Text(
               parc.completeAddress,
-              style: TextStyle(
+              style: const TextStyle(
                 // fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
@@ -61,7 +59,7 @@ class ParcInfoTopPart extends StatelessWidget {
         SizedBox(
           height: kPaddingValue,
         ),
-        Text(
+        const Text(
           "About this parc",
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -74,40 +72,52 @@ class ParcInfoTopPart extends StatelessWidget {
         ParcInfoEquipmentAvailableRow(
           list: parc.materialAvailable,
         ),
-        HorizontalLine(),
+        const HorizontalLine(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: primaryColor,
               child: FaIcon(
                 FontAwesomeIcons.trophy,
                 size: 25,
-                color: Colors.white70,
+                color: Colors.yellow,
               ),
             ),
             SizedBox(
               width: kPaddingValue,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Current Champion",
-                  style: TextStyle(
-                    fontSize: 15,
-                    letterSpacing: 0.01,
-                    color: Colors.grey,
+            GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(
+                    userUid: champion.uid,
+                    userProvided: champion,
                   ),
                 ),
-                Text(
-                  champion.userName == "unknown" ? "No champion yet" : champion.userName,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Current Champion",
+                    style: TextStyle(
+                      fontSize: 15,
+                      letterSpacing: 0.01,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Text(
+                    champion.userName == "unknown" ? "No champion yet" : champion.userName,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
+        const HorizontalLine(),
       ],
     );
   }

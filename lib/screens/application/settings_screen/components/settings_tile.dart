@@ -3,7 +3,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
 class SettingsTile extends StatelessWidget {
-  SettingsTile({
+  const SettingsTile({
     Key? key,
     required this.isArrow,
     required this.icon,
@@ -42,7 +42,7 @@ class SettingsTile extends StatelessWidget {
               children: [
                 Text(
                   text1,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -50,14 +50,14 @@ class SettingsTile extends StatelessWidget {
                   visible: text2.isNotEmpty ? true : false,
                   child: Text(
                     text2,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: secondaryColor,
                     ),
                   ),
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Icon(
               isArrow ? Icons.arrow_forward_ios_rounded : null,
               color: secondaryColor,

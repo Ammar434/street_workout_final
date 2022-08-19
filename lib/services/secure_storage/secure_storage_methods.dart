@@ -1,4 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:street_workout_final/services/authentication/authentication_method.dart';
 
 class SecureStorageMethods {
   final _storage = const FlutterSecureStorage();
@@ -29,6 +30,11 @@ class SecureStorageMethods {
   }
 
   Future<void> deleteAll() async {
+    temporaryUserImage = null;
+    temporaryWeightValue = 0;
+    temporaryAgeValue = 0;
+    temporaryHeightValue = 0;
+    temporaryGender = "male";
     await _storage.deleteAll();
   }
 }

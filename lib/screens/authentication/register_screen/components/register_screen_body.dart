@@ -30,28 +30,33 @@ class RegisterScreenBody extends StatelessWidget {
   final bool isLoading;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(kPaddingValue),
-      child: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              RegisterScreenBodyTop(image: image, selectImage: selectImage),
-              RegisterScreenBodyInput(
-                emailController: emailController,
-                userNameController: userNameController,
-                passwordController: passwordController,
-                passwordConfirmController: passwordConfirmController,
-              ),
-              RoundedButton(
-                onTap: onPageTransition,
-                text: "Register",
-                isLoading: isLoading,
-              ),
-            ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Padding(
+        padding: EdgeInsets.all(kPaddingValue),
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                RegisterScreenBodyTop(image: image, selectImage: selectImage),
+                RegisterScreenBodyInput(
+                  emailController: emailController,
+                  userNameController: userNameController,
+                  passwordController: passwordController,
+                  passwordConfirmController: passwordConfirmController,
+                ),
+                RoundedButton(
+                  onTap: onPageTransition,
+                  text: "Register",
+                  isLoading: isLoading,
+                ),
+              ],
+            ),
           ),
         ),
       ),

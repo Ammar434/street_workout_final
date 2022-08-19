@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,4 +16,33 @@ Future<void> openUrl(BuildContext context, String url) async {
     //   contentType: ContentType.warning,
     // );
   }
+}
+
+void writeEmail() {
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries.map((MapEntry<String, String> e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}').join('&');
+  }
+
+// ···
+  final Uri emailLaunchUri = Uri(
+    scheme: 'mailto',
+    path: 'raoulammar@outlook.fr',
+    query: encodeQueryParameters(<String, String>{
+      'subject': 'Bug detected',
+    }),
+  );
+
+  launchUrl(emailLaunchUri);
+}
+
+Future<void> writeRewiew(BuildContext context) async {
+  String url = "";
+  if (Platform.isIOS) {
+    url = "AppStoreUrl";
+  } else {
+    url = "PlayStoreUrl";
+  }
+
+  final Uri uri = Uri.parse(url);
+  if (!await launchUrl(uri) || uri.hasEmptyPath) {}
 }

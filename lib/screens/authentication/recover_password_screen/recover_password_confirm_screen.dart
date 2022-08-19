@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:street_workout_final/utils/constants.dart';
+import 'package:street_workout_final/utils/text_style.dart';
 import '../../../widgets/rounded_button.dart';
 
 class RecoverPasswordConfirmScreen extends StatelessWidget {
@@ -16,9 +17,32 @@ class RecoverPasswordConfirmScreen extends StatelessWidget {
           padding: EdgeInsets.all(kPaddingValue),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              buildColumnHeader(context),
+              const Flexible(child: SizedBox()),
+              AspectRatio(
+                aspectRatio: 4 / 3,
+                child: Image.asset(
+                  "assets/images/authentication/image6_authentication.png",
+                ),
+              ),
+              Column(
+                children: [
+                  Text(
+                    "Password reset e-mail has been sent",
+                    style: kTextStyleImportance3,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "A password reset email has been sent to your e-mail address.",
+                    style: kTextStyleHintTextImportance3,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
               RoundedButton(
                 onTap: () {
                   Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
@@ -29,38 +53,6 @@ class RecoverPasswordConfirmScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Column buildColumnHeader(BuildContext context) {
-    return Column(
-      children: [
-        AspectRatio(
-          aspectRatio: 3 / 2.5,
-          child: Image.asset(
-            "assets/images/authentication/image6_authentication.png",
-          ),
-        ),
-        const Text(
-          "Password reset e-mail has been sent",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Text(
-          "A password reset email has been sent to your e-mail address.",
-          style: TextStyle(
-            color: Theme.of(context).disabledColor,
-            fontSize: 18,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
     );
   }
 }

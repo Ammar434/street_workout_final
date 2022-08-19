@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:street_workout_final/utils/constants.dart';
+import 'package:street_workout_final/widgets/loading_widget.dart';
 
-import '../../../../widgets/loading_widget.dart';
 import '../../profile_screen/profile_screen.dart';
 
 class DrawerTopWidget extends StatelessWidget {
-  DrawerTopWidget({
+  const DrawerTopWidget({
     Key? key,
     required this.profileImage,
     required this.userName,
@@ -34,11 +34,11 @@ class DrawerTopWidget extends StatelessWidget {
           Row(
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               CircleAvatar(
-                radius: 26,
+                radius: kRadiusValueImageProfile * 0.5,
                 backgroundImage: NetworkImage(profileImage),
               ),
               SizedBox(
@@ -49,17 +49,24 @@ class DrawerTopWidget extends StatelessWidget {
                 children: [
                   Text(
                     userName,
-                    style: TextStyle(fontWeight: FontWeight.w900),
+                    style: const TextStyle(fontWeight: FontWeight.w900),
                     maxLines: 2,
                   ),
-                  isLoading
-                      ? LoadingWidget(
-                          isLinear: true,
-                        )
-                      : Text(
-                          userCity,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                  Row(
+                    children: [
+                      Visibility(
+                        visible: isLoading,
+                        child: SizedBox(width: kPaddingValue, height: kPaddingValue, child: const LoadingWidget()),
+                      ),
+                      SizedBox(
+                        width: isLoading ? kSmallPaddingValue : 0,
+                      ),
+                      Text(
+                        userCity,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
                 ],
               )
             ],

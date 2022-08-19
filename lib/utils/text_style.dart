@@ -16,8 +16,22 @@ TextStyle kTextStyleImportance3 = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
-TextStyle kTextStyleHintText = TextStyle(
-  fontSize: 18.sp,
+TextStyle kTextStyleImportance4 = TextStyle(
+  fontSize: 15.sp,
+);
+
+TextStyle kTextStyleHintTextImportance3 = TextStyle(
+  fontSize: 16.sp,
   fontWeight: FontWeight.bold,
+  color: hintTextColor,
+);
+
+TextStyle kTextStyleHintTextImportance4 = TextStyle(
+  fontSize: 15.sp,
+  color: hintTextColor,
+);
+
+TextStyle kTextStyleHintTextImportance5 = TextStyle(
+  fontSize: 13.sp,
   color: hintTextColor,
 );

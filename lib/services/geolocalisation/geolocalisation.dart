@@ -17,10 +17,6 @@ import '../../utils/dev.dart';
 class Geolocalisation {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
-  /// Determine the current position of the device.
-  ///
-  /// When the location services are not enabled or permissions
-  /// are denied the `Future` will return an error.
   Future<Position> determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -100,9 +96,9 @@ class Geolocalisation {
     var result = await googlePlace.details.get(placeId);
     if (result != null && result.result != null) {
       detailsResult = result.result;
-      debugPrint(detailsResult!.geometry!.location!.lat.toString());
-      debugPrint(detailsResult.addressComponents.toString());
-      debugPrint(detailsResult.formattedAddress.toString());
+      // debugPrint(detailsResult!.geometry!.location!.lat.toString());
+      // debugPrint(detailsResult.addressComponents.toString());
+      // debugPrint(detailsResult.formattedAddress.toString());
     }
     return detailsResult;
   }
@@ -117,8 +113,6 @@ class Geolocalisation {
     try {
       map.forEach(
         (key, value) async {
-          debugPrint(key.toString());
-          debugPrint(value.toString());
           GeoPoint geoPoint = value['geoPoint'] as GeoPoint;
 
           Marker marker = Marker(

@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
 import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
 import 'package:street_workout_final/services/secure_storage/secure_storage_methods.dart';
@@ -20,6 +19,10 @@ class AuthenticationMethod {
   final FirebaseStorageMethods _firebaseStorageMethods = FirebaseStorageMethods();
   final SecureStorageMethods _secureStorageMethods = SecureStorageMethods();
 
+  bool isEmailValid(String email) {
+    return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  }
+
   Future<String> checkInfoRegisterUser({
     required String email,
     required String password,
@@ -27,9 +30,7 @@ class AuthenticationMethod {
     required String userName,
     required Uint8List profileImage,
   }) async {
-    bool isEmailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
-
-    if (email.isEmpty || !isEmailValid) {
+    if (email.isEmpty || !isEmailValid(email)) {
       return "Please check you're email ";
     }
     if (userName.isEmpty || userName.length < 4) {
@@ -62,7 +63,6 @@ class AuthenticationMethod {
       String? userName = await _secureStorageMethods.getUserNameFromSecureStorage();
       String? password = await _secureStorageMethods.getUserPasswordFromSecureStorage();
       String? email = await _secureStorageMethods.getUserEmailromSecureStorage();
-      debugPrint("-----------------------");
       UserCredential credential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -75,7 +75,7 @@ class AuthenticationMethod {
       );
       CustomUser customUser = CustomUser(
         uid: credential.user!.uid,
-        userName: userName!,
+        userName: userName,
         profileImage: profileImageUrl,
         gender: temporaryGender,
         age: temporaryAgeValue.toInt(),
@@ -104,11 +104,6 @@ class AuthenticationMethod {
     } catch (e) {
       res = e.toString();
     }
-    temporaryUserImage = null;
-    temporaryWeightValue = 0;
-    temporaryAgeValue = 0;
-    temporaryHeightValue = 0;
-    temporaryGender = "male";
 
     await _secureStorageMethods.deleteAll();
     return res;
@@ -150,8 +145,8 @@ class AuthenticationMethod {
       if (password.isNotEmpty) {
         User firebaseUser = _firebaseAuth.currentUser!;
         String userEmail = firebaseUser.email!;
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: userEmail, password: password);
 
+        await FirebaseAuth.instance.signInWithEmailAndPassword(email: userEmail, password: password);
         await UserFirestoreMethods().deleteUserData();
         await _firebaseStorageMethods.deleteUserStorage();
         await firebaseUser.delete();
@@ -170,12 +165,16 @@ class AuthenticationMethod {
     required String email,
   }) async {
     String res = "Some error occured";
+
+    if (email.isEmpty) return "Please enter a email";
+    if (!isEmailValid(email)) return "Please enter a valid email";
+
     try {
-      if (email.isNotEmpty) {
-        await _firebaseAuth.sendPasswordResetEmail(email: email);
-        res = "success";
-      } else {
-        res = "Please enter all the field";
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      res = "success";
+    } on FirebaseAuthException catch (error) {
+      if (error.code == "user-not-found") {
+        res = "No record found of this mail";
       }
     } catch (e) {
       res = e.toString();

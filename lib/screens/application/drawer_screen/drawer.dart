@@ -12,7 +12,7 @@ import 'components/drawer_categorie_widget.dart';
 import 'components/drawer_top_widget.dart';
 
 class DrawerBody extends StatefulWidget {
-  DrawerBody({
+  const DrawerBody({
     Key? key,
   }) : super(key: key);
 
@@ -23,13 +23,13 @@ class DrawerBody extends StatefulWidget {
 class _DrawerBodyState extends State<DrawerBody> {
   late Geolocalisation geolocalisation;
   late Position currentPosition;
-  late String? currentUserCity;
+  String currentUserCity = "unknown";
   bool isLoading = true;
 
   Future<void> loadData() async {
     currentPosition = await geolocalisation.determinePosition();
     currentUserCity = await geolocalisation.reverseGeocoding(currentPosition);
-    if (currentUserCity == null || currentUserCity == "") {
+    if (currentUserCity == "") {
       currentUserCity = "unknown";
     }
     setState(() {
@@ -58,13 +58,13 @@ class _DrawerBodyState extends State<DrawerBody> {
             profileImage: customUser.profileImage,
             userName: customUser.userName,
             userUid: customUser.uid,
-            userCity: currentUserCity!,
+            userCity: currentUserCity,
             isLoading: isLoading,
           ),
-          HorizontalLine(),
-          DrawerCategorieWidget(),
-          HorizontalLine(),
-          DrawerBottomWidget(),
+          const HorizontalLine(),
+          const DrawerCategorieWidget(),
+          const HorizontalLine(),
+          const DrawerBottomWidget(),
         ],
       ),
     );

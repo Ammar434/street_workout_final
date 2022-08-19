@@ -11,7 +11,7 @@ class UserFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseStorageMethods _storageMethods = FirebaseStorageMethods();
-
+  final String defaultUser = "AGe5UouEVnSbysldos7RgEudr7b2";
   Future<CustomUser> findUserByUid(String uid) async {
     CustomUser? user;
     try {
@@ -20,7 +20,7 @@ class UserFirestoreMethods {
       user = CustomUser.userFromSnapshot(documentSnapshot);
     } catch (e) {
       if (user == null) {
-        DocumentSnapshot documentSnapshot = await _firebaseFirestore.collection("users").doc("tzCpksXtJIQie4ujOgHliT3VJmA3").get();
+        DocumentSnapshot documentSnapshot = await _firebaseFirestore.collection("users").doc(defaultUser).get();
 
         user = CustomUser.userFromSnapshot(documentSnapshot);
       }

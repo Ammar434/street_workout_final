@@ -7,7 +7,7 @@ import '../../post_screen/post_screen.dart';
 import 'drawer_categorie_tile.dart';
 
 class DrawerCategorieWidget extends StatelessWidget {
-  DrawerCategorieWidget({
+  const DrawerCategorieWidget({
     Key? key,
   }) : super(key: key);
 
@@ -16,15 +16,15 @@ class DrawerCategorieWidget extends StatelessWidget {
     return Column(
       children: [
         DrawerCategorieTile(
-          iconData: FontAwesomeIcons.gem,
-          text: "Achievements",
+          iconData: FontAwesomeIcons.trophy,
+          text: "Rewards",
           onTap: () {
             Navigator.pushNamed(context, AchievementScreen.name);
           },
         ),
         DrawerCategorieTile(
-          iconData: FontAwesomeIcons.trophy,
-          text: "Favorite parc",
+          iconData: FontAwesomeIcons.chartLine,
+          text: "Statistique",
           onTap: () {
             Navigator.pushNamed(context, FavoriteParcScreen.name);
           },

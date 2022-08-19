@@ -8,7 +8,7 @@ import '../../../utils/constants.dart';
 import 'components/leaderboard_sliver_builder.dart';
 
 class LeaderboardScreen extends StatelessWidget {
-  LeaderboardScreen({Key? key}) : super(key: key);
+  const LeaderboardScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +17,18 @@ class LeaderboardScreen extends StatelessWidget {
     if (customUser.favoriteParc == "") {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: const [
           Text(
-            "To access this part of the application, please enter the park where you trained.",
+            "To access this part of the application, please select your favorite parc",
             textAlign: TextAlign.center,
           ),
           Text(
-            "Enter your park",
+            "You can do it by clicking on a parc and then set it as the parc where you train",
             style: TextStyle(
               fontStyle: FontStyle.italic,
               color: Colors.blue,
             ),
+            textAlign: TextAlign.center,
           )
         ],
       );
@@ -46,7 +47,7 @@ class LeaderboardScreen extends StatelessWidget {
             ),
             labelColor: Colors.white,
             // unselectedLabelColor: Colors.black,
-            tabs: [
+            tabs: const [
               Tab(text: "Day"),
               Tab(text: 'Week'),
               Tab(text: 'Month'),

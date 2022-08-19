@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:street_workout_final/services/secure_storage/secure_storage_methods.dart';
+import 'package:street_workout_final/utils/text_style.dart';
 import '../../../widgets/loading_widget.dart';
 import 'gender_screen.dart';
 import 'package:street_workout_final/utils/constants.dart';
@@ -44,11 +45,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 padding: EdgeInsets.all(kPaddingValue),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    const Flexible(child: SizedBox()),
                     AspectRatio(
-                      aspectRatio: 3 / 2.5,
+                      aspectRatio: 4 / 3,
                       child: Image.asset(
                         "assets/images/authentication/image1_authentication.png",
                       ),
@@ -72,10 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       children: [
         Text(
           "Welcome $userName, you're in!",
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style: kTextStyleImportance3,
           textAlign: TextAlign.center,
         ),
         const SizedBox(
@@ -83,10 +82,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
         Text(
           "To make sure your experience with Street Workout Fighter is the best it can be, we'd like to get to know you a little better.",
-          style: TextStyle(
-            color: Theme.of(context).disabledColor,
-            fontSize: 18,
-          ),
+          style: kTextStyleHintTextImportance3,
           textAlign: TextAlign.center,
         ),
       ],

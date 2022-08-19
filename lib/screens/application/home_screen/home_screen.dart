@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/view_all_parc/view_all_parc_screen.dart';
+import 'package:street_workout_final/screens/application/home_screen/view_all_parc/view_all_parc_screen.dart';
 import '../../../widgets/search_field_widget.dart';
 import '../../../../utils/constants.dart';
 
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: kPaddingValue),
-              ParcFromFirestore(),
+              const ParcFromFirestore(),
               const SizedBox(
                 height: 80,
               ),

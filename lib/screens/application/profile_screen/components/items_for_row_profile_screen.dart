@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
@@ -20,9 +21,9 @@ class ItemForRowProfileScreen extends StatelessWidget {
         children: [
           Text(
             value.toString(),
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 20,
+              fontSize: 20.sp,
             ),
           ),
           SizedBox(
@@ -30,9 +31,9 @@ class ItemForRowProfileScreen extends StatelessWidget {
           ),
           Text(
             categorieName,
-            style: const TextStyle(
+            style: TextStyle(
               // fontWeight: FontWeight.bold,
-              fontSize: 12,
+              fontSize: 12.sp,
               // fontStyle: FontStyle.italic,
               color: hintTextColor,
             ),

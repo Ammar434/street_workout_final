@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/utils/text_style.dart';
 import '../utils/colors.dart';
 
 class SliderWidget extends StatelessWidget {
-  SliderWidget({
+  const SliderWidget({
     Key? key,
     required this.sliderDefaultValue,
     required this.min,
@@ -26,9 +27,7 @@ class SliderWidget extends StatelessWidget {
         children: [
           Text(
             '$sliderName : ${sliderDefaultValue.round()} $sliderUnits',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+            style: kTextStyleImportance4,
           ),
           Expanded(
             child: Slider(

@@ -1,5 +1,9 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/screens/authentication/recover_password_screen/components/recover_password_screen_mid.dart';
+import 'package:street_workout_final/services/authentication/authentication_method.dart';
 import 'package:street_workout_final/utils/constants.dart';
+import 'package:street_workout_final/widgets/snackbar.dart';
 import '../../../widgets/rounded_button.dart';
 import '../../../widgets/text_field_input.dart';
 
@@ -15,7 +19,40 @@ class RecoverPasswordScreen extends StatefulWidget {
 }
 
 class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
-  final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
+  late TextEditingController _emailController;
+
+  bool isLoading = false;
+
+  void onTap() async {
+    setState(() {
+      isLoading = true;
+    });
+    String responseCode = await AuthenticationMethod().resetPassword(
+      email: _emailController.text,
+    );
+    if (!mounted) return;
+    if (responseCode == "success") {
+      Navigator.pushReplacementNamed(context, RecoverPasswordConfirmScreen.name);
+    } else {
+      customShowSnackBar(
+        title: "Warning",
+        content: responseCode,
+        contentType: ContentType.failure,
+        globalKey: _scaffoldKey,
+      );
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    _emailController = TextEditingController();
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -25,62 +62,45 @@ class _RecoverPasswordScreenState extends State<RecoverPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
       child: Scaffold(
+        key: _scaffoldKey,
         body: Padding(
           padding: EdgeInsets.all(kPaddingValue),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              buildColumnHeader(context),
-              TextFieldInput(
-                textEditingController: _emailController,
-                hintText: "Email",
-                textInputType: TextInputType.emailAddress,
+          child: SingleChildScrollView(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Flexible(child: SizedBox()),
+                  AspectRatio(
+                    aspectRatio: 4 / 3,
+                    child: Image.asset(
+                      "assets/images/authentication/image5_authentication.png",
+                    ),
+                  ),
+                  const RecoverPasswordScreenMid(),
+                  TextFieldInput(
+                    textEditingController: _emailController,
+                    hintText: "Email",
+                    textInputType: TextInputType.emailAddress,
+                  ),
+                  RoundedButton(
+                    onTap: onTap,
+                    isLoading: isLoading,
+                    text: "Reset",
+                  ),
+                ],
               ),
-              RoundedButton(
-                onTap: () {
-                  Navigator.pushReplacementNamed(context, RecoverPasswordConfirmScreen.name);
-                },
-                text: "Reset",
-              ),
-            ],
+            ),
           ),
         ),
       ),
-    );
-  }
-
-  Column buildColumnHeader(BuildContext context) {
-    return Column(
-      children: [
-        AspectRatio(
-          aspectRatio: 3 / 2.5,
-          child: Image.asset(
-            "assets/images/authentication/image5_authentication.png",
-          ),
-        ),
-        const Text(
-          "Did someone forget their password?",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Text(
-          "That's ok... Just enter the email address you've used to register with us and we'll send you a reset link!",
-          style: TextStyle(
-            color: Theme.of(context).disabledColor,
-            fontSize: 18,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import 'drawer_screen/drawer.dart';
 import '../../utils/colors.dart';
 import 'body.dart';
@@ -8,7 +9,7 @@ import 'body.dart';
 final ZoomDrawerController z = ZoomDrawerController();
 
 class MainScreen extends StatefulWidget {
-  MainScreen({Key? key}) : super(key: key);
+  const MainScreen({Key? key}) : super(key: key);
   static String name = "MainScreen";
 
   @override
@@ -20,17 +21,17 @@ class MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return ZoomDrawer(
       controller: z,
-      borderRadius: 24,
+      borderRadius: kRadiusValue,
       style: DrawerStyle.defaultStyle,
       drawerShadowsBackgroundColor: tertiaryColor,
       showShadow: true,
       menuBackgroundColor: backgroundColor,
       openCurve: Curves.fastOutSlowIn,
       slideWidth: MediaQuery.of(context).size.width * 0.65,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       angle: 0.0,
-      mainScreen: Body(),
-      menuScreen: DrawerBody(),
+      mainScreen: const Body(),
+      menuScreen: const DrawerBody(),
     );
   }
 }

@@ -47,9 +47,9 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
 
   @override
   void initState() {
-    super.initState();
     userFirestoreMethods = UserFirestoreMethods();
     loadData();
+    super.initState();
   }
 
   void onParcTap() {
@@ -79,18 +79,12 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
         ),
       ),
       child: isLoading
-          ? LoadingWidget()
+          ? const LoadingWidget()
           : Column(
               children: [
                 ParcDisplayCardImage(
                   imageUrl: widget.parc.mainPhoto,
-                  isLiked: isLiked,
                   onTap: onParcTap,
-                  onDoubleTap: () {
-                    setState(() {
-                      isLiked = !isLiked;
-                    });
-                  },
                 ),
                 Container(
                   decoration: BoxDecoration(

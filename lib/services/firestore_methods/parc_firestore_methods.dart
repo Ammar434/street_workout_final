@@ -213,11 +213,19 @@ class ParcFirestoreMethods {
           "athletesWhoTrainInThisParc": FieldValue.arrayRemove([athleteUid])
         });
         res = await _userFirestoreMethods.changeUserFavoriteParc("");
+
+        // if (res == "success") {
+        //   res = "This parc is no longer your favorite";
+        // }
       } else {
         documentReference.update({
           "athletesWhoTrainInThisParc": FieldValue.arrayUnion([athleteUid])
         });
         res = await _userFirestoreMethods.changeUserFavoriteParc(parcUid);
+
+        // if (res == "success") {
+        //   res = "This parc is no longer your favorite";
+        // }
       }
     } catch (e) {
       res = e.toString();

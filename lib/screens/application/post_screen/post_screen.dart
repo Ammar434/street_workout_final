@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_place/google_place.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/widgets/app_bar.dart';
 import '../../../models/material_available.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/firestore_methods/parc_firestore_methods.dart';
@@ -34,7 +35,6 @@ class _PostScreenState extends State<PostScreen> {
   late TextEditingController textEditingControllerParcName;
   late TextEditingController textEditingControllerParcAddress;
   List<MaterialAvailable> selectedMaterial = [];
-  int selectedCard = -1;
   bool isLoading = false;
   String placeID = "";
 
@@ -46,7 +46,6 @@ class _PostScreenState extends State<PostScreen> {
     String title = "";
     String content = "";
     ContentType contentType;
-    debugPrint(placeID);
     setState(() {
       isLoading = true;
     });
@@ -74,12 +73,10 @@ class _PostScreenState extends State<PostScreen> {
       content = e.toString();
       contentType = ContentType.failure;
     }
-    // await Future.delayed(  Duration(seconds: 3));
 
     setState(() {
       isLoading = false;
     });
-    debugPrint(isLoading.toString());
     userSelectedImageList = [];
     selectedMaterial = [];
     textEditingControllerParcAddress.clear();
@@ -109,6 +106,11 @@ class _PostScreenState extends State<PostScreen> {
     setState(() {});
   }
 
+  void functionForPrediction(AutocompletePrediction suggestion) {
+    textEditingControllerParcAddress.text = suggestion.description!;
+    placeID = suggestion.placeId!;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -132,20 +134,7 @@ class _PostScreenState extends State<PostScreen> {
     final UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        leading: Center(
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: FaIcon(
-              FontAwesomeIcons.chevronLeft,
-              size: kDefaultIconAppBar,
-            ),
-          ),
-        ),
-        title: const Text("Add new parc"),
-      ),
+      appBar: buildAppBar(context, "Add new parc"),
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: SingleChildScrollView(
@@ -163,45 +152,10 @@ class _PostScreenState extends State<PostScreen> {
                     );
                   },
                 ),
-                SizedBox(
-                  height: kPaddingValue,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Enter parc informations",
-                      style: TextStyle(
-                        // fontSize: SizeConfig.heightMultiplier * 3,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    IconButton(
-                      icon: FaIcon(
-                        FontAwesomeIcons.solidCircleQuestion,
-                        size: kDefaultIconsSize / 1.5,
-                      ),
-                      onPressed: () {
-                        debugPrint("");
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: kPaddingValue,
-                ),
-                TextFIeldForPostScreen(
+                EnterParcDetails(
                   textEditingControllerParcName: textEditingControllerParcName,
-                ),
-                SizedBox(
-                  height: kPaddingValue,
-                ),
-                SearchFieldForPostScreen(
                   textEditingControllerParcAddress: textEditingControllerParcAddress,
-                  function: (AutocompletePrediction suggestion) {
-                    textEditingControllerParcAddress.text = suggestion.description!;
-                    placeID = suggestion.placeId!;
-                  },
+                  functionForPrediction: functionForPrediction,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: kPaddingValue),
@@ -251,6 +205,60 @@ class _PostScreenState extends State<PostScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class EnterParcDetails extends StatelessWidget {
+  const EnterParcDetails({
+    Key? key,
+    required this.textEditingControllerParcName,
+    required this.textEditingControllerParcAddress,
+    required this.functionForPrediction,
+  }) : super(key: key);
+
+  final TextEditingController textEditingControllerParcName;
+  final TextEditingController textEditingControllerParcAddress;
+  final Function(AutocompletePrediction) functionForPrediction;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: kPaddingValue,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              "Enter parc informations",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.solidCircleQuestion,
+                size: kDefaultIconsSize / 1.5,
+              ),
+              onPressed: () {},
+            ),
+          ],
+        ),
+        SizedBox(
+          height: kPaddingValue,
+        ),
+        TextFIeldForPostScreen(
+          textEditingControllerParcName: textEditingControllerParcName,
+        ),
+        SizedBox(
+          height: kPaddingValue,
+        ),
+        SearchFieldForPostScreen(
+          textEditingControllerParcAddress: textEditingControllerParcAddress,
+          function: functionForPrediction,
+        ),
+      ],
     );
   }
 }

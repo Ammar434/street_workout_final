@@ -8,7 +8,7 @@ import 'package:street_workout_final/widgets/text_field_input.dart';
 import '../../../../utils/constants.dart';
 
 class CustomDialogBox extends StatefulWidget {
-  CustomDialogBox({
+  const CustomDialogBox({
     Key? key,
   }) : super(key: key);
   @override
@@ -75,7 +75,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
       elevation: 0,
       backgroundColor: Colors.transparent,
       child: AnimatedSwitcher(
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         switchInCurve: Curves.linearToEaseOut,
         transitionBuilder: (Widget child, Animation<double> animation) {
           return ScaleTransition(scale: animation, child: child);
@@ -87,12 +87,12 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
 
   contentBox(context) {
     return Container(
-      key: Key('1'),
+      key: const Key('1'),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: backgroundColor,
         borderRadius: BorderRadius.circular(kPaddingValue),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
         ],
       ),
@@ -100,7 +100,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           LottieBuilder.network("https://assets9.lottiefiles.com/packages/lf20_j6fywzxe.json"),
-          Text(
+          const Text(
             "Delete your account",
             style: TextStyle(
               fontSize: 22,
@@ -108,10 +108,10 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
               // color: backgroundColor,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Text(
+          const Text(
             "This operation is irreversible",
             style: TextStyle(
               fontSize: 14,
@@ -119,7 +119,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 22,
           ),
           Row(
@@ -129,7 +129,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
+                child: const Text(
                   "Cancel",
                   style: TextStyle(
                     fontSize: 18,
@@ -145,7 +145,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                   });
                   // Navigator.of(context).pop();
                 },
-                child: Text(
+                child: const Text(
                   "Confirm",
                   style: TextStyle(
                     fontSize: 18,
@@ -163,12 +163,12 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
 
   contentBox2(context) {
     return Container(
-      key: Key('2'),
+      key: const Key('2'),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: backgroundColor,
         borderRadius: BorderRadius.circular(kPaddingValue),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
         ],
       ),
@@ -177,7 +177,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text(
+            const Text(
               "Type your password",
               style: TextStyle(
                 fontSize: 22,
@@ -210,12 +210,12 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
 
   contentBox3(context) {
     return Container(
-      key: Key('3'),
+      key: const Key('3'),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: backgroundColor,
         borderRadius: BorderRadius.circular(kPaddingValue),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
         ],
       ),
@@ -224,7 +224,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text(
+            const Text(
               "Password is incorrect",
               style: TextStyle(
                 fontSize: 22,

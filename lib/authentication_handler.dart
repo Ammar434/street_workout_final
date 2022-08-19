@@ -7,7 +7,7 @@ import 'responsive/web_screen_layout.dart';
 import 'screens/authentication/auth_screen/auth_screen.dart';
 
 class AuthenticationHandler extends StatelessWidget {
-  AuthenticationHandler({
+  const AuthenticationHandler({
     Key? key,
   }) : super(key: key);
 
@@ -20,10 +20,10 @@ class AuthenticationHandler extends StatelessWidget {
           if (snapshot.hasData) {
             return ResponsiveLayout(
               webScreenLayout: WebScreenLayout(),
-              mobileScreenLayout: MobileScreenLayout(),
+              mobileScreenLayout: const MobileScreenLayout(),
             );
           } else if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Text(
                 "Some internal error happen please contact the developper",
               ),
@@ -35,7 +35,7 @@ class AuthenticationHandler extends StatelessWidget {
             child: LoadingWidget(),
           );
         }
-        return AuthScreen();
+        return const AuthScreen();
       },
     );
   }

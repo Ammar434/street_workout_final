@@ -9,32 +9,33 @@ import 'package:street_workout_final/widgets/loading_widget.dart';
 import '../parc_info/parc_info_screen.dart';
 
 class MapScreen extends StatefulWidget {
-  MapScreen({Key? key}) : super(key: key);
+  const MapScreen({Key? key}) : super(key: key);
 
   @override
   State<MapScreen> createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  late final Geolocalisation _geolocalisation;
   late LatLng userCurrentPosition;
   late Set<Marker> markers;
   bool isLoading = true;
 
-  void loadData() async {
-    Position p = await Geolocalisation().determinePosition();
-    userCurrentPosition = LatLng(p.latitude, p.longitude);
-    markers = await Geolocalisation().getAllMarker(
-      (String s) {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => ParcInfoScreen(
-              parcId: s,
-            ),
-          ),
-        );
-      },
+  void onInfoWindowTap(String s) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ParcInfoScreen(
+          parcId: s,
+        ),
+      ),
     );
+  }
+
+  void loadData() async {
+    Position p = await _geolocalisation.determinePosition();
+    userCurrentPosition = LatLng(p.latitude, p.longitude);
+    markers = await _geolocalisation.getAllMarker(onInfoWindowTap);
 
     setState(() {
       isLoading = false;
@@ -43,18 +44,20 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void initState() {
-    super.initState();
+    _geolocalisation = Geolocalisation();
     loadData();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? LoadingWidget()
+        ? const LoadingWidget()
         : SizedBox(
             height: MediaQuery.of(context).size.height,
             width: double.infinity,
             child: GoogleMap(
+              //For drag map
               gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
                 Factory<OneSequenceGestureRecognizer>(
                   () => EagerGestureRecognizer(),
@@ -74,7 +77,5 @@ class _MapScreenState extends State<MapScreen> {
               ),
             ),
           );
-
-    // return   AnimatedMarkersMap();
   }
 }

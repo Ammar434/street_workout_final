@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:street_workout_final/models/custom_user.dart';
 import 'package:street_workout_final/models/rewards.dart';
 import 'package:street_workout_final/screens/application/achievement_screen/achievement_screen.dart';
 import 'package:uuid/uuid.dart';
@@ -6,7 +8,7 @@ import 'package:uuid/uuid.dart';
 class RewardsFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   // final UserFirestoreMethods _userFirestoreMethods = UserFirestoreMethods();
-  final Uuid _uuid = Uuid();
+  final Uuid _uuid = const Uuid();
 
   Future<void> addRewards(String categorie, int orderNum) async {
     Reward rewards = Reward(
@@ -72,5 +74,19 @@ class RewardsFirestoreMethods {
     reward = Reward.rewardsFromSnapshot(snapshot.data() as Map<String, dynamic>);
 
     return reward;
+  }
+
+  Future<List<Reward>> getAllRewardsOfAUser(CustomUser user) async {
+    List<Reward> rewardList = [];
+
+    try {
+      for (String rewardId in user.rewards) {
+        Reward reward = await getRewardsById(rewardId);
+        rewardList.add(reward);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return rewardList;
   }
 }

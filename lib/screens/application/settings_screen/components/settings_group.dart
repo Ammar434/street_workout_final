@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../utils/constants.dart';
 
 class SettingsGroup extends StatelessWidget {
-  SettingsGroup({
+  const SettingsGroup({
     Key? key,
     required this.textSettingGroup,
     // required this.isArrow,
@@ -31,13 +31,13 @@ class SettingsGroup extends StatelessWidget {
         children: [
           Text(
             textSettingGroup,
-            style: TextStyle(
+            style: const TextStyle(
               // color: primaryColor,
               // fontSize: SizeConfig.textMultiplier * 2,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           ...List.generate(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/screens/application/settings_screen/account_settings/account_settings_screen.dart';
 import 'package:street_workout_final/screens/application/settings_screen/components/custom_alert_dialog.dart';
 import 'package:street_workout_final/services/url_launcher.dart';
 import 'package:street_workout_final/utils/icons.dart';
@@ -8,12 +9,12 @@ import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../utils/constants.dart';
-import 'account_settings_screen.dart';
+import 'account_settings/account_settings_screen.dart';
 import 'components/settings_group.dart';
 import 'components/settings_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
-  SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,9 @@ class SettingsScreen extends StatelessWidget {
                 text1: "Notifications",
                 text2: "Newsletter, App Updates",
                 isArrow: true,
-                press: () {},
+                press: () {
+                  Navigator.pushNamed(context, AccountSettingsScreen.name);
+                },
               ),
               SettingsTile(
                 icon: Icons.logout_sharp,
@@ -71,7 +74,7 @@ class SettingsScreen extends StatelessWidget {
                 press: () {
                   showDialog(
                     context: context,
-                    builder: (context) => CustomDialogBox(),
+                    builder: (context) => const CustomDialogBox(),
                   );
                 },
               ),
@@ -86,7 +89,7 @@ class SettingsScreen extends StatelessWidget {
                 text1: "Report a bug",
                 text2: "",
                 isArrow: false,
-                press: () {},
+                press: () => writeEmail(),
               ),
               SettingsTile(
                 icon: Icons.thumb_up,
@@ -103,7 +106,7 @@ class SettingsScreen extends StatelessWidget {
             widgetList: [
               SettingsTile(
                 icon: Icons.paypal_rounded,
-                iconBackgroundColor: Color(0xff009cde),
+                iconBackgroundColor: const Color(0xff009cde),
                 text1: "Donate with paypal",
                 text2: "",
                 isArrow: false,
@@ -113,7 +116,7 @@ class SettingsScreen extends StatelessWidget {
               ),
               SettingsTile(
                 icon: CustomIcon.ko_fi,
-                iconBackgroundColor: Color(0xffFF5F5F),
+                iconBackgroundColor: const Color(0xffFF5F5F),
                 text1: "Support me on Ko-fi",
                 text2: "",
                 isArrow: false,
