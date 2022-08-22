@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/authentication/register_screen/components/register_screen_body_input.dart';
-import 'package:street_workout_final/screens/authentication/register_screen/components/register_screen_body_top.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import 'register_screen_body_input.dart';
+import 'register_screen_body_top.dart';
+import '../../../../widgets/rounded_button.dart';
+import '../../../../utils/constants.dart';
 
 class RegisterScreenBody extends StatelessWidget {
   const RegisterScreenBody({

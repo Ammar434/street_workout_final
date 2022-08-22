@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/text_style.dart';
+import '../../../../utils/constants.dart';
+import '../../../../utils/text_style.dart';
 
 class RegisterScreenBodyTop extends StatelessWidget {
   const RegisterScreenBodyTop({

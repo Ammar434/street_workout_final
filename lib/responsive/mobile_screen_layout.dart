@@ -7,6 +7,6 @@ class MobileScreenLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
-    return MainScreen();
+    return const MainScreen();
   }
 }

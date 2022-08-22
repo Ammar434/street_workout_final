@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenger_waitting_room/components/challenge_is_start_widget.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
+import 'challenge_is_start_widget.dart';
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
+import '../../../../../widgets/app_bar.dart';
 
 class ChallengerWaittingRoomBody extends StatefulWidget {
   ChallengerWaittingRoomBody({Key? key}) : super(key: key);

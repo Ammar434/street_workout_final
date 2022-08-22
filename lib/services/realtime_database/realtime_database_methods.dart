@@ -1,8 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/challenge.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
+import '../../models/challenge.dart';
+import '../../models/custom_user.dart';
+import '../firestore_methods/user_firestore_methods.dart';
 
 // String kChallengeId = "";
 

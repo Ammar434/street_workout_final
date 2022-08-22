@@ -3,9 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:street_workout_final/services/geolocalisation/geolocalisation.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
 
+import '../../../services/geolocalisation/geolocalisation.dart';
+import '../../../widgets/loading_widget.dart';
 import '../parc_info/parc_info_screen.dart';
 
 class MapScreen extends StatefulWidget {

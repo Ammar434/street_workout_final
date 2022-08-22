@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/models/leaderboard.dart';
+import '../../models/custom_user.dart';
+import '../../models/leaderboard.dart';
 
 class LeaderboardFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;

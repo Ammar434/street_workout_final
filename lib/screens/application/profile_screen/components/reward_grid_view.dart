@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/rewards.dart';
-import 'package:street_workout_final/utils/colors.dart';
+import '../../../../models/rewards.dart';
+import '../../../../utils/colors.dart';
 
 class RewardGridView extends StatelessWidget {
   const RewardGridView({

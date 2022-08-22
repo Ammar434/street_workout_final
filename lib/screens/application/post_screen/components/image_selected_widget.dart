@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../post_screen.dart';
+
 import '../../../../utils/constants.dart';
+import '../post_screen.dart';
 
 class ImageSelectedWidget extends StatelessWidget {
   const ImageSelectedWidget({

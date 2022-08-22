@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../provider/user_provider.dart';
 import '../utils/dimension.dart';
 import '../widgets/loading_widget.dart';

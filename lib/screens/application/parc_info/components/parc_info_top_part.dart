@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/profile_screen/profile_screen.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/text_style.dart';
 
 import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
+import '../../../../utils/text_style.dart';
 import '../../../../widgets/horizontal_line.dart';
+import '../../profile_screen/profile_screen.dart';
 import 'parc_info_equipment_available.dart';
 import 'parc_main_photo.dart';
 

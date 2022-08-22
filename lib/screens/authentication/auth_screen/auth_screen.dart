@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/constants.dart';
 
+import '../../../utils/constants.dart';
 import 'components/auth_screen_bottom_part.dart';
 import 'components/auth_screen_mid_part.dart';
 import 'components/auth_screen_top_part.dart';

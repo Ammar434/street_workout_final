@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/loading_widget.dart';
 
 import '../../profile_screen/profile_screen.dart';
 

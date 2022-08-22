@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/challenge.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/provider/challenge_provider.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_in_progress/challenge_in_progress_screen.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
+import '../../../../models/challenge.dart';
+import '../../../../models/custom_user.dart';
+import '../../../../provider/challenge_provider.dart';
+import '../../../../provider/user_provider.dart';
+import '../challenge_in_progress/challenge_in_progress_screen.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/rounded_button.dart';
 
 import '../components/user_detail_column_widget.dart';
 

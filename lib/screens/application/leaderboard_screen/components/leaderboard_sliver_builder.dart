@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/leaderboard.dart';
-import 'package:street_workout_final/screens/application/leaderboard_screen/components/tile_leaderboard_row.dart';
-import 'package:street_workout_final/services/firestore_methods/leaderboard_firestore_methods.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+
+import '../../../../models/leaderboard.dart';
+import '../../../../services/firestore_methods/leaderboard_firestore_methods.dart';
 import '../../../../utils/constants.dart';
 import '../../../../utils/gradients.dart';
-
+import '../../../../widgets/loading_widget.dart';
 import 'header_ranking_widget.dart';
+import 'tile_leaderboard_row.dart';
 
 class LeaderboardSliverBuilder extends StatelessWidget {
   LeaderboardSliverBuilder({

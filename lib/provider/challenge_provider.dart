@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/widgets.dart';
-import 'package:street_workout_final/models/challenge.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/services/realtime_database/realtime_database_methods.dart';
+import '../models/challenge.dart';
+import '../models/custom_user.dart';
+import '../services/realtime_database/realtime_database_methods.dart';
 
 class ChallengeProvider extends ChangeNotifier {
   final DatabaseReference _databaseReference = FirebaseDatabase.instance.ref();

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/models/rewards.dart';
-import 'package:street_workout_final/screens/application/achievement_screen/achievement_screen.dart';
+import '../../models/custom_user.dart';
+import '../../models/rewards.dart';
+import '../../screens/application/achievement_screen/achievement_screen.dart';
 import 'package:uuid/uuid.dart';
 
 class RewardsFirestoreMethods {

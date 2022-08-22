@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/provider/challenge_provider.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/global_waitting_room/global_waitting_room_screen.dart';
+import '../../../../models/custom_user.dart';
+import '../../../../provider/challenge_provider.dart';
+import '../../../../provider/user_provider.dart';
+import '../global_waitting_room/global_waitting_room_screen.dart';
 
 import 'components/evaluator_waitting_room_body.dart';
 

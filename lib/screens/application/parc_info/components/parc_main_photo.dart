@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/utils/constants.dart';
+
+import '../../../../models/parc.dart';
+import '../../../../utils/constants.dart';
 
 class ParcMainPhoto extends StatelessWidget {
   ParcMainPhoto({

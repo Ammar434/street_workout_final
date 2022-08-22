@@ -4,7 +4,7 @@ import '../../../../models/custom_user.dart';
 import '../../profile_screen/profile_screen.dart';
 
 import '../../../../../utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../utils/constants.dart';
 
 class ParcDisplayCardInfo extends StatelessWidget {
   const ParcDisplayCardInfo({

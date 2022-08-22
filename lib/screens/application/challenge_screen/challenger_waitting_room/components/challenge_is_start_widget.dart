@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/horizontal_line.dart';
+import '../../../../../models/custom_user.dart';
+import '../../../../../provider/user_provider.dart';
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
+import '../../../../../widgets/horizontal_line.dart';
 
 import 'firebase_animated_list_widget.dart';
 

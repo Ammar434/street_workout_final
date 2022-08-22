@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:street_workout_final/services/authentication/authentication_method.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
-import 'package:street_workout_final/widgets/text_field_input.dart';
+import '../../../../services/authentication/authentication_method.dart';
+import '../../../../utils/colors.dart';
+import '../../../../widgets/rounded_button.dart';
+import '../../../../widgets/text_field_input.dart';
 
 import '../../../../utils/constants.dart';
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../utils/constants.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({

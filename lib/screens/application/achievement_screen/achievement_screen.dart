@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/models/rewards.dart';
-import 'package:street_workout_final/screens/application/achievement_screen/components/custom_tile_for_achievement.dart';
-import 'package:street_workout_final/services/firestore_methods/rewards_firestore_methods.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import '../../../models/rewards.dart';
+import 'components/custom_tile_for_achievement.dart';
+import '../../../services/firestore_methods/rewards_firestore_methods.dart';
+import '../../../utils/colors.dart';
+import '../../../widgets/loading_widget.dart';
 
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../utils/constants.dart';
 
 double categoryHeight = 30;
 double rewardsTileHeight = 80;

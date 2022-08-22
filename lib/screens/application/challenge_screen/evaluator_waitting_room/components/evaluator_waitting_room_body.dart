@@ -4,14 +4,14 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/services/realtime_database/realtime_database_methods.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
+import '../../../../../models/custom_user.dart';
+import '../../../../../provider/user_provider.dart';
+import '../../../../../services/realtime_database/realtime_database_methods.dart';
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
+import '../../../../../widgets/app_bar.dart';
+import '../../../../../widgets/loading_widget.dart';
+import '../../../../../widgets/snackbar.dart';
 
 class EvaluatorWaittingRoomScreenBody extends StatefulWidget {
   EvaluatorWaittingRoomScreenBody({Key? key}) : super(key: key);

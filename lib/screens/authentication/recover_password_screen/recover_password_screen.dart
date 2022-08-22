@@ -1,9 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/authentication/recover_password_screen/components/recover_password_screen_mid.dart';
-import 'package:street_workout_final/services/authentication/authentication_method.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
+import 'components/recover_password_screen_mid.dart';
+import '../../../services/authentication/authentication_method.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/snackbar.dart';
 import '../../../widgets/rounded_button.dart';
 import '../../../widgets/text_field_input.dart';
 

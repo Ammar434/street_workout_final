@@ -2,10 +2,11 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
-import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
-import 'package:street_workout_final/services/secure_storage/secure_storage_methods.dart';
+
 import '../../models/custom_user.dart';
+import '../firebase_storage/firebase_storage_methods.dart';
+import '../firestore_methods/user_firestore_methods.dart';
+import '../secure_storage/secure_storage_methods.dart';
 
 Uint8List? temporaryUserImage;
 double temporaryWeightValue = 0;

@@ -1,13 +1,13 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/screens/application/settings_screen/account_settings/components/user_personal_information_settings_screen.dart';
-import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
-import 'package:street_workout_final/widgets/slider_widget.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
+import '../../../../models/custom_user.dart';
+import 'components/user_personal_information_settings_screen.dart';
+import '../../../../services/firestore_methods/user_firestore_methods.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/app_bar.dart';
+import '../../../../widgets/rounded_button.dart';
+import '../../../../widgets/slider_widget.dart';
+import '../../../../widgets/snackbar.dart';
 
 import 'components/gender_setting_screen.dart';
 import 'components/profile_image_update_setting_screen.dart';

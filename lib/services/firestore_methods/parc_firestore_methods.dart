@@ -4,15 +4,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
 import 'package:google_place/google_place.dart';
-import 'package:street_workout_final/models/post_for_existant_parc.dart';
-import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
-import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../models/custom_user.dart';
 import '../../models/material_available.dart';
 import '../../models/parc.dart';
+import '../../models/post_for_existant_parc.dart';
+import '../firebase_storage/firebase_storage_methods.dart';
 import '../geolocalisation/geolocalisation.dart';
+import 'user_firestore_methods.dart';
 
 class ParcFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;

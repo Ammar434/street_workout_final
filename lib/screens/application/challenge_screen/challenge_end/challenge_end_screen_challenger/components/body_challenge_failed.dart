@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../../../models/custom_user.dart';
+import '../../../../../../utils/constants.dart';
 
 class BodyChallengeFailed extends StatelessWidget {
   BodyChallengeFailed({

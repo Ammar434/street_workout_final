@@ -2,12 +2,12 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:street_workout_final/utils/text_style.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
+import '../../../utils/text_style.dart';
+import '../../../widgets/snackbar.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
 import '../../../widgets/rounded_button.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../utils/constants.dart';
 
 class PermissionHandlerScreen extends StatefulWidget {
   const PermissionHandlerScreen({Key? key}) : super(key: key);

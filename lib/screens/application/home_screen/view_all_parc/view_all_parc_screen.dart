@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/screens/application/home_screen/components/parc_display_card.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import '../../../../models/parc.dart';
+import '../components/parc_display_card.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/app_bar.dart';
+import '../../../../widgets/loading_widget.dart';
 
 class ViewAllParcScreen extends StatefulWidget {
   const ViewAllParcScreen({Key? key}) : super(key: key);

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
+import '../../../../../widgets/loading_widget.dart';
 import '../../../../../widgets/rounded_button.dart';
 
 class PopUpMenuWidget extends StatelessWidget {

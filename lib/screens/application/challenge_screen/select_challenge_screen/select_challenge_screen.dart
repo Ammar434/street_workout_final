@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/challenge.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/models/rewards.dart';
-import 'package:street_workout_final/provider/challenge_provider.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/select_challenge_screen/components/custom_tile_for_select_challenge.dart';
-import 'package:street_workout_final/services/firestore_methods/rewards_firestore_methods.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import '../../../../models/challenge.dart';
+import '../../../../models/custom_user.dart';
+import '../../../../models/rewards.dart';
+import '../../../../provider/challenge_provider.dart';
+import '../../../../provider/user_provider.dart';
+import 'components/custom_tile_for_select_challenge.dart';
+import '../../../../services/firestore_methods/rewards_firestore_methods.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/app_bar.dart';
+import '../../../../widgets/loading_widget.dart';
 
 class SelectChallengeScreen extends StatelessWidget {
   SelectChallengeScreen({Key? key, required this.evaluatorId}) : super(key: key);

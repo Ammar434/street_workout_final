@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/text_style.dart';
+import '../../../utils/text_style.dart';
 import '../../../services/authentication/authentication_method.dart';
 import 'user_personal_data_screen.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 
 class GenderScreen extends StatelessWidget {

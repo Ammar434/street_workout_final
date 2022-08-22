@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/screens/application/settings_screen/account_settings/account_settings_screen.dart';
-import 'package:street_workout_final/screens/application/settings_screen/components/custom_alert_dialog.dart';
-import 'package:street_workout_final/services/url_launcher.dart';
-import 'package:street_workout_final/utils/icons.dart';
+import 'account_settings/account_settings_screen.dart';
+import 'components/custom_alert_dialog.dart';
+import '../../../services/url_launcher.dart';
+import '../../../utils/icons.dart';
 
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';

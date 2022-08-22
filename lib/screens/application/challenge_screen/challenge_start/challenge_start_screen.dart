@@ -1,15 +1,15 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/provider/challenge_provider.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenger_waitting_room/challenger_waitting_room_screen.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
-import 'package:street_workout_final/screens/application/favorite_parc/favorite_parc_screen.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
+import '../../../../models/custom_user.dart';
+import '../../../../provider/challenge_provider.dart';
+import '../../../../provider/user_provider.dart';
+import '../challenger_waitting_room/challenger_waitting_room_screen.dart';
+import '../evaluator_waitting_room/evaluator_waitting_room_screen.dart';
+import '../../favorite_parc/favorite_parc_screen.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/snackbar.dart';
 
 import '../../../../widgets/app_bar.dart';
 import 'components/challenge_is_not_start_widget.dart';

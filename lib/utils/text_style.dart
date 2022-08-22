@@ -1,6 +1,6 @@
 import 'package:flutter/painting.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:street_workout_final/utils/colors.dart';
+import 'colors.dart';
 
 TextStyle kTextStyleImportance1 = TextStyle(
   fontWeight: FontWeight.w600,

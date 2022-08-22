@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/home_screen/view_all_parc/view_all_parc_screen.dart';
-import '../../../widgets/search_field_widget.dart';
+import 'view_all_parc/view_all_parc_screen.dart';
+import '../../../widgets/search_field_widget_for_park.dart';
 import '../../../../utils/constants.dart';
 
 import 'components/parc_from_firestore.dart';

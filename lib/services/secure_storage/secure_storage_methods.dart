@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:street_workout_final/services/authentication/authentication_method.dart';
+import '../authentication/authentication_method.dart';
 
 class SecureStorageMethods {
   final _storage = const FlutterSecureStorage();

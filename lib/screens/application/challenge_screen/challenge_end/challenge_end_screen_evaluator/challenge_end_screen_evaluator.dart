@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../../models/custom_user.dart';
+import '../../../../../provider/user_provider.dart';
+import '../../../../../utils/constants.dart';
 
 import '../../challenge_start/challenge_start_screen.dart';
 

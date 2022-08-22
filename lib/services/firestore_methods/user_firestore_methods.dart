@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
+
 import '../../models/custom_user.dart';
+import '../firebase_storage/firebase_storage_methods.dart';
 
 class UserFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;

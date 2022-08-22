@@ -7,7 +7,7 @@ import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/rounded_button.dart';
 
 import '../../../../../utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../utils/constants.dart';
 import '../../parc_info/parc_info_screen.dart';
 import 'parc_display_card_info.dart';
 import 'parc_display_card_mage.dart';

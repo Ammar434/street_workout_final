@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/authentication/login_screen/components/login_screen_body_bottom.dart';
-import 'package:street_workout_final/screens/authentication/login_screen/components/login_screen_body_input.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import 'login_screen_body_bottom.dart';
+import 'login_screen_body_input.dart';
+import '../../../../utils/constants.dart';
 
 import 'login_screen_body_top.dart';
 

@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+
 import 'responsive/mobile_screen_layout.dart';
 import 'responsive/responsive_layout.dart';
 import 'responsive/web_screen_layout.dart';
 import 'screens/authentication/auth_screen/auth_screen.dart';
+import 'widgets/loading_widget.dart';
 
 class AuthenticationHandler extends StatelessWidget {
   const AuthenticationHandler({

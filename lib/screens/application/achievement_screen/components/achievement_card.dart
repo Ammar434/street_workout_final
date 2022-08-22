@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../utils/constants.dart';
 import 'achievement_card_top.dart';
 import 'achievement_logo_widget.dart';
 

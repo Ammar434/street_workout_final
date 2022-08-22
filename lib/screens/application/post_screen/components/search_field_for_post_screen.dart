@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_place/google_place.dart';
-import 'package:street_workout_final/services/geolocalisation/geolocalisation.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/text_style.dart';
+import '../../../../services/geolocalisation/geolocalisation.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
+import '../../../../utils/text_style.dart';
 
 class SearchFieldForPostScreen extends StatelessWidget {
   const SearchFieldForPostScreen({

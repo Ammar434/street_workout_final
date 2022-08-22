@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/text_style.dart';
+
+import '../../../../utils/text_style.dart';
 
 class RecoverPasswordScreenMid extends StatelessWidget {
   const RecoverPasswordScreenMid({

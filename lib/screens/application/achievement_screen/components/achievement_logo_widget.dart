@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../utils/constants.dart';
 import 'custom_dialog_body_widget.dart';
 
 class AchievementLogoWidget extends StatelessWidget {

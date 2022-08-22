@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/services/secure_storage/secure_storage_methods.dart';
-import 'package:street_workout_final/utils/text_style.dart';
+
+import '../../../services/secure_storage/secure_storage_methods.dart';
+import '../../../utils/constants.dart';
+import '../../../utils/text_style.dart';
 import '../../../widgets/loading_widget.dart';
-import 'gender_screen.dart';
-import 'package:street_workout_final/utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
+import 'gender_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);

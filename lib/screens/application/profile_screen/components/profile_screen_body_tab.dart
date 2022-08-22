@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/rewards.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/widgets/staggered_grid_view.dart';
+import '../../../../models/rewards.dart';
+import '../../../../utils/colors.dart';
+import '../../../../widgets/staggered_grid_view.dart';
 
 import 'reward_grid_view.dart';
 

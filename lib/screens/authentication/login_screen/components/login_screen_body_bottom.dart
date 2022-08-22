@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/authentication/recover_password_screen/recover_password_screen.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/text_style.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
+import '../../recover_password_screen/recover_password_screen.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
+import '../../../../utils/text_style.dart';
+import '../../../../widgets/rounded_button.dart';
 
 class LoginScreenBodyBottom extends StatelessWidget {
   const LoginScreenBodyBottom({

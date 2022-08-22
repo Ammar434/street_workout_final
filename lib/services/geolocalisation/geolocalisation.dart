@@ -8,10 +8,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
 import 'package:http/http.dart' as http;
-import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
-import 'package:street_workout_final/services/firestore_methods/parc_firestore_methods.dart';
-import 'package:street_workout_final/services/firestore_methods/user_firestore_methods.dart';
+import '../../models/parc.dart';
+import '../firebase_storage/firebase_storage_methods.dart';
+import '../firestore_methods/parc_firestore_methods.dart';
+import '../firestore_methods/user_firestore_methods.dart';
 import '../../utils/dev.dart';
 
 class Geolocalisation {

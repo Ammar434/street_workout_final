@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/models/rewards.dart';
-import 'package:street_workout_final/screens/application/profile_screen/profile_screen_body_top.dart';
-import 'package:street_workout_final/services/firebase_storage/firebase_storage_methods.dart';
-import 'package:street_workout_final/services/firestore_methods/rewards_firestore_methods.dart';
-import 'package:street_workout_final/services/url_launcher.dart';
-import 'package:street_workout_final/widgets/solid_circle_chevron_left.dart';
+import '../../../models/rewards.dart';
+import 'profile_screen_body_top.dart';
+import '../../../services/firebase_storage/firebase_storage_methods.dart';
+import '../../../services/firestore_methods/rewards_firestore_methods.dart';
+import '../../../services/url_launcher.dart';
+import '../../../widgets/solid_circle_icon.dart';
 import '../../../models/custom_user.dart';
 import '../../../services/firestore_methods/user_firestore_methods.dart';
 import '../../../widgets/loading_widget.dart';

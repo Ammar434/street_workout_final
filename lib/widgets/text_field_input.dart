@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/colors.dart';
+
+import '../utils/colors.dart';
 
 class TextFieldInput extends StatefulWidget {
   TextFieldInput({

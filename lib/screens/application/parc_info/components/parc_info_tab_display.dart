@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/widgets/staggered_grid_view.dart';
+import '../../../../widgets/staggered_grid_view.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';
 import '../../../../utils/colors.dart';

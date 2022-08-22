@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/models/rewards.dart';
-import 'package:street_workout_final/provider/user_provider.dart';
-import 'package:street_workout_final/screens/application/achievement_screen/components/custom_dialog_body_widget.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../models/custom_user.dart';
+import '../../../../models/rewards.dart';
+import '../../../../provider/user_provider.dart';
+import 'custom_dialog_body_widget.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
 
 class CustomTileForAchievement extends StatelessWidget {
   CustomTileForAchievement({
