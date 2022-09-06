@@ -63,7 +63,7 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
               },
               icon: FaIcon(
                 FontAwesomeIcons.chevronLeft,
-                size: kDefaultIconAppBar,
+                size: kDefaultIconAppBarSize,
               ),
             ),
           ),

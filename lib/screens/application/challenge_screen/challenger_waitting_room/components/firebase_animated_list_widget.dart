@@ -55,7 +55,7 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
               ),
               trailing: FaIcon(
                 FontAwesomeIcons.chevronRight,
-                size: kDefaultIconAppBar,
+                size: kDefaultIconAppBarSize,
               ),
               onTap: () async {
                 await challengeProvider

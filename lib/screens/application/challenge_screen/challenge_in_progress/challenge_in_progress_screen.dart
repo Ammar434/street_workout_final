@@ -17,7 +17,7 @@ import '../../../../widgets/horizontal_line.dart';
 import '../../../../widgets/rounded_button.dart';
 
 class ChallengeInProgressScreen extends StatelessWidget {
-  ChallengeInProgressScreen({Key? key, required this.challenge}) : super(key: key);
+  const ChallengeInProgressScreen({Key? key, required this.challenge}) : super(key: key);
   final Challenge challenge;
 
   @override
@@ -30,12 +30,12 @@ class ChallengeInProgressScreen extends StatelessWidget {
         ? ChallengeInProgressChallengerScreen(
             challenge: challenge,
           )
-        : ChallengeInProgressEvaluatorScreen();
+        : const ChallengeInProgressEvaluatorScreen();
   }
 }
 
 class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
-  ChallengeInProgressEvaluatorScreen({
+  const ChallengeInProgressEvaluatorScreen({
     Key? key,
   }) : super(key: key);
 
@@ -84,15 +84,15 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
           ),
           Text(
             "Tell us how ${challenge.evaluatorName} perform remmenber you have to evaluate if ${challenge.evaluatorName} can do 10 pull ups",
-            style: TextStyle(
+            style: const TextStyle(
               fontStyle: FontStyle.italic,
             ),
             textAlign: TextAlign.center,
           ),
-          HorizontalLine(),
+          const HorizontalLine(),
           Text(
             "${challenge.evaluatorName} managed to do the number of repetitions indicated?",
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           SizedBox(
@@ -105,8 +105,8 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => FaIcon(
+              itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+              itemBuilder: (context, _) => const FaIcon(
                 FontAwesomeIcons.solidStar,
                 color: Colors.amber,
               ),
@@ -119,7 +119,7 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
           SizedBox(
             height: kPaddingValue * 1,
           ),
-          Text(
+          const Text(
             "In your opinion how was the global form of the mouvement",
             style: TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
@@ -134,8 +134,8 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => FaIcon(
+              itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+              itemBuilder: (context, _) => const FaIcon(
                 FontAwesomeIcons.solidStar,
                 color: Colors.amber,
               ),
@@ -144,7 +144,7 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
               },
             ),
           ),
-          HorizontalLine(),
+          const HorizontalLine(),
           SelectableEmojiRow(challenge: challenge),
           RoundedButton(
             onTap: () {
@@ -165,7 +165,7 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
 }
 
 class ChallengeInProgressChallengerScreen extends StatelessWidget {
-  ChallengeInProgressChallengerScreen({
+  const ChallengeInProgressChallengerScreen({
     Key? key,
     required this.challenge,
   }) : super(key: key);
@@ -184,7 +184,7 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
     }
     return Scaffold(
       appBar: buildAppBar(context, ""),
-      body: Center(
+      body: const Center(
         child: Text(
           'You re being evaluated now, do your best champion but always remmenber there is no honor and no progress in cheating. ',
         ),
@@ -194,7 +194,7 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
 }
 
 class SelectableEmojiRow extends StatefulWidget {
-  SelectableEmojiRow({
+  const SelectableEmojiRow({
     Key? key,
     required this.challenge,
   }) : super(key: key);
@@ -214,7 +214,7 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
         children: [
           Text(
             "Describe ${widget.challenge.challengerName} with one emoji",
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
 
@@ -251,7 +251,7 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
                       Text(
                         mapEmoji.values.elementAt(index).emojiText,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       )
                     ],
                   ),

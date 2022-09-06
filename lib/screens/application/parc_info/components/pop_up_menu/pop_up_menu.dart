@@ -62,24 +62,6 @@ class PopUpMenuWidget extends StatelessWidget {
       ),
     ];
 
-    List<PopupMenuEntry> loadingList = [
-      PopupMenuItem(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height / 4,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Center(child: LoadingWidget()),
-              Text(
-                "Upload in progress",
-                style: TextStyle(color: backgroundColor),
-              )
-            ],
-          ),
-        ),
-      ),
-    ];
-
     return PopupMenuButton(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(kRadiusValue),
@@ -94,10 +76,10 @@ class PopUpMenuWidget extends StatelessWidget {
       // icon: icon,
       child: Center(
         child: isLoading
-            ? SizedBox(width: kDefaultIconAppBar, height: kDefaultIconAppBar, child: const LoadingWidget())
+            ? SizedBox(width: kDefaultIconAppBarSize, height: kDefaultIconAppBarSize, child: const LoadingWidget())
             : FaIcon(
                 FontAwesomeIcons.barsStaggered,
-                size: kDefaultIconAppBar,
+                size: kDefaultIconAppBarSize,
               ),
       ),
     );

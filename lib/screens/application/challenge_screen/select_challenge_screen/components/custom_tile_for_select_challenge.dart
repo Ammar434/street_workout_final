@@ -71,7 +71,7 @@ class CustomTileForSelectChallenge extends StatelessWidget {
             Spacer(),
             FaIcon(
               FontAwesomeIcons.chevronRight,
-              size: kDefaultIconAppBar,
+              size: kDefaultIconAppBarSize,
             ),
             SizedBox(
               width: kSmallPaddingValue,

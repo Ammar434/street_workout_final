@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../utils/constants.dart';
 
 class SolidCircleIcon extends StatelessWidget {
-  const SolidCircleIcon({Key? key, required this.iconData}) : super(key: key);
+  const SolidCircleIcon({Key? key, required this.iconData, required this.iconSize}) : super(key: key);
   final IconData iconData;
+  final double iconSize;
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: kRadiusValueImageProfile / 3,
+      radius: iconSize * 1,
       backgroundColor: Colors.white,
       child: FaIcon(
         iconData,
-        size: kDefaultIconsSize,
+        size: iconSize,
         // color: isLike ? primaryColor : Colors.black87,
       ),
     );

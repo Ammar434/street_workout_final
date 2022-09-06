@@ -8,7 +8,7 @@ double kPaddingValue = 15.sp;
 double kSmallPaddingValue = 4.sp;
 double kDefaultIconsSize = 24.sp;
 double kDefaultTitleSize = 25.sp;
-double kDefaultIconAppBar = 18.sp;
+double kDefaultIconAppBarSize = 18.sp;
 double kDefaultButtonSize = 50.sp;
 
 double markerSizeExpanded = 40.0.sp;

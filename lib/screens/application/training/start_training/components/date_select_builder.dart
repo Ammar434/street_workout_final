@@ -22,6 +22,7 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
   final double itemWidth = 70.sp;
 
   int numberOfDaysToDisplay = 30;
+  int daySelected = (30 ~/ 2);
 
   String getMonthString(int days) {
     switch (days) {
@@ -66,7 +67,7 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
   @override
   void initState() {
     loadData();
-    WidgetsBinding.instance.addPostFrameCallback((_) => scrollToIndex(15));
+    WidgetsBinding.instance.addPostFrameCallback((_) => scrollToIndex(numberOfDaysToDisplay ~/ 2));
     super.initState();
   }
 
@@ -88,29 +89,36 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
         itemBuilder: (contex, index) {
           String currentDateValue = listDate[index].day.toString();
           String currentDateName = getMonthString(listDate[index].weekday);
-          bool isCurrentDay = index == (numberOfDaysToDisplay ~/ 2);
-          return Container(
-            width: itemWidth,
-            margin: EdgeInsets.all(kSmallPaddingValue),
-            decoration: BoxDecoration(
-              color: isCurrentDay ? primaryColor : tertiaryColor,
-              borderRadius: BorderRadius.circular(kRadiusValue * 4),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  currentDateValue,
-                  style: kTextStyleImportance3,
-                ),
-                SizedBox(
-                  height: kSmallPaddingValue,
-                ),
-                Text(
-                  currentDateName,
-                  style: kTextStyleHintTextImportance5.copyWith(color: Colors.white),
-                ),
-              ],
+          return GestureDetector(
+            onTap: (() {
+              setState(() {
+                daySelected = index;
+                scrollToIndex(daySelected);
+              });
+            }),
+            child: Container(
+              width: itemWidth,
+              margin: EdgeInsets.all(kSmallPaddingValue),
+              decoration: BoxDecoration(
+                color: index == daySelected ? primaryColor : tertiaryColor,
+                borderRadius: BorderRadius.circular(kRadiusValue * 4),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    currentDateValue,
+                    style: kTextStyleImportance3,
+                  ),
+                  SizedBox(
+                    height: kSmallPaddingValue,
+                  ),
+                  Text(
+                    currentDateName,
+                    style: kTextStyleHintTextImportance5.copyWith(color: Colors.white),
+                  ),
+                ],
+              ),
             ),
           );
         },

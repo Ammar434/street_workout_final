@@ -10,7 +10,7 @@ class HorizontalLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: kPaddingValue),
+      padding: EdgeInsets.symmetric(vertical: kSmallPaddingValue * 2),
       child: const Divider(
         color: tertiaryColor,
         height: 1,

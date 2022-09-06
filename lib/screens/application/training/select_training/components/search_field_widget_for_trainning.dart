@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../screens/application/parc_info/parc_info_screen.dart';
-import '../services/search/search_methods.dart';
-import '../utils/constants.dart';
+import '../../../parc_info/parc_info_screen.dart';
+import '../../../../../services/search/search_methods.dart';
+import '../../../../../utils/constants.dart';
 
-import '../utils/colors.dart';
+import '../../../../../utils/colors.dart';
 
 class SearchFieldWidgetForTraining extends StatelessWidget {
   const SearchFieldWidgetForTraining({Key? key}) : super(key: key);
@@ -25,8 +25,8 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
         autofocus: false,
         style: DefaultTextStyle.of(context).style.copyWith(fontStyle: FontStyle.italic),
         decoration: InputDecoration(
-          hintText: "Find your parc by typing name or address",
-          suffixIcon: const Icon(
+          hintText: "Search workout",
+          prefixIcon: const Icon(
             Icons.search,
             color: secondaryColor,
           ),

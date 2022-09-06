@@ -80,12 +80,12 @@ class CustomTileForAchievement extends StatelessWidget {
             isAchievementComplete
                 ? FaIcon(
                     FontAwesomeIcons.solidCircleCheck,
-                    size: kDefaultIconAppBar,
+                    size: kDefaultIconAppBarSize,
                     color: primaryColor,
                   )
                 : FaIcon(
                     FontAwesomeIcons.circleCheck,
-                    size: kDefaultIconAppBar,
+                    size: kDefaultIconAppBarSize,
                   ),
           ],
         ),

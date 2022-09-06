@@ -16,7 +16,6 @@ import '../../../services/firestore_methods/user_firestore_methods.dart';
 import 'components/parc_info_tab_display.dart';
 import 'components/pop_up_menu/pop_up_menu.dart';
 import '../../../utils/constants.dart';
-import '../../../widgets/horizontal_line.dart';
 import '../../../widgets/loading_widget.dart';
 
 class ParcInfoScreen extends StatefulWidget {
@@ -105,7 +104,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
               child: Center(
                 child: FaIcon(
                   FontAwesomeIcons.chevronLeft,
-                  size: kDefaultIconAppBar,
+                  size: kDefaultIconAppBarSize,
                 ),
               ),
             ),

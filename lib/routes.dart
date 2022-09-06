@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'screens/application/achievement_screen/achievement_screen.dart';
 import 'screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';

@@ -60,7 +60,7 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
             },
             icon: FaIcon(
               FontAwesomeIcons.chevronLeft,
-              size: kDefaultIconAppBar,
+              size: kDefaultIconAppBarSize,
             ),
           ),
         ),

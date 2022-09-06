@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../utils/constants.dart';
 
-AppBar buildAppBar(BuildContext context, String title) {
+AppBar buildAppBar(BuildContext context, String title, {List<Widget>? trailling}) {
   return AppBar(
+    automaticallyImplyLeading: false,
     leading: Center(
       child: IconButton(
         onPressed: () {
@@ -11,10 +12,11 @@ AppBar buildAppBar(BuildContext context, String title) {
         },
         icon: FaIcon(
           FontAwesomeIcons.chevronLeft,
-          size: kDefaultIconAppBar,
+          size: kDefaultIconAppBarSize,
         ),
       ),
     ),
     title: Text(title),
+    actions: trailling ?? [],
   );
 }

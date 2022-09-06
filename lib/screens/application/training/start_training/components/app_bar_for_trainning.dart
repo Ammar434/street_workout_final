@@ -40,7 +40,10 @@ class AppBarForTrainning extends StatelessWidget {
           style: kTextStyleImportance4.copyWith(fontSize: 16),
         ),
         const Spacer(),
-        const SolidCircleIcon(iconData: FontAwesomeIcons.plus)
+        SolidCircleIcon(
+          iconData: FontAwesomeIcons.plus,
+          iconSize: kDefaultIconsSize,
+        )
       ],
     );
   }
