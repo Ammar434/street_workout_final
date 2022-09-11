@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:street_workout_final/screens/application/training/select_training/select_trainning_screen.dart';
 import '../../../../../models/custom_user.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/text_style.dart';
@@ -40,9 +41,14 @@ class AppBarForTrainning extends StatelessWidget {
           style: kTextStyleImportance4.copyWith(fontSize: 16),
         ),
         const Spacer(),
-        SolidCircleIcon(
-          iconData: FontAwesomeIcons.plus,
-          iconSize: kDefaultIconsSize,
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, SelectTrainningScreen.name);
+          },
+          child: SolidCircleIcon(
+            iconData: FontAwesomeIcons.plus,
+            iconSize: kDefaultIconsSize,
+          ),
         )
       ],
     );

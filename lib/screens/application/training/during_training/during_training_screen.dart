@@ -4,6 +4,7 @@ import 'package:street_workout_final/models/workout.dart';
 import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/widgets/app_bar.dart';
 
+import 'components/history_body.dart';
 import 'components/track_body.dart';
 
 class DuringTrainingScreen extends StatefulWidget {
@@ -46,7 +47,9 @@ class _DuringTrainingScreenState extends State<DuringTrainingScreen> {
                     TrackBody(
                       workout: widget.workout,
                     ),
-                    Container(),
+                    HistoryBody(
+                      workout: widget.workout,
+                    ),
                     Container(),
                   ],
                 ),

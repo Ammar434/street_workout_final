@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:street_workout_final/datas/training/training_data.dart';
+import 'package:street_workout_final/models/sets.dart';
 import 'package:street_workout_final/models/training.dart';
 import 'package:street_workout_final/models/workout.dart';
+import 'package:street_workout_final/provider/training_provider.dart';
 import 'package:street_workout_final/services/dates_services.dart';
 import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
 import 'package:street_workout_final/utils/text_style.dart';
 import 'package:street_workout_final/widgets/horizontal_line.dart';
 import 'package:street_workout_final/widgets/rounded_button.dart';
+import 'package:uuid/uuid.dart';
 
-List listItem = [];
+UniqueKey firstTile = UniqueKey();
+
+List<String> listItem = [];
 List<bool> listIsExpanded = [];
+//To expand or shrink tile list of unique key
 List<UniqueKey> listOfUniqueKey = [];
 List<TextEditingController> listTextEdittingController = [];
+
+List<Sets> listSet = [];
 
 class TrackBody extends StatefulWidget {
   const TrackBody({
@@ -32,6 +41,73 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
   final DateTime dateTime = DateTime.now();
   late Training training;
   late Workout workout;
+
+  void printListSet() {
+    print(listSet.length);
+    for (Sets s in listSet) {
+      print("1--------------------------------------------");
+      print(s.id);
+      print("${s.numberOfRep} ${s.weight}");
+      print("2--------------------------------------------");
+    }
+  }
+
+  void initialiseTrainingAndWorkout() {
+    TrainingProvider trainingProvider = Provider.of<TrainingProvider>(context, listen: false);
+    bool isTrainingExistForTheDay = false;
+    bool isWorkoutExistForTheDay = false;
+
+    //On parcours pour voir si un training existe pour la journee
+    for (Training t in listTraining) {
+      if (isSameDay(t.dateTime, dateTime)) {
+        isTrainingExistForTheDay = true;
+        training = t;
+        break;
+      }
+    }
+
+    if (!isTrainingExistForTheDay) {
+      training = Training(
+        dateTime: dateTime,
+        listWorkout: [],
+      );
+    }
+    //On parcours pour voir si un workout existe pour la journee
+
+    for (Workout w in training.listWorkout) {
+      if (w.id == widget.workout.id) {
+        isWorkoutExistForTheDay = true;
+        workout = w;
+        break;
+      }
+    }
+
+    if (!isWorkoutExistForTheDay) {
+      workout = widget.workout.clone();
+    }
+    if (!isWorkoutExistForTheDay) {
+      training.addWorkout(workout);
+    }
+    if (!isTrainingExistForTheDay) {
+      trainingProvider.addTraining(training);
+    }
+  }
+
+  void createExpansionPanel() {
+    printListSet();
+    final TextEditingController textEditingController1 = TextEditingController(text: "2.5");
+    final TextEditingController textEditingController2 = TextEditingController(text: "1");
+
+    listTextEdittingController.add(textEditingController1);
+    listTextEdittingController.add(textEditingController2);
+
+    String setId = const Uuid().v1();
+    listItem.add(setId);
+    listIsExpanded.add(true);
+    listOfUniqueKey.add(UniqueKey());
+    animatedListKey.currentState!.insertItem(listItem.length - 1, duration: duration);
+  }
+
   void removeExpansionPanel(int index) {
     animatedListKey.currentState!.removeItem(index, (_, animation) {
       return SlideTransition(
@@ -66,30 +142,24 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
     listTextEdittingController.removeAt(index);
     listTextEdittingController.removeAt(index);
     listIsExpanded.removeAt(index);
+
+    listSet.removeWhere((element) => element.id == listOfUniqueKey[index].toString());
     listOfUniqueKey.removeAt(index);
 
     listItem.removeAt(index);
   }
 
-  void createExpansionPanel() {
-    for (int i = 0; i < listIsExpanded.length; i++) {
-      listIsExpanded[i] = false;
+  void expandTile(int index) {
+    String idToFInd = listItem[index].toString();
+
+    for (int i = 0; i < listSet.length; i++) {
+      if (listSet[i].id == idToFInd) {
+        print("removeeeeee");
+        listSet.removeAt(i);
+        break;
+      }
     }
 
-    final TextEditingController textEditingController1 = TextEditingController();
-    final TextEditingController textEditingController2 = TextEditingController();
-    textEditingController1.text = "2.5";
-    textEditingController2.text = "1";
-    listTextEdittingController.add(textEditingController1);
-    listTextEdittingController.add(textEditingController2);
-
-    listItem.add("Item ${listItem.length + 1}");
-    listIsExpanded.add(true);
-    listOfUniqueKey.add(UniqueKey());
-    animatedListKey.currentState!.insertItem(listItem.length - 1, duration: duration);
-  }
-
-  void expandTile(int index) {
     setState(
       () {
         listIsExpanded[index] = true;
@@ -99,6 +169,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
   }
 
   void shrinkTile(int index) {
+    saveWorkout(index);
     setState(
       () {
         listIsExpanded[index] = false;
@@ -115,61 +186,34 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
     }
   }
 
-  void saveWorkout() {
-    bool isTrainingExistForTheDay = false;
-    bool isWorkoutExistForTheDay = false;
+  void saveWorkout(int index) {
+    //Check if sets already exist
 
-    //On parcours pour voir si ub training existe pour la journee
-    for (Training t in listTraining) {
-      if (isSameDay(t.dateTime, dateTime)) {
-        isTrainingExistForTheDay = true;
-        training = t;
-        break;
+    for (Sets s in listSet) {
+      if (s.id == listItem[index]) {
+        print("nfdgfgfdgdg");
+        double weight = double.parse(listTextEdittingController[index].text);
+        int numberOfRep = int.parse(listTextEdittingController[index + 1].text);
+        s.weight = weight;
+        s.numberOfRep = numberOfRep;
+        return;
       }
     }
 
-    if (!isTrainingExistForTheDay) {
-      training = Training(
-        dateTime: dateTime,
-        listWorkout: [],
-      );
-    }
+    double weight = double.parse(listTextEdittingController[index].text);
+    int numberOfRep = int.parse(listTextEdittingController[index + 1].text);
+    Sets s = Sets(numberOfRep: numberOfRep, weight: weight, distance: 0, duration: Duration.zero, id: listItem[index]);
+    listSet.add(s);
+  }
 
-    for (Workout w in training.listWorkout) {
-      if (w.id == widget.workout.id) {
-        isWorkoutExistForTheDay = true;
-        workout = w;
-        break;
-      }
-    }
-
-    if (!isWorkoutExistForTheDay) {
-      workout = widget.workout.clone();
-    }
-
-    for (int i = 0; i < listIsExpanded.length; i++) {
-      listIsExpanded[i] = false;
-    }
-    setState(() {});
-
-    for (int i = 0; i < listTextEdittingController.length; i = i + 2) {
-      double weight = double.parse(listTextEdittingController[i].text);
-      int numberOfRep = int.parse(listTextEdittingController[i + 1].text);
-
-      workout.addSetOfRep(weight, numberOfRep);
-    }
-
-    if (!isWorkoutExistForTheDay) {
-      training.addWorkout(workout);
-    }
-    if (!isTrainingExistForTheDay) {
-      listTraining.add(training);
-    }
+  @override
+  void initState() {
+    initialiseTrainingAndWorkout();
+    super.initState();
   }
 
   @override
   void dispose() {
-    saveWorkout();
     super.dispose();
   }
 
@@ -186,30 +230,28 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
           color: iconColor,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(kPaddingValue),
-        child: Column(
-          children: [
-            Expanded(
-              child: AnimatedList(
-                key: animatedListKey,
-                initialItemCount: listItem.length,
-                itemBuilder: (context, index, animation) {
-                  return buildSlide(animation, index);
-                },
-              ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(kPaddingValue),
+            child: AnimatedList(
+              shrinkWrap: true,
+              key: animatedListKey,
+              initialItemCount: listItem.length,
+              itemBuilder: (context, index, animation) {
+                return buildSlide(animation, index);
+              },
             ),
-            Padding(
-              padding: EdgeInsets.only(right: kPaddingValue * 5),
-              child: RoundedButton(
-                onTap: () {
-                  saveWorkout();
-                },
-                text: "Save",
-              ),
-            )
-          ],
-        ),
+          ),
+          RoundedButton(onTap: () => printListSet(), text: "text"),
+          RoundedButton(
+              onTap: () {
+                for (int i = 0; i < listSet.length; i++) {
+                  print("set ${listSet[i].id} id ${listItem[i]}");
+                }
+              },
+              text: "text2")
+        ],
       ),
     );
   }
@@ -235,9 +277,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
             key: listOfUniqueKey[index],
             initiallyExpanded: listIsExpanded[index],
             onExpansionChanged: (bool isExpand) {
-              setState(() {
-                listIsExpanded[index] = isExpand;
-              });
+              isExpand ? expandTile(index) : shrinkTile(index);
             },
             iconColor: Colors.white,
             textColor: Colors.white,

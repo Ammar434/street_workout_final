@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:street_workout_final/provider/training_provider.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
@@ -22,7 +24,7 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
   final double itemWidth = 70.sp;
 
   int numberOfDaysToDisplay = 30;
-  int daySelected = (30 ~/ 2);
+  int daySelected = 15;
 
   String getMonthString(int days) {
     switch (days) {
@@ -94,6 +96,7 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
               setState(() {
                 daySelected = index;
                 scrollToIndex(daySelected);
+                Provider.of<TrainingProvider>(context, listen: false).changeDaySelected(listDate[index]);
               });
             }),
             child: Container(

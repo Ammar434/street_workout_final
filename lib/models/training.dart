@@ -10,10 +10,14 @@ class Training {
   final List<Workout> listWorkout;
 
   void addWorkout(Workout workout) {
+    bool b = false;
     for (Workout w in listWorkout) {
-      if (w.id == workout.id) {}
+      if (w.id == workout.id) {
+        b = true;
+      }
     }
-
-    listWorkout.add(workout);
+    if (!b) {
+      listWorkout.add(workout);
+    }
   }
 }

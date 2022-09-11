@@ -39,14 +39,23 @@ class Workout {
 
   final Color color;
 
-  void addSetOfRep(double weight, int numberOfRep) {
+  void addSetOfRep(double weight, int numberOfRep, String id) {
+    bool isSetAlreadyExist = false;
     Sets set = Sets(
       numberOfRep: numberOfRep,
       weight: weight,
       distance: 0,
       duration: Duration.zero,
+      id: id,
     );
-    listSets.add(set);
+    for (Sets s in listSets) {
+      if (s.id == id) {
+        isSetAlreadyExist = true;
+      }
+    }
+    if (!isSetAlreadyExist) {
+      listSets.add(set);
+    }
   }
 
   Workout clone() {
