@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/training.dart';
 import 'package:street_workout_final/provider/training_provider.dart';
-import 'package:street_workout_final/screens/application/training/start_training/components/no_training_found_widget.dart';
-import 'package:street_workout_final/screens/application/training/start_training/components/training_found_widget.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../provider/user_provider.dart';
 import 'components/app_bar_for_trainning.dart';
 import 'components/date_select_builder.dart';
 import '../../../../utils/constants.dart';
 import '../../../../utils/text_style.dart';
+import 'components/no_training_found_widget.dart';
+import 'components/training_found_widget.dart';
 
 class StartTrainingScreen extends StatelessWidget {
   const StartTrainingScreen({Key? key}) : super(key: key);
@@ -19,7 +18,6 @@ class StartTrainingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
     TrainingProvider trainingProvider = Provider.of<TrainingProvider>(context);
-    Training? trainingOfTheDay = trainingProvider.getTrainingOfTheDay();
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -48,7 +46,7 @@ class StartTrainingScreen extends StatelessWidget {
                 height: kPaddingValue * 2,
               ),
               Text("Your workout", style: kTextStyleImportance3),
-              trainingOfTheDay == null ? const NoTrainingFoundWidget() : const TrainingFoundWidget(),
+              trainingProvider.getTrainingOfTheDay() == null ? const NoTrainingFoundWidget() : const TrainingFoundWidget(),
             ],
           ),
         ),

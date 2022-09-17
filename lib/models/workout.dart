@@ -39,9 +39,9 @@ class Workout {
 
   final Color color;
 
-  void addSetOfRep(double weight, int numberOfRep, String id) {
+  void addSetOfRep(String id, double weight, int numberOfRep) {
     bool isSetAlreadyExist = false;
-    Sets set = Sets(
+    Sets s = Sets(
       numberOfRep: numberOfRep,
       weight: weight,
       distance: 0,
@@ -51,10 +51,12 @@ class Workout {
     for (Sets s in listSets) {
       if (s.id == id) {
         isSetAlreadyExist = true;
+        s.weight = weight;
+        s.numberOfRep = numberOfRep;
       }
     }
     if (!isSetAlreadyExist) {
-      listSets.add(set);
+      listSets.add(s);
     }
   }
 

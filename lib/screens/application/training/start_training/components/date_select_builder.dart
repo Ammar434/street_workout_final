@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:street_workout_final/provider/training_provider.dart';
+import 'package:street_workout_final/services/dates_services.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
@@ -25,28 +26,6 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
 
   int numberOfDaysToDisplay = 30;
   int daySelected = 15;
-
-  String getMonthString(int days) {
-    switch (days) {
-      case 1:
-        return 'Mon';
-      case 2:
-        return 'Tue';
-      case 3:
-        return 'Wed';
-      case 4:
-        return 'Thu';
-      case 5:
-        return 'Fri';
-      case 6:
-        return 'Sat';
-      case 7:
-        return 'Sun';
-
-      default:
-        return 'Err';
-    }
-  }
 
   void loadData() {
     DateTime dateTime = DateTime.now().add(
@@ -90,7 +69,7 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
         itemCount: numberOfDaysToDisplay,
         itemBuilder: (contex, index) {
           String currentDateValue = listDate[index].day.toString();
-          String currentDateName = getMonthString(listDate[index].weekday);
+          String currentDateName = getDayString(listDate[index].weekday);
           return GestureDetector(
             onTap: (() {
               setState(() {

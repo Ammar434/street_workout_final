@@ -9,15 +9,15 @@ class Training {
   final DateTime dateTime;
   final List<Workout> listWorkout;
 
-  void addWorkout(Workout workout) {
-    bool b = false;
-    for (Workout w in listWorkout) {
-      if (w.id == workout.id) {
-        b = true;
-      }
-    }
-    if (!b) {
-      listWorkout.add(workout);
-    }
-  }
+  // void addWorkout(Workout workout) {
+  //   bool b = false;
+  //   for (Workout w in listWorkout) {
+  //     if (w.id == workout.id) {
+  //       b = true;
+  //     }
+  //   }
+  //   if (!b) {
+  //     listWorkout.add(workout);
+  //   }
+  // }
 }

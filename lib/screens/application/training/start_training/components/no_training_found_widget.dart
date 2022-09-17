@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:street_workout_final/provider/training_provider.dart';
 import 'package:street_workout_final/screens/application/training/select_training/select_trainning_screen.dart';
 import 'package:street_workout_final/screens/application/training/start_training/components/cutom_button_for_trainning_screen.dart';
 import 'package:street_workout_final/utils/constants.dart';
@@ -11,6 +13,8 @@ class NoTrainingFoundWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TrainingProvider trainingProvider = Provider.of<TrainingProvider>(context);
+
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +43,9 @@ class NoTrainingFoundWidget extends StatelessWidget {
               CustomButtonForTrainingScreen(
                 iconData: FontAwesomeIcons.solidCopy,
                 text: "Copy someone workout",
-                onTap: () {},
+                onTap: () {
+                  print(trainingProvider.listTrainingFromProvider.length);
+                },
               ),
             ],
           ),

@@ -7,6 +7,14 @@ import 'package:street_workout_final/widgets/app_bar.dart';
 import 'components/history_body.dart';
 import 'components/track_body.dart';
 
+List<String> listItem = [];
+List<bool> listIsExpanded = [];
+
+//To expand or shrink tile list of unique key
+List<UniqueKey> listOfUniqueKey = [];
+List<TextEditingController> listTextEdittingController = [];
+// List<Sets> listSet = [];
+
 class DuringTrainingScreen extends StatefulWidget {
   const DuringTrainingScreen({Key? key, required this.workout}) : super(key: key);
   final Workout workout;
@@ -15,6 +23,18 @@ class DuringTrainingScreen extends StatefulWidget {
 }
 
 class _DuringTrainingScreenState extends State<DuringTrainingScreen> {
+  @override
+  void dispose() {
+    listItem.clear();
+    listOfUniqueKey.clear();
+    listIsExpanded.clear();
+    for (TextEditingController te in listTextEdittingController) {
+      te.dispose();
+    }
+    listTextEdittingController.clear();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
