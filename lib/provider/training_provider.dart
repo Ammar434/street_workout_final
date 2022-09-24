@@ -67,6 +67,18 @@ class TrainingProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void disposeWorkout(Workout workout) {
+    Training? training = getTrainingOfTheDay();
+
+    for (Workout w in training!.listWorkout) {
+      if (w.id == workout.id && w.listSets.isEmpty) {
+        training.listWorkout.remove(w);
+      }
+    }
+
+    notifyListeners();
+  }
+
   void addSetToWorkout(String workoutId, String setId, double weight, int numberOfRep) {
     Training? t = getTrainingOfTheDay();
 

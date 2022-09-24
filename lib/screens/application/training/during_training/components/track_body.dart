@@ -158,6 +158,12 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    trainingProvider.disposeWorkout(widget.workout);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
