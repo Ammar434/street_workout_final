@@ -14,7 +14,7 @@ import '../../../../widgets/rounded_button.dart';
 import '../components/user_detail_column_widget.dart';
 
 class GlobalWaittingRoomScreen extends StatefulWidget {
-  GlobalWaittingRoomScreen({Key? key}) : super(key: key);
+  const GlobalWaittingRoomScreen({Key? key}) : super(key: key);
   static String name = "GlobalWaittingRoomScreen";
 
   @override
@@ -64,12 +64,12 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
             ),
           ),
         ),
-        title: Text("Lobby"),
+        title: const Text("Lobby"),
       ),
       body: isLoading
-          ? LoadingWidget()
+          ? const LoadingWidget()
           : Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -97,7 +97,7 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                         fontSize: kDefaultTitleSize,
                       ),
                     ),
-                    Text("We will develod this screen soon"),
+                    const Text("We will develod this screen soon"),
                     SizedBox(
                       height: kPaddingValue * 2,
                     ),
@@ -120,7 +120,7 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                     SizedBox(
                       height: kPaddingValue * 1,
                     ),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'What you have to do:',
@@ -133,7 +133,7 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                     SizedBox(
                       height: kSmallPaddingValue,
                     ),
-                    Expanded(
+                    const Expanded(
                       child: SingleChildScrollView(
                         child: Text(
                           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",

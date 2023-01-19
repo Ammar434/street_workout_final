@@ -15,7 +15,7 @@ showLoadingDialog(BuildContext context) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kRadiusValue),
         ),
-        child: Center(child: LoadingWidget()),
+        child: const Center(child: LoadingWidget()),
       );
     },
   );

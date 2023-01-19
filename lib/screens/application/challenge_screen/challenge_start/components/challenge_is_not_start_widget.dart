@@ -4,7 +4,7 @@ import '../../../../../utils/constants.dart';
 import '../../../../../widgets/rounded_button.dart';
 
 class ChallengeIsNotStartWidget extends StatelessWidget {
-  ChallengeIsNotStartWidget({
+  const ChallengeIsNotStartWidget({
     Key? key,
     required this.challengerOnTap,
     required this.evaluatorOnTap,
@@ -16,18 +16,18 @@ class ChallengeIsNotStartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: Key('1'),
+      key: const Key('1'),
       // color: Colors.red,
       child: Column(
         children: [
-          Text(
+          const Text(
             "Welcome to the Challenge",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
           ),
-          Text(
+          const Text(
             "Here you can unlock new levels, improve your score and challenge others.",
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -61,7 +61,7 @@ class ChallengeIsNotStartWidget extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {},
-            child: Text(
+            child: const Text(
               "What if no appraiser is available?",
               style: TextStyle(
                 fontWeight: FontWeight.bold,

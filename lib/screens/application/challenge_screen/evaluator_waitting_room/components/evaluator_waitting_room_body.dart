@@ -14,7 +14,7 @@ import '../../../../../widgets/loading_widget.dart';
 import '../../../../../widgets/snackbar.dart';
 
 class EvaluatorWaittingRoomScreenBody extends StatefulWidget {
-  EvaluatorWaittingRoomScreenBody({Key? key}) : super(key: key);
+  const EvaluatorWaittingRoomScreenBody({Key? key}) : super(key: key);
   @override
   State<EvaluatorWaittingRoomScreenBody> createState() => _EvaluatorWaittingRoomScreenBodyState();
 }
@@ -70,7 +70,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
 
   void startTimer() {
     timer = Timer.periodic(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       (timer) {
         if (timeDuration > 0) {
           setState(() {
@@ -133,7 +133,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
     return Scaffold(
       appBar: buildAppBar(context, ""),
       body: isLoading
-          ? LoadingWidget()
+          ? const LoadingWidget()
           : Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -184,7 +184,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                       ),
                       AnimatedOpacity(
                         opacity: 1 - opacityLevel,
-                        duration: Duration(seconds: 1),
+                        duration: const Duration(seconds: 1),
                         child: Text(
                           "Finding athletes arround you",
                           textAlign: TextAlign.center,
@@ -196,7 +196,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                       ),
                       AnimatedOpacity(
                         opacity: opacityLevel,
-                        duration: Duration(seconds: 5),
+                        duration: const Duration(seconds: 5),
                         curve: Curves.linearToEaseOut,
                         child: Text(
                           "The athlete who was to be evaluated failed to join the challenge. Please try again.",

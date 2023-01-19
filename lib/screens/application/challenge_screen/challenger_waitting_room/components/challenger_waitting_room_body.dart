@@ -6,7 +6,7 @@ import '../../../../../utils/constants.dart';
 import '../../../../../widgets/app_bar.dart';
 
 class ChallengerWaittingRoomBody extends StatefulWidget {
-  ChallengerWaittingRoomBody({Key? key}) : super(key: key);
+  const ChallengerWaittingRoomBody({Key? key}) : super(key: key);
   @override
   State<ChallengerWaittingRoomBody> createState() => _ChallengerWaittingRoomBodyState();
 }
@@ -18,12 +18,12 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
   late Future t;
   Widget _renderWidget() {
     if (flag) {
-      return ChallengeIsStartWidget();
+      return const ChallengeIsStartWidget();
     } else {
       return Text(
         "The athlete who was to be evaluated failed to join the challenge. Please try again.",
         textAlign: TextAlign.center,
-        key: Key("2"),
+        key: const Key("2"),
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: kDefaultTitleSize * 0.75,
@@ -40,7 +40,7 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
       animationController.stop();
       setState(() {
         flag = !flag;
-        Future.delayed(Duration(seconds: 5)).whenComplete(
+        Future.delayed(const Duration(seconds: 5)).whenComplete(
           () => Navigator.of(context).pop(),
         );
       });
@@ -75,7 +75,7 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
               transitionBuilder: (Widget child, Animation<double> animation) {
                 return ScaleTransition(scale: animation, child: child);
               },
-              duration: Duration(seconds: 1),
+              duration: const Duration(seconds: 1),
               child: _renderWidget(),
             ),
           ),

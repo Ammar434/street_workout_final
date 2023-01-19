@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,7 +19,7 @@ class FirebaseStorageMethods {
     Reference ref = firebaseStorage.ref().child(childName).child(firebaseAuth.currentUser!.uid);
 
     if (isPost == true) {
-      String id = Uuid().v1();
+      String id = const Uuid().v1();
       ref = ref.child(id);
     }
     try {

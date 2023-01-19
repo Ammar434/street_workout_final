@@ -14,7 +14,7 @@ class LeaderboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomUser customUser = Provider.of<UserProvider>(context).getUser;
 
-    if (customUser.favoriteParc == "") {
+    if (customUser.favoriteParc.isEmpty) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
@@ -54,7 +54,7 @@ class LeaderboardScreen extends StatelessWidget {
               Tab(text: 'Year'),
             ],
           ),
-          Expanded(
+          const Expanded(
             child: TabBarView(
               children: [
                 LeaderboardSliverBuilder(

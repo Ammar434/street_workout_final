@@ -6,7 +6,7 @@ import '../../../../utils/colors.dart';
 import 'build_athlete_tab.dart';
 
 class ParcInfoTabDisplay extends StatelessWidget {
-  ParcInfoTabDisplay({
+  const ParcInfoTabDisplay({
     Key? key,
     required this.parc,
     required this.tabController,
@@ -23,9 +23,9 @@ class ParcInfoTabDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> myTabs = [
-      Tab(text: 'Photos'),
-      Tab(text: 'Athletes'),
-      Tab(text: "Comments"),
+      const Tab(text: 'Photos'),
+      const Tab(text: 'Athletes'),
+      const Tab(text: "Comments"),
     ];
     return Column(
       children: [

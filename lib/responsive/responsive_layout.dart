@@ -37,7 +37,7 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? LoadingWidget()
+        ? const LoadingWidget()
         : LayoutBuilder(
             builder: (context, raints) {
               if (raints.maxWidth > webScreenSize) {

@@ -8,7 +8,7 @@ import '../global_waitting_room/global_waitting_room_screen.dart';
 import 'components/evaluator_waitting_room_body.dart';
 
 class EvaluatorWaittingRoomScreen extends StatefulWidget {
-  EvaluatorWaittingRoomScreen({Key? key}) : super(key: key);
+  const EvaluatorWaittingRoomScreen({Key? key}) : super(key: key);
   static String name = "EvaluatorWaittingRoomScreen";
 
   @override
@@ -31,7 +31,7 @@ class _EvaluatorWaittingRoomScreenState extends State<EvaluatorWaittingRoomScree
     _customUser = Provider.of<UserProvider>(context).getUser;
     challengeProvider = Provider.of<ChallengeProvider>(context, listen: false);
 
-    if (isRoomEmpty) return EvaluatorWaittingRoomScreenBody();
-    return GlobalWaittingRoomScreen();
+    if (isRoomEmpty) return const EvaluatorWaittingRoomScreenBody();
+    return const GlobalWaittingRoomScreen();
   }
 }

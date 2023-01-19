@@ -57,7 +57,7 @@ class CustomDialogBodyWidget extends StatelessWidget {
                 ),
               ),
               //   Spacer(),
-              AlertDialogButtonWidget(),
+              const AlertDialogButtonWidget(),
             ],
           ),
         ),

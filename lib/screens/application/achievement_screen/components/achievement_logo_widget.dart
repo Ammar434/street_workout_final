@@ -63,7 +63,7 @@ class AchievementLogoWidget extends StatelessWidget {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
-        return CustomDialogBodyWidget();
+        return const CustomDialogBodyWidget();
       },
     );
   }

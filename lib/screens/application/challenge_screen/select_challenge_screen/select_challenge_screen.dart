@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../models/challenge.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../models/rewards.dart';
 import '../../../../provider/challenge_provider.dart';
@@ -12,7 +11,7 @@ import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/loading_widget.dart';
 
 class SelectChallengeScreen extends StatelessWidget {
-  SelectChallengeScreen({Key? key, required this.evaluatorId}) : super(key: key);
+  const SelectChallengeScreen({Key? key, required this.evaluatorId}) : super(key: key);
   final String evaluatorId;
   static String name = "SelectChallengeScreen";
   @override
@@ -31,7 +30,7 @@ class SelectChallengeScreen extends StatelessWidget {
           future: RewardsFirestoreMethods().getRewardsStrengthSnapshot(),
           builder: (context, AsyncSnapshot<RewardsCategory> rewardsStrenghCategory) {
             if (rewardsStrenghCategory.connectionState == ConnectionState.waiting) {
-              return Center(child: LoadingWidget());
+              return const Center(child: LoadingWidget());
             }
             for (Reward rewards in rewardsStrenghCategory.data!.rewardsList) {
               if (!currentUser.rewards.contains(rewards.id)) {

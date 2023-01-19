@@ -4,7 +4,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
 class AlertDialogButtonWidget extends StatelessWidget {
-  AlertDialogButtonWidget({
+  const AlertDialogButtonWidget({
     Key? key,
   }) : super(key: key);
 
@@ -28,7 +28,7 @@ class AlertDialogButtonWidget extends StatelessWidget {
             ),
           ),
         ),
-        child: Center(
+        child: const Center(
           child: Text(
             "Claim",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

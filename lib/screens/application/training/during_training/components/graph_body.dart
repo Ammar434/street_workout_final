@@ -1,25 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:street_workout_final/models/training.dart';
+import 'package:street_workout_final/models/workout.dart';
+import 'package:street_workout_final/provider/training_provider.dart';
+import 'package:street_workout_final/screens/application/training/during_training/components/chart.dart';
+import 'package:street_workout_final/services/training/training_services.dart';
+import 'package:street_workout_final/utils/colors.dart';
 import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/text_style.dart';
+
+import 'drop_down_for_graph_type.dart';
 
 class GraphBody extends StatefulWidget {
   const GraphBody({
     Key? key,
+    required this.workout,
   }) : super(key: key);
 
+  final Workout workout;
   @override
   State<GraphBody> createState() => _GraphBodyState();
 }
 
 final List<String> items = ["Estimated 1RM", "Max weight", "Max reps"];
+List<String> list = ["Month", "3 Months", "6 Months", "All"];
 
 class _GraphBodyState extends State<GraphBody> {
-  String? val = items[0];
+  String val = items[0];
+  int index = 0;
+  int defaultSelectedDayIndex = 0;
+
+  buildListPlot() {}
+
+  buildWidgetChart(int i, List<Training> trainingList, Workout w) {
+    if (i == 0) {
+      return Expanded(
+        child: LineChartSample2(
+          listFlSpot: TrainingServices().buildListFlSpot(trainingList, w),
+          days: 30,
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 5,
+    // TrainingServices trainingServices = TrainingServices();
+    List<Training> trainingList = Provider.of<TrainingProvider>(context).getListTrainingContainingACertainWorkout(widget.workout.id);
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
       child: Column(
         children: [
           DropDownForGraphType(
@@ -27,68 +58,30 @@ class _GraphBodyState extends State<GraphBody> {
             list: items,
             onChanged: (String? v) => setState(
               () {
-                val = v;
+                val = v!;
               },
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class DropDownForGraphType extends StatelessWidget {
-  const DropDownForGraphType({
-    Key? key,
-    required this.val,
-    required this.list,
-    required this.onChanged,
-  }) : super(key: key);
-  final String? val;
-  final List<String> list;
-  final Function(String?) onChanged;
-
-  DropdownMenuItem<String> buildMenuItem(String item) {
-    return DropdownMenuItem(
-      value: item,
-      child: Center(
-        child: Text(
-          item,
-          style: kTextStyleImportance4,
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        // border: Border.all(color: primaryColor),
-        borderRadius: BorderRadius.circular(
-          kRadiusValue,
-        ),
-      ),
-      child: Row(
-        children: [
-          Text(
-            "Graphique type :",
-            style: kTextStyleImportance4,
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(kSmallPaddingValue),
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton(
-                  value: val,
-                  isExpanded: true,
-                  alignment: Alignment.bottomRight,
-                  items: list.map(buildMenuItem).toList(),
-                  onChanged: onChanged,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(
+              list.length,
+              (index) => TextButton(
+                onPressed: () {
+                  setState(() {
+                    defaultSelectedDayIndex = index;
+                  });
+                },
+                child: Text(
+                  list[index],
+                  style: TextStyle(
+                    color: defaultSelectedDayIndex == index ? primaryColor : tertiaryColor,
+                  ),
                 ),
               ),
             ),
           ),
+          buildWidgetChart(defaultSelectedDayIndex, trainingList, widget.workout)
         ],
       ),
     );

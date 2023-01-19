@@ -9,7 +9,6 @@ import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../utils/constants.dart';
-import 'account_settings/account_settings_screen.dart';
 import 'components/settings_group.dart';
 import 'components/settings_tile.dart';
 
@@ -115,7 +114,7 @@ class SettingsScreen extends StatelessWidget {
                 },
               ),
               SettingsTile(
-                icon: CustomIcon.ko_fi,
+                icon: CustomIcon.kofi,
                 iconBackgroundColor: const Color(0xffFF5F5F),
                 text1: "Support me on Ko-fi",
                 text2: "",

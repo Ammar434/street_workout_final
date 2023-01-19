@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 
 class TextFieldInput extends StatefulWidget {
-  TextFieldInput({
+  const TextFieldInput({
     Key? key,
     required this.textEditingController,
     this.isPassword = false,
@@ -35,7 +35,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
         focusedBorder: inputBorder,
         enabledBorder: inputBorder,
         filled: true,
-        contentPadding: EdgeInsets.all(8),
+        contentPadding: const EdgeInsets.all(8),
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),

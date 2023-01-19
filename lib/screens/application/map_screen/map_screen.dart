@@ -16,7 +16,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  // final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   late final Geolocalisation _geolocalisation;
   late LatLng userCurrentPosition;
   late Set<Marker> markers;

@@ -4,7 +4,7 @@ import '../../../../models/parc.dart';
 import '../../../../utils/constants.dart';
 
 class ParcMainPhoto extends StatelessWidget {
-  ParcMainPhoto({
+  const ParcMainPhoto({
     Key? key,
     required this.parc,
   }) : super(key: key);

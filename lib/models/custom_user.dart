@@ -29,7 +29,7 @@ class CustomUser {
   final List follower;
   final List following;
   final int points;
-  final String favoriteParc;
+  final List<dynamic> favoriteParc;
   final int numberOfContribution;
   final int numberOfEvaluation;
   final String instagramProfile;

@@ -9,7 +9,7 @@ import 'components/body_challenge_failed.dart';
 import 'components/body_challenge_succeeded.dart';
 
 class ChallengeEndChallengerScreen extends StatelessWidget {
-  ChallengeEndChallengerScreen({Key? key, required this.isChallengeSucceed}) : super(key: key);
+  const ChallengeEndChallengerScreen({Key? key, required this.isChallengeSucceed}) : super(key: key);
   final bool isChallengeSucceed;
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,11 @@ class ChallengeEndChallengerScreen extends StatelessWidget {
             onTap: () {
               Navigator.pushNamedAndRemoveUntil(context, ChallengeStartScreen.name, (route) => true);
             },
-            child: Center(
+            child: const Center(
               child: FaIcon(FontAwesomeIcons.xmark),
             ),
           ),
-          actions: [
+          actions: const [
             Center(
               child: Padding(
                 padding: EdgeInsets.only(right: 10),

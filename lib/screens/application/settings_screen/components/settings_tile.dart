@@ -12,7 +12,7 @@ class SettingsTile extends StatelessWidget {
     required this.text2,
     required this.press,
   }) : super(key: key);
-  final icon;
+  final IconData icon;
   final Color iconBackgroundColor;
   final String text1;
   final String text2;

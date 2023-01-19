@@ -5,7 +5,7 @@ import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_circle_user_profile_widget.dart';
 
 class TileLeaderboardRow extends StatelessWidget {
-  TileLeaderboardRow({
+  const TileLeaderboardRow({
     Key? key,
     required this.index,
     this.gradient,
@@ -39,15 +39,15 @@ class TileLeaderboardRow extends StatelessWidget {
             width: 100,
             child: Text(
               leaderboard.userName,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Text(
             leaderboard.userPoint.toString(),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),

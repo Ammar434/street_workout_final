@@ -17,17 +17,6 @@ class HistoryBody extends StatelessWidget {
     required this.workout,
   }) : super(key: key);
   final Workout workout;
-  List<Sets> buildListSets(Training training) {
-    List<Sets> list = [];
-
-    for (Workout w in training.listWorkout) {
-      if (w.id == workout.id) {
-        list.addAll(w.listSets);
-      }
-    }
-    // list.sort(((a, b) => a.id.compareTo(b.id)));
-    return list;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +29,7 @@ class HistoryBody extends StatelessWidget {
         String dayName = getDayCompleteNameString(trainingList[index].dateTime.weekday).toUpperCase();
         String month = getMonth(trainingList[index].dateTime.month).toUpperCase();
         String date = "   $dayName $month ${trainingList[index].dateTime.day}";
-        List<Sets> listSets = buildListSets(trainingList[index]);
+        List<Sets> listSets = TrainingServices().buildListSets(trainingList[index], workout);
         int bestIndex = trainingServices.indexOfBestSet(listSets);
         return Padding(
           padding: EdgeInsets.all(kPaddingValue),

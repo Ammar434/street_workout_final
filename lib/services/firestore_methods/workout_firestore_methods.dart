@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../models/custom_user.dart';
 import '../firebase_storage/firebase_storage_methods.dart';
 
 class WorkoutFirestoreMethods {

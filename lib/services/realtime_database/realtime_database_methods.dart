@@ -21,7 +21,7 @@ class RealtimeDatabaseMethods {
         evaluatorUid: evaluator.uid,
         evaluatorName: evaluator.userName,
         evaluatorImageUrl: evaluator.profileImage,
-        parcId: evaluator.favoriteParc,
+        parcId: evaluator.favoriteParc[0],
         isChallengerReady: false,
         isEvaluatorReady: false,
         isChallengeEnd: false,

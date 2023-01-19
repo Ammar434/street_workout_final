@@ -5,7 +5,7 @@ import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_circle_user_profile_widget.dart';
 
 class HeaderRankingWIdget extends StatelessWidget {
-  HeaderRankingWIdget({
+  const HeaderRankingWIdget({
     Key? key,
     this.gradient,
     required this.leaderboard,
@@ -42,14 +42,14 @@ class HeaderRankingWIdget extends StatelessWidget {
               ),
               Text(
                 leaderboard.userName,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
               Text(
                 leaderboard.userPoint.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),

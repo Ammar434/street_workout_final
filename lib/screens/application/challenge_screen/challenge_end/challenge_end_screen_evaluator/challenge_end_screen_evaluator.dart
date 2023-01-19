@@ -9,7 +9,7 @@ import '../../../../../utils/constants.dart';
 import '../../challenge_start/challenge_start_screen.dart';
 
 class ChallengeEndScreenEvaluator extends StatelessWidget {
-  ChallengeEndScreenEvaluator({Key? key}) : super(key: key);
+  const ChallengeEndScreenEvaluator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +21,11 @@ class ChallengeEndScreenEvaluator extends StatelessWidget {
             onTap: () {
               Navigator.pushNamedAndRemoveUntil(context, ChallengeStartScreen.name, (route) => true);
             },
-            child: Center(
+            child: const Center(
               child: FaIcon(FontAwesomeIcons.xmark),
             ),
           ),
-          actions: [
+          actions: const [
             Center(
               child: Padding(
                 padding: EdgeInsets.only(right: 10),

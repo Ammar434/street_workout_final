@@ -9,7 +9,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
 class CustomTileForAchievement extends StatelessWidget {
-  CustomTileForAchievement({
+  const CustomTileForAchievement({
     Key? key,
     required this.rewards,
     required this.height,
@@ -24,7 +24,7 @@ class CustomTileForAchievement extends StatelessWidget {
     bool isAchievementComplete = currentUser.rewards.contains(rewards.id);
     return GestureDetector(
       onTap: () {
-        CustomDialogBodyWidget();
+        const CustomDialogBodyWidget();
       },
       child: Container(
         padding: EdgeInsets.all(kPaddingValue / 2),
@@ -33,14 +33,14 @@ class CustomTileForAchievement extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
-          color: Color(0xff181A1E),
+          color: const Color(0xff181A1E),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               children: [
-                Icon(Icons.drag_indicator_rounded),
+                const Icon(Icons.drag_indicator_rounded),
                 SizedBox(
                   width: kSmallPaddingValue,
                 ),
@@ -61,14 +61,14 @@ class CustomTileForAchievement extends StatelessWidget {
               children: [
                 Text(
                   rewards.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
                 ),
                 Text(
                   rewards.subtitle,
-                  style: TextStyle(
+                  style: const TextStyle(
                     // fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.w200,
                     fontSize: 14,
@@ -76,7 +76,7 @@ class CustomTileForAchievement extends StatelessWidget {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             isAchievementComplete
                 ? FaIcon(
                     FontAwesomeIcons.solidCircleCheck,

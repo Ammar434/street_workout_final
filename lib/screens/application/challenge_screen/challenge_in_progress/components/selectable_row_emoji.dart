@@ -3,7 +3,7 @@ import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 
 class SelectableRowEmoji extends StatelessWidget {
-  SelectableRowEmoji({Key? key}) : super(key: key);
+  const SelectableRowEmoji({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +16,12 @@ class SelectableRowEmoji extends StatelessWidget {
           return InkWell(
             borderRadius: BorderRadius.circular(kRadiusValue),
             splashColor: primaryColor,
-            customBorder: CircleBorder(),
+            customBorder: const CircleBorder(),
             // onTap: () => function(materialAvailableList[index]),
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 8.0),
               width: 50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.transparent,
               ),

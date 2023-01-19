@@ -41,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         body: isLoading
-            ? LoadingWidget()
+            ? const LoadingWidget()
             : Padding(
                 padding: EdgeInsets.all(kPaddingValue),
                 child: Column(

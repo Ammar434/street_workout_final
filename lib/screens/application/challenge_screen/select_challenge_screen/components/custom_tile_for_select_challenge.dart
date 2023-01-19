@@ -5,7 +5,7 @@ import '../../../../../models/rewards.dart';
 import '../../../../../utils/constants.dart';
 
 class CustomTileForSelectChallenge extends StatelessWidget {
-  CustomTileForSelectChallenge({
+  const CustomTileForSelectChallenge({
     Key? key,
     required this.rewards,
     required this.onTap,
@@ -25,14 +25,14 @@ class CustomTileForSelectChallenge extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
-          color: Color(0xff181A1E),
+          color: const Color(0xff181A1E),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               children: [
-                Icon(Icons.drag_indicator_rounded),
+                const Icon(Icons.drag_indicator_rounded),
                 SizedBox(
                   width: kSmallPaddingValue,
                 ),
@@ -53,14 +53,14 @@ class CustomTileForSelectChallenge extends StatelessWidget {
               children: [
                 Text(
                   rewards.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
                 ),
                 Text(
                   rewards.subtitle,
-                  style: TextStyle(
+                  style: const TextStyle(
                     // fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.w200,
                     fontSize: 14,
@@ -68,7 +68,7 @@ class CustomTileForSelectChallenge extends StatelessWidget {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             FaIcon(
               FontAwesomeIcons.chevronRight,
               size: kDefaultIconAppBarSize,

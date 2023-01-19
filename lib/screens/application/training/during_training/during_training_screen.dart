@@ -71,7 +71,9 @@ class _DuringTrainingScreenState extends State<DuringTrainingScreen> {
                     HistoryBody(
                       workout: widget.workout,
                     ),
-                    const GraphBody(),
+                    GraphBody(
+                      workout: widget.workout,
+                    ),
                   ],
                 ),
               ),

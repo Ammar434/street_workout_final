@@ -1,4 +1,7 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:street_workout_final/models/sets.dart';
+import 'package:street_workout_final/models/training.dart';
+import 'package:street_workout_final/models/workout.dart';
 
 class TrainingServices {
   double brzyckiFormula(double weight, int nbRep) {
@@ -35,5 +38,29 @@ class TrainingServices {
       }
     }
     return bestIndex;
+  }
+
+  List<Sets> buildListSets(Training training, Workout workout) {
+    List<Sets> list = [];
+
+    for (Workout w in training.listWorkout) {
+      if (w.id == workout.id) {
+        list.addAll(w.listSets);
+      }
+    }
+    return list;
+  }
+
+  List<FlSpot> buildListFlSpot(List<Training> listTraining, Workout workout) {
+    List<FlSpot> listFlSpot = [];
+
+    for (Training t in listTraining) {
+      List<Sets> listSets = buildListSets(t, workout);
+      int indexBestSet = indexOfBestSet(listSets);
+      FlSpot flSpot = FlSpot(t.dateTime.day.toDouble(), listSets[indexBestSet].weight);
+      listFlSpot.add(flSpot);
+    }
+    // print("listFl $listFlSpot");
+    return listFlSpot;
   }
 }

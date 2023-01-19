@@ -73,7 +73,7 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
           future: RewardsFirestoreMethods().getRewardsSnapshot(),
           builder: (context, AsyncSnapshot<List<RewardsCategory>> list) {
             if (list.connectionState == ConnectionState.waiting) {
-              return Center(child: LoadingWidget());
+              return const Center(child: LoadingWidget());
             }
             listRewardCategory = list.data!;
 

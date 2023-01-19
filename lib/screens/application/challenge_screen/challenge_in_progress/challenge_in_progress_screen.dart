@@ -61,7 +61,7 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ChallengeEndScreenEvaluator(),
+            builder: (context) => const ChallengeEndScreenEvaluator(),
           ),
         );
       }

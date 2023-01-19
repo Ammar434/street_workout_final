@@ -4,7 +4,7 @@ import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 
 class BuildAthleteTab extends StatelessWidget {
-  BuildAthleteTab({
+  const BuildAthleteTab({
     Key? key,
     required this.listCustomUser,
   }) : super(key: key);
@@ -20,7 +20,7 @@ class BuildAthleteTab extends StatelessWidget {
             padding: EdgeInsets.only(top: kPaddingValue),
             child: Text(
               listCustomUser.isEmpty ? "No user train in this parc for the moment" : "Total athlete who train in this park ${listCustomUser.length}",
-              style: TextStyle(
+              style: const TextStyle(
                 fontStyle: FontStyle.italic,
                 color: secondaryColor,
               ),
@@ -29,7 +29,7 @@ class BuildAthleteTab extends StatelessWidget {
         }
 
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Row(
             children: [
               CircleAvatar(
@@ -42,7 +42,7 @@ class BuildAthleteTab extends StatelessWidget {
               ),
               Text(
                 listCustomUser[index - 1].userName,
-                style: TextStyle(fontSize: 15),
+                style: const TextStyle(fontSize: 15),
               )
             ],
           ),

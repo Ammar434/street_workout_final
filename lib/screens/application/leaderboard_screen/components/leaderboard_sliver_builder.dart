@@ -9,7 +9,7 @@ import 'header_ranking_widget.dart';
 import 'tile_leaderboard_row.dart';
 
 class LeaderboardSliverBuilder extends StatelessWidget {
-  LeaderboardSliverBuilder({
+  const LeaderboardSliverBuilder({
     Key? key,
     required this.categorie,
   }) : super(key: key);
@@ -25,7 +25,7 @@ class LeaderboardSliverBuilder extends StatelessWidget {
           List<Leaderboard> leaderboardList = snapshot.data!;
 
           if (leaderboardList.isEmpty) {
-            return Center(child: Text("Some internal error happen"));
+            return const Center(child: Text("Some internal error happen"));
           }
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
@@ -66,7 +66,7 @@ class LeaderboardSliverBuilder extends StatelessWidget {
         }
         // }
 
-        return Center(
+        return const Center(
           child: LoadingWidget(),
         );
       },

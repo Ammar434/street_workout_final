@@ -61,7 +61,7 @@ class ChallengeProvider extends ChangeNotifier {
 
   Future<void> deleteRoom(CustomUser evaluator) async {
     await realtimeDatabaseMethods.deleteParcReference(
-      evaluator.favoriteParc,
+      evaluator.favoriteParc[0],
       evaluator.uid,
     );
 
@@ -69,7 +69,7 @@ class ChallengeProvider extends ChangeNotifier {
   }
 
   Future<void> listenToChallenge() async {
-    _streamSubscription = _databaseReference.child(evaluator.favoriteParc).onValue.listen((event) async {
+    _streamSubscription = _databaseReference.child(evaluator.favoriteParc[0]).onValue.listen((event) async {
       final challengeMap = Map<dynamic, dynamic>.from(event.snapshot.value as Map<dynamic, dynamic>);
 
       Map<dynamic, dynamic> m = challengeMap.values.elementAt(0) as Map<dynamic, dynamic>;

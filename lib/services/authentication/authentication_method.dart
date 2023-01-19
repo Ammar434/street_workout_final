@@ -85,7 +85,7 @@ class AuthenticationMethod {
         follower: [],
         following: [],
         points: 0,
-        favoriteParc: "",
+        favoriteParc: [],
         numberOfContribution: 0,
         numberOfEvaluation: 0,
         instagramProfile: "",

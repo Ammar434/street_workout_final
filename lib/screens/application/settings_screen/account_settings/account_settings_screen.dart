@@ -1,6 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import '../../../../models/custom_user.dart';
+import 'components/favorite_parc_choose.dart';
 import 'components/user_personal_information_settings_screen.dart';
 import '../../../../services/firestore_methods/user_firestore_methods.dart';
 import '../../../../utils/constants.dart';
@@ -82,6 +83,10 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
   double sliderWeightValue = 23;
   double sliderHeightValue = 34;
   bool isMale = true;
+
+  final Widget _spacing = SizedBox(
+    height: kPaddingValue,
+  );
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -92,14 +97,20 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
           padding: EdgeInsets.all(kPaddingValue),
           child: SingleChildScrollView(
             child: SizedBox(
-              height: MediaQuery.of(context).size.height,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ProfileImageUpdateSettingScreen(customUser: customUser),
+                  ProfileImageUpdateSettingScreen(
+                    customUser: customUser,
+                  ),
+                  _spacing,
+                  FavoriteParcChoose(
+                    customUser: customUser,
+                  ),
+                  _spacing,
                   UserPersonalInformationSettingsScreen(
                     child: buildColumnSlider(),
                   ),
+                  _spacing,
                   GenderSettingsScreen(
                     onTap: () {
                       setState(() {
@@ -108,6 +119,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                     },
                     isMale: isMale,
                   ),
+                  _spacing,
                   RoundedButton(
                     isLoading: isLoading,
                     onTap: onTap,

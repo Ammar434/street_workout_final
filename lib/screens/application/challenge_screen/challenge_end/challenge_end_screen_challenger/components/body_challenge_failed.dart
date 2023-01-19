@@ -4,7 +4,7 @@ import '../../../../../../models/custom_user.dart';
 import '../../../../../../utils/constants.dart';
 
 class BodyChallengeFailed extends StatelessWidget {
-  BodyChallengeFailed({
+  const BodyChallengeFailed({
     Key? key,
     required this.currentUser,
   }) : super(key: key);

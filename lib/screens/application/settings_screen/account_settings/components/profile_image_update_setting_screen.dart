@@ -40,7 +40,6 @@ class _ProfileImageUpdateSettingScreenState extends State<ProfileImageUpdateSett
         const Text(
           "PHOTO",
           style: TextStyle(
-            // color: primaryColor,
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
