@@ -114,6 +114,9 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
                 child: PopUpMenuWidget(
                   function1: () async {
                     Uint8List file = await pickImage(ImageSource.gallery);
+                    if (!mounted) {
+                      return;
+                    }
                     Navigator.pop(context);
 
                     setState(() {
@@ -146,7 +149,9 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
                       );
                     }
                   },
-                  function2: () {},
+                  function2: () {
+                    //Share parc in social network
+                  },
                   function3: () async {
                     setState(() {
                       isLoading2 = true;
@@ -165,6 +170,9 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
                       );
                       parc = await parcFirestoreMethods.findParcrById(widget.parcId);
                       isMyFavoriteParc = parc.athletesWhoTrainInThisParc.contains(customUser.uid);
+                      if (!mounted) {
+                        return;
+                      }
                       Navigator.pop(context);
                       listCustomUser = await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
                     } else {

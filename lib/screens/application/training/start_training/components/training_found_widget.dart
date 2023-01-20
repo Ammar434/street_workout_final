@@ -25,26 +25,30 @@ class TrainingFoundWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadiusValue)),
             color: tertiaryColor.withOpacity(0.1),
             elevation: 10,
-            child: Column(
-              children: [
-                Row(
-                  children: [Text(trainingOfTheDay.listWorkout[index].name)],
-                ),
-                const HorizontalLine(),
-                ...List.generate(
-                  trainingOfTheDay.listWorkout[index].listSets.length,
-                  ((index2) {
-                    return Row(
-                      children: [
-                        Text("${index2 + 1} ."),
-                        SizedBox(width: kPaddingValue),
-                        Text("Weight ${trainingOfTheDay.listWorkout[index].listSets[index2].weight}"),
-                        Text("Reps ${trainingOfTheDay.listWorkout[index].listSets[index2].numberOfRep}"),
-                      ],
-                    );
-                  }),
-                )
-              ],
+            // margin: EdgeInsets.all(kSmallPaddingValue * 5),
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [Text(trainingOfTheDay.listWorkout[index].name)],
+                  ),
+                  const HorizontalLine(),
+                  ...List.generate(
+                    trainingOfTheDay.listWorkout[index].listSets.length,
+                    ((index2) {
+                      return Row(
+                        children: [
+                          Text("${index2 + 1} ."),
+                          SizedBox(width: kPaddingValue),
+                          Text("Weight ${trainingOfTheDay.listWorkout[index].listSets[index2].weight}"),
+                          Text("Reps ${trainingOfTheDay.listWorkout[index].listSets[index2].numberOfRep}"),
+                        ],
+                      );
+                    }),
+                  )
+                ],
+              ),
             ),
           ),
         );

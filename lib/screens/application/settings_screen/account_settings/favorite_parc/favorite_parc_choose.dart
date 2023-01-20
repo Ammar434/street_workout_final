@@ -7,6 +7,7 @@ import 'package:street_workout_final/widgets/horizontal_line.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
+import 'components/column_favorite_parc.dart';
 
 class FavoriteParcChoose extends StatefulWidget {
   const FavoriteParcChoose({
@@ -54,6 +55,7 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
 
   @override
   Widget build(BuildContext context) {
+    int lenListParc = widget.customUser.favoriteParc.length;
     return Column(
       children: [
         Row(
@@ -64,7 +66,7 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
               style: textStyle,
             ),
             Text(
-              "(${widget.customUser.favoriteParc.length})",
+              "($lenListParc)",
               style: textStyle,
             ),
           ],
@@ -73,7 +75,7 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
           height: kPaddingValue,
         ),
         Container(
-          height: 300.sp,
+          height: 400.sp,
           padding: EdgeInsets.all(kPaddingValue),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadiusValue),
@@ -85,30 +87,9 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
                 flex: 2,
                 child: Row(
                   children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.all(25.sp),
-                              decoration: BoxDecoration(
-                                color: Colors.orange,
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: NetworkImage(listParc[0].mainPhoto),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Text(
-                            listParc[0].name,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+                    ColumnFavoriteParc(
+                      index: 0,
+                      listeParc: listParc,
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -120,10 +101,9 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
                         endIndent: 10,
                       ),
                     ),
-                    Expanded(
-                      child: Container(
-                        color: Colors.green,
-                      ),
+                    ColumnFavoriteParc(
+                      index: 1,
+                      listeParc: listParc,
                     ),
                   ],
                 ),
@@ -131,7 +111,20 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
               const HorizontalLine(),
               Expanded(
                 child: Row(
-                  children: const [],
+                  children: [
+                    ColumnFavoriteParc(
+                      index: 2,
+                      listeParc: listParc,
+                    ),
+                    ColumnFavoriteParc(
+                      index: 3,
+                      listeParc: listParc,
+                    ),
+                    ColumnFavoriteParc(
+                      index: 4,
+                      listeParc: listParc,
+                    ),
+                  ],
                 ),
               )
             ],

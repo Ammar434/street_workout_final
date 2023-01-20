@@ -1,7 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import '../../../../models/custom_user.dart';
-import 'components/favorite_parc_choose.dart';
+import 'favorite_parc/favorite_parc_choose.dart';
 import 'components/user_personal_information_settings_screen.dart';
 import '../../../../services/firestore_methods/user_firestore_methods.dart';
 import '../../../../utils/constants.dart';

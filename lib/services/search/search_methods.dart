@@ -2,35 +2,49 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/models/workout.dart';
 
 class SearchMethods {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
   Future<List<Map<String, dynamic>>> getParcSuggestion(String query) async {
     List<Map<String, dynamic>> list = [];
 
-    DocumentSnapshot documentSnapshot = await firebaseFirestore
-        .collection("datas")
-        .doc("all_parcs_references")
-        .get();
+    DocumentSnapshot documentSnapshot = await firebaseFirestore.collection("datas").doc("all_parcs_references").get();
 
     Map<String, dynamic> map = documentSnapshot.data() as Map<String, dynamic>;
 
     // debugPrint(map.length.toString());
     // debugPrint(map.toString());
-
     try {
       map.forEach((key, value) {
-        // debugPrint(key.toString());
-        // debugPrint(value.toString());
-        list.add(value);
+        String parcName = (value['name']);
+        String parcAddress = value['completeAddress'];
+
+        parcName = parcName.toLowerCase();
+        parcAddress = parcAddress.toLowerCase();
+
+        if (parcName.contains(query) || parcAddress.contains(query)) {
+          list.add(value);
+        }
       });
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return list;
+  }
 
-      // for (int i = 0; i < map.length; i++) {
-      //   debugPrint(map.);
+  List<Workout> getWorkoutSuggestion(String query) {
+    List<Workout> list = [];
 
-      //   // Parc p = Parc.postFromSnapshot(doc);
-      //   // list.add(p);
-      // }
+    try {
+      for (WorkoutCategory wc in wokoutCategoryList) {
+        for (Workout w in wc.workoutList) {
+          if (w.name.contains(query)) {
+            list.add(w);
+          }
+        }
+      }
     } catch (e) {
       debugPrint(e.toString());
     }

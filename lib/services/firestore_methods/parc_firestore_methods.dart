@@ -212,7 +212,7 @@ class ParcFirestoreMethods {
         documentReference.update({
           "athletesWhoTrainInThisParc": FieldValue.arrayRemove([athleteUid])
         });
-        res = await _userFirestoreMethods.changeUserFavoriteParc("");
+        res = await _userFirestoreMethods.removeUserFavoriteParc(parcUid);
 
         // if (res == "success") {
         //   res = "This parc is no longer your favorite";
@@ -221,7 +221,7 @@ class ParcFirestoreMethods {
         documentReference.update({
           "athletesWhoTrainInThisParc": FieldValue.arrayUnion([athleteUid])
         });
-        res = await _userFirestoreMethods.changeUserFavoriteParc(parcUid);
+        res = await _userFirestoreMethods.addUserFavoriteParc(parcUid);
 
         // if (res == "success") {
         //   res = "This parc is no longer your favorite";

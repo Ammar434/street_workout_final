@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/models/workout.dart';
-import 'package:street_workout_final/screens/application/training/during_training/during_training_screen.dart';
-import '../../../../../services/search/search_methods.dart';
-import '../../../../../utils/constants.dart';
+import '../screens/application/parc_info/parc_info_screen.dart';
+import '../services/search/search_methods.dart';
+import '../utils/constants.dart';
 
-import '../../../../../utils/colors.dart';
+import '../utils/colors.dart';
 
-class SearchFieldWidgetForTraining extends StatelessWidget {
-  const SearchFieldWidgetForTraining({Key? key}) : super(key: key);
+class SearchFieldWidgetForParc extends StatelessWidget {
+  const SearchFieldWidgetForParc({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TypeAheadField(
-      getImmediateSuggestions: true,
       suggestionsBoxDecoration: SuggestionsBoxDecoration(
         color: iconColor,
         shape: RoundedRectangleBorder(
@@ -27,8 +25,8 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
         autofocus: false,
         style: DefaultTextStyle.of(context).style.copyWith(fontStyle: FontStyle.italic),
         decoration: InputDecoration(
-          hintText: "Search workout",
-          prefixIcon: const Icon(
+          hintText: "Find your parc by typing name or address",
+          suffixIcon: const Icon(
             Icons.search,
             color: secondaryColor,
           ),
@@ -39,10 +37,10 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
           ),
         ),
       ),
-      suggestionsCallback: (String pattern) {
-        return SearchMethods().getWorkoutSuggestion(pattern.toLowerCase());
+      suggestionsCallback: (String pattern) async {
+        return await SearchMethods().getParcSuggestion(pattern);
       },
-      itemBuilder: (BuildContext context, Workout suggestion) {
+      itemBuilder: (BuildContext context, Map<String, dynamic> suggestion) {
         return ListTile(
           tileColor: Colors.transparent,
           leading: SizedBox(
@@ -57,20 +55,29 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
             ),
           ),
           title: Text(
-            suggestion.name,
+            suggestion['name'],
             style: const TextStyle(
               color: backgroundColor,
               fontWeight: FontWeight.bold,
             ),
           ),
+          subtitle: Text(
+            suggestion['completeAddress'],
+            style: const TextStyle(
+              color: backgroundColor,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
         );
       },
-      onSuggestionSelected: (Workout suggestion) {
+      onSuggestionSelected: (Map<String, dynamic> suggestion) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DuringTrainingScreen(
-              workout: suggestion,
+            builder: (context) => ParcInfoScreen(
+              parcId: suggestion['id'],
+              parc: null,
+              // champion: userChampion,
             ),
           ),
         );

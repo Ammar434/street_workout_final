@@ -46,6 +46,9 @@ class StartTrainingScreen extends StatelessWidget {
                 height: kPaddingValue * 2,
               ),
               Text("Your workout", style: kTextStyleImportance3),
+              SizedBox(
+                height: kSmallPaddingValue,
+              ),
               trainingProvider.getTrainingOfTheDay() == null ? const NoTrainingFoundWidget() : const TrainingFoundWidget(),
             ],
           ),

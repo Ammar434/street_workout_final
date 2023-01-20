@@ -74,12 +74,30 @@ class UserFirestoreMethods {
     return res;
   }
 
-  Future<String> changeUserFavoriteParc(String parcId) async {
+  Future<String> addUserFavoriteParc(String parcId) async {
     String res = "Some error occured";
     try {
       _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
         {
-          "favoriteParc": parcId,
+          "favoriteParc": FieldValue.arrayUnion([parcId]),
+        },
+      );
+
+      res = "success";
+    } catch (e) {
+      debugPrint(e.toString());
+      res = e.toString();
+    }
+
+    return res;
+  }
+
+  Future<String> removeUserFavoriteParc(String parcId) async {
+    String res = "Some error occured";
+    try {
+      _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
+        {
+          "favoriteParc": FieldValue.arrayRemove([parcId]),
         },
       );
 

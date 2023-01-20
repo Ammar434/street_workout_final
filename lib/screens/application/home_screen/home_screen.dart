@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'view_all_parc/view_all_parc_screen.dart';
-import '../../../widgets/search_field_widget_for_park.dart';
+import '../../../widgets/search_field_widget_for_parc.dart';
 import '../../../../utils/constants.dart';
 
 import 'components/parc_from_firestore.dart';
