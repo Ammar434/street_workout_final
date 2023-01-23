@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../utils/text_style.dart';
 
 class AuthScreenMidPart extends StatelessWidget {

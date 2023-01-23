@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/training.dart';
-import 'package:street_workout_final/models/workout.dart';
-import 'package:street_workout_final/provider/training_provider.dart';
-import 'package:street_workout_final/screens/application/training/during_training/components/chart.dart';
-import 'package:street_workout_final/services/training/training_services.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../../../models/training.dart';
+import '../../../../../models/workout.dart';
+import '../../../../../provider/training_provider.dart';
+import 'chart.dart';
+import '../../../../../services/training/training_services.dart';
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
 
 import 'drop_down_for_graph_type.dart';
 
@@ -47,7 +47,8 @@ class _GraphBodyState extends State<GraphBody> {
   @override
   Widget build(BuildContext context) {
     // TrainingServices trainingServices = TrainingServices();
-    List<Training> trainingList = Provider.of<TrainingProvider>(context).getListTrainingContainingACertainWorkout(widget.workout.id);
+    // List<Training> trainingList = Provider.of<TrainingProvider>(context).getListTrainingContainingACertainWorkout(widget.workout.id);
+    List<Training> trainingList = [];
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: kPaddingValue),

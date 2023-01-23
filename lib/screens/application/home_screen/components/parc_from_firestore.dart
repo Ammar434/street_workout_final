@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../models/custom_user.dart';
-import '../../../../provider/user_provider.dart';
 import '../../../../models/parc.dart';
-import 'parc_display_card.dart';
+import '../../../../provider/user_provider.dart';
 import '../../../../widgets/loading_widget.dart';
+import 'parc_display_card.dart';
 
 class ParcFromFirestore extends StatefulWidget {
   const ParcFromFirestore({

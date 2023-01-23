@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../provider/challenge_provider.dart';
-import 'components/challenger_waitting_room_body.dart';
 import '../global_waitting_room/global_waitting_room_screen.dart';
+import 'components/challenger_waitting_room_body.dart';
 
 // class ChallengerWaittinRoomScreen extends StatefulWidget {
 //     ChallengerWaittinRoomScreen({Key? key}) : super(key: key);

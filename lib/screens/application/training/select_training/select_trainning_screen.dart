@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/training/select_training/components/search_field_widget_for_trainning.dart';
-import 'package:street_workout_final/screens/application/training/select_training/components/workout_category_list_builder.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import 'components/search_field_widget_for_trainning.dart';
+import '../../../../utils/constants.dart';
+
+import 'components/workout_category_list_builder.dart';
 
 class SelectTrainningScreen extends StatelessWidget {
   const SelectTrainningScreen({Key? key}) : super(key: key);

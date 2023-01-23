@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:street_workout_final/models/sets.dart';
-import 'package:street_workout_final/models/training.dart';
-import 'package:street_workout_final/models/workout.dart';
+import '../../models/sets.dart';
+import '../../models/training.dart';
+import '../../models/workout.dart';
 
 class TrainingServices {
   double brzyckiFormula(double weight, int nbRep) {
@@ -42,12 +42,18 @@ class TrainingServices {
 
   List<Sets> buildListSets(Training training, Workout workout) {
     List<Sets> list = [];
+    //TODO:modifi
 
-    for (Workout w in training.listWorkout) {
-      if (w.id == workout.id) {
-        list.addAll(w.listSets);
-      }
-    }
+    // for (String id in training.listWorkoutId)
+
+    list.addAll(training.mapOfSet[workout.id]!);
+    // for (Workout w in training.listWorkout) {
+    // if (w.id == workout.id) {
+    //   list.addAll(w.listSets);
+    // }
+    // }
+    print("list");
+    print(list);
     return list;
   }
 

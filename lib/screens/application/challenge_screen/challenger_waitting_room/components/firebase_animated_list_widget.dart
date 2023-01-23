@@ -3,11 +3,12 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../../models/challenge.dart';
 import '../../../../../models/custom_user.dart';
 import '../../../../../provider/challenge_provider.dart';
-import '../../select_challenge_screen/select_challenge_screen.dart';
 import '../../../../../utils/constants.dart';
+import '../../select_challenge_screen/select_challenge_screen.dart';
 
 class FirebaseAnimatedListWidget extends StatelessWidget {
   const FirebaseAnimatedListWidget({

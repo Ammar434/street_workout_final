@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../../../../models/rewards.dart';
 import '../../../../utils/colors.dart';
 import '../../../../widgets/staggered_grid_view.dart';
-
 import 'reward_grid_view.dart';
 
 class ProfileScreenBodyTab extends StatelessWidget {

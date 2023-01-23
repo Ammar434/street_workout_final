@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/services/firestore_methods/parc_firestore_methods.dart';
-import 'package:street_workout_final/widgets/horizontal_line.dart';
+import '../../../../../models/custom_user.dart';
+import '../../../../../models/parc.dart';
+import '../../../../../services/firestore_methods/parc_firestore_methods.dart';
+import '../../../../../widgets/horizontal_line.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';

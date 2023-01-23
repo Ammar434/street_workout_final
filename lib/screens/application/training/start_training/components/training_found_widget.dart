@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/training.dart';
-import 'package:street_workout_final/provider/training_provider.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/horizontal_line.dart';
+import '../../../../../models/sets.dart';
+import '../../../../../models/training.dart';
+import '../../../../../models/workout.dart';
+import '../../../../../provider/training_provider.dart';
+import '../../../../../provider/workout_provider.dart';
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
+import '../../../../../widgets/horizontal_line.dart';
 
 class TrainingFoundWidget extends StatelessWidget {
   const TrainingFoundWidget({
@@ -14,11 +17,15 @@ class TrainingFoundWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TrainingProvider trainingProvider = Provider.of<TrainingProvider>(context);
+    WorkoutProvider workoutProvider = Provider.of<WorkoutProvider>(context);
     Training? trainingOfTheDay = trainingProvider.getTrainingOfTheDay();
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: trainingOfTheDay!.listWorkout.length,
+      itemCount: trainingOfTheDay!.mapOfSet.length,
       itemBuilder: (context, index) {
+        String id = trainingOfTheDay.mapOfSet.keys.elementAt(index);
+        Workout workout = workoutProvider.findWorkoutById(id);
+        List<Sets> listSets = trainingOfTheDay.mapOfSet.values.elementAt(index);
         return SizedBox(
           width: double.infinity,
           child: Card(
@@ -31,18 +38,20 @@ class TrainingFoundWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
-                    children: [Text(trainingOfTheDay.listWorkout[index].name)],
+                    children: [
+                      Text(workout.name),
+                    ],
                   ),
                   const HorizontalLine(),
                   ...List.generate(
-                    trainingOfTheDay.listWorkout[index].listSets.length,
+                    listSets.length,
                     ((index2) {
                       return Row(
                         children: [
                           Text("${index2 + 1} ."),
                           SizedBox(width: kPaddingValue),
-                          Text("Weight ${trainingOfTheDay.listWorkout[index].listSets[index2].weight}"),
-                          Text("Reps ${trainingOfTheDay.listWorkout[index].listSets[index2].numberOfRep}"),
+                          Text("Weight ${listSets[index2].weight}"),
+                          Text("Reps ${listSets[index2].numberOfRep}"),
                         ],
                       );
                     }),

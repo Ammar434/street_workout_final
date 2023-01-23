@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../../models/custom_user.dart';
 import '../../../../../provider/user_provider.dart';
 import '../../../../../utils/constants.dart';
-
 import '../../challenge_start/challenge_start_screen.dart';
 
 class ChallengeEndScreenEvaluator extends StatelessWidget {

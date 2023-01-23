@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/training/select_training/select_trainning_screen.dart';
+import '../../select_training/select_trainning_screen.dart';
 import '../../../../../models/custom_user.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/text_style.dart';

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/widgets.dart';
+
 import '../models/challenge.dart';
 import '../models/custom_user.dart';
 import '../services/realtime_database/realtime_database_methods.dart';

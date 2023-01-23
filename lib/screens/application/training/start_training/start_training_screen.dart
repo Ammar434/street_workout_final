@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/provider/training_provider.dart';
+import '../../../../provider/training_provider.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../provider/user_provider.dart';
 import 'components/app_bar_for_trainning.dart';

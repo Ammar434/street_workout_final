@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../login_screen/login_screen.dart';
-import '../../register_screen/register_screen.dart';
+
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
+import '../../login_screen/login_screen.dart';
+import '../../register_screen/register_screen.dart';
 
 class AuthScreenBottomPart extends StatelessWidget {
   const AuthScreenBottomPart({

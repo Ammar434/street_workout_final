@@ -68,6 +68,9 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   faker_dart: ^0.1.6
   fl_chart: ^0.55.2
+  shared_preferences: ^2.0.16
+  flutter_colorpicker: ^1.0.3
+  circular_countdown_timer: ^0.2.3
 
 dev_dependencies:
   flutter_test:

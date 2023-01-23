@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/services/dates_services.dart';
-import 'package:street_workout_final/utils/colors.dart';
+import '../../../../../services/dates_services.dart';
+import '../../../../../utils/colors.dart';
 
 class LineChartSample2 extends StatefulWidget {
   const LineChartSample2({Key? key, required this.listFlSpot, required this.days}) : super(key: key);

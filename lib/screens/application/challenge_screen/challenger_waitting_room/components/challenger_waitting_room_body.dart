@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'challenge_is_start_widget.dart';
+
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../widgets/app_bar.dart';
+import 'challenge_is_start_widget.dart';
 
 class ChallengerWaittingRoomBody extends StatefulWidget {
   const ChallengerWaittingRoomBody({Key? key}) : super(key: key);

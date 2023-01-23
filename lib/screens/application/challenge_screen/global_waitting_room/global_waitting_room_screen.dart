@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../models/challenge.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../provider/challenge_provider.dart';
 import '../../../../provider/user_provider.dart';
-import '../challenge_in_progress/challenge_in_progress_screen.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/rounded_button.dart';
-
+import '../challenge_in_progress/challenge_in_progress_screen.dart';
 import '../components/user_detail_column_widget.dart';
 
 class GlobalWaittingRoomScreen extends StatefulWidget {

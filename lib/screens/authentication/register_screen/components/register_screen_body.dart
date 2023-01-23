@@ -1,10 +1,11 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+
+import '../../../../utils/constants.dart';
+import '../../../../widgets/rounded_button.dart';
 import 'register_screen_body_input.dart';
 import 'register_screen_body_top.dart';
-import '../../../../widgets/rounded_button.dart';
-import '../../../../utils/constants.dart';
 
 class RegisterScreenBody extends StatelessWidget {
   const RegisterScreenBody({

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+
 import '../../../../services/authentication/authentication_method.dart';
 import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_button.dart';
 import '../../../../widgets/text_field_input.dart';
-
-import '../../../../utils/constants.dart';
 
 class CustomDialogBox extends StatefulWidget {
   const CustomDialogBox({

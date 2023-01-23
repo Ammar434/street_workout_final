@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../recover_password_screen/recover_password_screen.dart';
+
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 import '../../../../utils/text_style.dart';
 import '../../../../widgets/rounded_button.dart';
+import '../../recover_password_screen/recover_password_screen.dart';
 
 class LoginScreenBodyBottom extends StatelessWidget {
   const LoginScreenBodyBottom({

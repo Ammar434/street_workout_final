@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'account_settings/account_settings_screen.dart';
-import 'components/custom_alert_dialog.dart';
-import '../../../services/url_launcher.dart';
-import '../../../utils/icons.dart';
 
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/authentication/authentication_method.dart';
+import '../../../services/url_launcher.dart';
 import '../../../utils/constants.dart';
+import '../../../utils/icons.dart';
+import 'account_settings/account_settings_screen.dart';
+import 'components/custom_alert_dialog.dart';
 import 'components/settings_group.dart';
 import 'components/settings_tile.dart';
 

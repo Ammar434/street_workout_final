@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../models/custom_user.dart';
 import '../../../../models/rewards.dart';
 import '../../../../provider/user_provider.dart';
-import 'custom_dialog_body_widget.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
+import 'custom_dialog_body_widget.dart';
 
 class CustomTileForAchievement extends StatelessWidget {
   const CustomTileForAchievement({

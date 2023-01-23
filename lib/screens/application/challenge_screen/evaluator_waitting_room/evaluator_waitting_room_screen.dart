@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../models/custom_user.dart';
 import '../../../../provider/challenge_provider.dart';
 import '../../../../provider/user_provider.dart';
 import '../global_waitting_room/global_waitting_room_screen.dart';
-
 import 'components/evaluator_waitting_room_body.dart';
 
 class EvaluatorWaittingRoomScreen extends StatefulWidget {

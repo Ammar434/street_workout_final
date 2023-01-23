@@ -1,24 +1,27 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
-import 'package:street_workout_final/models/training.dart';
-import 'package:street_workout_final/models/workout.dart';
-import 'package:street_workout_final/services/dates_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/sets.dart';
+import '../models/training.dart';
+import '../services/dates_services.dart';
+
+const String TRAINING_LIST = "trainings";
 
 class TrainingProvider with ChangeNotifier {
+  List<Training> _listTraining = [];
+  List<Training> get listTrainingFromProvider => _listTraining;
+
   DateTime _daySelected = DateTime.now();
 
   DateTime get daySelected => _daySelected;
 
   void changeDaySelected(DateTime newDay) {
     _daySelected = newDay;
-    debugPrint("day $_daySelected");
+    // debugPrint("day $_daySelected");
     notifyListeners();
   }
-
-  final List<Training> _listTraining = [];
-
-  List<Training> get listTrainingFromProvider => _listTraining;
 
   Training? getTrainingOfTheDay() {
     for (Training t in _listTraining) {
@@ -31,103 +34,167 @@ class TrainingProvider with ChangeNotifier {
     return null;
   }
 
-  void createTraining() {
-    Training t = Training(
-      dateTime: _daySelected,
-      listWorkout: [],
-    );
-    addTraining(t);
+  TrainingProvider() {
+    syncDataWithProvider();
+  }
+
+  Future syncDataWithProvider() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var result = prefs.getStringList(TRAINING_LIST);
+
+    if (result != null) {
+      _listTraining = result.map((f) => Training.fromJson(json.decode(f))).toList();
+    }
+
     notifyListeners();
   }
 
-  void addTraining(Training training) {
-    _listTraining.add(training);
-    notifyListeners();
-  }
-
-  void initTraining() {
+  void initTraining(String workoutId) {
     Training? training = getTrainingOfTheDay();
     if (training == null) {
-      createTraining();
+      createTraining(workoutId);
     }
     notifyListeners();
   }
 
-  void initWorkout(Workout workout) {
-    Training? training = getTrainingOfTheDay();
-    bool workoutExist = false;
-    for (Workout w in training!.listWorkout) {
-      if (w.id == workout.id) {
-        workoutExist = true;
-      }
-    }
-    if (!workoutExist) {
-      training.listWorkout.add(workout.clone());
-    }
+  void createTraining(String id) {
+    Training t = Training(
+      dateTime: _daySelected,
+      // listWorkoutId: [],
+      mapOfSet: {id: []},
+    );
+    addTrainingToStorage(t);
     notifyListeners();
   }
 
-  void disposeWorkout(Workout workout) {
+  List<Sets> getCurrentWorkoutSets(String workoutId) {
     Training? training = getTrainingOfTheDay();
 
-    for (Workout w in training!.listWorkout) {
-      if (w.id == workout.id && w.listSets.isEmpty) {
-        training.listWorkout.remove(w);
-      }
-    }
+    // if (training != null) {
+    print("Training not null");
+    print(training!.mapOfSet);
+
+    List<Sets> l = training.mapOfSet[workoutId]!;
 
     notifyListeners();
+    return l;
+    // }
+    // return null;
   }
+
+  void addTrainingToStorage(Training training) {
+    _listTraining.add(training);
+    updateSharedPrefrences();
+    notifyListeners();
+  }
+
+  Future updateSharedPrefrences() async {
+    List<String> jsonToSave = [];
+
+    for (Training w in _listTraining) {
+      String t = (jsonEncode(w.toJson()));
+      jsonToSave.add(t);
+      // print(t);
+      // Workout test = Workout.fromJson(jsonDecode(t));
+      // print(test.id);
+    }
+
+    // print(jsonToSave);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setStringList(TRAINING_LIST, jsonToSave);
+  }
+
+  // void initWorkout(Workout workout) {
+  //   Training? training = getTrainingOfTheDay();
+  //   bool workoutExist = false;
+  //   for (Workout w in training!.listWorkout) {
+  //     if (w.id == workout.id) {
+  //       workoutExist = true;
+  //     }
+  //   }
+  //   if (!workoutExist) {
+  //     training.listWorkout.add(workout.clone());
+  //   }
+  //   notifyListeners();
+  // }
+
+  // void disposeWorkout(Workout workout) {
+  //   Training? training = getTrainingOfTheDay();
+
+  //   for (Workout w in training!.listWorkout) {
+  //     if (w.id == workout.id && w.listSets.isEmpty) {
+  //       training.listWorkout.remove(w);
+  //     }
+  //   }
+
+  //   notifyListeners();
+  // }
 
   void addSetToWorkout(String workoutId, String setId, double weight, int numberOfRep) {
     Training? t = getTrainingOfTheDay();
+    Sets s = Sets(
+      workoutId: workoutId,
+      numberOfRep: numberOfRep,
+      weight: weight,
+      distance: 0,
+      duration: Duration.zero,
+      id: setId,
+    );
+    t!.mapOfSet.update(
+      workoutId,
+      (value) {
+        List<Sets> l = value;
+        l.add(s);
+        return l;
+      },
+      ifAbsent: () => [s],
+    );
 
-    for (Workout w in t!.listWorkout) {
-      if (w.id == workoutId) {
-        Sets s = Sets(
-          numberOfRep: numberOfRep,
-          weight: weight,
-          distance: 0,
-          duration: Duration.zero,
-          id: setId,
-        );
-        w.listSets.add(s);
-        break;
-      }
-    }
-
+    print("Addd");
+    print(t.mapOfSet);
     notifyListeners();
   }
 
   void removeSetToWorkout(String workoutId, String setId) {
     Training? t = getTrainingOfTheDay();
-    Workout? workout;
 
-    for (Workout w in t!.listWorkout) {
-      if (w.id == workoutId) {
-        workout = w;
-        break;
-      }
-    }
+    t!.mapOfSet.update(
+      workoutId,
+      (value) {
+        List<Sets> l = value;
+        l.removeWhere(
+          (element) => element.id == setId,
+        );
+        return l;
+      },
+    );
+    print("Remove");
+    print(t.mapOfSet);
 
-    for (int i = 0; i < workout!.listSets.length; i++) {
-      if (workout.listSets[i].id == setId) {
-        workout.listSets.removeAt(i);
-        notifyListeners();
-        return;
-      }
-    }
+    // for (int i = 0; i < workout!.listSets.length; i++) {
+    //   if (workout.listSets[i].id == setId) {
+    //     workout.listSets.removeAt(i);
+    //     notifyListeners();
+    //     return;
+    //   }
+    // }
     notifyListeners();
   }
 
   List<Training> getListTrainingContainingACertainWorkout(String workoutId) {
     List<Training> lt = [];
     for (Training t in _listTraining) {
-      for (Workout w in t.listWorkout) {
-        if (w.id == workoutId) {
-          lt.add(t);
-        }
+      // print("Ammar");
+      if (t.mapOfSet.containsKey(workoutId)) {
+        lt.add(t);
       }
+
+      // for (Workout w in t.listWorkout) {
+      //   if (w.id == workoutId) {
+      //     lt.add(t);
+      //   }
+      // }
     }
     return lt;
   }

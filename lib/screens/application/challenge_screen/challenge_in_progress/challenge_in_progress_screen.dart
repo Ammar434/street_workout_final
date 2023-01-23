@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../models/challenge.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../provider/challenge_provider.dart';
 import '../../../../provider/user_provider.dart';
-import '../challenge_end/challenge_end_screen_challenger/challenge_end_screen_challenger.dart';
-import '../challenge_end/challenge_end_screen_evaluator/challenge_end_screen_evaluator.dart';
-import 'components/selectable_row_emoji.dart';
-import '../components/user_detail_column_widget.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/horizontal_line.dart';
 import '../../../../widgets/rounded_button.dart';
+import '../challenge_end/challenge_end_screen_challenger/challenge_end_screen_challenger.dart';
+import '../challenge_end/challenge_end_screen_evaluator/challenge_end_screen_evaluator.dart';
+import '../components/user_detail_column_widget.dart';
+import 'components/selectable_row_emoji.dart';
 
 class ChallengeInProgressScreen extends StatelessWidget {
   const ChallengeInProgressScreen({Key? key, required this.challenge}) : super(key: key);

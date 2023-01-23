@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../widgets/staggered_grid_view.dart';
+
 import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';
 import '../../../../utils/colors.dart';
+import '../../../../widgets/staggered_grid_view.dart';
 import 'build_athlete_tab.dart';
 
 class ParcInfoTabDisplay extends StatelessWidget {

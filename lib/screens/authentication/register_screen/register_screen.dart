@@ -2,11 +2,11 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../../../authentication_handler.dart';
-import '../../../widgets/snackbar.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/image_picker.dart';
-
+import '../../../widgets/snackbar.dart';
 import 'components/register_screen_body.dart';
 
 class RegisterScreen extends StatefulWidget {

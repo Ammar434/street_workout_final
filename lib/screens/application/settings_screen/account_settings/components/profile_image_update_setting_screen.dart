@@ -3,14 +3,15 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../models/custom_user.dart';
 import '../../../../../provider/user_provider.dart';
 import '../../../../../services/firestore_methods/user_firestore_methods.dart';
 import '../../../../../services/image_picker.dart';
-import '../../../../../widgets/rounded_button.dart';
-import '../../../../../models/custom_user.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../widgets/loading_widget.dart';
+import '../../../../../widgets/rounded_button.dart';
 
 class ProfileImageUpdateSettingScreen extends StatefulWidget {
   const ProfileImageUpdateSettingScreen({

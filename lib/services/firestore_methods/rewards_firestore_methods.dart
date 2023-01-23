@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
+
 import '../../models/custom_user.dart';
 import '../../models/rewards.dart';
 import '../../screens/application/achievement_screen/achievement_screen.dart';
-import 'package:uuid/uuid.dart';
 
 class RewardsFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/models/workout.dart';
-import 'package:street_workout_final/screens/application/training/during_training/during_training_screen.dart';
+import '../../../../../models/workout.dart';
 import '../../../../../services/search/search_methods.dart';
 import '../../../../../utils/constants.dart';
 
@@ -66,14 +65,14 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
         );
       },
       onSuggestionSelected: (Workout suggestion) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DuringTrainingScreen(
-              workout: suggestion,
-            ),
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => DuringTrainingScreen(
+        //       workout: suggestion,
+        //     ),
+        //   ),
+        // );
       },
     );
   }

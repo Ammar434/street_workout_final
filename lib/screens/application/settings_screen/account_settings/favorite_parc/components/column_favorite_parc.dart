@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:street_workout_final/models/parc.dart';
-import 'package:street_workout_final/screens/application/settings_screen/account_settings/favorite_parc/components/add_favorite_parc.dart';
+import '../../../../../../models/parc.dart';
+import 'add_favorite_parc.dart';
 
 class ColumnFavoriteParc extends StatelessWidget {
   const ColumnFavoriteParc({

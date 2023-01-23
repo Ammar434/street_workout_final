@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/utils/constants.dart';
+import '../../../utils/constants.dart';
 import '../../../models/rewards.dart';
 import 'profile_screen_body_top.dart';
 import '../../../services/firebase_storage/firebase_storage_methods.dart';

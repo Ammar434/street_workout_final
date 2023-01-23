@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_place/google_place.dart';
+
 import '../../../../services/geolocalisation/geolocalisation.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';

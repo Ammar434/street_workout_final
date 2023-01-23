@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/dynamic_list_training.dart';
-import 'package:street_workout_final/models/workout.dart';
-import 'package:street_workout_final/provider/training_provider.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/text_style.dart';
-import 'package:street_workout_final/widgets/horizontal_line.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
+import '../../../../../models/sets.dart';
+import '../../../../../models/workout.dart';
+import '../../../../../provider/training_provider.dart';
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
+import '../../../../../utils/text_style.dart';
+import '../../../../../widgets/horizontal_line.dart';
+import '../../../../../widgets/snackbar.dart';
 import 'package:uuid/uuid.dart';
 
 import '../during_training_screen.dart';
@@ -33,22 +33,58 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
 
   late final TrainingProvider trainingProvider;
   final Duration duration = const Duration(milliseconds: 500);
-  late DynamicListTraining dynamicListTraining;
+  // late DynamicListTraining dynamicListTraining;
 
   void initialiseTrainingAndWorkout() {
     trainingProvider = Provider.of<TrainingProvider>(context, listen: false);
-    dynamicListTraining = DynamicListTraining(trainingProvider.listTrainingFromProvider);
-    trainingProvider.initTraining();
-    trainingProvider.initWorkout(widget.workout);
-
-    if (listItem.isEmpty) {
+    trainingProvider.initTraining(widget.workout.id);
+    List<Sets> listSets = trainingProvider.getCurrentWorkoutSets(
+      widget.workout.id,
+    );
+    if (listSets.isEmpty) {
       createExpansionPanel();
+    } else {
+      // print(listSets.length);
+      for (Sets s in listSets) {
+        // print(s.id);
+        // print(s.weight);
+        // print(s.numberOfRep);
+        initialiseExpansionPanel(s);
+      }
     }
   }
 
+  void initialiseExpansionPanel(Sets sets) {
+    final TextEditingController textEditingController1 = TextEditingController(
+      text: sets.weight.toString(),
+    );
+    final TextEditingController textEditingController2 = TextEditingController(
+      text: sets.numberOfRep.toString(),
+    );
+
+    listTextEdittingController.add(textEditingController1);
+    listTextEdittingController.add(textEditingController2);
+
+    String setId = sets.id;
+    listItem.add(setId);
+    listIsExpanded.add(false);
+    listOfUniqueKey.add(UniqueKey());
+
+    // if (listItem.length > 1) {
+    //   animatedListKey.currentState!.insertItem(
+    //     listItem.length - 1,
+    //     duration: duration,
+    //   );
+    // }
+  }
+
   void createExpansionPanel() {
-    final TextEditingController textEditingController1 = TextEditingController(text: "2.5");
-    final TextEditingController textEditingController2 = TextEditingController(text: "1");
+    final TextEditingController textEditingController1 = TextEditingController(
+      text: "2.5",
+    );
+    final TextEditingController textEditingController2 = TextEditingController(
+      text: "1",
+    );
 
     listTextEdittingController.add(textEditingController1);
     listTextEdittingController.add(textEditingController2);
@@ -57,8 +93,12 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
     listItem.add(setId);
     listIsExpanded.add(true);
     listOfUniqueKey.add(UniqueKey());
+
     if (listItem.length > 1) {
-      animatedListKey.currentState!.insertItem(listItem.length - 1, duration: duration);
+      animatedListKey.currentState!.insertItem(
+        listItem.length - 1,
+        duration: duration,
+      );
     }
   }
 
@@ -88,6 +128,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
         ),
       );
     }, duration: duration);
+
     //Delete from the list of set
     String idToFInd = listItem[index].toString();
     trainingProvider.removeSetToWorkout(widget.workout.id, idToFInd);
@@ -107,7 +148,10 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
 
   void expandTile(int index) async {
     String idToFInd = listItem[index].toString();
-    trainingProvider.removeSetToWorkout(widget.workout.id, idToFInd);
+    trainingProvider.removeSetToWorkout(
+      widget.workout.id,
+      idToFInd,
+    );
 
     setState(
       () {
@@ -125,7 +169,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
       customShowSnackBar(
         globalKey: scaffoldKey,
         title: 'Error',
-        content: "Never do 0 rep 👻",
+        content: "Never do 0 rep!!!",
         contentType: ContentType.failure,
       );
       return;
@@ -148,7 +192,12 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
   }
 
   void saveWorkout(int index, double weight, int numberOfRep) {
-    trainingProvider.addSetToWorkout(widget.workout.id, listItem[index], weight, numberOfRep);
+    trainingProvider.addSetToWorkout(
+      widget.workout.id,
+      listItem[index],
+      weight,
+      numberOfRep,
+    );
   }
 
   @override
@@ -159,7 +208,14 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    trainingProvider.disposeWorkout(widget.workout);
+    listItem.clear();
+    listOfUniqueKey.clear();
+    listIsExpanded.clear();
+    for (TextEditingController te in listTextEdittingController) {
+      te.dispose();
+    }
+    listTextEdittingController.clear();
+    // trainingProvider.disposeWorkout(widget.workout);
     super.dispose();
   }
 

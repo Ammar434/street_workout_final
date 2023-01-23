@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+
+import '../../../../utils/constants.dart';
 import 'login_screen_body_bottom.dart';
 import 'login_screen_body_input.dart';
-import '../../../../utils/constants.dart';
-
 import 'login_screen_body_top.dart';
 
 class LoginScreenBody extends StatelessWidget {

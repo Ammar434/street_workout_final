@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../models/custom_user.dart';
-import '../../profile_screen/profile_screen.dart';
 
 import '../../../../../utils/colors.dart';
+import '../../../../models/custom_user.dart';
 import '../../../../utils/constants.dart';
+import '../../profile_screen/profile_screen.dart';
 
 class ParcDisplayCardInfo extends StatelessWidget {
   const ParcDisplayCardInfo({

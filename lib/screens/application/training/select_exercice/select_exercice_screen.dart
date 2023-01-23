@@ -3,91 +3,69 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/models/workout.dart';
-import 'package:street_workout_final/screens/application/training/during_training/during_training_screen.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/text_style.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
-import 'package:street_workout_final/widgets/solid_circle_icon.dart';
+import 'package:provider/provider.dart';
+import '../../../../models/workout.dart';
+import '../../../../provider/workout_provider.dart';
+import '../add_workout/add_workout.dart';
+import '../../../../utils/colors.dart';
+import '../../../../utils/constants.dart';
+import '../../../../utils/text_style.dart';
+import '../../../../widgets/app_bar.dart';
+
+import '../during_training/during_training_screen.dart';
+import 'components/dropdown_dialog.dart';
 
 class SelectExerciceScreen extends StatelessWidget {
   const SelectExerciceScreen({Key? key, required this.workoutCategory}) : super(key: key);
   static String name = "SelectExerciceScreen";
-  final WorkoutCategory workoutCategory;
+  final String workoutCategory;
   @override
   Widget build(BuildContext context) {
     final double cardSize = 80.sp;
+    WorkoutProvider workoutProvider = Provider.of<WorkoutProvider>(context);
+    // workoutProvider.syncDataWithProvider();
+    List<Workout> workoutList = workoutProvider.listWorkoutFromProvider
+        .where(
+          (Workout w) => (w.category == workoutCategory),
+        )
+        .toList();
 
-    List<Workout> workoutList = workoutCategory.workoutList;
-    List<PopupMenuEntry> menuList = [
-      PopupMenuItem(
-        onTap: () {},
-        child: Row(
-          children: [
-            const FaIcon(
-              FontAwesomeIcons.penToSquare,
-            ),
-            SizedBox(
-              width: kPaddingValue,
-            ),
-            Text(
-              "Edit",
-              style: kTextStyleImportance4,
-            ),
-          ],
+    void onFloattingActionPress() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AddWorkout(
+            workoutCategory: workoutCategory,
+            workoutName: "",
+            isEditing: false,
+            workoutId: '',
+          ),
         ),
-      ),
-      PopupMenuItem(
-        onTap: () {},
-        child: Row(
-          children: [
-            const FaIcon(
-              FontAwesomeIcons.trash,
-            ),
-            SizedBox(
-              width: kPaddingValue,
-            ),
-            Text(
-              "Delete",
-              style: kTextStyleImportance4,
-            ),
-          ],
-        ),
-      ),
-      PopupMenuItem(
-        onTap: () {},
-        child: Row(
-          children: [
-            const FaIcon(
-              FontAwesomeIcons.book,
-            ),
-            SizedBox(
-              width: kPaddingValue,
-            ),
-            Text(
-              "History",
-              style: kTextStyleImportance4,
-            ),
-          ],
-        ),
-      ),
-    ];
+      );
+    }
+
     return SafeArea(
       child: Scaffold(
-        appBar: buildAppBar(context, workoutCategory.name),
+        appBar: buildAppBar(context, workoutCategory),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: primaryColor,
+          onPressed: onFloattingActionPress,
+          child: const FaIcon(
+            FontAwesomeIcons.plus,
+            color: iconColor,
+          ),
+        ),
         body: Padding(
           padding: EdgeInsets.all(kPaddingValue),
           child: GridView.builder(
             itemCount: workoutList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: kPaddingValue,
-            ),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: kPaddingValue, mainAxisSpacing: kPaddingValue),
             itemBuilder: (context, index) {
               Offset offset = index.isEven ? Offset(-(cardSize + kSmallPaddingValue), 0) : Offset.zero;
               return GestureDetector(
                 onTap: () {
+                  // workoutProvider.updateSharedPrefrences();
+                  // workoutProvider.syncDataWithProvider();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -117,26 +95,11 @@ class SelectExerciceScreen extends StatelessWidget {
                       ),
                       child: Stack(
                         children: [
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Padding(
-                              padding: EdgeInsets.all(kSmallPaddingValue),
-                              child: PopupMenuButton(
-                                elevation: 10,
-                                offset: offset,
-                                color: backgroundColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(kRadiusValue),
-                                ),
-                                itemBuilder: (BuildContext context) {
-                                  return menuList;
-                                },
-                                child: SolidCircleIcon(
-                                  iconData: FontAwesomeIcons.ellipsisVertical,
-                                  iconSize: kDefaultIconAppBarSize,
-                                ),
-                              ),
-                            ),
+                          DropdownDialog(
+                            offset: offset,
+                            workoutProvider: workoutProvider,
+                            workoutList: workoutList,
+                            index: index,
                           ),
                           Center(
                             child: Card(
@@ -146,7 +109,7 @@ class SelectExerciceScreen extends StatelessWidget {
                                 height: 30,
                                 child: Center(
                                   child: Text(
-                                    'Some Text',
+                                    workoutList[index].name,
                                     style: kTextStyleImportance4,
                                   ),
                                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/home_screen/view_all_parc/view_all_parc_screen.dart';
+import '../../../../home_screen/view_all_parc/view_all_parc_screen.dart';
 
 class AddFavoriteParc extends StatelessWidget {
   const AddFavoriteParc({

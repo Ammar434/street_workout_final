@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/models/workout.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
+import '../../../../models/workout.dart';
+import '../countdown/count_down.dart';
+import '../../../../utils/colors.dart';
+import '../../../../widgets/app_bar.dart';
 
 import 'components/graph_body.dart';
 import 'components/history_body.dart';
@@ -45,7 +46,14 @@ class _DuringTrainingScreenState extends State<DuringTrainingScreen> {
           widget.workout.name,
           trailling: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CountDownScreen(),
+                  ),
+                );
+              },
               icon: const FaIcon(FontAwesomeIcons.solidClock),
             ),
           ],

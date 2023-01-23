@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/text_style.dart';
+import '../../../../../utils/constants.dart';
+import '../../../../../utils/text_style.dart';
 
 class DropDownForGraphType extends StatelessWidget {
   const DropDownForGraphType({

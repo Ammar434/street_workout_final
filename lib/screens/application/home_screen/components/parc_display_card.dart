@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+
+import '../../../../../utils/colors.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';
 import '../../../../services/firestore_methods/user_firestore_methods.dart';
-import '../../../../widgets/loading_widget.dart';
-
-import '../../../../widgets/rounded_button.dart';
-
-import '../../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
+import '../../../../widgets/loading_widget.dart';
+import '../../../../widgets/rounded_button.dart';
 import '../../parc_info/parc_info_screen.dart';
 import 'parc_display_card_info.dart';
 import 'parc_display_card_mage.dart';
