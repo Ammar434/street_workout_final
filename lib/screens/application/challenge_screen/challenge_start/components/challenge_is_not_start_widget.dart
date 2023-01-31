@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/send_video/send_video_screen.dart';
 
 import '../../../../../utils/constants.dart';
 import '../../../../../widgets/rounded_button.dart';
@@ -60,7 +61,14 @@ class ChallengeIsNotStartWidget extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SendVideoScreen(),
+                ),
+              );
+            },
             child: const Text(
               "What if no appraiser is available?",
               style: TextStyle(

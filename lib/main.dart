@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (_) => UserProvider()),
-            ChangeNotifierProvider(create: (context) => ChallengeProvider(evaluator: Provider.of<UserProvider>(context, listen: false).getUser)),
+            ChangeNotifierProvider(create: (_) => ChallengeProvider()),
             ChangeNotifierProvider(create: (_) => TrainingProvider()),
             ChangeNotifierProvider<WorkoutProvider>(create: (_) => WorkoutProvider()),
           ],

@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 
 import '../models/workout.dart';
 
-const String WORKOUT_LIST = "workoutList";
+const String kWorkoutList = "workoutList";
 
 List<Workout> listWorkouts = [
   Workout(
@@ -96,12 +96,12 @@ class WorkoutProvider extends ChangeNotifier {
     // print(jsonToSave);
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    await prefs.setStringList(WORKOUT_LIST, jsonToSave);
+    await prefs.setStringList(kWorkoutList, jsonToSave);
   }
 
   Future syncDataWithProvider() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var result = prefs.getStringList(WORKOUT_LIST);
+    var result = prefs.getStringList(kWorkoutList);
     // print(result);
 
     if (result != null) {

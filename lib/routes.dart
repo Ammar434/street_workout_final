@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/waitting_room/challenger_waitting_room/challenger_waitting_room_screen.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/waitting_room/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
 import 'screens/application/training/select_training/select_trainning_screen.dart';
 import 'screens/application/achievement_screen/achievement_screen.dart';
 import 'screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';
-import 'screens/application/challenge_screen/challenger_waitting_room/challenger_waitting_room_screen.dart';
-import 'screens/application/challenge_screen/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
+// import 'screens/application/challenge_screen/challenger_waitting_room/challenger_waitting_room_screen.dart';
+// import 'screens/application/challenge_screen/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
 import 'screens/application/favorite_parc/favorite_parc_screen.dart';
 import 'screens/application/home_screen/view_all_parc/view_all_parc_screen.dart';
 import 'screens/application/main_screen.dart';

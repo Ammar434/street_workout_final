@@ -1,57 +1,63 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../../provider/challenge_provider.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../widgets/app_bar.dart';
-import 'challenge_is_start_widget.dart';
+import 'components/challenge_is_start_widget.dart';
 
-class ChallengerWaittingRoomBody extends StatefulWidget {
-  const ChallengerWaittingRoomBody({Key? key}) : super(key: key);
+class ChallengerWaittinRoomScreen extends StatefulWidget {
+  const ChallengerWaittinRoomScreen({Key? key}) : super(key: key);
+  static String name = "ChallengerWaittinRoomScreen";
+
   @override
-  State<ChallengerWaittingRoomBody> createState() => _ChallengerWaittingRoomBodyState();
+  State<ChallengerWaittinRoomScreen> createState() => _ChallengerWaittinRoomScreenState();
 }
 
-class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody> with SingleTickerProviderStateMixin {
+class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScreen> with SingleTickerProviderStateMixin {
   late AnimationController animationController;
-  int searchingDuration = 15;
+  late ChallengeProvider challengeProvider;
+
+  int searchingDurationSecond = 10;
   bool flag = true;
-  late Future t;
-  Widget _renderWidget() {
-    if (flag) {
-      return const ChallengeIsStartWidget();
-    } else {
-      return Text(
-        "The athlete who was to be evaluated failed to join the challenge. Please try again.",
-        textAlign: TextAlign.center,
-        key: const Key("2"),
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: kDefaultTitleSize * 0.75,
-        ),
-      );
-    }
-  }
+  late Timer timer;
 
   @override
   void initState() {
     super.initState();
+    challengeProvider = Provider.of<ChallengeProvider>(context, listen: false);
     animationController = AnimationController(vsync: this);
-    t = Future.delayed(Duration(seconds: searchingDuration)).whenComplete(() {
-      animationController.stop();
-      setState(() {
-        flag = !flag;
-        Future.delayed(const Duration(seconds: 5)).whenComplete(
-          () => Navigator.of(context).pop(),
+    timer = Timer(
+      Duration(
+        seconds: searchingDurationSecond,
+      ),
+      () {
+        setState(
+          () async {
+            flag = !flag;
+            if (timer.isActive) {
+              // animationController.stop();
+              await challengeProvider.deleteRoom(true);
+              Future.delayed(const Duration(seconds: 5)).whenComplete(
+                () => Navigator.of(context).pop(),
+              );
+            }
+          },
         );
-      });
-    });
+      },
+    );
   }
 
   @override
   void dispose() {
-    animationController.dispose();
     super.dispose();
+    animationController.stop();
+    animationController.dispose();
+    timer.cancel();
   }
 
   @override
@@ -85,7 +91,7 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
               Navigator.of(context).pop();
             },
             child: Text(
-              "Stop rating",
+              "Stop",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: kDefaultTitleSize * 0.75,
@@ -99,5 +105,21 @@ class _ChallengerWaittingRoomBodyState extends State<ChallengerWaittingRoomBody>
         ],
       ),
     );
+  }
+
+  Widget _renderWidget() {
+    if (flag) {
+      return const ChallengeIsStartWidget();
+    } else {
+      return Text(
+        "No evaluator arround you for the moment. Please retry or send us your video",
+        textAlign: TextAlign.center,
+        key: const Key("2"),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: kDefaultTitleSize * 0.75,
+        ),
+      );
+    }
   }
 }

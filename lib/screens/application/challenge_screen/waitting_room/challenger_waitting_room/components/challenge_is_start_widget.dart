@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../models/custom_user.dart';
-import '../../../../../provider/user_provider.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../widgets/horizontal_line.dart';
+import '../../../../../../models/custom_user.dart';
+import '../../../../../../provider/user_provider.dart';
+import '../../../../../../utils/colors.dart';
+import '../../../../../../utils/constants.dart';
+import '../../../../../../widgets/horizontal_line.dart';
 import 'firebase_animated_list_widget.dart';
 
 class ChallengeIsStartWidget extends StatelessWidget {
@@ -30,7 +30,7 @@ class ChallengeIsStartWidget extends StatelessWidget {
             height: kPaddingValue,
           ),
           const Text(
-            "Finding people arround you",
+            "Finding evaluator arround you",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,

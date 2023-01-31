@@ -1,17 +1,20 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/provider/challenge_provider.dart';
+import 'package:street_workout_final/services/challenge/challenge_services.dart';
 import '../../../../models/custom_user.dart';
-import '../../../../provider/challenge_provider.dart';
 import '../../../../provider/user_provider.dart';
-import '../challenger_waitting_room/challenger_waitting_room_screen.dart';
-import '../evaluator_waitting_room/evaluator_waitting_room_screen.dart';
+// import '../challenger_waitting_room/challenger_waitting_room_screen.dart';
+// import '../evaluator_waitting_room/evaluator_waitting_room_screen.dart';
 import '../../favorite_parc/favorite_parc_screen.dart';
 import '../../../../utils/constants.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/snackbar.dart';
 
 import '../../../../widgets/app_bar.dart';
+import '../select_challenge/select_challenge_screen.dart';
+import '../waitting_room/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
 import 'components/challenge_is_not_start_widget.dart';
 
 class ChallengeStartScreen extends StatefulWidget {
@@ -25,21 +28,15 @@ class ChallengeStartScreen extends StatefulWidget {
 class _ChallengeStartScreenState extends State<ChallengeStartScreen> with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
+  late ChallengeProvider challengeProvider;
   late CustomUser currentUser;
+  late ChallengeServices challengeServices;
 
   bool isLoading = true;
-  bool isNearAPark = false;
+  String? parcId;
 
-  Future<void> checkDistanceBetwweenUserAndPark() async {
-    //TODO:reactivate
-
-    // isNearAPark = await Geolocalisation().checkDistanceBetwweenUserAndPark(currentUser.favoriteParc);
-    isNearAPark = true;
-  }
-
-  void challengerFunction() async {
-    await checkDistanceBetwweenUserAndPark();
-    if (isNearAPark == false) {
+  void navigateToSelectChallengeScreen() {
+    if (parcId == "") {
       customShowSnackBar(
         globalKey: _scaffoldKey,
         title: "Not near a parc",
@@ -47,38 +44,54 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
         contentType: ContentType.failure,
       );
     } else {
-      if (!mounted) return;
-      if (currentUser.favoriteParc.isEmpty) {
-        Navigator.pushNamed(context, FavoriteParcScreen.name);
-      } else {
-        // Navigator.of(context).pushNamed(SelectChallengeScreen.name);
-        Navigator.of(context).pushNamed(ChallengerWaittinRoomScreen.name);
-      }
+      challengeProvider.addChallengerValue(currentUser, parcId!);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SelectChallengeScreen(),
+        ),
+      );
+    }
+  }
+
+  void challengerFunction() async {
+    if (currentUser.favoriteParc.isEmpty) {
+      Navigator.pushNamed(context, FavoriteParcScreen.name);
+    } else {
+      parcId = await challengeServices.checkDistanceBetweenUserAndPark(currentUser.favoriteParc);
+      navigateToSelectChallengeScreen();
     }
   }
 
   void evaluatorFunction() async {
-    await checkDistanceBetwweenUserAndPark();
-    if (isNearAPark == false) {
-      customShowSnackBar(
-        globalKey: _scaffoldKey,
-        title: "Not near a parc",
-        content: "Please go near the parc",
-        contentType: ContentType.failure,
-      );
+    if (currentUser.favoriteParc.isEmpty) {
+      Navigator.pushNamed(context, FavoriteParcScreen.name);
     } else {
-      if (!mounted) return;
-      if (currentUser.favoriteParc.isEmpty) {
-        Navigator.pushNamed(context, FavoriteParcScreen.name);
+      parcId = await challengeServices.checkDistanceBetweenUserAndPark(currentUser.favoriteParc);
+      if (parcId == "") {
+        customShowSnackBar(
+          globalKey: _scaffoldKey,
+          title: "Not near a parc",
+          content: "Please go near the parc",
+          contentType: ContentType.failure,
+        );
       } else {
-        Navigator.of(context).pushNamed(EvaluatorWaittingRoomScreen.name);
+        await challengeProvider.addEvaluatorValue(currentUser, parcId!);
+
+        if (!mounted) return;
+        Navigator.pushNamed(context, EvaluatorWaittingRoomScreen.name);
       }
     }
   }
 
   void loadData() async {
-    ChallengeProvider challengeProvider = Provider.of<ChallengeProvider>(context, listen: false);
-    await challengeProvider.listenToRoomComplete();
+    challengeServices = ChallengeServices();
+
+    challengeProvider = Provider.of<ChallengeProvider>(
+      context,
+      listen: false,
+    );
+
     setState(() {
       isLoading = false;
     });

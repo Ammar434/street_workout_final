@@ -45,7 +45,6 @@ class Training {
 
 //Recupere user depuis firebase et le converti en CustomUser
   static Training fromJson(Map json) {
-    print(json['mapOfSet']);
     Map<String, dynamic> mapSetJson = jsonDecode(json['mapOfSet']);
     Map<String, List<Sets>> mapSets = {};
 

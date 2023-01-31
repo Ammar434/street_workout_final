@@ -19,7 +19,7 @@ pickMultipleImage(ImageSource source) async {
     imageQuality: 70,
     maxWidth: 1440,
   );
-  if (file!.length > 10) {
+  if (file.length > 10) {
     debugPrint("To much image");
     return;
   }

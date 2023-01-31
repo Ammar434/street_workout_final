@@ -1,14 +1,13 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/waitting_room/global_waitting_room/global_waitting_room_screen.dart';
 
-import '../../../../../models/challenge.dart';
-import '../../../../../models/custom_user.dart';
-import '../../../../../provider/challenge_provider.dart';
-import '../../../../../utils/constants.dart';
-import '../../select_challenge_screen/select_challenge_screen.dart';
+import '../../../../../../models/challenge.dart';
+import '../../../../../../models/custom_user.dart';
+import '../../../../../../provider/challenge_provider.dart';
+import '../../../../../../utils/constants.dart';
 
 class FirebaseAnimatedListWidget extends StatelessWidget {
   const FirebaseAnimatedListWidget({
@@ -25,8 +24,9 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
       child: FirebaseAnimatedList(
         padding: EdgeInsets.zero,
         duration: const Duration(seconds: 1),
-        query: FirebaseDatabase.instance.ref().child(currentUser.favoriteParc[0]),
+        query: challengeProvider.listenToEvaluator(),
         itemBuilder: (context, snapshot, animation, index) {
+          // debugPrint("query ${snapshot.value.toString()}");
           final Challenge challenge = Challenge.challengeFromSnapshot(
             Map<String, dynamic>.from(snapshot.value as Map<dynamic, dynamic>),
           );
@@ -59,19 +59,18 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
                 size: kDefaultIconAppBarSize,
               ),
               onTap: () async {
-                await challengeProvider
-                    .writeChallengerUidToRealtimeDatabase(
-                      currentUserAsChallenger: currentUser,
-                      evaluatorReference: challenge.evaluatorUid,
-                    )
-                    .then((value) => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => SelectChallengeScreen(
-                              evaluatorId: challenge.evaluatorUid,
-                            ))));
+                await challengeProvider.addEvaluatorToChallenge(challenge).then(
+                      (value) => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const GlobalWaittingRoomScreen(
+                            isChallenger: true,
+                          ),
+                        ),
+                      ),
+                    );
 
                 // if (!mounted) return;
                 // if (res == "success") {
-                //   // ignore: use_build_context_synchronously
                 //   Navigator.push(
                 //     context,
                 //     MaterialPageRoute(

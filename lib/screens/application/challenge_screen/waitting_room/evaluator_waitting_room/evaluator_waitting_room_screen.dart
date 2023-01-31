@@ -1,72 +1,38 @@
 import 'dart:async';
 
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../models/custom_user.dart';
-import '../../../../../provider/user_provider.dart';
-import '../../../../../services/realtime_database/realtime_database_methods.dart';
+import '../../../../../provider/challenge_provider.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../widgets/app_bar.dart';
 import '../../../../../widgets/loading_widget.dart';
-import '../../../../../widgets/snackbar.dart';
 
-class EvaluatorWaittingRoomScreenBody extends StatefulWidget {
-  const EvaluatorWaittingRoomScreenBody({Key? key}) : super(key: key);
+class EvaluatorWaittingRoomScreen extends StatefulWidget {
+  const EvaluatorWaittingRoomScreen({Key? key}) : super(key: key);
+  static String name = "EvaluatorWaittingRoomScreen";
+
   @override
-  State<EvaluatorWaittingRoomScreenBody> createState() => _EvaluatorWaittingRoomScreenBodyState();
+  State<EvaluatorWaittingRoomScreen> createState() => _EvaluatorWaittingRoomScreenState();
 }
 
-class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomScreenBody> {
-  late final RealtimeDatabaseMethods _realtimeDatabaseMethods;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  late CustomUser _customUser;
+class _EvaluatorWaittingRoomScreenState extends State<EvaluatorWaittingRoomScreen> {
+  late ChallengeProvider challengeProvider;
+
   late Timer timer;
   bool isChallengerFound = false;
   int timeDuration = 15;
   int timeDurationInitial = 15;
-  bool isLoading = true;
+  bool isLoading = false;
   double opacityLevel = 0.0;
   Color timerColor = Colors.white;
 
-  Widget buildTimer() {
-    if (timeDuration > 0) {
-      return Center(
-        child: Text(
-          timeDuration.toString(),
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: kDefaultTitleSize * 3,
-            // color: primaryColor,
-          ),
-        ),
-      );
-    } else {
-      if (isChallengerFound) {
-        return Center(
-          child: FaIcon(
-            FontAwesomeIcons.check,
-            color: Colors.greenAccent,
-            size: kDefaultTitleSize * 3,
-          ),
-        );
-      } else {
-        return Center(
-          child: FaIcon(
-            FontAwesomeIcons.xmark,
-            color: Colors.redAccent,
-            size: kDefaultTitleSize * 3,
-          ),
-        );
-      }
-    }
-  }
-
   void changeOpacity() {
-    setState(() => opacityLevel = 1.0);
+    setState(
+      () => opacityLevel = 1.0,
+    );
   }
 
   void startTimer() {
@@ -84,30 +50,10 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
     );
   }
 
-  void loadData() async {
-    String res = await _realtimeDatabaseMethods.createParcReference(_customUser);
-
-    if (res != "success") {
-      if (!mounted) return;
-      Navigator.of(context).pop();
-      customShowSnackBar(
-        globalKey: _scaffoldKey,
-        title: "Error",
-        content: "Please retry",
-        contentType: ContentType.failure,
-      );
-    }
-    setState(() {
-      isLoading = false;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    _realtimeDatabaseMethods = RealtimeDatabaseMethods();
-    _customUser = Provider.of<UserProvider>(context, listen: false).getUser;
-    loadData();
+    challengeProvider = Provider.of<ChallengeProvider>(context, listen: false);
     startTimer();
 
     //Etape 1 creer la room:
@@ -232,5 +178,38 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
               ],
             ),
     );
+  }
+
+  Widget buildTimer() {
+    if (timeDuration > 0) {
+      return Center(
+        child: Text(
+          timeDuration.toString(),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: kDefaultTitleSize * 3,
+            // color: primaryColor,
+          ),
+        ),
+      );
+    } else {
+      if (isChallengerFound) {
+        return Center(
+          child: FaIcon(
+            FontAwesomeIcons.check,
+            color: Colors.greenAccent,
+            size: kDefaultTitleSize * 3,
+          ),
+        );
+      } else {
+        return Center(
+          child: FaIcon(
+            FontAwesomeIcons.xmark,
+            color: Colors.redAccent,
+            size: kDefaultTitleSize * 3,
+          ),
+        );
+      }
+    }
   }
 }

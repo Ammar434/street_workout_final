@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/provider/challenge_provider.dart';
 
-import '../../../../models/challenge.dart';
-import '../../../../models/custom_user.dart';
-import '../../../../provider/challenge_provider.dart';
-import '../../../../provider/user_provider.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
-import '../../../../widgets/loading_widget.dart';
-import '../../../../widgets/rounded_button.dart';
-import '../challenge_in_progress/challenge_in_progress_screen.dart';
-import '../components/user_detail_column_widget.dart';
+import '../../../../../models/challenge.dart';
+import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
+import '../../../../../widgets/loading_widget.dart';
+import '../../../../../widgets/rounded_button.dart';
+import 'components/user_detail_column_widget.dart';
 
 class GlobalWaittingRoomScreen extends StatefulWidget {
-  const GlobalWaittingRoomScreen({Key? key}) : super(key: key);
+  const GlobalWaittingRoomScreen({Key? key, required this.isChallenger}) : super(key: key);
   static String name = "GlobalWaittingRoomScreen";
+  final bool isChallenger;
 
   @override
   State<GlobalWaittingRoomScreen> createState() => _GlobalWaittingRoomScreenState();
@@ -26,7 +24,7 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
 
   bool buttonAnimation = false;
   void loadData() async {
-    await Provider.of<ChallengeProvider>(context, listen: false).listenToChallenge();
+    // await Provider.of<ChallengeProvider>(context, listen: false).listenToChallenge();
     setState(() {
       isLoading = false;
     });
@@ -42,12 +40,15 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
   Widget build(BuildContext context) {
     ChallengeProvider challengeProvider = Provider.of<ChallengeProvider>(context);
     Challenge challenge = challengeProvider.getChallenge;
-    CustomUser customUser = Provider.of<UserProvider>(context).getUser;
 
     if (challenge.isEvaluatorReady && challenge.isChallengerReady) {
-      return ChallengeInProgressScreen(
-        challenge: challenge,
+      return Container(
+        color: Colors.red,
       );
+
+      // return ChallengeInProgressScreen(
+      //   challenge: challenge,
+      // );
     }
 
     return Scaffold(
@@ -142,12 +143,8 @@ class _GlobalWaittingRoomScreenState extends State<GlobalWaittingRoomScreen> {
                     ),
                     RoundedButton(
                       onTap: () async {
-                        String path = "${challenge.parcId}/${challenge.evaluatorUid}";
+                        await challengeProvider.getReadyForTheChallenge(widget.isChallenger, buttonAnimation);
 
-                        await challengeProvider.getReadyForTheChallenge(
-                          isEvaluator: customUser.uid == challenge.evaluatorUid,
-                          path: path,
-                        );
                         setState(() {
                           buttonAnimation = !buttonAnimation;
                         });

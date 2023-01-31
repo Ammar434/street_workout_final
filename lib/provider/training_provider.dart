@@ -7,7 +7,7 @@ import '../models/sets.dart';
 import '../models/training.dart';
 import '../services/dates_services.dart';
 
-const String TRAINING_LIST = "trainings";
+const String kTrainingList = "trainings";
 
 class TrainingProvider with ChangeNotifier {
   List<Training> _listTraining = [];
@@ -40,7 +40,7 @@ class TrainingProvider with ChangeNotifier {
 
   Future syncDataWithProvider() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var result = prefs.getStringList(TRAINING_LIST);
+    var result = prefs.getStringList(kTrainingList);
 
     if (result != null) {
       _listTraining = result.map((f) => Training.fromJson(json.decode(f))).toList();
@@ -71,10 +71,10 @@ class TrainingProvider with ChangeNotifier {
     Training? training = getTrainingOfTheDay();
 
     // if (training != null) {
-    print("Training not null");
-    print(training!.mapOfSet);
+    // print("Training not null");
+    // print(training!.mapOfSet);
 
-    List<Sets> l = training.mapOfSet[workoutId]!;
+    List<Sets> l = training!.mapOfSet[workoutId]!;
 
     notifyListeners();
     return l;
@@ -102,34 +102,8 @@ class TrainingProvider with ChangeNotifier {
     // print(jsonToSave);
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    await prefs.setStringList(TRAINING_LIST, jsonToSave);
+    await prefs.setStringList(kTrainingList, jsonToSave);
   }
-
-  // void initWorkout(Workout workout) {
-  //   Training? training = getTrainingOfTheDay();
-  //   bool workoutExist = false;
-  //   for (Workout w in training!.listWorkout) {
-  //     if (w.id == workout.id) {
-  //       workoutExist = true;
-  //     }
-  //   }
-  //   if (!workoutExist) {
-  //     training.listWorkout.add(workout.clone());
-  //   }
-  //   notifyListeners();
-  // }
-
-  // void disposeWorkout(Workout workout) {
-  //   Training? training = getTrainingOfTheDay();
-
-  //   for (Workout w in training!.listWorkout) {
-  //     if (w.id == workout.id && w.listSets.isEmpty) {
-  //       training.listWorkout.remove(w);
-  //     }
-  //   }
-
-  //   notifyListeners();
-  // }
 
   void addSetToWorkout(String workoutId, String setId, double weight, int numberOfRep) {
     Training? t = getTrainingOfTheDay();
@@ -151,8 +125,8 @@ class TrainingProvider with ChangeNotifier {
       ifAbsent: () => [s],
     );
 
-    print("Addd");
-    print(t.mapOfSet);
+    // print("Addd");
+    // print(t.mapOfSet);
     notifyListeners();
   }
 
@@ -169,16 +143,7 @@ class TrainingProvider with ChangeNotifier {
         return l;
       },
     );
-    print("Remove");
-    print(t.mapOfSet);
 
-    // for (int i = 0; i < workout!.listSets.length; i++) {
-    //   if (workout.listSets[i].id == setId) {
-    //     workout.listSets.removeAt(i);
-    //     notifyListeners();
-    //     return;
-    //   }
-    // }
     notifyListeners();
   }
 

@@ -1,18 +1,20 @@
 class Challenge {
-  final String challengeId;
-  final String challengerUid;
-  final String challengerName;
-  final String challengerImageUrl;
-  final String evaluatorUid;
-  final String evaluatorName;
-  final String evaluatorImageUrl;
+  String challengeId;
+  String challengerUid;
+  String challengerImageUrl;
+  String challengerName;
+  String evaluatorUid;
+  String evaluatorName;
+  String evaluatorImageUrl;
 
-  final String parcId;
-  final bool isChallengerReady;
-  final bool isEvaluatorReady;
-  final bool isChallengeEnd;
-  final int repetionRating;
-  final int executionRating;
+  String parcId;
+  bool isChallengerReady;
+  bool isEvaluatorReady;
+  bool isChallengeEnd;
+  int repetitionRating;
+  int executionRating;
+
+  // List evaluatorAvailable;
 
   Challenge({
     required this.challengeId,
@@ -26,9 +28,29 @@ class Challenge {
     required this.evaluatorName,
     required this.evaluatorImageUrl,
     required this.isChallengeEnd,
-    required this.repetionRating,
+    required this.repetitionRating,
     required this.executionRating,
   });
+
+  static Challenge initNullChallenge() {
+    return Challenge(
+      challengeId: "",
+      challengerUid: "",
+      evaluatorUid: "",
+      parcId: "",
+      isChallengerReady: false,
+      isEvaluatorReady: false,
+      challengerImageUrl: "",
+      challengerName: "",
+      evaluatorName: "",
+      evaluatorImageUrl: "",
+      isChallengeEnd: false,
+      repetitionRating: -1,
+      executionRating: -1,
+      // evaluatorAvailable: [],
+    );
+  }
+
   Map<String, dynamic> toJson() => {
         "challengeId": challengeId,
         "challengerUid": challengerUid,
@@ -41,8 +63,9 @@ class Challenge {
         "isChallengerReady": isChallengerReady,
         "isEvaluatorReady": isEvaluatorReady,
         "isChallengeEnd": isChallengeEnd,
-        "repetionRating": repetionRating,
+        "repetitionRating": repetitionRating,
         "executionRating": executionRating,
+        // "evaluatorAvailable": evaluatorAvailable,
       };
 
   static Challenge challengeFromSnapshot(Map<dynamic, dynamic> snapshot) {
@@ -58,8 +81,9 @@ class Challenge {
       isChallengerReady: snapshot["isChallengerReady"],
       isEvaluatorReady: snapshot["isEvaluatorReady"],
       isChallengeEnd: snapshot['isChallengeEnd'],
-      repetionRating: snapshot["repetionRating"],
+      repetitionRating: snapshot["repetitionRating"],
       executionRating: snapshot["executionRating"],
+      // evaluatorAvailable: snapshot["evaluatorAvailable"]
     );
   }
 }

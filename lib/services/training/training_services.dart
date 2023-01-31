@@ -52,8 +52,8 @@ class TrainingServices {
     //   list.addAll(w.listSets);
     // }
     // }
-    print("list");
-    print(list);
+    // print("list");
+    // print(list);
     return list;
   }
 

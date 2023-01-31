@@ -142,14 +142,14 @@ class Geolocalisation {
 
     Position userCurrentPosition = await determinePosition();
     GeoPoint userPark = userFavoriteParc.geoPoint!;
-
+    int maxDistanceBetweenUserAndParc = 250;
     distance = Geolocator.distanceBetween(
       userCurrentPosition.latitude,
       userCurrentPosition.longitude,
       userPark.latitude,
       userPark.longitude,
     );
-
-    return (distance < 100);
+    debugPrint("Distance: $distance");
+    return (distance < maxDistanceBetweenUserAndParc);
   }
 }

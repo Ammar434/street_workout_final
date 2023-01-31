@@ -9,27 +9,11 @@ import '../firestore_methods/user_firestore_methods.dart';
 class RealtimeDatabaseMethods {
   final FirebaseDatabase _firebaseDatabse = FirebaseDatabase.instance;
 
-  Future<String> createParcReference(CustomUser evaluator) async {
+  Future<String> addChallenge(Challenge challenge, String path) async {
     String res = "Some error occured";
 
     try {
-      Challenge challenge = Challenge(
-        challengeId: "",
-        challengerUid: "",
-        challengerName: '',
-        challengerImageUrl: '',
-        evaluatorUid: evaluator.uid,
-        evaluatorName: evaluator.userName,
-        evaluatorImageUrl: evaluator.profileImage,
-        parcId: evaluator.favoriteParc[0],
-        isChallengerReady: false,
-        isEvaluatorReady: false,
-        isChallengeEnd: false,
-        executionRating: 1,
-        repetionRating: 1,
-      );
-
-      await _firebaseDatabse.ref().child("/${evaluator.favoriteParc}/${evaluator.uid}").set(challenge.toJson());
+      await _firebaseDatabse.ref().child(path).set(challenge.toJson());
       res = "success";
     } catch (error) {
       res = error.toString();
@@ -38,15 +22,16 @@ class RealtimeDatabaseMethods {
     return res;
   }
 
-  Future<String> deleteParcReference(String parcId, String evaluatorUid) async {
+  Future<String> deleteChallengeReference(String path) async {
     String res = "Some error occured";
 
     try {
-      await _firebaseDatabse.ref().child("/$parcId/$evaluatorUid").remove();
+      await _firebaseDatabse.ref().child(path).remove();
       res = "success";
     } catch (error) {
       res = error.toString();
     }
+    debugPrint("res $res");
 
     return res;
   }
@@ -100,17 +85,21 @@ class RealtimeDatabaseMethods {
     return res;
   }
 
-  Future<String> getReadyForTheChallenge({required bool isEvaluator, required String path, required bool value}) async {
+  Future<String> getReadyForTheChallenge({
+    required bool isChallenger,
+    required String path,
+    required bool value,
+  }) async {
     String res = "Some error happened";
 
     try {
-      if (isEvaluator) {
+      if (isChallenger) {
         await _firebaseDatabse.ref().child(path).update({
-          'isEvaluatorReady': value,
+          'isChallengerReady': value,
         });
       } else {
         await _firebaseDatabse.ref().child(path).update({
-          'isChallengerReady': value,
+          'isEvaluatorReady': value,
         });
       }
 
