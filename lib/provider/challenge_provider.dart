@@ -37,24 +37,39 @@ class ChallengeProvider extends ChangeNotifier {
   Future<String> updateChallengeId(String id) async {
     _challenge.challengeId = id;
     String res = await writeChallengeToRealtimeDatabase(true);
+    notifyListeners();
+
     return res;
   }
 
   Future<String> addChallengerValue(CustomUser user, String parcId) async {
+    _challenge = Challenge.initNullChallenge();
+
     _challenge.challengerUid = user.uid;
     _challenge.challengerImageUrl = user.profileImage;
     _challenge.challengerName = user.userName;
     _challenge.parcId = parcId;
     String res = await writeChallengeToRealtimeDatabase(true);
+    notifyListeners();
+
     return res;
   }
 
   Future<String> addEvaluatorValue(CustomUser user, String parcId) async {
+    _challenge = Challenge.initNullChallenge();
+
+    // debugPrint("c ${_challenge.challengerUid}");
+    // debugPrint("e ${_challenge.evaluatorUid}");
+
     _challenge.evaluatorUid = user.uid;
     _challenge.evaluatorImageUrl = user.profileImage;
     _challenge.evaluatorName = user.userName;
     _challenge.parcId = parcId;
     String res = await writeChallengeToRealtimeDatabase(false);
+    listenToChallengerSelectEvaluator();
+
+    notifyListeners();
+
     return res;
   }
 
@@ -71,6 +86,8 @@ class ChallengeProvider extends ChangeNotifier {
     } catch (e) {
       res = e.toString();
     }
+    notifyListeners();
+
     return res;
   }
 
@@ -87,27 +104,10 @@ class ChallengeProvider extends ChangeNotifier {
     } catch (e) {
       res = e.toString();
     }
+    notifyListeners();
+
     return res;
   }
-  // Future<void> listenToRoomComplete() async {
-  //   String path = "${evaluator.favoriteParc}/${evaluator.uid}";
-
-  //   _streamSubscription = _databaseReference.child(path).onValue.listen(
-  //     (event) {
-  //       if (!event.snapshot.exists) {
-  //         _isRoomEmpty = true;
-  //       } else {
-  //         final challengeMap = Map<dynamic, dynamic>.from(event.snapshot.value as Map<dynamic, dynamic>);
-  //         Map<dynamic, dynamic> map = challengeMap;
-  //         String s = map['challengerUid'];
-  //         String s2 = map['challengeId'];
-
-  //         _isRoomEmpty = s == "" && s2 == "";
-  //       }
-  //       notifyListeners();
-  //     },
-  //   );
-  // }
 
   Future<String> addEvaluatorToChallenge(Challenge challengeEvaluator) async {
     String res = "Some error occured";
@@ -122,13 +122,12 @@ class ChallengeProvider extends ChangeNotifier {
       // Write for challenger
 
       await writeChallengeToRealtimeDatabase(true);
-
-      notifyListeners();
+      listenToChallengerSelectEvaluator();
       res = "Success";
     } catch (e) {
       res = e.toString();
     }
-
+    notifyListeners();
     return res;
   }
 
@@ -139,22 +138,19 @@ class ChallengeProvider extends ChangeNotifier {
     return ref;
   }
 
-  // Future<String> writeChallengeIdToRealtimeDatabase() async {
-  //   String path = "/${_challenge.parcId}/${_challenge.challengerUid}";
-  //   String res = "Some error occured";
-  //   try {
-  //     await realtimeDatabaseMethods.addChallenge(
-  //       _challenge,
-  //       path,
-  //     );
-  //     _isRoomEmpty = false;
-  //     notifyListeners();
-  //     res = "Success";
-  //   } catch (e) {
-  //     res = e.toString();
-  //   }
-  //   return res;
-  // }
+  void listenToChallengerSelectEvaluator() {
+    String path = "/${_challenge.parcId}/evaluator/${_challenge.evaluatorUid}";
+
+    _streamSubscription = databaseReference.child(path).onValue.listen(
+      (event) {
+        _challenge = Challenge.challengeFromSnapshot(
+          event.snapshot.value as Map<dynamic, dynamic>,
+        );
+
+        notifyListeners();
+      },
+    );
+  }
 
   Future<String> getReadyForTheChallenge(bool isChallenger, bool isReady) async {
     String res = "Some error occured";
@@ -168,26 +164,12 @@ class ChallengeProvider extends ChangeNotifier {
       await writeChallengeToRealtimeDatabase(false);
       await writeChallengeToRealtimeDatabase(true);
 
-      notifyListeners();
       res = "Success";
     } catch (e) {
       res = e.toString();
     }
+    notifyListeners();
 
     return res;
   }
-
-  // Future<void> endTheChallenge({
-  //   required String path,
-  //   required double repetionRating,
-  //   required double executionRating,
-  // }) async {
-  //   await realtimeDatabaseMethods.endTheChallenge(
-  //     path: path,
-  //     executionRating: executionRating,
-  //     repetionRating: repetionRating,
-  //   );
-
-  //   notifyListeners();
-  // }
 }

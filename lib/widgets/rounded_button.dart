@@ -36,7 +36,7 @@ class RoundedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(kRadiusValue),
           color: shouldAnimate ? Colors.green : color,
         ),
-        duration: const Duration(seconds: 1),
+        duration: const Duration(milliseconds: 500),
         child: Center(
           child: isLoading
               ? const CircularProgressIndicator(

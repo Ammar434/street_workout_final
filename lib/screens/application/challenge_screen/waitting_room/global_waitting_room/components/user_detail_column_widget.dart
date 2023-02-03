@@ -9,26 +9,42 @@ class UserDetailColumnItem extends StatelessWidget {
     required this.userName,
     this.fontSize = 14,
     this.imageRadius = 32,
+    required this.shouldAnimate,
   }) : super(key: key);
 
   final String imageUrl;
   final String userName;
   final double fontSize;
   final double imageRadius;
+
+  final bool shouldAnimate;
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleAvatar(backgroundImage: NetworkImage(imageUrl), radius: imageRadius),
+        CircleAvatar(
+          backgroundImage: NetworkImage(imageUrl),
+          radius: imageRadius,
+        ),
         SizedBox(
           height: kPaddingValue,
         ),
-        Text(
-          userName,
-          style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: fontSize,
-            // color: primaryColor,
+        AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 500),
+          style: shouldAnimate
+              ? TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: fontSize,
+                  color: Colors.green,
+                )
+              : TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: fontSize,
+                  // color: primaryColor,
+                ),
+          child: Text(
+            userName,
           ),
         ),
       ],

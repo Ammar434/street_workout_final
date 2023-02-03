@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import '../../../provider/user_provider.dart';
 import 'components/parc_info_top_part.dart';
 import '../../../services/image_picker.dart';
 import '../../../widgets/snackbar.dart';
 import '../../../models/custom_user.dart';
 import '../../../models/parc.dart';
-import '../../../provider/user_provider.dart';
 import '../../../services/firestore_methods/parc_firestore_methods.dart';
 import '../../../services/firestore_methods/user_firestore_methods.dart';
 import 'components/parc_info_tab_display.dart';
@@ -42,12 +42,14 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
   late Parc parc;
   bool isLoading = true;
   bool isLoading2 = false;
-  bool isMyFavoriteParc = false;
+  late bool isMyFavoriteParc;
 
   late TabController _tabController;
   int _tabIndex = 0;
   List<String> listUrlImage = [];
   List<CustomUser> listCustomUser = [];
+
+  late CustomUser customUser;
 
   _handleTabSelection() {
     if (_tabController.indexIsChanging) {
@@ -69,6 +71,9 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
     champion = await userFirestoreMethods.findUserByUid(parc.userUidChampion);
     listUrlImage = await parcFirestoreMethods.getAllImageOfParc(widget.parcId);
     listCustomUser = await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
+
+    isMyFavoriteParc = customUser.favoriteParc.contains(widget.parcId);
+
     setState(() {
       isLoading = false;
     });
@@ -77,6 +82,8 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
+    customUser = Provider.of<UserProvider>(context, listen: false).getUser;
+
     parcFirestoreMethods = ParcFirestoreMethods();
     userFirestoreMethods = UserFirestoreMethods();
     _tabController = TabController(length: 3, vsync: this);
@@ -84,15 +91,88 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
     loadData();
   }
 
+  void addPhoto() async {
+    Uint8List file = await pickImage(ImageSource.gallery);
+    if (!mounted) {
+      return;
+    }
+    Navigator.pop(context);
+
+    setState(() {
+      isLoading2 = true;
+    });
+    String res = await parcFirestoreMethods.uploadImageToAExistingParc(
+      file: file,
+      parcId: widget.parcId,
+      userUidWhoPublish: customUser.uid,
+    );
+
+    setState(() {
+      isLoading2 = false;
+    });
+
+    if (res == "success") {
+      await userFirestoreMethods.incrementUserContribution(1);
+      customShowSnackBar(
+        title: "Thank's",
+        content: "Your content will appear soon",
+        contentType: ContentType.success,
+        globalKey: _scaffoldKey,
+      );
+    } else {
+      customShowSnackBar(
+        title: "Error",
+        content: "Some error happened please retry",
+        contentType: ContentType.failure,
+        globalKey: _scaffoldKey,
+      );
+    }
+  }
+
+  void setAsFavorite() async {
+    setState(() {
+      isLoading2 = true;
+    });
+    String res = await parcFirestoreMethods.addOrRemoveAthleteToAParc(
+      parcUid: widget.parcId,
+      parcName: parc.name,
+      athleteUid: customUser.uid,
+    );
+    if (res == "success") {
+      customShowSnackBar(
+        title: "Update",
+        content: "Your update has been take",
+        contentType: ContentType.success,
+        globalKey: _scaffoldKey,
+      );
+      await UserProvider().refreshUser();
+
+      isMyFavoriteParc = customUser.favoriteParc.contains(widget.parcId);
+      listCustomUser = await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
+      debugPrint("len ${listCustomUser.length}");
+      if (!mounted) {
+        return;
+      }
+      Navigator.pop(context);
+    } else {
+      customShowSnackBar(
+        title: "Error",
+        content: "Some error happened please retry",
+        contentType: ContentType.failure,
+        globalKey: _scaffoldKey,
+      );
+    }
+
+    setState(() {
+      isLoading2 = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    CustomUser customUser = Provider.of<UserProvider>(context).getUser;
-
     if (isLoading) {
       return const LoadingWidget();
     } else {
-      isMyFavoriteParc = parc.athletesWhoTrainInThisParc.contains(customUser.uid);
-
       return SafeArea(
         child: Scaffold(
           key: _scaffoldKey,
@@ -112,82 +192,12 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: PopUpMenuWidget(
-                  function1: () async {
-                    Uint8List file = await pickImage(ImageSource.gallery);
-                    if (!mounted) {
-                      return;
-                    }
-                    Navigator.pop(context);
-
-                    setState(() {
-                      isLoading2 = true;
-                    });
-                    String res = await parcFirestoreMethods.uploadImageToAExistingParc(
-                      file: file,
-                      parcId: widget.parcId,
-                      userUidWhoPublish: customUser.uid,
-                    );
-
-                    setState(() {
-                      isLoading2 = false;
-                    });
-
-                    if (res == "success") {
-                      await userFirestoreMethods.incrementUserContribution(1);
-                      customShowSnackBar(
-                        title: "Thank's",
-                        content: "Your content will appear soon",
-                        contentType: ContentType.success,
-                        globalKey: _scaffoldKey,
-                      );
-                    } else {
-                      customShowSnackBar(
-                        title: "Error",
-                        content: "Some error happened please retry",
-                        contentType: ContentType.failure,
-                        globalKey: _scaffoldKey,
-                      );
-                    }
-                  },
+                  function1: addPhoto,
                   function2: () {
                     //Share parc in social network
                   },
-                  function3: () async {
-                    setState(() {
-                      isLoading2 = true;
-                    });
-                    String res = await parcFirestoreMethods.addOrRemoveAthleteToAParc(
-                      parcUid: widget.parcId,
-                      parcName: parc.name,
-                      athleteUid: customUser.uid,
-                    );
-                    if (res == "success") {
-                      customShowSnackBar(
-                        title: "Update",
-                        content: "Your update has been take",
-                        contentType: ContentType.success,
-                        globalKey: _scaffoldKey,
-                      );
-                      parc = await parcFirestoreMethods.findParcrById(widget.parcId);
-                      isMyFavoriteParc = parc.athletesWhoTrainInThisParc.contains(customUser.uid);
-                      if (!mounted) {
-                        return;
-                      }
-                      Navigator.pop(context);
-                      listCustomUser = await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
-                    } else {
-                      customShowSnackBar(
-                        title: "Error",
-                        content: "Some error happened please retry",
-                        contentType: ContentType.failure,
-                        globalKey: _scaffoldKey,
-                      );
-                    }
+                  function3: setAsFavorite,
 
-                    setState(() {
-                      isLoading2 = false;
-                    });
-                  },
                   isFavoriteParc: isMyFavoriteParc,
                   isLoading: isLoading2,
                   // isLoading: isLoading2,

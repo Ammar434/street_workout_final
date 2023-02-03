@@ -58,6 +58,7 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
         builder: (context) => ParcInfoScreen(
           parcId: widget.parc.parcId,
           parc: widget.parc,
+
           // champion: userChampion,
         ),
       ),

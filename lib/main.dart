@@ -2,16 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'provider/training_provider.dart';
+
+import 'authentication_handler.dart';
 import 'provider/challenge_provider.dart';
+import 'provider/training_provider.dart';
+import 'provider/user_provider.dart';
 import 'provider/workout_provider.dart';
 import 'routes.dart';
-import 'authentication_handler.dart';
-import 'provider/user_provider.dart';
 import 'utils/theme.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

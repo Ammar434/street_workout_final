@@ -39,8 +39,8 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
     if (parcId == "") {
       customShowSnackBar(
         globalKey: _scaffoldKey,
-        title: "Not near a parc",
-        content: "Please go near the parc",
+        title: "Not near a favorite parc",
+        content: "Please go to your favorite parc",
         contentType: ContentType.failure,
       );
     } else {
@@ -59,6 +59,7 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
       Navigator.pushNamed(context, FavoriteParcScreen.name);
     } else {
       parcId = await challengeServices.checkDistanceBetweenUserAndPark(currentUser.favoriteParc);
+
       navigateToSelectChallengeScreen();
     }
   }

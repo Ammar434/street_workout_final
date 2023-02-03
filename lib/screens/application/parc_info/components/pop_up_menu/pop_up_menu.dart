@@ -55,7 +55,7 @@ class PopUpMenuWidget extends StatelessWidget {
         child: RoundedButton(
           height: 100,
           onTap: function3,
-          text: isFavoriteParc ? "Remove as main parc" : "Set as main parc",
+          text: isFavoriteParc ? "Remove from main parc" : "Add to main parc",
           color: isFavoriteParc ? primaryColor : tertiaryColor,
           isLoading: isLoading,
         ),

@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../provider/challenge_provider.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
-import '../../../../../widgets/app_bar.dart';
 import 'components/challenge_is_start_widget.dart';
 
 class ChallengerWaittinRoomScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
   late AnimationController animationController;
   late ChallengeProvider challengeProvider;
 
-  int searchingDurationSecond = 10;
+  int searchingDurationSecond = 5;
   bool flag = true;
   late Timer timer;
 
@@ -36,34 +36,58 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
         seconds: searchingDurationSecond,
       ),
       () {
+        animationController.stop();
         setState(
-          () async {
+          () {
             flag = !flag;
-            if (timer.isActive) {
-              // animationController.stop();
-              await challengeProvider.deleteRoom(true);
-              Future.delayed(const Duration(seconds: 5)).whenComplete(
-                () => Navigator.of(context).pop(),
-              );
-            }
           },
         );
+        // if (timer.isActive == false) {
+        //   Future.delayed(const Duration(seconds: 2)).whenComplete(
+        //     () => Navigator.of(context).pop(),
+        //   );
+        // }
       },
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  void disposeData() async {
+    await challengeProvider.deleteRoom(true);
     animationController.stop();
     animationController.dispose();
     timer.cancel();
   }
 
   @override
+  void deactivate() {
+    disposeData();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    disposeData();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, ""),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: Center(
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            icon: FaIcon(
+              FontAwesomeIcons.chevronLeft,
+              size: kDefaultIconAppBarSize,
+            ),
+          ),
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -88,10 +112,30 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              if (flag) {
+                Navigator.of(context).pop();
+              } else {
+                animationController.repeat();
+                timer = Timer(
+                  Duration(
+                    seconds: searchingDurationSecond,
+                  ),
+                  () {
+                    animationController.stop();
+                    setState(
+                      () {
+                        flag = !flag;
+                      },
+                    );
+                  },
+                );
+                setState(() {
+                  flag = !flag;
+                });
+              }
             },
             child: Text(
-              "Stop",
+              flag ? "Stop" : "Retry",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: kDefaultTitleSize * 0.75,

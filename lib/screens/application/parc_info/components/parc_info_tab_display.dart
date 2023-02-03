@@ -26,7 +26,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
     final List<Widget> myTabs = [
       const Tab(text: 'Photos'),
       const Tab(text: 'Athletes'),
-      const Tab(text: "Comments"),
+      // const Tab(text: "Comments"),
     ];
     return Column(
       children: [
@@ -39,7 +39,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
           child: [
             StaggeredGridView(listUrlImage: listUrlImage),
             BuildAthleteTab(listCustomUser: listCustomUser),
-            Container(),
+            // Container(),
           ][index],
         )
       ],

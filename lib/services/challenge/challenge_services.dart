@@ -5,16 +5,12 @@ class ChallengeServices {
 
   Future<String> checkDistanceBetweenUserAndPark(List userFavoriteParcs) async {
     for (String parcId in userFavoriteParcs) {
-      bool isNearAPark = await geolocalisation.checkDistanceBetwweenUserAndPark(
-        parcId,
-      );
+      bool isNearAPark = await geolocalisation.checkDistanceBetwweenUserAndPark(parcId);
 
       if (isNearAPark) {
         return parcId;
       }
     }
-    // TODO: Return true
     return "";
-    // return false;
   }
 }

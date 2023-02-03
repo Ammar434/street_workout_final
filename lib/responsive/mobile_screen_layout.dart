@@ -12,5 +12,8 @@ class MobileScreenLayout extends StatelessWidget {
     Provider.of<UserProvider>(context).getUser;
     return const MainScreen();
     // return const StartTrainingScreen();
+    // return const ChallengeInProgressScreen(
+    //   isChallenger: true,
+    // );
   }
 }
