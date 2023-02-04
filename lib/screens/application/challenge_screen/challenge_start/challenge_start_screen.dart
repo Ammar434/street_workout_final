@@ -7,7 +7,7 @@ import '../../../../models/custom_user.dart';
 import '../../../../provider/user_provider.dart';
 // import '../challenger_waitting_room/challenger_waitting_room_screen.dart';
 // import '../evaluator_waitting_room/evaluator_waitting_room_screen.dart';
-import '../../favorite_parc/favorite_parc_screen.dart';
+import '../../favorite_parc/favorite_parc_empty_screen.dart';
 import '../../../../utils/constants.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/snackbar.dart';
@@ -56,7 +56,12 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
 
   void challengerFunction() async {
     if (currentUser.favoriteParc.isEmpty) {
-      Navigator.pushNamed(context, FavoriteParcScreen.name);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const FavoriteParcEmptyScreen(displayButton: true),
+        ),
+      );
     } else {
       parcId = await challengeServices.checkDistanceBetweenUserAndPark(currentUser.favoriteParc);
 
@@ -66,7 +71,12 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
 
   void evaluatorFunction() async {
     if (currentUser.favoriteParc.isEmpty) {
-      Navigator.pushNamed(context, FavoriteParcScreen.name);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const FavoriteParcEmptyScreen(displayButton: true),
+        ),
+      );
     } else {
       parcId = await challengeServices.checkDistanceBetweenUserAndPark(currentUser.favoriteParc);
       if (parcId == "") {

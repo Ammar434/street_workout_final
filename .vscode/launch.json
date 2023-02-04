@@ -16,13 +16,13 @@
       "deviceId": "emulator-5554"
     },
     {
-      "name": "Oneplus-wired",
+      "name": "Oneplus",
       "request": "launch",
       "type": "dart",
       "deviceId": "192.168.1.36:1234"
     },
     {
-      "name": "Oneplus",
+      "name": "Oneplus-wired",
       "request": "launch",
       "type": "dart",
       "deviceId": "b944d9b4"

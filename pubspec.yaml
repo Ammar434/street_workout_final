@@ -103,8 +103,9 @@ flutter:
     - assets/images/authentication/
     - assets/images/challenge/
     - assets/maps/
-    - assets/rive/
     - assets/images/achievements/
+    - assets/images/errors/
+    - assets/lotties/
 
   fonts:
     - family: CustomIcon # the name of your font family

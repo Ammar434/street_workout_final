@@ -17,13 +17,16 @@ class ProfileScreenBodyTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const TextStyle textStyle = TextStyle(
+      fontWeight: FontWeight.bold,
+    );
     return Column(
       children: [
         const TabBar(
           tabs: [
             Tab(text: 'Photos'),
             Tab(text: 'Rewards'),
-            Tab(text: 'Workout'),
+            // Tab(text: 'Workout'),
           ],
           indicatorColor: primaryColor,
         ),
@@ -32,17 +35,23 @@ class ProfileScreenBodyTab extends StatelessWidget {
             children: [
               listUrlImage.isEmpty
                   ? const Center(
-                      child: Text("No image upload yet"),
+                      child: Text(
+                        "No image upload yet",
+                        style: textStyle,
+                      ),
                     )
                   : StaggeredGridView(
                       listUrlImage: listUrlImage,
                     ),
               listReward.isEmpty
                   ? const Center(
-                      child: Text("No rewards gain yet"),
+                      child: Text(
+                        "No rewards gain yet",
+                        style: textStyle,
+                      ),
                     )
                   : RewardGridView(listReward: listReward),
-              Container(),
+              // Container(),
             ],
           ),
         ),

@@ -37,7 +37,7 @@ class FirebaseStorageMethods {
   //Utiliser dans profile screen
   Future<List<String>> getAllImageOfAUser(String uid) async {
     List<String> urlList = [];
-    Reference ref = firebaseStorage.ref().child("posts").child(firebaseAuth.currentUser!.uid);
+    Reference ref = firebaseStorage.ref().child("posts").child(uid);
     try {
       ListResult result = await ref.listAll();
 

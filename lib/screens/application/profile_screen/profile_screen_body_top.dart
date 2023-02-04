@@ -33,7 +33,8 @@ class ProfileScreenBodyTop extends StatelessWidget {
           ),
           UserInformationDisplay(
             name: user.userName,
-            favoriteParc: user.favoriteParc.isEmpty ? "The user's favorite park has not been filled in" : user.favoriteParc[0],
+            favoriteParc: "",
+            // favoriteParc: user.favoriteParc.isEmpty ? "The user's favorite park has not been filled in" : user.favoriteParc[0],
             userContribution: user.numberOfContribution,
             userTrainingPoint: user.points,
             userEvaluation: user.numberOfEvaluation,

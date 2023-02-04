@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/screens/application/favorite_parc/favorite_parc_empty_screen.dart';
 
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
@@ -15,22 +16,8 @@ class LeaderboardScreen extends StatelessWidget {
     CustomUser customUser = Provider.of<UserProvider>(context).getUser!;
 
     if (customUser.favoriteParc.isEmpty) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text(
-            "To access this part of the application, please select your favorite parc",
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            "You can do it by clicking on a parc and then set it as the parc where you train",
-            style: TextStyle(
-              fontStyle: FontStyle.italic,
-              color: Colors.blue,
-            ),
-            textAlign: TextAlign.center,
-          )
-        ],
+      return const FavoriteParcEmptyScreen(
+        displayButton: false,
       );
     }
     return DefaultTabController(

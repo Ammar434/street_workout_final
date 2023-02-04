@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../utils/constants.dart';
+import 'package:street_workout_final/widgets/app_bar.dart';
 import '../../../models/rewards.dart';
 import 'profile_screen_body_top.dart';
 import '../../../services/firebase_storage/firebase_storage_methods.dart';
 import '../../../services/firestore_methods/rewards_firestore_methods.dart';
-import '../../../services/url_launcher.dart';
-import '../../../widgets/solid_circle_icon.dart';
 import '../../../models/custom_user.dart';
 import '../../../services/firestore_methods/user_firestore_methods.dart';
 import '../../../widgets/loading_widget.dart';
@@ -56,28 +53,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: SolidCircleIcon(
-                iconData: FontAwesomeIcons.chevronLeft,
-                iconSize: kDefaultIconsSize,
-              ),
-            ),
-            GestureDetector(
-              onTap: () => openUrl(context, "instagramLink"),
-              child: SolidCircleIcon(
-                iconData: FontAwesomeIcons.instagram,
-                iconSize: kDefaultIconsSize,
-              ),
-            ),
-          ],
-        ),
-      ),
+      appBar: buildAppBar(context, ""),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   title: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: [
+      //       GestureDetector(
+      //         onTap: () => Navigator.pop(context),
+      //         child: SolidCircleIcon(
+      //           iconData: FontAwesomeIcons.chevronLeft,
+      //           iconSize: kDefaultIconsSize,
+      //         ),
+      //       ),
+      //       GestureDetector(
+      //         onTap: () => openUrl(context, "instagramLink"),
+      //         child: SolidCircleIcon(
+      //           iconData: FontAwesomeIcons.instagram,
+      //           iconSize: kDefaultIconsSize,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
       body: isLoading
           ? const LoadingWidget()
           : ProfileScreenBody(
