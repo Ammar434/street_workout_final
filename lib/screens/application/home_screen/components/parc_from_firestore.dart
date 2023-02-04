@@ -23,7 +23,7 @@ class _ParcFromFirestoreState extends State<ParcFromFirestore> {
   late GeoHasher geoHasher;
   String geoHash = "";
   loadData() async {
-    currentUser = Provider.of<UserProvider>(context, listen: false).getUser;
+    currentUser = Provider.of<UserProvider>(context, listen: false).getUser!;
     geoHasher = GeoHasher();
     geoHash = geoHasher.encode(currentUser.lastPosition.longitude, currentUser.lastPosition.latitude, precision: 5);
   }

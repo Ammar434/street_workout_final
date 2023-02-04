@@ -25,7 +25,7 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ChallengeProvider challengeProvider = Provider.of<ChallengeProvider>(context);
     Challenge challenge = challengeProvider.getChallenge;
-    CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser currentUser = Provider.of<UserProvider>(context).getUser!;
 
     double repetionRating = 0;
     double executionRating = 0;

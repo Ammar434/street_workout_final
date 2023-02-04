@@ -40,7 +40,7 @@ class _SelectChallengeScreenState extends State<SelectChallengeScreen> {
   @override
   Widget build(BuildContext context) {
     List<Reward> listRewards = [];
-    CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser currentUser = Provider.of<UserProvider>(context).getUser!;
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
     return SafeArea(

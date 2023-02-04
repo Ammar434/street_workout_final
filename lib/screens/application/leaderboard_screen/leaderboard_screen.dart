@@ -12,7 +12,7 @@ class LeaderboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CustomUser customUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser customUser = Provider.of<UserProvider>(context).getUser!;
 
     if (customUser.favoriteParc.isEmpty) {
       return Column(

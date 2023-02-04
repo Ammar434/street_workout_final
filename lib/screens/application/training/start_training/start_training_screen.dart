@@ -16,7 +16,7 @@ class StartTrainingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser currentUser = Provider.of<UserProvider>(context).getUser!;
     TrainingProvider trainingProvider = Provider.of<TrainingProvider>(context);
     return SafeArea(
       child: Scaffold(

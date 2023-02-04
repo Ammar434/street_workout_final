@@ -2,9 +2,9 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:street_workout_final/screens/authentication/user_information_gathering/welcome_screen.dart';
 import 'package:street_workout_final/widgets/loading_widget.dart';
 
-import '../../../authentication_handler.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/image_picker.dart';
 import '../../../widgets/snackbar.dart';
@@ -29,10 +29,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   late Uint8List _image;
   bool isLoading = false;
+  bool isLoadingButton = false;
 
   void onTap() async {
     setState(() {
-      isLoading = true;
+      isLoadingButton = true;
     });
     String responseCode = await AuthenticationMethod().checkInfoRegisterUser(
       email: _emailController.text,
@@ -45,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (!mounted) return;
     if (responseCode == "success") {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const AuthenticationHandler()),
+        MaterialPageRoute(builder: (context) => const WelcomeScreen()),
         (route) => false,
       );
     } else {
@@ -57,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
     }
     setState(() {
-      isLoading = false;
+      isLoadingButton = false;
     });
   }
 
@@ -112,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               passwordConfirmController: _passwordConfirmController,
               passwordController: _passwordController,
               userNameController: _userNameController,
-              isLoading: isLoading,
+              isLoading: isLoadingButton,
               onPageTransition: onTap,
             ),
           );

@@ -46,7 +46,7 @@ class _DrawerBodyState extends State<DrawerBody> {
 
   @override
   Widget build(BuildContext context) {
-    CustomUser customUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser customUser = Provider.of<UserProvider>(context).getUser!;
 
     return Scaffold(
       backgroundColor: backgroundColor,

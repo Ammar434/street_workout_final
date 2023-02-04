@@ -13,7 +13,7 @@ class ChallengeInProgressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CustomUser customUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser customUser = Provider.of<UserProvider>(context).getUser!;
     Challenge challenge = Provider.of<ChallengeProvider>(context).getChallenge;
 
     if (challenge.challengerUid == customUser.uid) {

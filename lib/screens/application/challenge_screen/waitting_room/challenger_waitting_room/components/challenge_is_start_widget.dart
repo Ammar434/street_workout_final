@@ -15,7 +15,7 @@ class ChallengeIsStartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser currentUser = Provider.of<UserProvider>(context).getUser!;
     return Container(
       key: const Key("1"),
       margin: EdgeInsets.all(kRadiusValue),

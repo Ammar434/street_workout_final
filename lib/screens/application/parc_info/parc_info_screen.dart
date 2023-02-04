@@ -82,7 +82,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
-    customUser = Provider.of<UserProvider>(context, listen: false).getUser;
+    customUser = Provider.of<UserProvider>(context, listen: false).getUser!;
 
     parcFirestoreMethods = ParcFirestoreMethods();
     userFirestoreMethods = UserFirestoreMethods();

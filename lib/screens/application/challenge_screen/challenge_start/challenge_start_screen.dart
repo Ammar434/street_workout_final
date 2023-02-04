@@ -106,7 +106,7 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
 
   @override
   Widget build(BuildContext context) {
-    currentUser = Provider.of<UserProvider>(context).getUser;
+    currentUser = Provider.of<UserProvider>(context).getUser!;
 
     return Scaffold(
       key: _scaffoldKey,

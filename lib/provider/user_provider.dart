@@ -5,10 +5,15 @@ import 'package:flutter/cupertino.dart';
 import '../models/custom_user.dart';
 
 class UserProvider with ChangeNotifier {
-  CustomUser? _customUser;
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  CustomUser get getUser => _customUser!;
+
+  CustomUser? _customUser;
+  CustomUser? get getUser => _customUser;
+
+  UserProvider() {
+    refreshUser();
+  }
 
   Future<void> refreshUser() async {
     FirebaseFirestore.instance.collection('users').doc(firebaseAuth.currentUser!.uid).snapshots().listen((event) {

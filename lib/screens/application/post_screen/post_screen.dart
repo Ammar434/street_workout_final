@@ -194,7 +194,7 @@ class _PostScreenState extends State<PostScreen> {
                     await publishPost(
                       parcName: textEditingControllerParcName.text,
                       parcAddress: textEditingControllerParcAddress.text,
-                      uid: userProvider.getUser.uid,
+                      uid: userProvider.getUser!.uid,
                     );
                   },
                   text: "Publish",

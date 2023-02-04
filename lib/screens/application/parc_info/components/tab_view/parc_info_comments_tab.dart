@@ -92,7 +92,7 @@ class _ParcInfoCommentsTabState extends State<ParcInfoCommentsTab> {
                 child: Image(
                   height: 48.0,
                   width: 48.0,
-                  image: NetworkImage(userProvider.getUser.profileImage),
+                  image: NetworkImage(userProvider.getUser!.profileImage),
                   fit: BoxFit.cover,
                 ),
               ),

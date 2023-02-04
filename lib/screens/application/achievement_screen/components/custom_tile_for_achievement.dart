@@ -21,7 +21,7 @@ class CustomTileForAchievement extends StatelessWidget {
   // final
   @override
   Widget build(BuildContext context) {
-    CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser currentUser = Provider.of<UserProvider>(context).getUser!;
     bool isAchievementComplete = currentUser.rewards.contains(rewards.id);
     return GestureDetector(
       onTap: () {

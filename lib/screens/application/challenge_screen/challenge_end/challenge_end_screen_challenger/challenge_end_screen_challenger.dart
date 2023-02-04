@@ -12,7 +12,7 @@ class ChallengeEndChallengerScreen extends StatelessWidget {
   const ChallengeEndChallengerScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser currentUser = Provider.of<UserProvider>(context).getUser!;
     const bool isChallengeSucceed = true;
 
     return SafeArea(
