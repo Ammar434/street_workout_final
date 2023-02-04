@@ -49,7 +49,7 @@
   "compounds": [
     {
       "name": "All devices",
-      "configurations": ["Emulator", "Oneplus", "Oneplus-wired"]
+      "configurations": ["Emulator", "Oneplus"]
     }
   ]
 }

@@ -2,6 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:street_workout_final/widgets/loading_widget.dart';
 
 import '../../../authentication_handler.dart';
 import '../../../services/authentication/authentication_method.dart';
@@ -40,6 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       userName: _userNameController.text,
       profileImage: _image,
     );
+
     if (!mounted) return;
     if (responseCode == "success") {
       Navigator.of(context).pushAndRemoveUntil(
@@ -98,19 +100,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      resizeToAvoidBottomInset: true, // set it to false
-      body: RegisterScreenBody(
-        image: _image,
-        selectImage: selectImage,
-        emailController: _emailController,
-        passwordConfirmController: _passwordConfirmController,
-        passwordController: _passwordController,
-        userNameController: _userNameController,
-        isLoading: isLoading,
-        onPageTransition: onTap,
-      ),
-    );
+    return isLoading
+        ? const LoadingWidget()
+        : Scaffold(
+            key: _scaffoldKey,
+            resizeToAvoidBottomInset: true, // set it to false
+            body: RegisterScreenBody(
+              image: _image,
+              selectImage: selectImage,
+              emailController: _emailController,
+              passwordConfirmController: _passwordConfirmController,
+              passwordController: _passwordController,
+              userNameController: _userNameController,
+              isLoading: isLoading,
+              onPageTransition: onTap,
+            ),
+          );
   }
 }
