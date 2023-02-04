@@ -1,52 +1,55 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "street_workout_final",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "Emulator",
-            "request": "launch",
-            "type": "dart",
-            "deviceId": "emulator-5554"
-        },
-        {
-            "name": "Oneplus",
-            "request": "launch",
-            "type": "dart",
-            "deviceId": "192.168.1.36:1234"
-        },
-        {
-            "name": "street_workout_final (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "street_workout_final (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "Flutter profile mode",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        }
-    ],
-    "compounds": [
-        {
-            "name": "All devices",
-            "configurations": [
-                "Emulator",
-                "Oneplus"
-            ]
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "street_workout_final",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "Emulator",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "emulator-5554"
+    },
+    {
+      "name": "Oneplus-wired",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "192.168.1.36:1234"
+    },
+    {
+      "name": "Oneplus",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "b944d9b4"
+    },
+    {
+      "name": "street_workout_final (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "street_workout_final (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "Flutter profile mode",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "All devices",
+      "configurations": ["Emulator", "Oneplus", "Oneplus-wired"]
+    }
+  ]
 }

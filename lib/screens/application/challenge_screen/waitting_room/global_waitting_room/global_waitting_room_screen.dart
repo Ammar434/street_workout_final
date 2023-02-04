@@ -54,9 +54,7 @@ class GlobalWaittingRoomScreen extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => ChallengeInProgressScreen(
-                  isChallenger: isChallenger,
-                ),
+                builder: (context) => const ChallengeInProgressScreen(),
               ),
             );
           }

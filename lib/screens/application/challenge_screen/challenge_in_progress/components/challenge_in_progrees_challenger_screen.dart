@@ -21,13 +21,11 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Consumer<ChallengeProvider>(
         builder: (context, model, child) {
-          if (model.getChallenge.isChallengeEnd) {
-            Navigator.push(
+          if (model.getChallenge.isChallengeEndChallenger) {
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const ChallengeEndChallengerScreen(
-                  isChallengeSucceed: true,
-                ),
+                builder: (context) => const ChallengeEndChallengerScreen(),
               ),
             );
           }
@@ -65,7 +63,9 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
                     height: kPaddingValue * 5,
                   ),
                   RoundedButton(
-                    onTap: () {},
+                    onTap: () async {
+                      await model.endChallenge(true);
+                    },
                     text: "End challenge",
                   )
                 ],

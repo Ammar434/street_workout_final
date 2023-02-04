@@ -12,10 +12,6 @@ class ChallengeProvider extends ChangeNotifier {
   final RealtimeDatabaseMethods realtimeDatabaseMethods = RealtimeDatabaseMethods();
   late StreamSubscription<DatabaseEvent> _streamSubscription;
 
-  // final bool _isRoomEmpty = true;
-  // bool get isRoomEmpty => _isRoomEmpty;
-  // bool? _isChallengeEnd;
-  // bool get isChallengeEnd => _isChallengeEnd!;
   late Challenge _challenge;
   Challenge get getChallenge => _challenge;
 
@@ -165,6 +161,24 @@ class ChallengeProvider extends ChangeNotifier {
       await writeChallengeToRealtimeDatabase(true);
 
       res = "Success";
+    } catch (e) {
+      res = e.toString();
+    }
+    notifyListeners();
+
+    return res;
+  }
+
+  Future<String> endChallenge(bool isChallenger) async {
+    String res = "Some error occured";
+
+    String path = "/${_challenge.parcId}/evaluator/${_challenge.evaluatorUid}";
+
+    try {
+      res = await realtimeDatabaseMethods.endTheChallenge(
+        path: path,
+        isChallenger: isChallenger,
+      );
     } catch (e) {
       res = e.toString();
     }

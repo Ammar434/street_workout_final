@@ -42,11 +42,6 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
             flag = !flag;
           },
         );
-        // if (timer.isActive == false) {
-        //   Future.delayed(const Duration(seconds: 2)).whenComplete(
-        //     () => Navigator.of(context).pop(),
-        //   );
-        // }
       },
     );
   }

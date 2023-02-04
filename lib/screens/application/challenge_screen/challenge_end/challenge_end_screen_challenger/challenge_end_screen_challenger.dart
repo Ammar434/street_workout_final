@@ -9,18 +9,22 @@ import 'components/body_challenge_failed.dart';
 import 'components/body_challenge_succeeded.dart';
 
 class ChallengeEndChallengerScreen extends StatelessWidget {
-  const ChallengeEndChallengerScreen({Key? key, required this.isChallengeSucceed}) : super(key: key);
-  final bool isChallengeSucceed;
+  const ChallengeEndChallengerScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     CustomUser currentUser = Provider.of<UserProvider>(context).getUser;
+    const bool isChallengeSucceed = true;
 
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
-              Navigator.pushNamedAndRemoveUntil(context, ChallengeStartScreen.name, (route) => true);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                ChallengeStartScreen.name,
+                (route) => true,
+              );
             },
             child: const Center(
               child: FaIcon(FontAwesomeIcons.xmark),

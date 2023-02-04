@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/send_video/send_video_screen.dart';
 
 import '../provider/user_provider.dart';
 import '../screens/application/main_screen.dart';
@@ -15,5 +16,7 @@ class MobileScreenLayout extends StatelessWidget {
     // return const ChallengeInProgressScreen(
     //   isChallenger: true,
     // );
+
+    // return const SendVideoScreen();
   }
 }

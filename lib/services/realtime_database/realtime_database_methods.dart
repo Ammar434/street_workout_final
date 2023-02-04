@@ -111,19 +111,19 @@ class RealtimeDatabaseMethods {
     return res;
   }
 
-  Future<String> endTheChallenge({
-    required String path,
-    required double repetionRating,
-    required double executionRating,
-  }) async {
+  Future<String> endTheChallenge({required String path, required bool isChallenger}) async {
     String res = "Some error happened";
 
     try {
-      await _firebaseDatabse.ref().child(path).update({
-        'isChallengeEnd': true,
-        "repetionRating": repetionRating,
-        "executionRating": executionRating,
-      });
+      if (isChallenger) {
+        await _firebaseDatabse.ref().child(path).update({
+          'isChallengeEndChallenger': true,
+        });
+      } else {
+        await _firebaseDatabse.ref().child(path).update({
+          'isChallengeEndEvaluator': true,
+        });
+      }
 
       res = "success";
     } catch (error) {

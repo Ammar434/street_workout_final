@@ -10,11 +10,10 @@ class Challenge {
   String parcId;
   bool isChallengerReady;
   bool isEvaluatorReady;
-  bool isChallengeEnd;
+  bool isChallengeEndEvaluator;
+  bool isChallengeEndChallenger;
   int repetitionRating;
   int executionRating;
-
-  // List evaluatorAvailable;
 
   Challenge({
     required this.challengeId,
@@ -27,7 +26,8 @@ class Challenge {
     required this.challengerName,
     required this.evaluatorName,
     required this.evaluatorImageUrl,
-    required this.isChallengeEnd,
+    required this.isChallengeEndEvaluator,
+    required this.isChallengeEndChallenger,
     required this.repetitionRating,
     required this.executionRating,
   });
@@ -44,7 +44,8 @@ class Challenge {
       challengerName: "",
       evaluatorName: "",
       evaluatorImageUrl: "",
-      isChallengeEnd: false,
+      isChallengeEndEvaluator: false,
+      isChallengeEndChallenger: false,
       repetitionRating: -1,
       executionRating: -1,
       // evaluatorAvailable: [],
@@ -62,28 +63,30 @@ class Challenge {
         "parcId": parcId,
         "isChallengerReady": isChallengerReady,
         "isEvaluatorReady": isEvaluatorReady,
-        "isChallengeEnd": isChallengeEnd,
+        "isChallengeEnd": isChallengeEndEvaluator,
         "repetitionRating": repetitionRating,
         "executionRating": executionRating,
+        " isChallengeEndChallenger": isChallengeEndChallenger,
         // "evaluatorAvailable": evaluatorAvailable,
       };
 
   static Challenge challengeFromSnapshot(Map<dynamic, dynamic> snapshot) {
     return Challenge(
-      challengeId: snapshot["challengeId"],
-      challengerUid: snapshot["challengerUid"],
-      challengerName: snapshot["challengerName"],
-      challengerImageUrl: snapshot["challengerImageUrl"],
-      evaluatorUid: snapshot["evaluatorUid"],
-      evaluatorName: snapshot["evaluatorName"],
-      evaluatorImageUrl: snapshot["evaluatorImageUrl"],
-      parcId: snapshot["parcId"],
-      isChallengerReady: snapshot["isChallengerReady"],
-      isEvaluatorReady: snapshot["isEvaluatorReady"],
-      isChallengeEnd: snapshot['isChallengeEnd'],
-      repetitionRating: snapshot["repetitionRating"],
-      executionRating: snapshot["executionRating"],
-      // evaluatorAvailable: snapshot["evaluatorAvailable"]
-    );
+        challengeId: snapshot["challengeId"],
+        challengerUid: snapshot["challengerUid"],
+        challengerName: snapshot["challengerName"],
+        challengerImageUrl: snapshot["challengerImageUrl"],
+        evaluatorUid: snapshot["evaluatorUid"],
+        evaluatorName: snapshot["evaluatorName"],
+        evaluatorImageUrl: snapshot["evaluatorImageUrl"],
+        parcId: snapshot["parcId"],
+        isChallengerReady: snapshot["isChallengerReady"],
+        isEvaluatorReady: snapshot["isEvaluatorReady"],
+        isChallengeEndEvaluator: snapshot['isChallengeEnd'],
+        repetitionRating: snapshot["repetitionRating"],
+        executionRating: snapshot["executionRating"],
+        isChallengeEndChallenger: snapshot["isChallengeEndChallenger"]
+        // evaluatorAvailable: snapshot["evaluatorAvailable"]
+        );
   }
 }

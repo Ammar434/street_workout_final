@@ -30,14 +30,14 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
     double repetionRating = 0;
     double executionRating = 0;
 
-    if (challenge.isChallengeEnd) {
+    if (challenge.isChallengeEndEvaluator) {
       if (currentUser.uid == challenge.challengerUid) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ChallengeEndChallengerScreen(
-              isChallengeSucceed: (challenge.executionRating + challenge.repetitionRating) >= 5,
-            ),
+            builder: (context) => const ChallengeEndChallengerScreen(
+                // isChallengeSucceed: (challenge.executionRating + challenge.repetitionRating) >= 5,
+                ),
           ),
         );
       } else {
