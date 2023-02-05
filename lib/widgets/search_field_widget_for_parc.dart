@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../screens/application/parc_info/parc_info_screen.dart';
 import '../services/search/search_methods.dart';
-import '../utils/colors.dart';
 import '../utils/constants.dart';
 
 class SearchFieldWidgetForParc extends StatelessWidget {
@@ -14,7 +13,7 @@ class SearchFieldWidgetForParc extends StatelessWidget {
   Widget build(BuildContext context) {
     return TypeAheadField(
       suggestionsBoxDecoration: SuggestionsBoxDecoration(
-        color: iconColor,
+        // color: iconColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(kRadiusValue),
@@ -28,11 +27,11 @@ class SearchFieldWidgetForParc extends StatelessWidget {
           hintText: "Find your parc by typing name or address",
           suffixIcon: const Icon(
             Icons.search,
-            color: secondaryColor,
+            // color: secondaryColor,
           ),
           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: tertiaryColor),
+            // borderSide: const BorderSide(color: tertiaryColor),
             borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
           ),
         ),
@@ -50,21 +49,21 @@ class SearchFieldWidgetForParc extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: FaIcon(
                 FontAwesomeIcons.dumbbell,
-                color: secondaryColor,
+                // color: secondaryColor,
               ),
             ),
           ),
           title: Text(
             suggestion['name'],
             style: const TextStyle(
-              color: backgroundColor,
+              // color: backgroundColor,
               fontWeight: FontWeight.bold,
             ),
           ),
           subtitle: Text(
             suggestion['completeAddress'],
             style: const TextStyle(
-              color: backgroundColor,
+              // color: backgroundColor,
               fontStyle: FontStyle.italic,
             ),
           ),

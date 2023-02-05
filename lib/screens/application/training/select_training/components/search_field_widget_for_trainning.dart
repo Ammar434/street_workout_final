@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import '../../../../../models/workout.dart';
+import '../../../../../provider/workout_provider.dart';
 import '../../../../../services/search/search_methods.dart';
 import '../../../../../utils/constants.dart';
 
@@ -13,6 +15,8 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WorkoutProvider workoutProvider = Provider.of<WorkoutProvider>(context);
+
     return TypeAheadField(
       getImmediateSuggestions: true,
       suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -40,7 +44,7 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
         ),
       ),
       suggestionsCallback: (String pattern) {
-        return SearchMethods().getWorkoutSuggestion(pattern.toLowerCase());
+        return SearchMethods().getWorkoutSuggestion(pattern.toLowerCase(), workoutProvider.listWorkoutFromProvider);
       },
       itemBuilder: (BuildContext context, Workout suggestion) {
         return ListTile(

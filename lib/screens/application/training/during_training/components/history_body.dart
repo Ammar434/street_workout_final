@@ -30,7 +30,6 @@ class HistoryBody extends StatelessWidget {
       shrinkWrap: true,
       itemCount: trainingList.length,
       itemBuilder: (context, index) {
-        print("dfssssss");
         String dayName = getDayCompleteNameString(trainingList[index].dateTime.weekday).toUpperCase();
         String month = getMonth(trainingList[index].dateTime.month).toUpperCase();
         String date = "   $dayName $month ${trainingList[index].dateTime.day}";

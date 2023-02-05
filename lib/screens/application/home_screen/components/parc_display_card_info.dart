@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../utils/colors.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../utils/constants.dart';
 import '../../profile_screen/profile_screen.dart';
@@ -50,7 +49,7 @@ class ParcDisplayCardInfo extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("By"),
+              const Text("Publish By"),
               const SizedBox(
                 width: 5,
               ),
@@ -71,21 +70,20 @@ class ParcDisplayCardInfo extends StatelessWidget {
         Padding(
           padding: EdgeInsets.all(kPaddingValue),
           child: Row(
-            // mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                backgroundColor: primaryColor,
-                child: FaIcon(
+              CircleAvatar(
+                backgroundColor: Theme.of(context).highlightColor,
+                child: const FaIcon(
                   FontAwesomeIcons.trophy,
                   size: 25,
-                  color: Colors.white70,
                 ),
               ),
               SizedBox(
-                width: kPaddingValue,
+                width: kPaddingValue * 2,
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
                     "Current Champion",

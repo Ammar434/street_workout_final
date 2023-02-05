@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils/colors.dart';
-
 class TextFieldInput extends StatefulWidget {
   const TextFieldInput({
     Key? key,
@@ -39,7 +37,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),
-                color: primaryColor,
+                color: Theme.of(context).primaryColor,
                 onPressed: () {
                   setState(
                     () {
@@ -50,7 +48,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
               )
             : null,
       ),
-      cursorColor: primaryColor,
+      cursorColor: Theme.of(context).primaryColor,
       keyboardType: widget.textInputType,
       obscureText: isObscure && widget.isPassword,
     );

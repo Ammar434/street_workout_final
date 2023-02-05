@@ -10,13 +10,11 @@ import 'package:street_workout_final/widgets/snackbar.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPage extends StatefulWidget {
+  const VideoPage({Key? key, required this.filePath, required this.challengeId}) : super(key: key);
   final String filePath;
   final String challengeId;
-
-  const VideoPage({Key? key, required this.filePath, required this.challengeId}) : super(key: key);
-
   @override
-  _VideoPageState createState() => _VideoPageState();
+  State<VideoPage> createState() => _VideoPageState();
 }
 
 class _VideoPageState extends State<VideoPage> {
@@ -66,6 +64,7 @@ class _VideoPageState extends State<VideoPage> {
           content: "We receive your video we will evaluate your challenge as soon as possible",
           contentType: ContentType.warning,
         );
+        if (!mounted) return;
         Navigator.popUntil(context, ModalRoute.withName(ChallengeStartScreen.name));
       }
     } else {
@@ -75,6 +74,7 @@ class _VideoPageState extends State<VideoPage> {
         content: "You already submited one video be patient we will evaluate your challenge soon",
         contentType: ContentType.warning,
       );
+      if (!mounted) return;
       Navigator.popUntil(context, ModalRoute.withName(ChallengeStartScreen.name));
     }
   }

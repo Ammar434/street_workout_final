@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../favorite_parc/favorite_parc_empty_screen.dart';
 import '../../achievement_screen/achievement_screen.dart';
-import '../../post_screen/post_screen.dart';
 
 import 'drawer_categorie_tile.dart';
 

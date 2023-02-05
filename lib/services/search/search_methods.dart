@@ -34,17 +34,15 @@ class SearchMethods {
     return list;
   }
 
-  List<Workout> getWorkoutSuggestion(String query) {
+  List<Workout> getWorkoutSuggestion(String query, List<Workout> wokoutCategoryList) {
     List<Workout> list = [];
-    // TODO : re activer search bar
+
     try {
-      // for (WorkoutCategory wc in wokoutCategoryList) {
-      //   for (Workout w in wc.workoutList) {
-      //     if (w.name.contains(query)) {
-      //       list.add(w);
-      //     }
-      //   }
-      // }
+      for (Workout w in wokoutCategoryList) {
+        if (w.name.contains(query)) {
+          list.add(w);
+        }
+      }
     } catch (e) {
       debugPrint(e.toString());
     }

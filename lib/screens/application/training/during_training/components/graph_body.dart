@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../../../../models/training.dart';
 import '../../../../../models/workout.dart';
-import '../../../../../provider/training_provider.dart';
 import 'chart.dart';
 import '../../../../../services/training/training_services.dart';
 import '../../../../../utils/colors.dart';

@@ -15,7 +15,6 @@ class CountDownBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(duration);
     return CircularCountDownTimer(
       duration: duration,
       initialDuration: 0,

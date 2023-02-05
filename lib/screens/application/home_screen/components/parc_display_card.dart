@@ -72,42 +72,42 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
       width: double.infinity,
       height: pacrDisplayCardHeight,
       decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(kRadiusValue),
-        border: Border.all(
-          color: Colors.white10,
-        ),
+        color: Theme.of(context).cardColor,
       ),
       child: isLoading
           ? const LoadingWidget()
-          : Column(
-              children: [
-                ParcDisplayCardImage(
-                  imageUrl: widget.parc.mainPhoto,
-                  onTap: onParcTap,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: tertiaryColor.withOpacity(0.1),
+          : PhysicalModel(
+              color: Theme.of(context).shadowColor,
+              elevation: kDefaultElevation,
+              child: Column(
+                children: [
+                  ParcDisplayCardImage(
+                    imageUrl: widget.parc.mainPhoto,
+                    onTap: onParcTap,
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: kPaddingValue,
-                      ),
-                      ParcDisplayCardInfo(
-                        parcName: widget.parc.name,
-                        champion: userChampion,
-                        creator: userWhoPublished,
-                      ),
-                      RoundedButton(
-                        text: 'More information',
-                        onTap: onParcTap,
-                      )
-                    ],
-                  ),
-                )
-              ],
+                  Container(
+                    decoration: BoxDecoration(
+                      color: tertiaryColor.withOpacity(0.1),
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: kPaddingValue,
+                        ),
+                        ParcDisplayCardInfo(
+                          parcName: widget.parc.name,
+                          champion: userChampion,
+                          creator: userWhoPublished,
+                        ),
+                        RoundedButton(
+                          text: 'More information',
+                          onTap: onParcTap,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
     );
   }

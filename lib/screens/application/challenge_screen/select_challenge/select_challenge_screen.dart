@@ -78,6 +78,7 @@ class _SelectChallengeScreenState extends State<SelectChallengeScreen> {
                         listRewards[index].id,
                       );
                       if (res == "Success") {
+                        if (!mounted) return;
                         Navigator.of(context).pushNamed(ChallengerWaittinRoomScreen.name);
                       } else {
                         customShowSnackBar(

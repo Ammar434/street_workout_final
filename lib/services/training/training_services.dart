@@ -42,18 +42,9 @@ class TrainingServices {
 
   List<Sets> buildListSets(Training training, Workout workout) {
     List<Sets> list = [];
-    //TODO:modifi
-
-    // for (String id in training.listWorkoutId)
 
     list.addAll(training.mapOfSet[workout.id]!);
-    // for (Workout w in training.listWorkout) {
-    // if (w.id == workout.id) {
-    //   list.addAll(w.listSets);
-    // }
-    // }
-    // print("list");
-    // print(list);
+
     return list;
   }
 

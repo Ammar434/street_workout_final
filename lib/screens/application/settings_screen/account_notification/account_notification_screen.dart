@@ -5,7 +5,6 @@ class AccountNotificationScreen extends StatelessWidget {
   static String name = "AccountNotificationScreen";
   @override
   Widget build(BuildContext context) {
-    //TODO :  Mettre en relation avec provider
     bool isSwitch = false;
     return SafeArea(
       child: Scaffold(

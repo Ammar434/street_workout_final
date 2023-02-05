@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../utils/text_style.dart';
-import '../utils/colors.dart';
 
 class SliderWidget extends StatelessWidget {
   const SliderWidget({
@@ -35,8 +34,8 @@ class SliderWidget extends StatelessWidget {
               min: min,
               max: max,
               divisions: (max - min).toInt(),
-              inactiveColor: secondaryColor,
-              activeColor: primaryColor,
+              inactiveColor: Theme.of(context).disabledColor,
+              activeColor: Theme.of(context).primaryColor,
               label: '${sliderDefaultValue.round()}',
               onChanged: onDrag,
             ),

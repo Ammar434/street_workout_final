@@ -1,8 +1,6 @@
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
-import '../../../../../widgets/app_bar.dart';
 
 class CountDownButton extends StatelessWidget {
   const CountDownButton({
@@ -26,7 +24,7 @@ class CountDownButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             title,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
       ),
