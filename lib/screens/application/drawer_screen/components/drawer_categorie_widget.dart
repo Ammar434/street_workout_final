@@ -29,13 +29,6 @@ class DrawerCategorieWidget extends StatelessWidget {
             Navigator.pushNamed(context, FavoriteParcEmptyScreen.name);
           },
         ),
-        DrawerCategorieTile(
-          iconData: FontAwesomeIcons.calendar,
-          text: "Add new parc",
-          onTap: () {
-            Navigator.pushNamed(context, PostScreen.name);
-          },
-        ),
       ],
     );
   }

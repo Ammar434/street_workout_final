@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -75,5 +76,29 @@ class FirebaseStorageMethods {
     }
 
     return res;
+  }
+
+  Future<String> uploadVideoToStorage(
+    String childName,
+    File file,
+    bool isPost,
+  ) async {
+    String res = "Some error occured";
+    Reference ref = firebaseStorage.ref().child(childName).child(firebaseAuth.currentUser!.uid);
+
+    if (isPost == true) {
+      String id = const Uuid().v1();
+      ref = ref.child(id);
+    }
+    try {
+      UploadTask uploadTask = ref.putFile(file);
+      TaskSnapshot taskSnapshot = await uploadTask;
+      String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+
+      return downloadUrl;
+    } catch (e) {
+      res = e.toString();
+      return res;
+    }
   }
 }

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/utils/constants.dart';
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
 import '../../../utils/colors.dart';
 import '../../../widgets/horizontal_line.dart';
 
+import '../achievement_screen/add_new_achievement.dart';
+import '../post_screen/post_screen.dart';
 import 'components/drawer_bottom_widget.dart';
+import 'components/drawer_categorie_tile.dart';
 import 'components/drawer_categorie_widget.dart';
 import 'components/drawer_top_widget.dart';
 
@@ -61,10 +66,28 @@ class _DrawerBodyState extends State<DrawerBody> {
             userCity: currentUserCity,
             isLoading: isLoading,
           ),
+          SizedBox(
+            height: kSmallPaddingValue,
+          ),
           const HorizontalLine(),
           const DrawerCategorieWidget(),
           const HorizontalLine(),
           const DrawerBottomWidget(),
+          const HorizontalLine(),
+          DrawerCategorieTile(
+            iconData: FontAwesomeIcons.calendar,
+            text: "Add new parc",
+            onTap: () {
+              Navigator.pushNamed(context, PostScreen.name);
+            },
+          ),
+          DrawerCategorieTile(
+            iconData: FontAwesomeIcons.calendar,
+            text: "Add new reward",
+            onTap: () {
+              Navigator.pushNamed(context, AddNewAchievement.name);
+            },
+          ),
         ],
       ),
     );
