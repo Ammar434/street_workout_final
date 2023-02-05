@@ -30,7 +30,6 @@ class LeaderboardFirestoreMethods {
   Future<List<Leaderboard>> leaderboardList(String categorie) async {
     List<Leaderboard> leaderboardList = [];
     DocumentSnapshot documentSnapshot = await _firebaseFirestore.collection(_collectionPath).doc(_documentPath).get();
-    debugPrint("hello");
 
     List list = documentSnapshot['list'] as List;
 

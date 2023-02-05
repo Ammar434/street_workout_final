@@ -7,7 +7,11 @@ import '../../../../../widgets/horizontal_line.dart';
 import '../add_workout.dart';
 
 class WorkoutTypeSelector extends StatelessWidget {
-  const WorkoutTypeSelector({Key? key, required this.currentOptions, required this.function}) : super(key: key);
+  const WorkoutTypeSelector({
+    Key? key,
+    required this.currentOptions,
+    required this.function,
+  }) : super(key: key);
   final String currentOptions;
   final Function(String?)? function;
   @override
@@ -25,15 +29,18 @@ class WorkoutTypeSelector extends StatelessWidget {
           ),
         ),
         const HorizontalLine(),
-        ...List.generate(workoutType.length, (index) {
-          return RadioListTile(
-            title: Text(workoutType[index]),
-            value: workoutType[index],
-            groupValue: currentOptions,
-            activeColor: primaryColor,
-            onChanged: function,
-          );
-        })
+        ...List.generate(
+          workoutType.length,
+          (index) {
+            return RadioListTile(
+              title: Text(workoutType[index]),
+              value: workoutType[index],
+              groupValue: currentOptions,
+              activeColor: primaryColor,
+              onChanged: function,
+            );
+          },
+        )
       ],
     );
   }

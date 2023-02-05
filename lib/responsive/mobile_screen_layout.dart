@@ -8,6 +8,7 @@ class MobileScreenLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Provider.of<UserProvider>(context).refreshUser();
+    // return AddNewAchievement();
     return const MainScreen();
     // return const StartTrainingScreen();
     // return const ChallengeInProgressScreen(

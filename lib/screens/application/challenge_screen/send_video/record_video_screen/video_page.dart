@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';
 import 'package:street_workout_final/services/record_video/record_video_methods.dart';
 import 'package:street_workout_final/widgets/app_bar.dart';
 import 'package:street_workout_final/widgets/loading_widget.dart';
@@ -65,8 +66,7 @@ class _VideoPageState extends State<VideoPage> {
           content: "We receive your video we will evaluate your challenge as soon as possible",
           contentType: ContentType.warning,
         );
-        // Navigator.of(context).pop();
-        // Navigator.of(context).pop();
+        Navigator.popUntil(context, ModalRoute.withName(ChallengeStartScreen.name));
       }
     } else {
       customShowSnackBar(
@@ -75,6 +75,7 @@ class _VideoPageState extends State<VideoPage> {
         content: "You already submited one video be patient we will evaluate your challenge soon",
         contentType: ContentType.warning,
       );
+      Navigator.popUntil(context, ModalRoute.withName(ChallengeStartScreen.name));
     }
   }
 
