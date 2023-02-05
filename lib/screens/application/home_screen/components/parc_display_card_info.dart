@@ -73,7 +73,7 @@ class ParcDisplayCardInfo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
-                backgroundColor: Theme.of(context).highlightColor,
+                backgroundColor: Theme.of(context).splashColor,
                 child: const FaIcon(
                   FontAwesomeIcons.trophy,
                   size: 25,

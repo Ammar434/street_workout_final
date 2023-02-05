@@ -31,10 +31,10 @@ class BuildInstruction extends StatelessWidget {
             height: kPaddingValue,
           ),
           ...List.generate(
-            reward.descriptionForChallenger.length,
+            reward.description.length,
             (index) => ListTile(
               leading: const FaIcon(FontAwesomeIcons.solidCircle),
-              title: Text(reward.descriptionForChallenger[index]),
+              title: Text(reward.description[index]),
             ),
           ),
           SizedBox(

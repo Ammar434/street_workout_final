@@ -22,10 +22,10 @@ class AchievementLogoWidget extends StatelessWidget {
       child: Container(
         // height: 100,
         width: 125,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              "assets/images/achievements/asset_31.png",
+              image,
             ),
           ),
         ),

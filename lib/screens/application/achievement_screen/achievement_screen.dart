@@ -89,6 +89,7 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
                   TabBar(
                     controller: tabController,
                     indicatorColor: primaryColor,
+                    indicatorSize: TabBarIndicatorSize.tab,
                     indicator: BoxDecoration(
                       color: primaryColor,
                       borderRadius: BorderRadius.circular(

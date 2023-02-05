@@ -33,28 +33,24 @@ class Reward {
   Reward({
     required this.id,
     required this.title,
-    required this.subtitle,
-    // required this.categorie,
     required this.imageUrl,
-    required this.descriptionForChallenger,
-    required this.descriptionForEvaluator,
+    required this.description,
+    required this.isPublish,
   });
 
   final String id;
   final String title;
-  final String subtitle;
   // final String categorie;
   final String imageUrl;
-  final List descriptionForChallenger;
-  final List descriptionForEvaluator;
+  final List description;
+  final bool isPublish;
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
-        "subtitle": subtitle,
         "imageUrl": imageUrl,
-        "descriptionForChallenger": descriptionForChallenger,
-        "descriptionForEvaluator": descriptionForEvaluator,
+        "description": description,
+        "isPublish": false,
       };
 
 //Recupere user depuis firebase et le converti en CustomUser
@@ -63,11 +59,10 @@ class Reward {
     return Reward(
       id: snapshot["id"],
       title: snapshot["title"],
-      subtitle: snapshot["subtitle"],
       // categorie: snapshot["categorie"],
       imageUrl: snapshot["imageUrl"],
-      descriptionForChallenger: snapshot["descriptionForChallenger"],
-      descriptionForEvaluator: snapshot["descriptionForEvaluator"],
+      description: snapshot["description"],
+      isPublish: snapshot["isPublish"],
     );
   }
 }

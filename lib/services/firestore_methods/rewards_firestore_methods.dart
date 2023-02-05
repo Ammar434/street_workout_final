@@ -11,24 +11,29 @@ class RewardsFirestoreMethods {
   // final UserFirestoreMethods _userFirestoreMethods = UserFirestoreMethods();
   final Uuid _uuid = const Uuid();
 
-  Future<void> addRewards(String categorie, int orderNum) async {
+  Future<String> addRewards(
+    String title,
+    String categorie,
+    String imagePath,
+    List<String> description,
+  ) async {
     Reward rewards = Reward(
       id: _uuid.v1(),
-      title: "title",
-      subtitle: "subtitle",
-      imageUrl: "https://firebasestorage.googleapis.com/v0/b/streetworkoutfighter.appspot.com/o/rewards%2Fasset_2.png?alt=media&token=2f1900d1-22b5-4651-8f8b-c742a72b6bcb",
-      descriptionForChallenger: [],
-      descriptionForEvaluator: [],
+      title: title,
+      imageUrl: imagePath,
+      description: description,
+      isPublish: false,
     );
-
-    await _firebaseFirestore.collection("rewards").doc(categorie).set({
-      "categoryName": categorie[0].toUpperCase() + categorie.substring(1),
-      "orderNum": orderNum,
-    }).then((value) async {
-      await _firebaseFirestore.collection("rewards").doc(categorie).collection("rewardsList").doc(rewards.id).set(
+    String res = "Some error occurred";
+    try {
+      await _firebaseFirestore.collection("rewards").doc(categorie.toLowerCase()).collection("rewardsList").doc(rewards.id).set(
             rewards.toJson(),
           );
-    });
+      res = "Success";
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
   }
 
   Future<List<RewardsCategory>> getRewardsSnapshot() async {

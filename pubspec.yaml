@@ -73,6 +73,7 @@ dependencies:
   circular_countdown_timer: ^0.2.3
   camera: ^0.10.3
   video_player: ^2.5.1
+  flex_seed_scheme: ^1.2.2
 
 dev_dependencies:
   flutter_test:

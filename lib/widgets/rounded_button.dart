@@ -33,7 +33,7 @@ class RoundedButton extends StatelessWidget {
         height: height ?? kDefaultButtonSize,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
-          color: shouldAnimate ? Colors.green : color,
+          color: shouldAnimate ? Colors.green : Theme.of(context).highlightColor,
         ),
         duration: const Duration(milliseconds: 500),
         child: Center(

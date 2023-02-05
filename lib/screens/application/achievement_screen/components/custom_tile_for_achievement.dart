@@ -67,14 +67,6 @@ class CustomTileForAchievement extends StatelessWidget {
                     fontSize: 15,
                   ),
                 ),
-                Text(
-                  rewards.subtitle,
-                  style: const TextStyle(
-                    // fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.w200,
-                    fontSize: 14,
-                  ),
-                ),
               ],
             ),
             const Spacer(),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
-import '../../utils/colors.dart';
 import '../../utils/constants.dart';
 import 'body.dart';
 import 'drawer_screen/drawer.dart';
@@ -24,9 +23,9 @@ class MainScreenState extends State<MainScreen> {
       controller: z,
       borderRadius: kRadiusValue,
       style: DrawerStyle.defaultStyle,
-      drawerShadowsBackgroundColor: tertiaryColor,
+      drawerShadowsBackgroundColor: Theme.of(context).splashColor,
       showShadow: true,
-      menuBackgroundColor: backgroundColor,
+      menuBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
       openCurve: Curves.fastOutSlowIn,
       slideWidth: MediaQuery.of(context).size.width * 0.65,
       duration: const Duration(milliseconds: 500),

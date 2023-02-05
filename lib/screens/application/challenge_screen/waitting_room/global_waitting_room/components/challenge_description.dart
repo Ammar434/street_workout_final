@@ -17,7 +17,7 @@ class ChallengeDescription extends StatelessWidget {
       future: RewardsFirestoreMethods().getRewardsById(rewardId),
       builder: (context, AsyncSnapshot<Reward> snapshot) {
         if (snapshot.hasData) {
-          List<dynamic> instructions = isChallenger ? snapshot.data!.descriptionForChallenger : snapshot.data!.descriptionForEvaluator;
+          List<dynamic> instructions = snapshot.data!.description;
           return SizedBox(
             height: 200.sp,
             child: SingleChildScrollView(

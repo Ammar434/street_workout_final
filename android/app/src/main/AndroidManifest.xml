@@ -3,6 +3,7 @@
 
     <application
         android:name="${applicationName}"
+        android:roundIcon="@mipmap/round_launcher"
         android:icon="@mipmap/ic_launcher"
         android:label="street_workout_final">
         <activity
@@ -32,7 +33,7 @@
             android:value="2" />
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBRMj5PD11CAtCsSUZdOLsyMdfGo-Vdbhw"/>
+            android:value="AIzaSyBRMj5PD11CAtCsSUZdOLsyMdfGo-Vdbhw" />
     </application>
     <!-- Permissions options for the `location` group -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

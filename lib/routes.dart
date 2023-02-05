@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/achievement_screen/add_new_achievement.dart';
+import 'package:street_workout_final/screens/application/achievement_screen/add_new_achievement/add_new_achievement.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/send_video/self_record_select_challenge_screen/self_record_select_challenge_screen.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/waitting_room/challenger_waitting_room/challenger_waitting_room_screen.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/waitting_room/evaluator_waitting_room/evaluator_waitting_room_screen.dart';

@@ -6,10 +6,9 @@ import 'package:street_workout_final/utils/constants.dart';
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
-import '../../../utils/colors.dart';
 import '../../../widgets/horizontal_line.dart';
 
-import '../achievement_screen/add_new_achievement.dart';
+import '../achievement_screen/add_new_achievement/add_new_achievement.dart';
 import '../post_screen/post_screen.dart';
 import 'components/drawer_bottom_widget.dart';
 import 'components/drawer_categorie_tile.dart';
@@ -54,7 +53,7 @@ class _DrawerBodyState extends State<DrawerBody> {
     CustomUser customUser = Provider.of<UserProvider>(context).getUser!;
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
