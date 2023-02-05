@@ -6,6 +6,7 @@ import '../../../../../services/search/search_methods.dart';
 import '../../../../../utils/constants.dart';
 
 import '../../../../../utils/colors.dart';
+import '../../during_training/during_training_screen.dart';
 
 class SearchFieldWidgetForTraining extends StatelessWidget {
   const SearchFieldWidgetForTraining({Key? key}) : super(key: key);
@@ -65,14 +66,14 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
         );
       },
       onSuggestionSelected: (Workout suggestion) {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => DuringTrainingScreen(
-        //       workout: suggestion,
-        //     ),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DuringTrainingScreen(
+              workout: suggestion,
+            ),
+          ),
+        );
       },
     );
   }

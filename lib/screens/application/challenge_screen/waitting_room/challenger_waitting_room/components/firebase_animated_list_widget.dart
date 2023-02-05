@@ -60,9 +60,11 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
                 ),
                 onTap: () async {
                   await challengeProvider.addEvaluatorToChallenge(challenge).then(
-                        (value) => Navigator.of(context).push(
+                        (value) => Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => const GlobalWaittingRoomScreen(isChallenger: true),
+                            builder: (context) => const GlobalWaittingRoomScreen(
+                              isChallenger: true,
+                            ),
                           ),
                         ),
                       );

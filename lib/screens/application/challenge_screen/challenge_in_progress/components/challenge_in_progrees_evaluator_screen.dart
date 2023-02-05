@@ -22,64 +22,66 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
     ChallengeProvider challengeProvider = Provider.of<ChallengeProvider>(context);
     Challenge challenge = challengeProvider.getChallenge;
 
-    double repetionRating = 0;
-    double executionRating = 0;
-    return SingleChildScrollView(
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              primaryColor,
-              backgroundColor,
-              Colors.transparent,
-            ],
+    double repetionRating = 3;
+    double executionRating = 3;
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                primaryColor,
+                backgroundColor,
+                Colors.transparent,
+              ],
+            ),
           ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.only(left: kPaddingValue, right: kPaddingValue, top: kPaddingValue * 5),
-          child: Column(
-            children: [
-              UserDetailColumnItem(
-                imageUrl: challenge.evaluatorImageUrl,
-                userName: challenge.evaluatorName,
-                imageRadius: kRadiusValueImageProfile,
-                fontSize: 18.sp,
-                shouldAnimate: false,
-              ),
-              SizedBox(
-                height: kPaddingValue * 1,
-              ),
-              BuildRating(
-                challengerName: challenge.challengerName,
-                onTap1: (r) {
-                  repetionRating = r;
-                },
-                onTap2: (r) {
-                  executionRating = r;
-                },
-              ),
-              SelectableEmojiRow(challengerName: challenge.challengerName),
-              RoundedButton(
-                onTap: () async {
-                  await challengeProvider.updateChallengeScore(
-                    executionRating: executionRating,
-                    repetitionRating: repetionRating,
-                  );
-                  await challengeProvider.endChallenge(false).then(
-                        (value) => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ChallengeEndScreenEvaluator(),
+          child: Padding(
+            padding: EdgeInsets.only(left: kPaddingValue, right: kPaddingValue, top: kPaddingValue * 5),
+            child: Column(
+              children: [
+                UserDetailColumnItem(
+                  imageUrl: challenge.evaluatorImageUrl,
+                  userName: challenge.evaluatorName,
+                  imageRadius: kRadiusValueImageProfile,
+                  fontSize: 18.sp,
+                  shouldAnimate: false,
+                ),
+                SizedBox(
+                  height: kPaddingValue * 1,
+                ),
+                BuildRating(
+                  challengerName: challenge.challengerName,
+                  onTap1: (r) {
+                    repetionRating = r;
+                  },
+                  onTap2: (r) {
+                    executionRating = r;
+                  },
+                ),
+                SelectableEmojiRow(challengerName: challenge.challengerName),
+                RoundedButton(
+                  onTap: () async {
+                    await challengeProvider.updateChallengeScore(
+                      executionRating: executionRating,
+                      repetitionRating: repetionRating,
+                    );
+                    await challengeProvider.endChallenge(false).then(
+                          (value) => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ChallengeEndScreenEvaluator(),
+                            ),
                           ),
-                        ),
-                      );
-                },
-                text: "End challenge",
-              )
-            ],
+                        );
+                  },
+                  text: "End challenge",
+                )
+              ],
+            ),
           ),
         ),
       ),

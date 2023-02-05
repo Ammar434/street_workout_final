@@ -13,14 +13,16 @@ class SelectTrainningScreen extends StatelessWidget {
       child: Scaffold(
         body: Padding(
           padding: EdgeInsets.all(kPaddingValue),
-          child: Column(
-            children: [
-              const SearchFieldWidgetForTraining(),
-              SizedBox(
-                height: kPaddingValue,
-              ),
-              const WorkoutCategoryListBuilder(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SearchFieldWidgetForTraining(),
+                SizedBox(
+                  height: kPaddingValue,
+                ),
+                const WorkoutCategoryListBuilder(),
+              ],
+            ),
           ),
         ),
       ),

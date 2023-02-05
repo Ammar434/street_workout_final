@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:street_workout_final/provider/challenge_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_in_progress/challenge_in_progress_screen.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
+import '../../../../../utils/page_transition/slide_right_transition.dart';
 import '../../../../../widgets/rounded_button.dart';
+import '../../challenge_in_progress/challenge_in_progress_screen.dart';
 import 'components/challenge_and_evaluator_row.dart';
 import 'components/challenge_description.dart';
 import 'components/image_and_challenge_id.dart';
@@ -18,88 +20,96 @@ class GlobalWaittingRoomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: Center(
-          child: IconButton(
-            onPressed: () {
-              Navigator.popUntil(context, (route) => route.isFirst);
+    return Consumer<ChallengeProvider>(
+      builder: (context, model, child) {
+        bool shouldAnimate() {
+          if (isChallenger) {
+            return model.getChallenge.isChallengerReady;
+          }
+          return model.getChallenge.isEvaluatorReady;
+        }
+
+        bool isAnimated = shouldAnimate();
+        if (model.getChallenge.isChallengerReady && model.getChallenge.isEvaluatorReady) {
+          SchedulerBinding.instance.addPostFrameCallback(
+            (_) {
+              Navigator.pushReplacement(
+                context,
+                SlideRightRoute(
+                  page: const ChallengeInProgressScreen(),
+                ),
+              );
             },
-            icon: FaIcon(
-              FontAwesomeIcons.chevronLeft,
-              size: kDefaultIconAppBarSize,
-            ),
-          ),
-        ),
-        title: const Text("Lobby"),
-      ),
-      body: Consumer<ChallengeProvider>(
-        builder: (context, model, child) {
-          bool shouldAnimate() {
-            if (isChallenger) {
-              return model.getChallenge.isChallengerReady;
-            }
-            return model.getChallenge.isEvaluatorReady;
-          }
-
-          bool isAnimated = shouldAnimate();
-
-          if (model.getChallenge.isChallengerReady && model.getChallenge.isEvaluatorReady) {
-            return const ChallengeInProgressScreen();
-          }
-
-          return Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  primaryColor,
-                  Colors.transparent,
-                  backgroundColor,
-                ],
-              ),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(kPaddingValue),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: kPaddingValue * 3,
-                  ),
-                  ImageAndChallengeId(
-                    challenge: model.getChallenge,
-                  ),
-                  SizedBox(
-                    height: kPaddingValue * 3,
-                  ),
-                  ChallengerAndEvaluatorRow(
-                    challenge: model.getChallenge,
-                    shouldAnimateChallenger: model.getChallenge.isChallengerReady,
-                    shouldAnimateEvaluator: model.getChallenge.isEvaluatorReady,
-                  ),
-                  ChallengeDescription(
-                    isChallenger: isChallenger,
-                    rewardId: model.getChallenge.challengeId,
-                  ),
-                  RoundedButton(
-                    onTap: () async {
-                      await model.getReadyForTheChallenge(
-                        isChallenger,
-                        isAnimated,
-                      );
-                    },
-                    text: isAnimated ? "Ready" : "Not ready yet",
-                    shouldAnimate: isAnimated,
-                  ),
-                ],
-              ),
-            ),
           );
-        },
-      ),
+
+          // return const ChallengeInProgressScreen();
+        }
+        return Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              leading: Center(
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.popUntil(context, (route) => route.isFirst);
+                  },
+                  icon: FaIcon(
+                    FontAwesomeIcons.chevronLeft,
+                    size: kDefaultIconAppBarSize,
+                  ),
+                ),
+              ),
+              title: const Text("Lobby"),
+            ),
+            body: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    primaryColor,
+                    Colors.transparent,
+                    backgroundColor,
+                  ],
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(kPaddingValue),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: kPaddingValue * 3,
+                    ),
+                    ImageAndChallengeId(
+                      challenge: model.getChallenge,
+                    ),
+                    SizedBox(
+                      height: kPaddingValue * 3,
+                    ),
+                    ChallengerAndEvaluatorRow(
+                      challenge: model.getChallenge,
+                      shouldAnimateChallenger: model.getChallenge.isChallengerReady,
+                      shouldAnimateEvaluator: model.getChallenge.isEvaluatorReady,
+                    ),
+                    ChallengeDescription(
+                      isChallenger: isChallenger,
+                      rewardId: model.getChallenge.challengeId,
+                    ),
+                    RoundedButton(
+                      onTap: () async {
+                        await model.getReadyForTheChallenge(
+                          isChallenger,
+                          isAnimated,
+                        );
+                      },
+                      text: isAnimated ? "Ready" : "Not ready yet",
+                      shouldAnimate: isAnimated,
+                    ),
+                  ],
+                ),
+              ),
+            ));
+      },
     );
   }
 }

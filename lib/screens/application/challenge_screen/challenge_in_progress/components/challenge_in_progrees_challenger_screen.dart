@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -21,11 +22,15 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
       body: Consumer<ChallengeProvider>(
         builder: (context, model, child) {
           if (model.getChallenge.isChallengeEndChallenger) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ChallengeEndChallengerScreen(),
-              ),
+            SchedulerBinding.instance.addPostFrameCallback(
+              (_) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChallengeEndChallengerScreen(),
+                  ),
+                );
+              },
             );
           }
 

@@ -6,8 +6,6 @@ import 'package:street_workout_final/screens/application/challenge_screen/challe
 import 'package:street_workout_final/screens/application/challenge_screen/challenge_end/challenge_end_screen_challenger/components/body_challenge_succeeded.dart';
 import 'package:street_workout_final/widgets/loading_widget.dart';
 
-import '../../challenge_start/challenge_start_screen.dart';
-
 class ChallengeEndChallengerScreen extends StatelessWidget {
   const ChallengeEndChallengerScreen({Key? key}) : super(key: key);
   @override
@@ -17,11 +15,7 @@ class ChallengeEndChallengerScreen extends StatelessWidget {
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                ChallengeStartScreen.name,
-                (route) => true,
-              );
+              Navigator.popUntil(context, (route) => route.isFirst);
             },
             child: const Center(
               child: FaIcon(FontAwesomeIcons.xmark),

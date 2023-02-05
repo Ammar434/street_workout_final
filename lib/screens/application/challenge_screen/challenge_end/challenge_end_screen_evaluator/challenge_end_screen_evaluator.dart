@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../../../../models/custom_user.dart';
 import '../../../../../provider/user_provider.dart';
 import '../../../../../utils/constants.dart';
-import '../../challenge_start/challenge_start_screen.dart';
 
 class ChallengeEndScreenEvaluator extends StatelessWidget {
   const ChallengeEndScreenEvaluator({Key? key}) : super(key: key);
@@ -19,11 +18,7 @@ class ChallengeEndScreenEvaluator extends StatelessWidget {
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                ChallengeStartScreen.name,
-                (route) => true,
-              );
+              Navigator.popUntil(context, (route) => route.isFirst);
             },
             child: const Center(
               child: FaIcon(FontAwesomeIcons.xmark),

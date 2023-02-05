@@ -12,8 +12,8 @@ class Challenge {
   bool isEvaluatorReady;
   bool isChallengeEndEvaluator;
   bool isChallengeEndChallenger;
-  double repetitionRating;
-  double executionRating;
+  num repetitionRating;
+  num executionRating;
 
   Challenge({
     required this.challengeId,
