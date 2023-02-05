@@ -98,10 +98,7 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
   void loadData() async {
     challengeServices = ChallengeServices();
 
-    challengeProvider = Provider.of<ChallengeProvider>(
-      context,
-      listen: false,
-    );
+    challengeProvider = Provider.of<ChallengeProvider>(context, listen: false);
 
     setState(() {
       isLoading = false;

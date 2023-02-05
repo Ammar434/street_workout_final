@@ -20,34 +20,37 @@ class UserDetailColumnItem extends StatelessWidget {
   final bool shouldAnimate;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(imageUrl),
-          radius: imageRadius,
-        ),
-        SizedBox(
-          height: kPaddingValue,
-        ),
-        AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 500),
-          style: shouldAnimate
-              ? TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: fontSize,
-                  color: Colors.green,
-                )
-              : TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: fontSize,
-                  // color: primaryColor,
-                ),
-          child: Text(
-            userName,
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(imageUrl),
+            radius: imageRadius,
           ),
-        ),
-      ],
+          SizedBox(
+            height: kPaddingValue,
+          ),
+          AnimatedDefaultTextStyle(
+            duration: const Duration(milliseconds: 500),
+            style: shouldAnimate
+                ? TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: fontSize,
+                    color: Colors.green,
+                  )
+                : TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: fontSize,
+                    // color: primaryColor,
+                  ),
+            child: Text(
+              userName,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

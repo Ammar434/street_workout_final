@@ -55,14 +55,6 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
     super.initState();
     challengeProvider = Provider.of<ChallengeProvider>(context, listen: false);
     startTimer();
-
-    //Etape 1 creer la room:
-
-    //Etape 2  envoyer vers la page de waitting room
-
-    //Etape 3 affiché le message de prevention
-
-    //Etape 4 emmene vers la page du challenge
   }
 
   void disposeData() async {

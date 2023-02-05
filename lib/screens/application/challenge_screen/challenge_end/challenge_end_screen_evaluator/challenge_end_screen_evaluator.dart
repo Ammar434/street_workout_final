@@ -19,7 +19,11 @@ class ChallengeEndScreenEvaluator extends StatelessWidget {
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
-              Navigator.pushNamedAndRemoveUntil(context, ChallengeStartScreen.name, (route) => true);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                ChallengeStartScreen.name,
+                (route) => true,
+              );
             },
             child: const Center(
               child: FaIcon(FontAwesomeIcons.xmark),
@@ -38,7 +42,7 @@ class ChallengeEndScreenEvaluator extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             LottieBuilder.network(
-              "https://assets9.lottiefiles.com/packages/lf20_36zspn0e.json",
+              "https://assets8.lottiefiles.com/private_files/lf30_v1khlfsu.json",
               repeat: true,
             ),
             SizedBox(

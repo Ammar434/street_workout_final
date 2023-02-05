@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../models/challenge.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 
 class SelectableEmojiRow extends StatefulWidget {
   const SelectableEmojiRow({
     Key? key,
-    required this.challenge,
+    required this.challengerName,
   }) : super(key: key);
 
-  final Challenge challenge;
+  final String challengerName;
 
   @override
   State<SelectableEmojiRow> createState() => _SelectableEmojiRowState();
@@ -24,13 +24,12 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
       child: Column(
         children: [
           Text(
-            "Describe ${widget.challenge.challengerName} with one emoji",
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            "Describe ${widget.challengerName} with one picture",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.sp),
             textAlign: TextAlign.center,
           ),
 
           Expanded(
-            // height: 200,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: mapEmoji.length,
@@ -51,10 +50,11 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        mapEmoji.values.elementAt(index).imagePath,
-                        width: 100,
-                        height: 80,
+                      ClipOval(
+                        child: Image.asset(
+                          mapEmoji.values.elementAt(index).imagePath,
+                          width: 100.sp,
+                        ),
                       ),
                       SizedBox(
                         height: kPaddingValue,
@@ -85,8 +85,7 @@ class Emoji {
 }
 
 Map<String, Emoji> mapEmoji = {
-  UniqueKey().toString(): Emoji("assets/images/challenge/asset_2.png", "Strong, but i'm better"),
-  UniqueKey().toString(): Emoji("assets/images/challenge/asset_3.png", "Sick performance"),
-  UniqueKey().toString(): Emoji("assets/images/challenge/asset_4.png", "Keep going"),
-  UniqueKey().toString(): Emoji("assets/images/challenge/asset_5.png", "Awesome"),
+  UniqueKey().toString(): Emoji("assets/images/challenge/asset_7.png", "Strong, but i'm better"),
+  UniqueKey().toString(): Emoji("assets/images/challenge/asset_8.png", "Sick performance"),
+  UniqueKey().toString(): Emoji("assets/images/challenge/asset_9.png", "Keep working"),
 };

@@ -12,8 +12,8 @@ class Challenge {
   bool isEvaluatorReady;
   bool isChallengeEndEvaluator;
   bool isChallengeEndChallenger;
-  int repetitionRating;
-  int executionRating;
+  double repetitionRating;
+  double executionRating;
 
   Challenge({
     required this.challengeId,
@@ -46,8 +46,8 @@ class Challenge {
       evaluatorImageUrl: "",
       isChallengeEndEvaluator: false,
       isChallengeEndChallenger: false,
-      repetitionRating: -1,
-      executionRating: -1,
+      repetitionRating: -1.0,
+      executionRating: -1.0,
       // evaluatorAvailable: [],
     );
   }
@@ -63,10 +63,10 @@ class Challenge {
         "parcId": parcId,
         "isChallengerReady": isChallengerReady,
         "isEvaluatorReady": isEvaluatorReady,
-        "isChallengeEnd": isChallengeEndEvaluator,
         "repetitionRating": repetitionRating,
         "executionRating": executionRating,
-        " isChallengeEndChallenger": isChallengeEndChallenger,
+        "isChallengeEndEvaluator": isChallengeEndEvaluator,
+        "isChallengeEndChallenger": isChallengeEndChallenger,
         // "evaluatorAvailable": evaluatorAvailable,
       };
 
@@ -82,7 +82,7 @@ class Challenge {
         parcId: snapshot["parcId"],
         isChallengerReady: snapshot["isChallengerReady"],
         isEvaluatorReady: snapshot["isEvaluatorReady"],
-        isChallengeEndEvaluator: snapshot['isChallengeEnd'],
+        isChallengeEndEvaluator: snapshot['isChallengeEndEvaluator'],
         repetitionRating: snapshot["repetitionRating"],
         executionRating: snapshot["executionRating"],
         isChallengeEndChallenger: snapshot["isChallengeEndChallenger"]

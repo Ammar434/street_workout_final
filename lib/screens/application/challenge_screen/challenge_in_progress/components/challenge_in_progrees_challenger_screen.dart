@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/challenge_end/challenge_end_screen_challenger/challenge_end_screen_challenger.dart';
 import 'package:street_workout_final/utils/constants.dart';
@@ -12,8 +13,6 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
   const ChallengeInProgressChallengerScreen({
     Key? key,
   }) : super(key: key);
-
-  void endChallenge() {}
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +37,7 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
                 colors: [
                   primaryColor,
                   backgroundColor,
+                  Colors.transparent,
                 ],
               ),
             ),
@@ -47,8 +47,8 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: Image.asset(
-                      "assets/images/challenge/asset_6.png",
+                    child: Lottie.asset(
+                      "assets/lotties/pull_up.json",
                     ),
                   ),
                   Text(
@@ -64,7 +64,16 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
                   ),
                   RoundedButton(
                     onTap: () async {
-                      await model.endChallenge(true);
+                      await model.endChallenge(true).then(
+                            (value) => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ChallengeEndChallengerScreen(),
+                              ),
+                            ),
+                          );
+
+                      // await model.endChallenge(true);
                     },
                     text: "End challenge",
                   )

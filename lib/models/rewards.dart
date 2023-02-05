@@ -45,8 +45,8 @@ class Reward {
   final String subtitle;
   // final String categorie;
   final String imageUrl;
-  final String descriptionForChallenger;
-  final String descriptionForEvaluator;
+  final List descriptionForChallenger;
+  final List descriptionForEvaluator;
 
   Map<String, dynamic> toJson() => {
         "id": id,

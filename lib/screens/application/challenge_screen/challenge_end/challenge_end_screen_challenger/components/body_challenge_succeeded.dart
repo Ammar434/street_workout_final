@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'package:street_workout_final/models/custom_user.dart';
+import 'package:street_workout_final/provider/user_provider.dart';
 
-import '../../../../../../models/custom_user.dart';
 import '../../../../../../utils/constants.dart';
 
 class BodyForChallengeSucceeded extends StatelessWidget {
   const BodyForChallengeSucceeded({
     Key? key,
-    required this.currentUser,
   }) : super(key: key);
-
-  final CustomUser currentUser;
 
   @override
   Widget build(BuildContext context) {
+    CustomUser currentUser = Provider.of<UserProvider>(context).getUser!;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -42,7 +43,7 @@ class BodyForChallengeSucceeded extends StatelessWidget {
           height: kPaddingValue,
         ),
         Text(
-          "That's your ${currentUser.rewards.length} challenge. Keep going you're a beast",
+          "That's your ${currentUser.rewards.length + 1} challenge. Keep going you're a beast",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: kDefaultTitleSize * 0.6,

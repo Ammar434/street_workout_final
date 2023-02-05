@@ -5,12 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/provider/challenge_provider.dart';
+import 'package:street_workout_final/provider/training_provider.dart';
+import 'package:street_workout_final/provider/workout_provider.dart';
 
 import 'authentication_handler.dart';
-import 'provider/challenge_provider.dart';
-import 'provider/training_provider.dart';
 import 'provider/user_provider.dart';
-import 'provider/workout_provider.dart';
 import 'routes.dart';
 import 'utils/theme.dart';
 
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (_) => UserProvider()),
             ChangeNotifierProvider(create: (_) => ChallengeProvider()),
             ChangeNotifierProvider(create: (_) => TrainingProvider()),
-            ChangeNotifierProvider<WorkoutProvider>(create: (_) => WorkoutProvider()),
+            ChangeNotifierProvider(create: (_) => WorkoutProvider()),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

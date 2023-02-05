@@ -47,7 +47,7 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
   }
 
   void disposeData() async {
-    await challengeProvider.deleteRoom(true);
+    await challengeProvider.deleteRoom(false);
     animationController.stop();
     animationController.dispose();
     timer.cancel();

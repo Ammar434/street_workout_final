@@ -154,4 +154,25 @@ class RealtimeDatabaseMethods {
     }
     return res;
   }
+
+  Future<String> writeChallengeScore({
+    required String path,
+    required double repetitionRating,
+    required double executionRating,
+  }) async {
+    String res = "Some error happened";
+
+    try {
+      await _firebaseDatabse.ref().child(path).update({
+        "repetitionRating": repetitionRating,
+        "executionRating": executionRating,
+      });
+
+      res = "success";
+    } catch (error) {
+      debugPrint(error.toString());
+      res = error.toString();
+    }
+    return res;
+  }
 }

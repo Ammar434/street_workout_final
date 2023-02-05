@@ -24,66 +24,53 @@ class FirebaseAnimatedListWidget extends StatelessWidget {
       child: FirebaseAnimatedList(
         padding: EdgeInsets.zero,
         duration: const Duration(seconds: 1),
-        query: challengeProvider.listenToEvaluator(),
+        query: challengeProvider.listenToEvaluatorJoinParc(),
         itemBuilder: (context, snapshot, animation, index) {
-          // debugPrint("query ${snapshot.value.toString()}");
           final Challenge challenge = Challenge.challengeFromSnapshot(
             Map<String, dynamic>.from(snapshot.value as Map<dynamic, dynamic>),
           );
-          return SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(1, 0),
-              end: const Offset(0, 0),
-            ).animate(
-              CurvedAnimation(
-                parent: animation,
-                curve: Curves.bounceOut,
-                reverseCurve: Curves.bounceIn,
-              ),
-            ),
-            child: ListTile(
-              title: Text(challenge.evaluatorName),
-              subtitle: Text(
-                challenge.evaluatorUid,
-                style: const TextStyle(
-                  fontStyle: FontStyle.italic,
+          if (challenge.challengerUid.isEmpty && challenge.isChallengeEndChallenger == false && challenge.isChallengeEndEvaluator == false) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: const Offset(0, 0),
+              ).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.bounceOut,
+                  reverseCurve: Curves.bounceIn,
                 ),
               ),
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                  challenge.evaluatorImageUrl,
+              child: ListTile(
+                title: Text(challenge.evaluatorName),
+                subtitle: Text(
+                  challenge.evaluatorUid,
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
-              ),
-              trailing: FaIcon(
-                FontAwesomeIcons.chevronRight,
-                size: kDefaultIconAppBarSize,
-              ),
-              onTap: () async {
-                await challengeProvider.addEvaluatorToChallenge(challenge).then(
-                      (value) => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const GlobalWaittingRoomScreen(
-                            isChallenger: true,
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    challenge.evaluatorImageUrl,
+                  ),
+                ),
+                trailing: FaIcon(
+                  FontAwesomeIcons.chevronRight,
+                  size: kDefaultIconAppBarSize,
+                ),
+                onTap: () async {
+                  await challengeProvider.addEvaluatorToChallenge(challenge).then(
+                        (value) => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const GlobalWaittingRoomScreen(isChallenger: true),
                           ),
                         ),
-                      ),
-                    );
-
-                // if (!mounted) return;
-                // if (res == "success") {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: ((context) => GlobalWaittingRoomScreen(
-                //             parcReference: currentUser.favoriteParc,
-                //             userReference: challenge.evaluatorUid,
-                //           )),
-                //     ),
-                //   );
-                // }
-              },
-            ),
-          );
+                      );
+                },
+              ),
+            );
+          }
+          return Container();
         },
       ),
     );

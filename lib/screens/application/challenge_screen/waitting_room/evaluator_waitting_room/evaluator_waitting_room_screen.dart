@@ -10,13 +10,6 @@ class EvaluatorWaittingRoomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ChallengeProvider challengeProvider = Provider.of<ChallengeProvider>(context);
-    // if (challengeProvider.getChallenge.challengerUid == "") {
-    //   return const EvaluatorWaittingRoomScreenBody();
-    // }
-    // return Container(
-    //   color: Colors.teal,
-    // );
     return Consumer<ChallengeProvider>(
       builder: (context, model, child) {
         debugPrint("inse ${model.getChallenge.parcId}");

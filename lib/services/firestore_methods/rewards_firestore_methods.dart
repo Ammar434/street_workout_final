@@ -17,8 +17,8 @@ class RewardsFirestoreMethods {
       title: "title",
       subtitle: "subtitle",
       imageUrl: "https://firebasestorage.googleapis.com/v0/b/streetworkoutfighter.appspot.com/o/rewards%2Fasset_2.png?alt=media&token=2f1900d1-22b5-4651-8f8b-c742a72b6bcb",
-      descriptionForChallenger: "descriptionForChallenger",
-      descriptionForEvaluator: "descriptionForEvaluator",
+      descriptionForChallenger: [],
+      descriptionForEvaluator: [],
     );
 
     await _firebaseFirestore.collection("rewards").doc(categorie).set({

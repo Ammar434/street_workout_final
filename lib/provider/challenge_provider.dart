@@ -22,6 +22,7 @@ class ChallengeProvider extends ChangeNotifier {
   @override
   void dispose() {
     _streamSubscription.cancel();
+    _challenge = Challenge.initNullChallenge();
     super.dispose();
   }
 
@@ -54,15 +55,12 @@ class ChallengeProvider extends ChangeNotifier {
   Future<String> addEvaluatorValue(CustomUser user, String parcId) async {
     _challenge = Challenge.initNullChallenge();
 
-    // debugPrint("c ${_challenge.challengerUid}");
-    // debugPrint("e ${_challenge.evaluatorUid}");
-
     _challenge.evaluatorUid = user.uid;
     _challenge.evaluatorImageUrl = user.profileImage;
     _challenge.evaluatorName = user.userName;
     _challenge.parcId = parcId;
     String res = await writeChallengeToRealtimeDatabase(false);
-    listenToChallengerSelectEvaluator();
+    listenToUpdateFromEvaluator();
 
     notifyListeners();
 
@@ -116,9 +114,13 @@ class ChallengeProvider extends ChangeNotifier {
       await writeChallengeToRealtimeDatabase(false);
 
       // Write for challenger
+      // await writeChallengeToRealtimeDatabase(true);
 
-      await writeChallengeToRealtimeDatabase(true);
-      listenToChallengerSelectEvaluator();
+      //Delete evaluator ref
+      String path = "/${_challenge.parcId}/evaluator/${_challenge.evaluatorUid}";
+      realtimeDatabaseMethods.deleteChallengeReference(path);
+      listenToUpdateFromEvaluator();
+
       res = "Success";
     } catch (e) {
       res = e.toString();
@@ -127,14 +129,14 @@ class ChallengeProvider extends ChangeNotifier {
     return res;
   }
 
-  Query listenToEvaluator() {
+  Query listenToEvaluatorJoinParc() {
     String s = 'evaluator';
     String path = "/${_challenge.parcId}/$s";
     var ref = databaseReference.child(path);
     return ref;
   }
 
-  void listenToChallengerSelectEvaluator() {
+  void listenToUpdateFromEvaluator() {
     String path = "/${_challenge.parcId}/evaluator/${_challenge.evaluatorUid}";
 
     _streamSubscription = databaseReference.child(path).onValue.listen(
@@ -161,6 +163,28 @@ class ChallengeProvider extends ChangeNotifier {
       await writeChallengeToRealtimeDatabase(true);
 
       res = "Success";
+    } catch (e) {
+      res = e.toString();
+    }
+    notifyListeners();
+
+    return res;
+  }
+
+  Future<String> updateChallengeScore({
+    required double repetitionRating,
+    required double executionRating,
+  }) async {
+    String res = "Some error occured";
+
+    String path = "/${_challenge.parcId}/evaluator/${_challenge.evaluatorUid}";
+
+    try {
+      res = await realtimeDatabaseMethods.writeChallengeScore(
+        path: path,
+        repetitionRating: repetitionRating,
+        executionRating: executionRating,
+      );
     } catch (e) {
       res = e.toString();
     }

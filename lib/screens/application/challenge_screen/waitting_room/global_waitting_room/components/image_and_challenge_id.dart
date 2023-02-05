@@ -25,7 +25,7 @@ class ImageAndChallengeId extends StatelessWidget {
               fontSize: kDefaultTitleSize,
             ),
           ),
-          const Text("We will develod this screen soon"),
+          const Text("If you never try you'll never know"),
         ],
       ),
     );

@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:street_workout_final/provider/challenge_provider.dart';
 import 'package:street_workout_final/screens/application/challenge_screen/challenge_in_progress/challenge_in_progress_screen.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
@@ -26,11 +25,7 @@ class GlobalWaittingRoomScreen extends StatelessWidget {
         leading: Center(
           child: IconButton(
             onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                ChallengeStartScreen.name,
-                (route) => false,
-              );
+              Navigator.popUntil(context, (route) => route.isFirst);
             },
             icon: FaIcon(
               FontAwesomeIcons.chevronLeft,
@@ -50,13 +45,9 @@ class GlobalWaittingRoomScreen extends StatelessWidget {
           }
 
           bool isAnimated = shouldAnimate();
+
           if (model.getChallenge.isChallengerReady && model.getChallenge.isEvaluatorReady) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ChallengeInProgressScreen(),
-              ),
-            );
+            return const ChallengeInProgressScreen();
           }
 
           return Container(
@@ -89,7 +80,10 @@ class GlobalWaittingRoomScreen extends StatelessWidget {
                     shouldAnimateChallenger: model.getChallenge.isChallengerReady,
                     shouldAnimateEvaluator: model.getChallenge.isEvaluatorReady,
                   ),
-                  const ChallengeDescription(),
+                  ChallengeDescription(
+                    isChallenger: isChallenger,
+                    rewardId: model.getChallenge.challengeId,
+                  ),
                   RoundedButton(
                     onTap: () async {
                       await model.getReadyForTheChallenge(
