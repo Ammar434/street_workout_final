@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../utils/text_style.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
 
 class FavoriteParcEmptyScreen extends StatelessWidget {
@@ -25,7 +24,7 @@ class FavoriteParcEmptyScreen extends StatelessWidget {
               Text(
                 "To access this part of the application, please select at least one favorite parc",
                 textAlign: TextAlign.center,
-                style: kTextStyleHintTextImportance3,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               SizedBox(
                 height: kPaddingValue * 1,
@@ -33,7 +32,7 @@ class FavoriteParcEmptyScreen extends StatelessWidget {
               Text(
                 "You can do it by clicking on a parc and then set it as the parc where you train",
                 textAlign: TextAlign.center,
-                style: kTextStyleHintTextImportance4,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               SizedBox(
                 height: kPaddingValue * 5,

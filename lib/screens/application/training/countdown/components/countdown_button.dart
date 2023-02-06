@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 
 class CountDownButton extends StatelessWidget {
   const CountDownButton({
@@ -20,7 +19,7 @@ class CountDownButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: kSmallPaddingValue),
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(primaryColor),
+            backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.secondary),
           ),
           onPressed: onPressed,
           child: Text(

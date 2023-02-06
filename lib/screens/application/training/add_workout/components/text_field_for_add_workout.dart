@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 
 class TextFieldForAddWorkout extends StatelessWidget {
   const TextFieldForAddWorkout({
@@ -20,7 +19,7 @@ class TextFieldForAddWorkout extends StatelessWidget {
         hintText: "Enter exercice name",
         border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: tertiaryColor),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
           borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
         ),
       ),

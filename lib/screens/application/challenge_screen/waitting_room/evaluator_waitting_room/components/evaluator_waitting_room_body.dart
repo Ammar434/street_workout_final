@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../../provider/challenge_provider.dart';
-import '../../../../../../utils/colors.dart';
-import '../../../../../../utils/constants.dart';
 import '../../../../../../widgets/app_bar.dart';
 import '../../../../../../widgets/loading_widget.dart';
 
@@ -92,7 +91,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
             FaIcon(
               FontAwesomeIcons.clock,
               size: kDefaultIconsSize,
-              color: primaryColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
             SizedBox(
               width: kPaddingValue,
@@ -121,7 +120,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                     CircularProgressIndicator(
                       strokeWidth: 10,
                       valueColor: AlwaysStoppedAnimation(timerColor),
-                      backgroundColor: primaryColor,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                       value: 1 - timeDuration / timeDurationInitial,
                     ),
                     buildTimer()
@@ -174,7 +173,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: kDefaultTitleSize * 0.75,
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ),
@@ -191,7 +190,7 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: kDefaultTitleSize * 3,
-            // color: primaryColor,
+            // color: Theme.of(context).colorScheme.secondary,
           ),
         ),
       );

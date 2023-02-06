@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:lottie/lottie.dart';
 
 import '../../../../services/authentication/authentication_method.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_button.dart';
 import '../../../../widgets/text_field_input.dart';
 
@@ -90,7 +89,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
       key: const Key('1'),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        color: backgroundColor,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(kPaddingValue),
         boxShadow: const [
           BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
@@ -170,7 +169,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
       key: const Key('2'),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        color: backgroundColor,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(kPaddingValue),
         boxShadow: const [
           BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
@@ -217,7 +216,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
       key: const Key('3'),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        color: backgroundColor,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(kPaddingValue),
         boxShadow: const [
           BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),

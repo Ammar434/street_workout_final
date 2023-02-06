@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_place/google_place.dart';
 
 import '../../../../services/geolocalisation/geolocalisation.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
-import '../../../../utils/text_style.dart';
 
 class SearchFieldForPostScreen extends StatelessWidget {
   const SearchFieldForPostScreen({
@@ -23,7 +21,7 @@ class SearchFieldForPostScreen extends StatelessWidget {
       minCharsForSuggestions: 4,
       // getImmediateSuggestions: true,
       suggestionsBoxDecoration: SuggestionsBoxDecoration(
-        color: iconColor,
+        color: Theme.of(context).iconTheme.color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(kRadiusValue),
@@ -33,12 +31,12 @@ class SearchFieldForPostScreen extends StatelessWidget {
       textFieldConfiguration: TextFieldConfiguration(
         controller: textEditingControllerParcAddress,
         autofocus: false,
-        style: kTextStyleImportance4,
+        style: Theme.of(context).textTheme.bodyMedium,
         decoration: InputDecoration(
           hintText: "Enter your parc address",
           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: tertiaryColor),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
             borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
           ),
         ),
@@ -52,18 +50,18 @@ class SearchFieldForPostScreen extends StatelessWidget {
           leading: SizedBox(
             height: double.maxFinite,
             width: kPaddingValue,
-            child: const Align(
+            child: Align(
               alignment: Alignment.centerLeft,
               child: FaIcon(
                 FontAwesomeIcons.locationDot,
-                color: secondaryColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ),
-          title: const Text(
+          title: Text(
             "No place found please try with other word",
             style: TextStyle(
-              color: backgroundColor,
+              color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -75,18 +73,18 @@ class SearchFieldForPostScreen extends StatelessWidget {
           leading: SizedBox(
             height: double.maxFinite,
             width: kPaddingValue,
-            child: const Align(
+            child: Align(
               alignment: Alignment.centerLeft,
               child: FaIcon(
                 FontAwesomeIcons.locationDot,
-                color: secondaryColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ),
           title: Text(
             suggestion.description!,
-            style: const TextStyle(
-              color: backgroundColor,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
             ),
           ),

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../provider/challenge_provider.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/page_transition/slide_right_transition.dart';
 import '../../../../../widgets/rounded_button.dart';
 import '../../challenge_in_progress/challenge_in_progress_screen.dart';
 import 'components/challenge_and_evaluator_row.dart';
@@ -35,14 +33,14 @@ class GlobalWaittingRoomScreen extends StatelessWidget {
             (_) {
               Navigator.pushReplacement(
                 context,
-                SlideRightRoute(
-                  page: const ChallengeInProgressScreen(),
+                MaterialPageRoute(
+                  builder: (context) => const ChallengeInProgressScreen(),
                 ),
               );
             },
           );
 
-          // return const ChallengeInProgressScreen();
+          // return  ChallengeInProgressScreen();
         }
         return Scaffold(
             extendBodyBehindAppBar: true,
@@ -62,14 +60,14 @@ class GlobalWaittingRoomScreen extends StatelessWidget {
               title: const Text("Lobby"),
             ),
             body: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    primaryColor,
+                    Theme.of(context).colorScheme.secondary,
                     Colors.transparent,
-                    backgroundColor,
+                    Theme.of(context).colorScheme.secondary,
                   ],
                 ),
               ),

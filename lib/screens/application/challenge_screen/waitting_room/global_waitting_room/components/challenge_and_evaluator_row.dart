@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../../../../models/challenge.dart';
-import '../../../../../../utils/constants.dart';
 import 'user_detail_column_widget.dart';
 
 class ChallengerAndEvaluatorRow extends StatelessWidget {

@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../provider/challenge_provider.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 import 'components/challenge_is_start_widget.dart';
 
 class ChallengerWaittinRoomScreen extends StatefulWidget {
@@ -134,7 +133,7 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: kDefaultTitleSize * 0.75,
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ),

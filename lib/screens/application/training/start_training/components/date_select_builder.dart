@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
 
 import '../../../../../provider/training_provider.dart';
 import '../../../../../services/dates_services.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/text_style.dart';
 
 class DateSelectBuilder extends StatefulWidget {
   const DateSelectBuilder({
@@ -82,7 +79,7 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
               width: itemWidth,
               margin: EdgeInsets.all(kSmallPaddingValue),
               decoration: BoxDecoration(
-                color: index == daySelected ? primaryColor : tertiaryColor,
+                color: index == daySelected ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(kRadiusValue * 4),
               ),
               child: Column(
@@ -90,14 +87,14 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
                 children: [
                   Text(
                     currentDateValue,
-                    style: kTextStyleImportance3,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   SizedBox(
                     height: kSmallPaddingValue,
                   ),
                   Text(
                     currentDateName,
-                    style: kTextStyleHintTextImportance5.copyWith(color: Colors.white),
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ],
               ),

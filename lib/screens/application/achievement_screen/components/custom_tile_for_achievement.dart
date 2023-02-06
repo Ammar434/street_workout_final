@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../models/custom_user.dart';
 import '../../../../models/rewards.dart';
 import '../../../../provider/user_provider.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 import 'custom_dialog_body_widget.dart';
 
 class CustomTileForAchievement extends StatelessWidget {
@@ -74,7 +73,7 @@ class CustomTileForAchievement extends StatelessWidget {
                 ? FaIcon(
                     FontAwesomeIcons.solidCircleCheck,
                     size: kDefaultIconAppBarSize,
-                    color: primaryColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   )
                 : FaIcon(
                     FontAwesomeIcons.circleCheck,

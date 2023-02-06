@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 import '../../select_training/components/workout_category_list_builder.dart';
 
 class DropdownButtonWorkout extends StatelessWidget {
@@ -16,13 +14,13 @@ class DropdownButtonWorkout extends StatelessWidget {
       height: 55.sp,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: backgroundColor, //background color of dropdown button
+          color: Theme.of(context).colorScheme.secondary, //background color of dropdown button
           border: Border.all(color: const Color(0xFF62656f), width: 1), //border of dropdown button
           borderRadius: BorderRadius.circular(kRadiusValue), //border raiuds of dropdown button
         ),
         child: DropdownButton<String>(
           value: dropdownValue,
-          dropdownColor: backgroundColor,
+          dropdownColor: Theme.of(context).colorScheme.secondary,
           iconSize: kDefaultIconAppBarSize,
           icon: Padding(
             padding: EdgeInsets.only(right: kPaddingValue),

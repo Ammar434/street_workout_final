@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
 import '../challenge_explaination_screen/challenge_explaination_screen.dart';
 import '../../../../../services/firestore_methods/rewards_firestore_methods.dart';
@@ -6,7 +7,6 @@ import '../../../../../widgets/app_bar.dart';
 import '../../../../../models/custom_user.dart';
 import '../../../../../models/rewards.dart';
 import '../../../../../provider/user_provider.dart';
-import '../../../../../utils/constants.dart';
 import '../../../../../widgets/loading_widget.dart';
 import '../../select_challenge/components/custom_tile_for_select_challenge.dart';
 

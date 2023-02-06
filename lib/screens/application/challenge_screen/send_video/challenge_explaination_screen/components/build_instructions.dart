@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../../models/rewards.dart';
-import '../../../../../../utils/constants.dart';
 
 class BuildInstruction extends StatelessWidget {
   const BuildInstruction({

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils/text_style.dart';
-
 class SliderWidget extends StatelessWidget {
   const SliderWidget({
     Key? key,
@@ -27,7 +25,7 @@ class SliderWidget extends StatelessWidget {
         children: [
           Text(
             '$sliderName : ${sliderDefaultValue.round()} $sliderUnits',
-            style: kTextStyleImportance4,
+            // style: kTextStyleImportance4,
           ),
           Expanded(
             child: Slider(

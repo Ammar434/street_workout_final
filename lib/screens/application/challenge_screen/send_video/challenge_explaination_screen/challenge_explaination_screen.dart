@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../models/rewards.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 import '../../../../../widgets/rounded_button.dart';
 import '../record_video_screen/record_video_screen.dart';
 import 'components/build_image_and_id.dart';
@@ -34,14 +33,14 @@ class ChallengeExplanationScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                primaryColor,
+                Theme.of(context).colorScheme.secondary,
                 Colors.transparent,
-                backgroundColor,
+                Theme.of(context).colorScheme.secondary,
               ],
             ),
           ),

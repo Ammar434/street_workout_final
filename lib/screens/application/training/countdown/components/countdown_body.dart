@@ -1,8 +1,6 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
+import "package:street_workout_final/common_libs.dart";
 
 class CountDownBody extends StatelessWidget {
   const CountDownBody({
@@ -26,11 +24,11 @@ class CountDownBody extends StatelessWidget {
 
       height: MediaQuery.of(context).size.height / 2,
 
-      ringColor: secondaryColor,
+      ringColor: Theme.of(context).colorScheme.secondary,
 
-      fillColor: primaryColor,
+      fillColor: Theme.of(context).colorScheme.secondary,
 
-      backgroundColor: backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
 
       strokeWidth: kPaddingValue,
 

@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -12,9 +12,7 @@ import '../../../provider/user_provider.dart';
 import '../../../services/firestore_methods/parc_firestore_methods.dart';
 import '../../../services/firestore_methods/user_firestore_methods.dart';
 import '../../../services/image_picker.dart';
-import '../../../utils/constants.dart';
 import '../../../widgets/loading_widget.dart';
-import '../../../widgets/snackbar.dart';
 import 'components/parc_info_tab_display.dart';
 import 'components/parc_info_top_part.dart';
 import 'components/pop_up_menu/pop_up_menu.dart';

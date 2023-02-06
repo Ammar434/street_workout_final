@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 
 class GenderSettingsScreen extends StatelessWidget {
   const GenderSettingsScreen({
@@ -19,7 +18,7 @@ class GenderSettingsScreen extends StatelessWidget {
         const Text(
           "GENDER",
           style: TextStyle(
-            // color: primaryColor,
+            // color: Theme.of(context).colorScheme.secondary,
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -31,7 +30,7 @@ class GenderSettingsScreen extends StatelessWidget {
           height: 50,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadiusValue),
-            color: tertiaryColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
           ),
           child: Row(
             children: [
@@ -40,7 +39,7 @@ class GenderSettingsScreen extends StatelessWidget {
                   onTap: onTap,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: isMale ? tertiaryColor : primaryColor,
+                      color: isMale ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(
                           kRadiusValue,
@@ -66,7 +65,7 @@ class GenderSettingsScreen extends StatelessWidget {
                   onTap: onTap,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: !isMale ? tertiaryColor : primaryColor,
+                      color: !isMale ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(
                           kRadiusValue,

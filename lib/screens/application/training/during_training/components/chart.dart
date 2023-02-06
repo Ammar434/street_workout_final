@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../services/dates_services.dart';
-import '../../../../../utils/colors.dart';
 
 class LineChartSample2 extends StatefulWidget {
   const LineChartSample2({Key? key, required this.listFlSpot, required this.days}) : super(key: key);
@@ -13,11 +12,6 @@ class LineChartSample2 extends StatefulWidget {
 }
 
 class LineChartSample2State extends State<LineChartSample2> {
-  List<Color> gradientColors = [
-    primaryColor,
-    secondaryColor,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return widget.listFlSpot.isEmpty
@@ -28,7 +22,7 @@ class LineChartSample2State extends State<LineChartSample2> {
               borderRadius: const BorderRadius.all(
                 Radius.circular(18),
               ),
-              color: tertiaryColor.withOpacity(0.1),
+              color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
             ),
             child: Padding(
               padding: const EdgeInsets.only(right: 18.0, left: 12.0, top: 24, bottom: 12),
@@ -40,7 +34,7 @@ class LineChartSample2State extends State<LineChartSample2> {
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(
+    TextStyle style = const TextStyle(
       color: Color(0xff68737d),
       fontWeight: FontWeight.bold,
       fontSize: 16,
@@ -72,7 +66,7 @@ class LineChartSample2State extends State<LineChartSample2> {
       currentDateName = getMonth(dateTime.month).substring(0, 3).toUpperCase();
       text = Text('$currentDateValue $currentDateName', style: style);
     } else {
-      text = const Text('', style: style);
+      text = Text('', style: style);
     }
 
     return SideTitleWidget(
@@ -83,7 +77,7 @@ class LineChartSample2State extends State<LineChartSample2> {
   }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(
+    TextStyle style = const TextStyle(
       color: Color(0xff67727d),
       fontWeight: FontWeight.bold,
       fontSize: 15,
@@ -162,7 +156,10 @@ class LineChartSample2State extends State<LineChartSample2> {
           spots: widget.listFlSpot,
           isCurved: true,
           gradient: LinearGradient(
-            colors: gradientColors,
+            colors: [
+              Theme.of(context).colorScheme.secondary,
+              Theme.of(context).colorScheme.secondary,
+            ],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
@@ -174,7 +171,10 @@ class LineChartSample2State extends State<LineChartSample2> {
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+              colors: [
+                Theme.of(context).colorScheme.secondary,
+                Theme.of(context).colorScheme.secondary,
+              ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),

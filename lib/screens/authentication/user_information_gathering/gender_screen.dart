@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../services/authentication/authentication_method.dart';
-import '../../../utils/constants.dart';
-import '../../../utils/text_style.dart';
 import '../../../widgets/rounded_button.dart';
 import 'user_personal_data_screen.dart';
 
@@ -33,7 +32,7 @@ class GenderScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Tell us about yourself",
-                    style: kTextStyleImportance3,
+                    style: Theme.of(context).textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(

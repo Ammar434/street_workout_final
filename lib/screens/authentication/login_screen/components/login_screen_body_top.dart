@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/constants.dart';
-import '../../../../utils/text_style.dart';
 
 class LoginScreenBodyTop extends StatelessWidget {
   const LoginScreenBodyTop({
@@ -18,11 +17,11 @@ class LoginScreenBodyTop extends StatelessWidget {
         ),
         Text(
           "Let's sign you in",
-          style: kTextStyleImportance1,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         Text(
           "Welcome back, you've been missed!",
-          style: kTextStyleImportance2,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         SizedBox(
           height: kPaddingValue * 5,

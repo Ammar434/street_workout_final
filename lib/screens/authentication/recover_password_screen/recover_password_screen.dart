@@ -1,10 +1,8 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../services/authentication/authentication_method.dart';
-import '../../../utils/constants.dart';
 import '../../../widgets/rounded_button.dart';
-import '../../../widgets/snackbar.dart';
 import '../../../widgets/text_field_input.dart';
 import 'components/recover_password_screen_mid.dart';
 import 'recover_password_confirm_screen.dart';

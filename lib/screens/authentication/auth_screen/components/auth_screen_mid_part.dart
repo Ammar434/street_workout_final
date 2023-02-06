@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/text_style.dart';
 
 class AuthScreenMidPart extends StatelessWidget {
   const AuthScreenMidPart({
@@ -13,7 +12,7 @@ class AuthScreenMidPart extends StatelessWidget {
       children: [
         Text(
           "Europe’s #1 fitness app",
-          style: kTextStyleImportance3,
+          style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
         const SizedBox(
@@ -21,7 +20,7 @@ class AuthScreenMidPart extends StatelessWidget {
         ),
         Text(
           "Whatever your fitness level, achieve your goals quickly and build healthy habits with our app",
-          style: kTextStyleHintTextImportance3,
+          style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
       ],

@@ -1,8 +1,7 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../../../utils/colors.dart';
-import '../../../../../../utils/constants.dart';
 
 class ParcInfoListOfAthleteTab extends StatelessWidget {
   const ParcInfoListOfAthleteTab({
@@ -23,9 +22,9 @@ class ParcInfoListOfAthleteTab extends StatelessWidget {
           padding: EdgeInsets.all(kSmallPaddingValue),
           child: Text(
             "Total athlete who train in this park $totalAthlete",
-            style: const TextStyle(
+            style: TextStyle(
               fontStyle: FontStyle.italic,
-              color: secondaryColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
         ),

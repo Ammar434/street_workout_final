@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/text_style.dart';
-import '../../../../../widgets/horizontal_line.dart';
 import '../add_workout.dart';
 
 class WorkoutTypeSelector extends StatelessWidget {
@@ -25,7 +22,7 @@ class WorkoutTypeSelector extends StatelessWidget {
           ),
           child: Text(
             "Type",
-            style: kTextStyleImportance4,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         const HorizontalLine(),
@@ -36,7 +33,7 @@ class WorkoutTypeSelector extends StatelessWidget {
               title: Text(workoutType[index]),
               value: workoutType[index],
               groupValue: currentOptions,
-              activeColor: primaryColor,
+              activeColor: Theme.of(context).colorScheme.secondary,
               onChanged: function,
             );
           },

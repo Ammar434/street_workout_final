@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_place/google_place.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,10 +11,8 @@ import '../../../models/material_available.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/firestore_methods/parc_firestore_methods.dart';
 import '../../../services/image_picker.dart';
-import '../../../utils/constants.dart';
 import '../../../widgets/app_bar.dart';
 import '../../../widgets/rounded_button.dart';
-import '../../../widgets/snackbar.dart';
 import 'components/add_photo.dart';
 import 'components/parc_info_selectable_row.dart';
 import 'components/search_field_for_post_screen.dart';

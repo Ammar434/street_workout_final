@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../models/workout.dart';
 import '../../../../provider/workout_provider.dart';
-import '../../../../utils/constants.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/rounded_button.dart';
 import '../select_training/components/workout_category_list_builder.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:lottie/lottie.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
-import '../../../../utils/constants.dart';
 
 class Countdown extends StatelessWidget {
   const Countdown({

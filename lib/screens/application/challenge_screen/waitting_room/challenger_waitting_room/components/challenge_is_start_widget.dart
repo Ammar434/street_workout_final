@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
 
 import '../../../../../../models/custom_user.dart';
 import '../../../../../../provider/user_provider.dart';
-import '../../../../../../utils/colors.dart';
-import '../../../../../../utils/constants.dart';
-import '../../../../../../widgets/horizontal_line.dart';
 import 'firebase_animated_list_widget.dart';
 
 class ChallengeIsStartWidget extends StatelessWidget {
@@ -21,7 +19,7 @@ class ChallengeIsStartWidget extends StatelessWidget {
       margin: EdgeInsets.all(kRadiusValue),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kRadiusValue),
-        color: tertiaryColor.withOpacity(0.15),
+        color: Theme.of(context).colorScheme.secondary.withOpacity(0.15),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

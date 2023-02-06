@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/constants.dart';
 import 'components/search_field_widget_for_trainning.dart';
 import 'components/workout_category_list_builder.dart';
 

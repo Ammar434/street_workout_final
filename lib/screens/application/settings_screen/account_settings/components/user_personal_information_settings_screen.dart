@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 
 class UserPersonalInformationSettingsScreen extends StatelessWidget {
   const UserPersonalInformationSettingsScreen({
@@ -18,7 +17,7 @@ class UserPersonalInformationSettingsScreen extends StatelessWidget {
         const Text(
           "USER PERSONAL INFORMATION",
           style: TextStyle(
-            // color: primaryColor,
+            // color: Theme.of(context).colorScheme.secondary,
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
@@ -29,7 +28,7 @@ class UserPersonalInformationSettingsScreen extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadiusValue),
-            color: tertiaryColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
           ),
           padding: EdgeInsets.all(kPaddingValue),
           child: child,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../utils/constants.dart';
 import 'loading_widget.dart';
 
 showLoadingDialog(BuildContext context) {

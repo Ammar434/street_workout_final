@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../utils/constants.dart';
-import '../../../utils/text_style.dart';
 import '../../../widgets/rounded_button.dart';
 
 class RecoverPasswordConfirmScreen extends StatelessWidget {
@@ -30,7 +29,7 @@ class RecoverPasswordConfirmScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Password reset e-mail has been sent",
-                    style: kTextStyleImportance3,
+                    style: Theme.of(context).textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
@@ -38,7 +37,7 @@ class RecoverPasswordConfirmScreen extends StatelessWidget {
                   ),
                   Text(
                     "A password reset email has been sent to your e-mail address.",
-                    style: kTextStyleHintTextImportance3,
+                    style: Theme.of(context).textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                 ],

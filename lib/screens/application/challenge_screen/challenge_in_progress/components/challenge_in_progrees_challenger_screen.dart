@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../challenge_end/challenge_end_screen_challenger/challenge_end_screen_challenger.dart';
-import '../../../../../utils/constants.dart';
 import '../../../../../widgets/rounded_button.dart';
 
 import '../../../../../provider/challenge_provider.dart';
-import '../../../../../utils/colors.dart';
 
 class ChallengeInProgressChallengerScreen extends StatelessWidget {
   const ChallengeInProgressChallengerScreen({
@@ -35,13 +33,13 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
           }
 
           return Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  primaryColor,
-                  backgroundColor,
+                  Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.secondary,
                   Colors.transparent,
                 ],
               ),

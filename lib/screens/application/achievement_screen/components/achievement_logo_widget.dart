@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 import 'custom_dialog_body_widget.dart';
 
 class AchievementLogoWidget extends StatelessWidget {
@@ -46,9 +45,9 @@ class AchievementLogoWidget extends StatelessWidget {
                 child: Positioned(
                   bottom: 0,
                   right: kPaddingValue,
-                  child: const FaIcon(
+                  child: FaIcon(
                     FontAwesomeIcons.solidCircleCheck,
-                    color: tertiaryColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               )

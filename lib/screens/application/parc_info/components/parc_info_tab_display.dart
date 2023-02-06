@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';
-import '../../../../utils/colors.dart';
 import '../../../../widgets/staggered_grid_view.dart';
 import 'build_athlete_tab.dart';
 
@@ -26,14 +25,14 @@ class ParcInfoTabDisplay extends StatelessWidget {
     final List<Widget> myTabs = [
       const Tab(text: 'Photos'),
       const Tab(text: 'Athletes'),
-      // const Tab(text: "Comments"),
+      //  Tab(text: "Comments"),
     ];
     return Column(
       children: [
         TabBar(
           controller: tabController,
           tabs: myTabs,
-          indicatorColor: primaryColor,
+          indicatorColor: Theme.of(context).colorScheme.secondary,
         ),
         Container(
           child: [
@@ -112,7 +111,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
 //               TabBar(
 //                 controller: _tabController,
 //                 tabs: myTabs,
-//                 indicatorColor: primaryColor,
+//                 indicatorColor: Theme.of(context).colorScheme.secondary,
 //               ),
 //               Container(
 //                 child: [
@@ -131,7 +130,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
 //                                 : "Total athlete who train in this park ${listUserWhoTrainInThisParc.length}",
 //                             style:   TextStyle(
 //                               fontStyle: FontStyle.italic,
-//                               color: secondaryColor,
+//                               color: Theme.of(context).colorScheme.secondary,
 //                             ),
 //                           ),
 //                         );
@@ -165,7 +164,7 @@ class ParcInfoTabDisplay extends StatelessWidget {
 //                       (index) => Padding(
 //                         padding:   EdgeInsets.all(kSmallPaddingValue),
 //                         child: ListTile(
-//                           tileColor: tertiaryColor.withOpacity(0.2),
+//                           tileColor: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
 //                           shape: RoundedRectangleBorder(
 //                             borderRadius: BorderRadius.circular(kRadiusValue),
 //                           ),

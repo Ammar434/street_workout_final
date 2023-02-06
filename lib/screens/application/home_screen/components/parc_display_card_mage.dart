@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/constants.dart';
 
 class ParcDisplayCardImage extends StatelessWidget {
   const ParcDisplayCardImage({

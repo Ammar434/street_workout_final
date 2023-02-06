@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/utils/constants.dart';
 import '../favorite_parc/favorite_parc_empty_screen.dart';
 import 'components/countdown.dart';
 import '../../../services/firestore_methods/leaderboard_firestore_methods.dart';
@@ -33,7 +33,7 @@ class LeaderboardScreen extends StatelessWidget {
                 SizedBox(
                   height: kPaddingValue * 5,
                 ),
-                // const Text("Leaderboard"),
+                //  Text("Leaderboard"),
                 Countdown(duration: snapshot.data),
                 const Expanded(child: LeaderboardSliverBuilder()),
               ],

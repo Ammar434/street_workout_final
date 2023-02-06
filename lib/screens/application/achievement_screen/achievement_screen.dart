@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../models/rewards.dart';
 import '../../../services/firestore_methods/rewards_firestore_methods.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/constants.dart';
+
 import '../../../widgets/loading_widget.dart';
 import 'components/custom_tile_for_achievement.dart';
 
@@ -88,10 +88,10 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
                 children: [
                   TabBar(
                     controller: tabController,
-                    indicatorColor: primaryColor,
+                    indicatorColor: Theme.of(context).colorScheme.secondary,
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicator: BoxDecoration(
-                      color: primaryColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.circular(
                         kRadiusValue,
                       ),

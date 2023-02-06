@@ -1,14 +1,10 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'components/list_tile_for_instruction.dart';
-import '../../../../utils/constants.dart';
-import '../../../../utils/theme.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/rounded_button.dart';
 
 import '../../../../services/firestore_methods/rewards_firestore_methods.dart';
-import '../../../../utils/colors.dart';
-import '../../../../widgets/snackbar.dart';
 import 'components/selectable_image.dart';
 
 final List<String> _listRewardCatgory = [
@@ -61,62 +57,59 @@ class AddNewAchievementState extends State<AddNewAchievement> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: appTheme,
-      child: Scaffold(
-        key: _scaffoldKey,
-        appBar: buildAppBar(context, "Add reward"),
-        body: Stepper(
-          currentStep: currentStep,
-          type: StepperType.vertical,
-          onStepTapped: (index) {
-            // setState(() => currentStep = index);
-          },
-          onStepContinue: () async {
-            if (currentStep == 0) {
-              setState(() => currentStep++);
-            }
-            if (currentStep == 1 && rewardName != "") {
-              setState(() => currentStep++);
-            }
-            if (currentStep == 2 && listInstruction.isNotEmpty) {
-              setState(() => currentStep++);
-            }
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: buildAppBar(context, "Add reward"),
+      body: Stepper(
+        currentStep: currentStep,
+        type: StepperType.vertical,
+        onStepTapped: (index) {
+          // setState(() => currentStep = index);
+        },
+        onStepContinue: () async {
+          if (currentStep == 0) {
+            setState(() => currentStep++);
+          }
+          if (currentStep == 1 && rewardName != "") {
+            setState(() => currentStep++);
+          }
+          if (currentStep == 2 && listInstruction.isNotEmpty) {
+            setState(() => currentStep++);
+          }
 
-            if (currentStep == 3) {
-              String path = "assets/images/achievements/asset_$_selectedImageIndex.png";
+          if (currentStep == 3) {
+            String path = "assets/images/achievements/asset_$_selectedImageIndex.png";
 
-              String res = await RewardsFirestoreMethods().addRewards(
-                rewardName,
-                selectedReward,
-                path,
-                listInstruction,
+            String res = await RewardsFirestoreMethods().addRewards(
+              rewardName,
+              selectedReward,
+              path,
+              listInstruction,
+            );
+
+            if (res == "Success") {
+              customShowSnackBar(
+                globalKey: _scaffoldKey,
+                title: "Success",
+                content: "You submited your reward we will analyse it quickly and publish ASAP",
+                contentType: ContentType.success,
               );
-
-              if (res == "Success") {
-                customShowSnackBar(
-                  globalKey: _scaffoldKey,
-                  title: "Success",
-                  content: "You submited your reward we will analyse it quickly and publish ASAP",
-                  contentType: ContentType.success,
-                );
-                if (!mounted) return;
-                Navigator.pop(context);
-              }
+              if (!mounted) return;
+              Navigator.pop(context);
             }
-          },
-          onStepCancel: () {
-            if (currentStep != 0) {
-              setState(() => currentStep--);
-            }
-          },
-          steps: [
-            buildStep1(),
-            buildStep2(),
-            buildStep3(),
-            buildStep4(),
-          ],
-        ),
+          }
+        },
+        onStepCancel: () {
+          if (currentStep != 0) {
+            setState(() => currentStep--);
+          }
+        },
+        steps: [
+          buildStep1(),
+          buildStep2(),
+          buildStep3(),
+          buildStep4(),
+        ],
       ),
     );
   }
@@ -224,8 +217,8 @@ class AddNewAchievementState extends State<AddNewAchievement> {
       isActive: currentStep >= 0,
       title: const Text('Select reward category'),
       content: DefaultTextStyle(
-        style: const TextStyle(
-          color: primaryColor,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.secondary,
           fontSize: 22.0,
         ),
         child: Column(
@@ -236,7 +229,7 @@ class AddNewAchievementState extends State<AddNewAchievement> {
                 title: Text(_listRewardCatgory[index]),
                 value: _listRewardCatgory[index],
                 groupValue: selectedReward,
-                activeColor: primaryColor,
+                activeColor: Theme.of(context).colorScheme.secondary,
                 onChanged: (value) {
                   setState(() {
                     selectedReward = value.toString();

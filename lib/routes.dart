@@ -39,7 +39,7 @@ Map<String, WidgetBuilder> routes = {
   PostScreen.name: (context) => const PostScreen(),
   ChallengeStartScreen.name: (context) => const ChallengeStartScreen(),
   StartTrainingScreen.name: (context) => const StartTrainingScreen(),
-  // FavoriteParcEmptyScreen.name: (context) => const FavoriteParcEmptyScreen(),
+  // FavoriteParcEmptyScreen.name: (context) =>  FavoriteParcEmptyScreen(),
   EvaluatorWaittingRoomScreen.name: (context) => const EvaluatorWaittingRoomScreen(),
   ChallengerWaittinRoomScreen.name: (context) => const ChallengerWaittinRoomScreen(),
   ViewAllParcScreen.name: (context) => const ViewAllParcScreen(),
@@ -47,5 +47,5 @@ Map<String, WidgetBuilder> routes = {
   SelectTrainningScreen.name: (context) => const SelectTrainningScreen(),
   AddNewAchievement.name: (context) => const AddNewAchievement(),
   SelfRecordSelectChallengeScreen.name: (context) => const SelfRecordSelectChallengeScreen(),
-  // RecordVideoScreen.name: (context) => const RecordVideoScreen(),
+  // RecordVideoScreen.name: (context) =>  RecordVideoScreen(),
 };

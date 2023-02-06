@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
-import '../../../utils/constants.dart';
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
-import '../../../widgets/horizontal_line.dart';
 
 import '../achievement_screen/add_new_achievement/add_new_achievement.dart';
 import '../post_screen/post_screen.dart';

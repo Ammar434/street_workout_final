@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../screens/application/parc_info/parc_info_screen.dart';
 import '../services/search/search_methods.dart';
-import '../utils/constants.dart';
 
 class SearchFieldWidgetForParc extends StatelessWidget {
   const SearchFieldWidgetForParc({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class SearchFieldWidgetForParc extends StatelessWidget {
           ),
           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
           focusedBorder: OutlineInputBorder(
-            // borderSide: const BorderSide(color: tertiaryColor),
+            // borderSide:  BorderSide(color: tertiaryColor),
             borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
           ),
         ),

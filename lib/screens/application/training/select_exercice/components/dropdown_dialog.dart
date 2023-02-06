@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../models/workout.dart';
 import '../../../../../provider/workout_provider.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/text_style.dart';
 import '../../../../../widgets/solid_circle_icon.dart';
 import '../../add_workout/add_workout.dart';
 
@@ -32,7 +30,7 @@ class DropdownDialog extends StatelessWidget {
         child: PopupMenuButton(
           elevation: 10,
           offset: offset,
-          color: backgroundColor,
+          color: Theme.of(context).colorScheme.secondary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kRadiusValue),
           ),
@@ -63,7 +61,7 @@ class DropdownDialog extends StatelessWidget {
                     ),
                     Text(
                       "Edit",
-                      style: kTextStyleImportance4,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],
                 ),
@@ -82,7 +80,7 @@ class DropdownDialog extends StatelessWidget {
                     ),
                     Text(
                       "Delete",
-                      style: kTextStyleImportance4,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],
                 ),

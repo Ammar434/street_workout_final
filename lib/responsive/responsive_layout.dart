@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/user_provider.dart';
-import '../utils/dimension.dart';
-import '../widgets/loading_widget.dart';
+import '../../provider/user_provider.dart';
+import '../../utils/dimension.dart';
+import '../../widgets/loading_widget.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   const ResponsiveLayout({Key? key, required this.webScreenLayout, required this.mobileScreenLayout}) : super(key: key);
@@ -32,7 +32,7 @@ class ResponsiveLayout extends StatelessWidget {
 //   final Widget webScreenLayout;
 //   final Widget mobileScreenLayout;
 
-//   const ResponsiveLayout({Key? key, required this.webScreenLayout, required this.mobileScreenLayout}) : super(key: key);
+//    ResponsiveLayout({Key? key, required this.webScreenLayout, required this.mobileScreenLayout}) : super(key: key);
 
 //   @override
 //   State<ResponsiveLayout> createState() => _ResponsiveLayoutState();

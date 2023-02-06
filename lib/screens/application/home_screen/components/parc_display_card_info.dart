@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../models/custom_user.dart';
-import '../../../../utils/constants.dart';
 import '../../profile_screen/profile_screen.dart';
 
 class ParcDisplayCardInfo extends StatelessWidget {

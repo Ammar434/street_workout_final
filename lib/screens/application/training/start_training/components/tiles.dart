@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/colors.dart';
 
 class Tile extends StatelessWidget {
   const Tile({
@@ -19,7 +18,7 @@ class Tile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final child = Container(
-      color: backgroundColor ?? primaryColor,
+      color: backgroundColor ?? Theme.of(context).colorScheme.secondary,
       height: extent,
       child: Center(
         child: CircleAvatar(

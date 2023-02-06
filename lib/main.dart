@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,6 +34,7 @@ void main() async {
   } else {
     await Firebase.initializeApp();
   }
+
   runApp(const MyApp());
 }
 
@@ -59,8 +61,8 @@ class MyApp extends StatelessWidget {
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
+              
             title: 'Street Workout Fighter',
-            theme: appTheme,
             home: const AuthenticationHandler(),
             routes: routes,
           ),

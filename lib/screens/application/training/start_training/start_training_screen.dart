@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
 
 import '../../../../models/custom_user.dart';
 import '../../../../provider/training_provider.dart';
 import '../../../../provider/user_provider.dart';
-import '../../../../utils/constants.dart';
-import '../../../../utils/text_style.dart';
 import 'components/app_bar_for_trainning.dart';
 import 'components/date_select_builder.dart';
 import 'components/no_training_found_widget.dart';
@@ -46,7 +45,7 @@ class StartTrainingScreen extends StatelessWidget {
               SizedBox(
                 height: kPaddingValue * 2,
               ),
-              Text("Your workout", style: kTextStyleImportance3),
+              Text("Your workout", style: Theme.of(context).textTheme.bodyLarge),
               SizedBox(
                 height: kSmallPaddingValue,
               ),

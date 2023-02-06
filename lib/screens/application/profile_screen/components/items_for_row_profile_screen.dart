@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 
 class ItemForRowProfileScreen extends StatelessWidget {
   const ItemForRowProfileScreen({
@@ -36,7 +34,7 @@ class ItemForRowProfileScreen extends StatelessWidget {
               // fontWeight: FontWeight.bold,
               fontSize: 12.sp,
               // fontStyle: FontStyle.italic,
-              color: hintTextColor,
+              color: Theme.of(context).hintColor,
             ),
           ),
         ],

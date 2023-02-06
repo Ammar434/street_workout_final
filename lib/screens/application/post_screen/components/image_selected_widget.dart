@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../utils/constants.dart';
 import '../post_screen.dart';
 
 class ImageSelectedWidget extends StatelessWidget {

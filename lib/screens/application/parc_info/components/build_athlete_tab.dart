@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../../models/custom_user.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 
 class BuildAthleteTab extends StatelessWidget {
   const BuildAthleteTab({
@@ -21,9 +20,9 @@ class BuildAthleteTab extends StatelessWidget {
             padding: EdgeInsets.only(top: kPaddingValue),
             child: Text(
               listCustomUser.isEmpty ? "No user train in this parc for the moment" : "Total athlete who train in this park ${listCustomUser.length}",
-              style: const TextStyle(
+              style: TextStyle(
                 fontStyle: FontStyle.italic,
-                color: secondaryColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           );

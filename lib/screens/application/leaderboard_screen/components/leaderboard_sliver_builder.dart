@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../../models/leaderboard.dart';
 import '../../../../services/firestore_methods/leaderboard_firestore_methods.dart';
-import '../../../../utils/constants.dart';
 import '../../../../utils/gradients.dart';
 import '../../../../widgets/loading_widget.dart';
 import 'header_ranking_widget.dart';

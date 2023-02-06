@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/colors.dart';
 import '../../../../../widgets/app_bar.dart';
 import '../../../../../widgets/loading_widget.dart';
 import 'video_page.dart';
@@ -78,10 +77,10 @@ class _RecordVideoScreenState extends State<RecordVideoScreen> {
               Padding(
                 padding: const EdgeInsets.all(25),
                 child: FloatingActionButton(
-                  backgroundColor: primaryColor,
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
                   child: Icon(
                     _isRecording ? Icons.stop : Icons.circle,
-                    color: iconColor,
+                    color: Theme.of(context).iconTheme.color,
                   ),
                   onPressed: () => recordVideo(),
                 ),

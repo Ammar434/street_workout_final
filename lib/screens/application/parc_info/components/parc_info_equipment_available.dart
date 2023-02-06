@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../../utils/colors.dart';
 import '../../../../models/material_available.dart';
-import '../../../../utils/constants.dart';
 
 class ParcInfoEquipmentAvailableRow extends StatelessWidget {
   const ParcInfoEquipmentAvailableRow({
@@ -24,7 +23,7 @@ class ParcInfoEquipmentAvailableRow extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 8.0),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: primaryColor,
+              color: Theme.of(context).colorScheme.secondary,
               image: DecorationImage(
                   image: AssetImage(
                     listMaterialAvailable[index].image,

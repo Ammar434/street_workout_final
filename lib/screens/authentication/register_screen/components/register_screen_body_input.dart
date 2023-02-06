@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/constants.dart';
 import '../../../../widgets/text_field_input.dart';
 
 class RegisterScreenBodyInput extends StatelessWidget {

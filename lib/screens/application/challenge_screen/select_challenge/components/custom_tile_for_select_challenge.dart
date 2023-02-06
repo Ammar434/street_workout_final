@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../models/rewards.dart';
-import '../../../../../utils/constants.dart';
 
 class CustomTileForSelectChallenge extends StatelessWidget {
   const CustomTileForSelectChallenge({
@@ -60,7 +60,7 @@ class CustomTileForSelectChallenge extends StatelessWidget {
                 ),
                 // Text(
                 //   rewards.subtitle,
-                //   style: const TextStyle(
+                //   style:  TextStyle(
                 //     // fontStyle: FontStyle.italic,
                 //     fontWeight: FontWeight.w200,
                 //     fontSize: 14,

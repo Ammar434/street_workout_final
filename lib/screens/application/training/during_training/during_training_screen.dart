@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../models/workout.dart';
-import '../../../../utils/colors.dart';
 import '../../../../widgets/app_bar.dart';
 import '../countdown/count_down.dart';
 import 'components/graph_body.dart';
@@ -62,13 +61,13 @@ class _DuringTrainingScreenState extends State<DuringTrainingScreen> {
           length: 3,
           child: Column(
             children: [
-              const TabBar(
-                tabs: [
+              TabBar(
+                tabs: const [
                   Tab(text: 'Track'),
                   Tab(text: 'History'),
                   Tab(text: 'Graph'),
                 ],
-                indicatorColor: primaryColor,
+                indicatorColor: Theme.of(context).colorScheme.secondary,
               ),
               Expanded(
                 child: TabBarView(

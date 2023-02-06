@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/constants.dart';
 
 class SettingsGroup extends StatelessWidget {
   const SettingsGroup({
@@ -33,7 +33,7 @@ class SettingsGroup extends StatelessWidget {
           Text(
             textSettingGroup,
             style: const TextStyle(
-              // color: primaryColor,
+              // color: Theme.of(context).colorScheme.secondary,
               // fontSize: SizeConfig.textMultiplier * 2,
               fontWeight: FontWeight.bold,
             ),

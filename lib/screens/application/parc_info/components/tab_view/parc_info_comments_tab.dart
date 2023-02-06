@@ -1,10 +1,9 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
 
 import '../../../../../provider/user_provider.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 
 class ParcInfoCommentsTab extends StatefulWidget {
   const ParcInfoCommentsTab({
@@ -34,7 +33,7 @@ class _ParcInfoCommentsTabState extends State<ParcInfoCommentsTab> {
             return Padding(
               padding: EdgeInsets.all(kSmallPaddingValue),
               child: ListTile(
-                tileColor: tertiaryColor.withOpacity(0.1),
+                tileColor: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(kRadiusValue),
                 ),
@@ -65,11 +64,11 @@ class _ParcInfoCommentsTabState extends State<ParcInfoCommentsTab> {
           border: InputBorder.none,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30.0),
-            borderSide: const BorderSide(color: tertiaryColor),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30.0),
-            borderSide: const BorderSide(color: tertiaryColor),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
           ),
           contentPadding: EdgeInsets.all(kPaddingValue),
           hintText: 'Add a comment',
@@ -106,7 +105,7 @@ class _ParcInfoCommentsTabState extends State<ParcInfoCommentsTab> {
               margin: const EdgeInsets.only(right: 4.0),
               width: 70.0,
               decoration: BoxDecoration(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(kRadiusValue * 5),
               ),
               child: const Icon(

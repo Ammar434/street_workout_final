@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../../../models/training.dart';
 import '../../../../../models/workout.dart';
 import '../../../../../services/training/training_services.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 import 'chart.dart';
 import 'drop_down_for_graph_type.dart';
 
@@ -74,7 +73,7 @@ class _GraphBodyState extends State<GraphBody> {
                 child: Text(
                   list[index],
                   style: TextStyle(
-                    color: defaultSelectedDayIndex == index ? primaryColor : tertiaryColor,
+                    color: defaultSelectedDayIndex == index ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),

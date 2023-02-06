@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 import '../../../../utils/text_style.dart';
 import '../../../../widgets/rounded_button.dart';
 import '../../recover_password_screen/recover_password_screen.dart';
@@ -27,14 +26,14 @@ class LoginScreenBodyBottom extends StatelessWidget {
             children: [
               Text(
                 "Forgot your password?",
-                style: kTextStyleImportance4..copyWith(color: primaryColor),
+                style: TextThemeProvider().caption,
               ),
               SizedBox(
                 width: kSmallPaddingValue,
               ),
               Text(
                 "Restore",
-                style: kTextStyleImportance4,
+                style: Theme.of(context).textTheme.titleLarge,
               )
             ],
           ),

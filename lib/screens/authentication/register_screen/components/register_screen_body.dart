@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_button.dart';
 import 'register_screen_body_input.dart';
 import 'register_screen_body_top.dart';

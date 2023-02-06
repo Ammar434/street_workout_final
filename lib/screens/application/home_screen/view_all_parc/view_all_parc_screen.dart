@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../../models/parc.dart';
-import '../../../../utils/constants.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../components/parc_display_card.dart';

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../../models/rewards.dart';
 import '../../../../../../services/firestore_methods/rewards_firestore_methods.dart';
-import '../../../../../../utils/constants.dart';
 import '../../../../../../widgets/loading_widget.dart';
 
 class ChallengeDescription extends StatelessWidget {

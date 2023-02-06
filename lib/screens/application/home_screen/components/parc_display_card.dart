@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../../utils/colors.dart';
 import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';
 import '../../../../services/firestore_methods/user_firestore_methods.dart';
-import '../../../../utils/constants.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../../../../widgets/rounded_button.dart';
 import '../../parc_info/parc_info_screen.dart';
@@ -87,7 +86,7 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: tertiaryColor.withOpacity(0.1),
+                      color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                     ),
                     child: Column(
                       children: [

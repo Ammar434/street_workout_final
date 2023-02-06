@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../../../../models/rewards.dart';
-import '../../../../../../utils/constants.dart';
 
 class BuildImageAndId extends StatelessWidget {
   const BuildImageAndId({

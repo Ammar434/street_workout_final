@@ -1,48 +1,62 @@
 import 'package:flex_seed_scheme/flex_seed_scheme.dart';
 import 'package:flutter/material.dart';
-import 'colors.dart';
+import 'text_style.dart';
 
-final ColorScheme schemeDark = SeedColorScheme.fromSeeds(
-  brightness: Brightness.dark,
-  primaryKey: backgroundColor,
-  secondaryKey: primaryColor,
-  tertiaryKey: secondaryColor,
-  tones: FlexTones.vivid(Brightness.dark),
-);
+ThemeData initTheme() {
+  Color backgroundColor = const Color(0xff010819);
+  Color primaryColor = const Color(0xffE5532E);
+  // Color secondaryColor = const Color(0xffD59A72);
+  // Color tertiaryColor = const Color(0xff9AABBB);
+  // Color hintTextColor = const Color(0xff8C92AC);
+  Color iconColor = const Color(0xffFAF9F6);
 
-ThemeData appTheme = ThemeData(
-  useMaterial3: true,
-  appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
-  visualDensity: VisualDensity.adaptivePlatformDensity,
-  brightness: Brightness.dark,
-  colorScheme: schemeDark,
-  sliderTheme: SliderThemeData(
-    inactiveTickMarkColor: Colors.grey,
-    inactiveTrackColor: Colors.grey,
-    valueIndicatorShape: const PaddleSliderValueIndicatorShape(),
-    valueIndicatorColor: Colors.black,
-    thumbColor: Colors.pinkAccent,
-    overlayColor: Colors.pink.withOpacity(0.2),
-    overlayShape: const RoundSliderOverlayShape(overlayRadius: 32.0),
-    tickMarkShape: const RoundSliderTickMarkShape(),
-  ),
-);
+  final ColorScheme schemeDark = SeedColorScheme.fromSeeds(
+    brightness: Brightness.dark,
+    primaryKey: backgroundColor,
+    secondaryKey: primaryColor,
+    tertiaryKey: iconColor,
+    tones: FlexTones.vivid(Brightness.dark),
+  );
+  // TextThemeProvider textThemeProvider = TextThemeProvider();
+
+  ThemeData appTheme = ThemeData(
+    useMaterial3: true,
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    brightness: Brightness.dark,
+    colorScheme: schemeDark,
+    textTheme: TextTheme(
+      // titleLarge: textThemeProvider.title1,
+    ),
+  );
+
+  return appTheme;
+}
+
+
+
+
+
+
+
+
+
 // ThemeData appTheme = ThemeData.dark().copyWith(
 //   visualDensity: VisualDensity.adaptivePlatformDensity,
 //   sliderTheme: SliderThemeData(
 //     inactiveTickMarkColor: Colors.grey,
 //     inactiveTrackColor: Colors.grey,
-//     valueIndicatorShape: const PaddleSliderValueIndicatorShape(),
+//     valueIndicatorShape:  PaddleSliderValueIndicatorShape(),
 //     valueIndicatorColor: Colors.black,
 //     thumbColor: Colors.pinkAccent,
 //     overlayColor: Colors.pink.withOpacity(0.2),
-//     overlayShape: const RoundSliderOverlayShape(overlayRadius: 32.0),
-//     tickMarkShape: const RoundSliderTickMarkShape(),
+//     overlayShape:  RoundSliderOverlayShape(overlayRadius: 32.0),
+//     tickMarkShape:  RoundSliderTickMarkShape(),
 //   ),
 //   scaffoldBackgroundColor: backgroundColor,
 //   backgroundColor: backgroundColor,
-//   textTheme: const TextTheme(),
-//   appBarTheme: const AppBarTheme(
+//   textTheme:  TextTheme(),
+//   appBarTheme:  AppBarTheme(
 //     backgroundColor: Colors.transparent,
 //     elevation: 0,
 //   ),

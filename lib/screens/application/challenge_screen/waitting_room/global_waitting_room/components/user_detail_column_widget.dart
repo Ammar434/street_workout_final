@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../../../utils/constants.dart';
 
 class UserDetailColumnItem extends StatelessWidget {
   const UserDetailColumnItem({
@@ -42,7 +42,7 @@ class UserDetailColumnItem extends StatelessWidget {
                 : TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: fontSize,
-                    // color: primaryColor,
+                    // color: Theme.of(context).colorScheme.secondary,
                   ),
             child: Text(
               userName,

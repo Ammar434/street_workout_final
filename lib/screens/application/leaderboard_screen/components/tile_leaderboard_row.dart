@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../../models/leaderboard.dart';
-import '../../../../utils/constants.dart';
 import '../../../../widgets/rounded_circle_user_profile_widget.dart';
 
 class TileLeaderboardRow extends StatelessWidget {

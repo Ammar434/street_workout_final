@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
 
 import '../../../../../models/challenge.dart';
 import '../../../../../provider/challenge_provider.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 import '../../../../../widgets/rounded_button.dart';
 import '../../challenge_end/challenge_end_screen_evaluator/challenge_end_screen_evaluator.dart';
 import '../../waitting_room/global_waitting_room/components/user_detail_column_widget.dart';
@@ -28,13 +26,13 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                primaryColor,
-                backgroundColor,
+                Theme.of(context).colorScheme.secondary,
+                Theme.of(context).colorScheme.secondary,
                 Colors.transparent,
               ],
             ),

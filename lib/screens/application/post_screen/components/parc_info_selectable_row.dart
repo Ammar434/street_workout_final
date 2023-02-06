@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../../models/material_available.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 
 class ParcEquipmentSelectableRow extends StatelessWidget {
   const ParcEquipmentSelectableRow({Key? key, required this.function, required this.selectedIndex}) : super(key: key);
@@ -23,14 +22,14 @@ class ParcEquipmentSelectableRow extends StatelessWidget {
             aspectRatio: 1,
             child: InkWell(
               borderRadius: BorderRadius.circular(kRadiusValue),
-              splashColor: primaryColor,
+              splashColor: Theme.of(context).colorScheme.secondary,
               customBorder: const CircleBorder(),
               onTap: () => function(materialAvailableList[index]),
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: selectedIndex.contains(materialAvailableList[index]) ? primaryColor : secondaryColor,
+                  color: selectedIndex.contains(materialAvailableList[index]) ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
                 ),
                 child: Image.asset(
                   materialAvailableList[index].image,

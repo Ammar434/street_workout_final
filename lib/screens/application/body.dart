@@ -1,8 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../utils/colors.dart';
 import 'home_screen/home_screen.dart';
 import 'leaderboard_screen/leaderboard_screen.dart';
 import 'main_screen.dart';
@@ -63,8 +63,8 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
-        buttonBackgroundColor: primaryColor,
-        color: primaryColor,
+        buttonBackgroundColor: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.secondary,
         height: 56.sp,
         onTap: (value) {
           setState(

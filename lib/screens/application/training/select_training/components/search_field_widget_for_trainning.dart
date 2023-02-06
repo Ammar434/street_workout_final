@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -6,8 +7,6 @@ import 'package:provider/provider.dart';
 import '../../../../../models/workout.dart';
 import '../../../../../provider/workout_provider.dart';
 import '../../../../../services/search/search_methods.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 import '../../during_training/during_training_screen.dart';
 
 class SearchFieldWidgetForTraining extends StatelessWidget {
@@ -20,7 +19,7 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
     return TypeAheadField(
       getImmediateSuggestions: true,
       suggestionsBoxDecoration: SuggestionsBoxDecoration(
-        color: iconColor,
+        color: Theme.of(context).iconTheme.color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(kRadiusValue),
@@ -32,13 +31,13 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
         style: DefaultTextStyle.of(context).style.copyWith(fontStyle: FontStyle.italic),
         decoration: InputDecoration(
           hintText: "Search workout",
-          prefixIcon: const Icon(
+          prefixIcon: Icon(
             Icons.search,
-            color: secondaryColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: tertiaryColor),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
             borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
           ),
         ),
@@ -52,18 +51,18 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
           leading: SizedBox(
             height: double.maxFinite,
             width: kPaddingValue,
-            child: const Align(
+            child: Align(
               alignment: Alignment.centerLeft,
               child: FaIcon(
                 FontAwesomeIcons.dumbbell,
-                color: secondaryColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ),
           title: Text(
             suggestion.name,
-            style: const TextStyle(
-              color: backgroundColor,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.secondary,
               fontWeight: FontWeight.bold,
             ),
           ),

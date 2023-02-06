@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
 import '../../../../../models/sets.dart';
 import '../../../../../models/training.dart';
 import '../../../../../models/workout.dart';
 import '../../../../../provider/training_provider.dart';
 import '../../../../../provider/workout_provider.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../widgets/horizontal_line.dart';
 
 class TrainingFoundWidget extends StatelessWidget {
   const TrainingFoundWidget({
@@ -30,7 +28,7 @@ class TrainingFoundWidget extends StatelessWidget {
           width: double.infinity,
           child: Card(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadiusValue)),
-            color: tertiaryColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
             elevation: 10,
             // margin: EdgeInsets.all(kSmallPaddingValue * 5),
             child: Padding(

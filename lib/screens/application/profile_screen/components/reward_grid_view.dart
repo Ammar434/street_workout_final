@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../models/rewards.dart';
-import '../../../../utils/colors.dart';
 
 class RewardGridView extends StatelessWidget {
   const RewardGridView({
@@ -23,9 +22,9 @@ class RewardGridView extends StatelessWidget {
         (index) => Column(
           children: [
             Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               child: Image.network(listReward[index].imageUrl),
             ),

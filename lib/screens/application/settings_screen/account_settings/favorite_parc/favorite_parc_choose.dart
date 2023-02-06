@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../../../models/custom_user.dart';
 import '../../../../../models/parc.dart';
 import '../../../../../services/firestore_methods/parc_firestore_methods.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../widgets/horizontal_line.dart';
 import 'components/column_favorite_parc.dart';
 
 class FavoriteParcChoose extends StatefulWidget {
@@ -79,7 +76,7 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
           padding: EdgeInsets.all(kPaddingValue),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadiusValue),
-            color: tertiaryColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
           ),
           child: Column(
             children: [
@@ -91,10 +88,10 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
                       index: 0,
                       listeParc: listParc,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: VerticalDivider(
-                        color: tertiaryColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         width: 1,
                         thickness: 1,
                         indent: 10,

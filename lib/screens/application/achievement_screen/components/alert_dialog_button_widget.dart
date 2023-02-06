@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 
 class AlertDialogButtonWidget extends StatelessWidget {
   const AlertDialogButtonWidget({
@@ -18,7 +17,7 @@ class AlertDialogButtonWidget extends StatelessWidget {
         height: 50,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: primaryColor,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(
               kRadiusValue,

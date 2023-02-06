@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 import '../../login_screen/login_screen.dart';
 import '../../register_screen/register_screen.dart';
 
@@ -22,7 +21,7 @@ class AuthScreenBottomPart extends StatelessWidget {
             child: Container(
               height: kDefaultButtonSize,
               decoration: BoxDecoration(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(kRadiusValue),
                   bottomLeft: Radius.circular(kRadiusValue),
@@ -47,7 +46,7 @@ class AuthScreenBottomPart extends StatelessWidget {
             child: Container(
               height: kDefaultButtonSize,
               decoration: BoxDecoration(
-                color: primaryColor.withOpacity(0.75),
+                color: Theme.of(context).colorScheme.secondary.withOpacity(0.75),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(
                     kRadiusValue,

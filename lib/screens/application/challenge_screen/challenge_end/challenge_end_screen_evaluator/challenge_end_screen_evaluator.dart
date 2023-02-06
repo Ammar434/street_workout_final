@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../models/custom_user.dart';
 import '../../../../../provider/user_provider.dart';
-import '../../../../../utils/constants.dart';
 
 class ChallengeEndScreenEvaluator extends StatelessWidget {
   const ChallengeEndScreenEvaluator({Key? key}) : super(key: key);

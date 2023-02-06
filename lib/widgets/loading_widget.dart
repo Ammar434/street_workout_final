@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../utils/colors.dart';
-import '../utils/constants.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({
@@ -17,17 +15,17 @@ class LoadingWidget extends StatelessWidget {
         child: SizedBox(
           height: kSmallPaddingValue,
           width: 80.sp,
-          child: const LinearProgressIndicator(
-            color: tertiaryColor,
-            backgroundColor: primaryColor,
+          child: LinearProgressIndicator(
+            color: Theme.of(context).colorScheme.primary,
+            backgroundColor: Theme.of(context).colorScheme.background,
           ),
         ),
       );
     }
-    return const Center(
+    return Center(
       child: CircularProgressIndicator(
-        color: tertiaryColor,
-        backgroundColor: primaryColor,
+        color: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.background,
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
 
 class TextFIeldForPostScreen extends StatelessWidget {
   const TextFIeldForPostScreen({
@@ -20,7 +19,7 @@ class TextFIeldForPostScreen extends StatelessWidget {
         hintText: "Enter parc name",
         border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: tertiaryColor),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
           borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
         ),
       ),

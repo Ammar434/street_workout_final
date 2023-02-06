@@ -1,11 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/text_style.dart';
-import '../../../../../widgets/horizontal_line.dart';
 import '../../select_exercice/select_exercice_screen.dart';
 
 List<String> categoryNames = [
@@ -51,7 +49,7 @@ class WorkoutCategoryListBuilder extends StatelessWidget {
                   ),
                   Text(
                     categoryNames[index],
-                    style: kTextStyleImportance4,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const Spacer(),
                   FaIcon(

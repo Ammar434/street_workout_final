@@ -7,7 +7,7 @@ import '../models/sets.dart';
 import '../models/training.dart';
 import '../services/dates_services.dart';
 
-const String kTrainingList = "trainings";
+String kTrainingList = "trainings";
 
 class TrainingProvider with ChangeNotifier {
   List<Training> _listTraining = [];

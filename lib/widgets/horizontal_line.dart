@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
-import '../utils/colors.dart';
-import '../utils/constants.dart';
 
 class HorizontalLine extends StatelessWidget {
   const HorizontalLine({
@@ -12,8 +11,8 @@ class HorizontalLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: kSmallPaddingValue * 2),
-      child: const Divider(
-        color: tertiaryColor,
+      child: Divider(
+        color: Theme.of(context).dividerColor,
         height: 1,
         thickness: 1,
         indent: 10,

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
+import "package:street_workout_final/common_libs.dart";
 
 class SelectableEmojiRow extends StatefulWidget {
   const SelectableEmojiRow({
@@ -39,7 +36,7 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
                 padding: EdgeInsets.all(kSmallPaddingValue),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(kRadiusValue),
-                  color: selectIndex == index ? iconColor.withOpacity(0.25) : null,
+                  color: selectIndex == index ? Theme.of(context).hoverColor : null,
                 ),
                 child: InkWell(
                   onTap: () {

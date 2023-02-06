@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../models/custom_user.dart';
-import '../../../utils/constants.dart';
 import 'components/user_information_display.dart';
 
 class ProfileScreenBodyTop extends StatelessWidget {

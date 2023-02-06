@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 
 import '../models/workout.dart';
 
-const String kWorkoutList = "workoutList";
+String kWorkoutList = "workoutList";
 
 List<Workout> listWorkouts = [
   Workout(

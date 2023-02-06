@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 import '../../../../../widgets/loading_widget.dart';
 import '../../../../../widgets/rounded_button.dart';
 
@@ -27,26 +26,26 @@ class PopUpMenuWidget extends StatelessWidget {
     List<PopupMenuEntry> menuList = [
       PopupMenuItem(
         child: ListTile(
-          leading: const FaIcon(
+          leading: FaIcon(
             FontAwesomeIcons.camera,
-            color: primaryColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
-          title: const Text(
+          title: Text(
             "Add photo",
-            style: TextStyle(color: backgroundColor),
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
           ),
           onTap: function1,
         ),
       ),
       PopupMenuItem(
         child: ListTile(
-          leading: const FaIcon(
+          leading: FaIcon(
             FontAwesomeIcons.shareNodes,
-            color: primaryColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
-          title: const Text(
+          title: Text(
             "Share now",
-            style: TextStyle(color: backgroundColor),
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
           ),
           onTap: function2,
         ),
@@ -56,7 +55,7 @@ class PopUpMenuWidget extends StatelessWidget {
           height: 100,
           onTap: function3,
           text: isFavoriteParc ? "Remove from main parc" : "Add to main parc",
-          color: isFavoriteParc ? primaryColor : tertiaryColor,
+          color: isFavoriteParc ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
           isLoading: isLoading,
         ),
       ),
@@ -69,7 +68,7 @@ class PopUpMenuWidget extends StatelessWidget {
       constraints: BoxConstraints(
         minWidth: MediaQuery.of(context).size.width / 1.45,
       ),
-      color: iconColor,
+      color: Theme.of(context).iconTheme.color,
       itemBuilder: (BuildContext context) {
         return menuList;
       },

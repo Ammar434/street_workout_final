@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
+import "package:street_workout_final/common_libs.dart";
 
 class SettingsTile extends StatelessWidget {
   const SettingsTile({
@@ -32,7 +30,7 @@ class SettingsTile extends StatelessWidget {
               backgroundColor: iconBackgroundColor,
               child: Icon(
                 icon,
-                color: iconColor,
+                color: Theme.of(context).iconTheme.color,
               ),
             ),
             SizedBox(
@@ -51,8 +49,8 @@ class SettingsTile extends StatelessWidget {
                   visible: text2.isNotEmpty ? true : false,
                   child: Text(
                     text2,
-                    style: const TextStyle(
-                      color: secondaryColor,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ),
@@ -61,7 +59,7 @@ class SettingsTile extends StatelessWidget {
             const Spacer(),
             Icon(
               isArrow ? Icons.arrow_forward_ios_rounded : null,
-              color: secondaryColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ],
         ),

@@ -1,15 +1,13 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
 
 import '../../../../models/custom_user.dart';
 import '../../../../provider/challenge_provider.dart';
 import '../../../../provider/user_provider.dart';
 import '../../../../services/challenge/challenge_services.dart';
-import '../../../../utils/constants.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/loading_widget.dart';
-import '../../../../widgets/snackbar.dart';
 // import '../challenger_waitting_room/challenger_waitting_room_screen.dart';
 // import '../evaluator_waitting_room/evaluator_waitting_room_screen.dart';
 import '../../favorite_parc/favorite_parc_empty_screen.dart';

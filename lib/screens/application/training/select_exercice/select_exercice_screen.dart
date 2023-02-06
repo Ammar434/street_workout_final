@@ -1,15 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../models/workout.dart';
 import '../../../../provider/workout_provider.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
-import '../../../../utils/text_style.dart';
 import '../../../../widgets/app_bar.dart';
 import '../add_workout/add_workout.dart';
 import '../during_training/during_training_screen.dart';
@@ -48,11 +45,11 @@ class SelectExerciceScreen extends StatelessWidget {
       child: Scaffold(
         appBar: buildAppBar(context, workoutCategory),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           onPressed: onFloattingActionPress,
-          child: const FaIcon(
+          child: FaIcon(
             FontAwesomeIcons.plus,
-            color: iconColor,
+            color: Theme.of(context).iconTheme.color,
           ),
         ),
         body: Padding(
@@ -110,7 +107,7 @@ class SelectExerciceScreen extends StatelessWidget {
                                 child: Center(
                                   child: Text(
                                     workoutList[index].name,
-                                    style: kTextStyleImportance4,
+                                    style: Theme.of(context).textTheme.bodyLarge,
                                   ),
                                 ),
                               ),

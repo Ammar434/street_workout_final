@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
+import "package:street_workout_final/common_libs.dart";
 
 class AchievementCardTop extends StatelessWidget {
   const AchievementCardTop({
@@ -36,8 +34,8 @@ class AchievementCardTop extends StatelessWidget {
               Radius.circular(kRadiusValue),
             ),
             child: LinearProgressIndicator(
-              backgroundColor: tertiaryColor,
-              color: primaryColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.secondary,
               value: progressionLvl,
             ),
           ),

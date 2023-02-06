@@ -1,16 +1,10 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../../../../models/sets.dart';
 import '../../../../../models/workout.dart';
 import '../../../../../provider/training_provider.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/text_style.dart';
-import '../../../../../widgets/horizontal_line.dart';
-import '../../../../../widgets/snackbar.dart';
 import 'package:uuid/uuid.dart';
 
 import '../during_training_screen.dart';
@@ -121,7 +115,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const FaIcon(FontAwesomeIcons.trash),
-                Text("Deleting", style: kTextStyleImportance4),
+                Text("Deleting", style: Theme.of(context).textTheme.bodyLarge),
               ],
             ),
           ),
@@ -224,13 +218,13 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
     return Scaffold(
       key: scaffoldKey,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         onPressed: () {
           createExpansionPanel();
         },
-        child: const FaIcon(
+        child: FaIcon(
           FontAwesomeIcons.plus,
-          color: iconColor,
+          color: Theme.of(context).iconTheme.color,
         ),
       ),
       body: Padding(
@@ -263,7 +257,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kRadiusValue),
           ),
-          color: listIsExpanded[index] ? tertiaryColor.withOpacity(0.1) : Colors.green,
+          color: listIsExpanded[index] ? Theme.of(context).colorScheme.secondary.withOpacity(0.1) : Colors.green,
           child: buildExpansionTile(index),
         ),
       ),
@@ -287,9 +281,9 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
         onPressed: () => onCheckButtonTap(index),
         icon: listIsExpanded[index]
             ? const FaIcon(FontAwesomeIcons.circle)
-            : const FaIcon(
+            : FaIcon(
                 FontAwesomeIcons.solidCircleCheck,
-                color: iconColor,
+                color: Theme.of(context).iconTheme.color,
               ),
       ),
       title: listIsExpanded[index]

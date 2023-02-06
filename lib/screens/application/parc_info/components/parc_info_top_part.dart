@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';
-import '../../../../utils/colors.dart';
-import '../../../../utils/constants.dart';
-import '../../../../utils/text_style.dart';
-import '../../../../widgets/horizontal_line.dart';
 import '../../profile_screen/profile_screen.dart';
 import 'parc_info_equipment_available.dart';
 import 'parc_main_photo.dart';
@@ -32,7 +29,7 @@ class ParcInfoTopPart extends StatelessWidget {
         ),
         Text(
           parc.name,
-          style: kTextStyleImportance3,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         SizedBox(
           height: kSmallPaddingValue,
@@ -41,7 +38,7 @@ class ParcInfoTopPart extends StatelessWidget {
           children: [
             FaIcon(
               FontAwesomeIcons.locationDot,
-              color: primaryColor,
+              color: Theme.of(context).colorScheme.secondary,
               size: kDefaultIconsSize / 1.5,
             ),
             SizedBox(
@@ -76,9 +73,9 @@ class ParcInfoTopPart extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(
-              backgroundColor: primaryColor,
-              child: FaIcon(
+            CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              child: const FaIcon(
                 FontAwesomeIcons.trophy,
                 size: 25,
                 color: Colors.yellow,

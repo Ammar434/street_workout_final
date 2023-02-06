@@ -1,10 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../utils/constants.dart';
-import '../../../../utils/text_style.dart';
+import "package:street_workout_final/common_libs.dart";
 
 class RegisterScreenBodyTop extends StatelessWidget {
   const RegisterScreenBodyTop({
@@ -23,11 +20,11 @@ class RegisterScreenBodyTop extends StatelessWidget {
       children: [
         Text(
           "Hey Welcome",
-          style: kTextStyleImportance1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         Text(
           "Let's create your account!",
-          style: kTextStyleImportance2,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         SizedBox(
           height: kPaddingValue * 5,

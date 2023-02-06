@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../models/custom_user.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/text_style.dart';
 import '../../../../../widgets/solid_circle_icon.dart';
 import '../../select_training/select_trainning_screen.dart';
 
@@ -39,7 +38,7 @@ class AppBarForTrainning extends StatelessWidget {
         ),
         Text(
           greetings(),
-          style: kTextStyleImportance4.copyWith(fontSize: 16),
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         const Spacer(),
         GestureDetector(

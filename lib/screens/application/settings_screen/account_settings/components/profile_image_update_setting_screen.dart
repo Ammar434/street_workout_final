@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -8,8 +9,6 @@ import '../../../../../models/custom_user.dart';
 import '../../../../../provider/user_provider.dart';
 import '../../../../../services/firestore_methods/user_firestore_methods.dart';
 import '../../../../../services/image_picker.dart';
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
 import '../../../../../widgets/loading_widget.dart';
 import '../../../../../widgets/rounded_button.dart';
 
@@ -51,7 +50,7 @@ class _ProfileImageUpdateSettingScreenState extends State<ProfileImageUpdateSett
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadiusValue),
-            color: tertiaryColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
           ),
           padding: EdgeInsets.all(kPaddingValue),
           child: Row(
@@ -60,7 +59,7 @@ class _ProfileImageUpdateSettingScreenState extends State<ProfileImageUpdateSett
               CircleAvatar(
                 backgroundImage: NetworkImage(imageUrl),
                 radius: kRadiusValue * 5,
-                backgroundColor: secondaryColor,
+                backgroundColor: Theme.of(context).colorScheme.secondary,
                 child: isLoading ? const LoadingWidget() : null,
               ),
               SizedBox(
@@ -80,7 +79,7 @@ class _ProfileImageUpdateSettingScreenState extends State<ProfileImageUpdateSett
                   Provider.of<UserProvider>(context).refreshUser();
                 },
                 text: "Change profile image",
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 width: MediaQuery.of(context).size.width / 2,
                 fontSize: 14,
               ),

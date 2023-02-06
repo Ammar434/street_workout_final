@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/text_style.dart';
-import '../../../../../widgets/horizontal_line.dart';
 
-const List<Color> defaultColors = [
+List<Color> defaultColors = [
   Colors.red,
   Colors.pink,
   Colors.purple,
@@ -48,7 +45,7 @@ class ColorPickerForAddWorkout extends StatelessWidget {
           ),
           child: Text(
             "Color",
-            style: kTextStyleImportance4,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         const HorizontalLine(),

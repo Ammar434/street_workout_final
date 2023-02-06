@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../models/rewards.dart';
-import '../../../../utils/colors.dart';
 import '../../../../widgets/staggered_grid_view.dart';
 import 'reward_grid_view.dart';
 
@@ -17,24 +16,24 @@ class ProfileScreenBodyTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle textStyle = TextStyle(
+    TextStyle textStyle = const TextStyle(
       fontWeight: FontWeight.bold,
     );
     return Column(
       children: [
-        const TabBar(
-          tabs: [
+        TabBar(
+          tabs: const [
             Tab(text: 'Photos'),
             Tab(text: 'Rewards'),
             // Tab(text: 'Workout'),
           ],
-          indicatorColor: primaryColor,
+          indicatorColor: Theme.of(context).colorScheme.secondary,
         ),
         Expanded(
           child: TabBarView(
             children: [
               listUrlImage.isEmpty
-                  ? const Center(
+                  ? Center(
                       child: Text(
                         "No image upload yet",
                         style: textStyle,
@@ -44,7 +43,7 @@ class ProfileScreenBodyTab extends StatelessWidget {
                       listUrlImage: listUrlImage,
                     ),
               listReward.isEmpty
-                  ? const Center(
+                  ? Center(
                       child: Text(
                         "No rewards gain yet",
                         style: textStyle,

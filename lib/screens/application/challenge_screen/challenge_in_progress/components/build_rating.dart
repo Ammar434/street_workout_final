@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../utils/colors.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../widgets/horizontal_line.dart';
 
 class BuildRating extends StatelessWidget {
   const BuildRating({
@@ -40,7 +37,6 @@ class BuildRating extends StatelessWidget {
               itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
               itemBuilder: (context, _) => const FaIcon(
                 FontAwesomeIcons.dumbbell,
-                color: iconColor,
               ),
               onRatingUpdate: onTap1,
             ),
@@ -64,7 +60,6 @@ class BuildRating extends StatelessWidget {
               itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
               itemBuilder: (context, _) => const FaIcon(
                 FontAwesomeIcons.dumbbell,
-                color: iconColor,
               ),
               onRatingUpdate: onTap2,
             ),

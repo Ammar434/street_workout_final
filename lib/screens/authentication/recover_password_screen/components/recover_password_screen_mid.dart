@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../utils/text_style.dart';
 
 class RecoverPasswordScreenMid extends StatelessWidget {
   const RecoverPasswordScreenMid({
@@ -13,12 +12,12 @@ class RecoverPasswordScreenMid extends StatelessWidget {
       children: [
         Text(
           "Did someone forget their password?",
-          style: kTextStyleImportance3,
+          style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
         Text(
           "That's ok... Just enter the email address you've used to register with us and we'll send you a reset link!",
-          style: kTextStyleHintTextImportance3,
+          style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
       ],

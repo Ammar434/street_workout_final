@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import "package:street_workout_final/common_libs.dart";
 
 import '../../../services/secure_storage/secure_storage_methods.dart';
-import '../../../utils/constants.dart';
-import '../../../utils/text_style.dart';
 import '../../../widgets/loading_widget.dart';
 import '../../../widgets/rounded_button.dart';
 import 'gender_screen.dart';
@@ -75,7 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       children: [
         Text(
           "Welcome $userName, you're in!",
-          style: kTextStyleImportance3,
+          style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
         const SizedBox(
@@ -83,7 +82,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
         Text(
           "To make sure your experience with Street Workout Fighter is the best it can be, we'd like to get to know you a little better.",
-          style: kTextStyleHintTextImportance3,
+          style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
       ],

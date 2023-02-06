@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/text_style.dart';
+import "package:street_workout_final/common_libs.dart";
 
 class DropDownForGraphType extends StatelessWidget {
   const DropDownForGraphType({
@@ -20,7 +18,7 @@ class DropDownForGraphType extends StatelessWidget {
       child: Center(
         child: Text(
           item,
-          style: kTextStyleImportance4,
+          // style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
     );
@@ -30,7 +28,7 @@ class DropDownForGraphType extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        // border: Border.all(color: primaryColor),
+        // border: Border.all(color: Theme.of(context).colorScheme.secondary),
         borderRadius: BorderRadius.circular(
           kRadiusValue,
         ),
@@ -39,7 +37,7 @@ class DropDownForGraphType extends StatelessWidget {
         children: [
           Text(
             "Graphique type :",
-            style: kTextStyleImportance4,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           Expanded(
             child: Padding(
