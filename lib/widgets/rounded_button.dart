@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 
-
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
     Key? key,
@@ -33,22 +32,18 @@ class RoundedButton extends StatelessWidget {
         height: height ?? kDefaultButtonSize,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
-          color: shouldAnimate ? Colors.green : Theme.of(context).highlightColor,
+          color: shouldAnimate ? Colors.green : Theme.of(context).colorScheme.secondaryContainer,
         ),
         duration: const Duration(milliseconds: 500),
         child: Center(
           child: isLoading
               ? CircularProgressIndicator(
-                  backgroundColor: Theme.of(context).primaryColor,
+                  backgroundColor: Theme.of(context).primaryColorLight,
                   color: Theme.of(context).primaryColor,
                 )
               : Text(
                   text,
-                  style: TextStyle(
-                    fontSize: fontSize,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
         ),
       ),

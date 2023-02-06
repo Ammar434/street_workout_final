@@ -60,7 +60,7 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
         body: Padding(
           padding: EdgeInsets.all(kPaddingValue),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Flexible(child: SizedBox()),
@@ -88,7 +88,7 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
       children: [
         Text(
           "Location",
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.titleMedium,
           textAlign: TextAlign.center,
         ),
         SizedBox(
@@ -96,7 +96,7 @@ class _PermissionHandlerScreenState extends State<PermissionHandlerScreen> {
         ),
         Text(
           "Allow access to your location so we can accurately track your trainings via GPS signal",
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.titleSmall,
           textAlign: TextAlign.center,
         ),
       ],

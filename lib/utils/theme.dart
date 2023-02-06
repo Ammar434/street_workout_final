@@ -1,6 +1,6 @@
 import 'package:flex_seed_scheme/flex_seed_scheme.dart';
 import 'package:flutter/material.dart';
-import 'text_style.dart';
+import 'package:street_workout_final/utils/text_style.dart';
 
 ThemeData initTheme() {
   Color backgroundColor = const Color(0xff010819);
@@ -17,16 +17,25 @@ ThemeData initTheme() {
     tertiaryKey: iconColor,
     tones: FlexTones.vivid(Brightness.dark),
   );
-  // TextThemeProvider textThemeProvider = TextThemeProvider();
+
+  TextThemeProvider textThemeProvider = TextThemeProvider();
 
   ThemeData appTheme = ThemeData(
     useMaterial3: true,
-    appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.transparent,
+    ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    brightness: Brightness.dark,
+    // brightness: Brightness.dark,
     colorScheme: schemeDark,
     textTheme: TextTheme(
-      // titleLarge: textThemeProvider.title1,
+      titleLarge: textThemeProvider.h2,
+      titleMedium: textThemeProvider.title1,
+      titleSmall: textThemeProvider.title2,
+      bodyLarge: textThemeProvider.body,
+      bodyMedium: textThemeProvider.bodySmall,
+      bodySmall: textThemeProvider.bodySmall,
+      labelLarge: textThemeProvider.btn,
     ),
   );
 

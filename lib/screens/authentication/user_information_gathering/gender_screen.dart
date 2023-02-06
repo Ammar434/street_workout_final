@@ -18,7 +18,7 @@ class GenderScreen extends StatelessWidget {
           padding: EdgeInsets.all(kPaddingValue),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Flexible(child: SizedBox()),
@@ -31,8 +31,8 @@ class GenderScreen extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    "Tell us about yourself",
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    "Select your gender",
+                    style: Theme.of(context).textTheme.titleMedium,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(

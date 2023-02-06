@@ -20,11 +20,11 @@ class RegisterScreenBodyTop extends StatelessWidget {
       children: [
         Text(
           "Hey Welcome",
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         Text(
           "Let's create your account!",
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         SizedBox(
           height: kPaddingValue * 5,

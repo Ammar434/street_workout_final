@@ -45,7 +45,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 padding: EdgeInsets.all(kPaddingValue),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Flexible(child: SizedBox()),
@@ -74,15 +74,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       children: [
         Text(
           "Welcome $userName, you're in!",
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.titleMedium,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(
-          height: 5,
+        SizedBox(
+          height: kPaddingValue,
         ),
         Text(
-          "To make sure your experience with Street Workout Fighter is the best it can be, we'd like to get to know you a little better.",
-          style: Theme.of(context).textTheme.bodyLarge,
+          "To make sure your experience with our app is the best it can be, we'd like to get to know you a little better.",
+          style: Theme.of(context).textTheme.titleSmall,
           textAlign: TextAlign.center,
         ),
       ],

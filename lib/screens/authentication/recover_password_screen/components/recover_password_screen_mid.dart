@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:street_workout_final/common_libs.dart';
 
 class RecoverPasswordScreenMid extends StatelessWidget {
   const RecoverPasswordScreenMid({
@@ -12,12 +12,15 @@ class RecoverPasswordScreenMid extends StatelessWidget {
       children: [
         Text(
           "Did someone forget their password?",
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.titleMedium,
           textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: kPaddingValue * 2,
         ),
         Text(
           "That's ok... Just enter the email address you've used to register with us and we'll send you a reset link!",
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.titleSmall,
           textAlign: TextAlign.center,
         ),
       ],

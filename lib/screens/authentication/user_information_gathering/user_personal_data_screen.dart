@@ -68,7 +68,11 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
   Column buildMiddle(BuildContext context) {
     return Column(
       children: [
-        buildColumnText(context),
+        Text(
+          "We'd like the following information to provide more accurate results, such as your final score in a tournament",
+          style: Theme.of(context).textTheme.bodySmall,
+          textAlign: TextAlign.center,
+        ),
         SizedBox(
           height: kPaddingValue,
         ),
@@ -77,26 +81,6 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
           height: kPaddingValue,
         ),
         buildColumnForDefault(context),
-      ],
-    );
-  }
-
-  Column buildColumnText(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Tell us about yourself",
-          style: Theme.of(context).textTheme.bodyLarge,
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          height: kSmallPaddingValue,
-        ),
-        Text(
-          "We'd like the following information to provide more accurate results, such as your final score in a tournament",
-          style: Theme.of(context).textTheme.bodyLarge,
-          textAlign: TextAlign.center,
-        ),
       ],
     );
   }
@@ -153,11 +137,11 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
         CheckboxListTile(
           title: Text(
             "Use default",
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
           checkColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
-          activeColor: Theme.of(context).colorScheme.secondary,
+          // activeColor: Theme.of(context).colorScheme.secondary,
           value: checkedValue,
 
           onChanged: (newValue) {
@@ -174,7 +158,7 @@ class _UserPersonalDataScreenState extends State<UserPersonalDataScreen> {
         ),
         Text(
           "If you don't wish to enter your personal information, select the default option and we will use a default value to perform these calculations.",
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodySmall,
           textAlign: TextAlign.center,
         ),
         SizedBox(

@@ -21,18 +21,16 @@ class AuthScreenBottomPart extends StatelessWidget {
             child: Container(
               height: kDefaultButtonSize,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.secondaryContainer,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(kRadiusValue),
                   bottomLeft: Radius.circular(kRadiusValue),
                 ),
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "Register",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
             ),
@@ -46,7 +44,7 @@ class AuthScreenBottomPart extends StatelessWidget {
             child: Container(
               height: kDefaultButtonSize,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary.withOpacity(0.75),
+                color: Theme.of(context).colorScheme.tertiaryContainer,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(
                     kRadiusValue,
@@ -56,12 +54,10 @@ class AuthScreenBottomPart extends StatelessWidget {
                   ),
                 ),
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
                   "Log In",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
               ),
             ),

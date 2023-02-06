@@ -13,9 +13,10 @@ void customShowSnackBar({
     elevation: 0,
     behavior: SnackBarBehavior.floating,
     backgroundColor: Colors.transparent,
-    duration: const Duration(seconds: 3),
+    duration: const Duration(seconds: 5),
     margin: EdgeInsets.zero,
     content: AwesomeSnackbarContent(
+      inMaterialBanner: true,
       title: title,
       message: content,
       contentType: contentType,

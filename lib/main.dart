@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/utils/theme.dart';
 import 'provider/challenge_provider.dart';
 import 'provider/training_provider.dart';
 import 'provider/workout_provider.dart';
@@ -13,7 +14,6 @@ import 'provider/workout_provider.dart';
 import 'authentication_handler.dart';
 import 'provider/user_provider.dart';
 import 'routes.dart';
-import 'utils/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-              
+            theme: initTheme(),
             title: 'Street Workout Fighter',
             home: const AuthenticationHandler(),
             routes: routes,

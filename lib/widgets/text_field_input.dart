@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/common_libs.dart';
 
 class TextFieldInput extends StatefulWidget {
   const TextFieldInput({
@@ -27,17 +28,21 @@ class _TextFieldInputState extends State<TextFieldInput> {
     );
     return TextField(
       controller: widget.textEditingController,
+      style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: widget.hintText,
+        hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: Theme.of(context).hintColor,
+            ),
         border: inputBorder,
         focusedBorder: inputBorder,
         enabledBorder: inputBorder,
         filled: true,
-        contentPadding: const EdgeInsets.all(8),
+        contentPadding: EdgeInsets.all(kSmallPaddingValue),
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),
-                color: Theme.of(context).primaryColor,
+                // color: Theme.of(context).primaryColor,
                 onPressed: () {
                   setState(
                     () {
@@ -48,7 +53,6 @@ class _TextFieldInputState extends State<TextFieldInput> {
               )
             : null,
       ),
-      cursorColor: Theme.of(context).primaryColor,
       keyboardType: widget.textInputType,
       obscureText: isObscure && widget.isPassword,
     );

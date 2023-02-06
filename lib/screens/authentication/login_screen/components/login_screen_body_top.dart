@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 
-
 class LoginScreenBodyTop extends StatelessWidget {
   const LoginScreenBodyTop({
     Key? key,
@@ -21,7 +20,7 @@ class LoginScreenBodyTop extends StatelessWidget {
         ),
         Text(
           "Welcome back, you've been missed!",
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         SizedBox(
           height: kPaddingValue * 5,
