@@ -3,9 +3,9 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_end/challenge_end_screen_challenger/challenge_end_screen_challenger.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
+import '../../challenge_end/challenge_end_screen_challenger/challenge_end_screen_challenger.dart';
+import '../../../../../utils/constants.dart';
+import '../../../../../widgets/rounded_button.dart';
 
 import '../../../../../provider/challenge_provider.dart';
 import '../../../../../utils/colors.dart';

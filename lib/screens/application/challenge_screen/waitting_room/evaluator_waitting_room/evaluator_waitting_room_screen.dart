@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/provider/challenge_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/waitting_room/evaluator_waitting_room/components/evaluator_waitting_room_body.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/waitting_room/global_waitting_room/global_waitting_room_screen.dart';
+
+import '../../../../../provider/challenge_provider.dart';
+import '../global_waitting_room/global_waitting_room_screen.dart';
+import 'components/evaluator_waitting_room_body.dart';
 
 class EvaluatorWaittingRoomScreen extends StatelessWidget {
   const EvaluatorWaittingRoomScreen({Key? key}) : super(key: key);

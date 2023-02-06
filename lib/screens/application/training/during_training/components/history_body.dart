@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../../models/sets.dart';
+import '../../../../../models/training.dart';
 import '../../../../../models/workout.dart';
 import '../../../../../provider/training_provider.dart';
 import '../../../../../services/dates_services.dart';
 import '../../../../../services/training/training_services.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../widgets/horizontal_line.dart';
-
-import '../../../../../models/training.dart';
 
 class HistoryBody extends StatelessWidget {
   const HistoryBody({

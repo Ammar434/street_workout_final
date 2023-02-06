@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/provider/challenge_provider.dart';
 
+import '../../../../../provider/challenge_provider.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/page_transition/slide_right_transition.dart';

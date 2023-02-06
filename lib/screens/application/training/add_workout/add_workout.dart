@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
+
 import '../../../../models/workout.dart';
 import '../../../../provider/workout_provider.dart';
-import 'components/text_field_for_add_workout.dart';
 import '../../../../utils/constants.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/rounded_button.dart';
-import 'package:uuid/uuid.dart';
-
 import '../select_training/components/workout_category_list_builder.dart';
 import 'components/color_picker_for_add_workout.dart';
 import 'components/drop_down_button.dart';
+import 'components/text_field_for_add_workout.dart';
 import 'components/workout_type_selector.dart';
 
 List<String> workoutType = [

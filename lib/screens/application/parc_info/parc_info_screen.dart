@@ -5,18 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import '../../../provider/user_provider.dart';
-import 'components/parc_info_top_part.dart';
-import '../../../services/image_picker.dart';
-import '../../../widgets/snackbar.dart';
+
 import '../../../models/custom_user.dart';
 import '../../../models/parc.dart';
+import '../../../provider/user_provider.dart';
 import '../../../services/firestore_methods/parc_firestore_methods.dart';
 import '../../../services/firestore_methods/user_firestore_methods.dart';
-import 'components/parc_info_tab_display.dart';
-import 'components/pop_up_menu/pop_up_menu.dart';
+import '../../../services/image_picker.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/loading_widget.dart';
+import '../../../widgets/snackbar.dart';
+import 'components/parc_info_tab_display.dart';
+import 'components/parc_info_top_part.dart';
+import 'components/pop_up_menu/pop_up_menu.dart';
 
 class ParcInfoScreen extends StatefulWidget {
   const ParcInfoScreen({

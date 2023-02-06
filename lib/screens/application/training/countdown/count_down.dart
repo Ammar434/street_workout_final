@@ -2,10 +2,10 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'components/countdown_body.dart';
+
 import '../../../../utils/constants.dart';
 import '../../../../widgets/app_bar.dart';
-
+import 'components/countdown_body.dart';
 import 'components/countdown_button.dart';
 
 class CountDownScreen extends StatefulWidget {

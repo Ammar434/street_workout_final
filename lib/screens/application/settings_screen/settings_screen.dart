@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/screens/application/settings_screen/account_notification/account_notification_screen.dart';
+import 'account_notification/account_notification_screen.dart';
 
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';

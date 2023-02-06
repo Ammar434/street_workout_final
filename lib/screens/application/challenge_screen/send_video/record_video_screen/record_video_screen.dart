@@ -1,9 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/send_video/record_video_screen/video_page.dart';
-import 'package:street_workout_final/utils/colors.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+
+import '../../../../../utils/colors.dart';
+import '../../../../../widgets/app_bar.dart';
+import '../../../../../widgets/loading_widget.dart';
+import 'video_page.dart';
 
 class RecordVideoScreen extends StatefulWidget {
   const RecordVideoScreen({Key? key, required this.challengeId}) : super(key: key);

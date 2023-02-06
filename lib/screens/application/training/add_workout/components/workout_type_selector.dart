@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/text_style.dart';
 import '../../../../../widgets/horizontal_line.dart';
-
 import '../add_workout.dart';
 
 class WorkoutTypeSelector extends StatelessWidget {

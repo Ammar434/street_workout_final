@@ -2,12 +2,12 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/waitting_room/global_waitting_room/global_waitting_room_screen.dart';
 
 import '../../../../../../models/challenge.dart';
 import '../../../../../../models/custom_user.dart';
 import '../../../../../../provider/challenge_provider.dart';
 import '../../../../../../utils/constants.dart';
+import '../../global_waitting_room/global_waitting_room_screen.dart';
 
 class FirebaseAnimatedListWidget extends StatelessWidget {
   const FirebaseAnimatedListWidget({

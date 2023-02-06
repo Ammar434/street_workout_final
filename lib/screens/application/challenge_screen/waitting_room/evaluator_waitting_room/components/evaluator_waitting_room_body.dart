@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
 
 import '../../../../../../provider/challenge_provider.dart';
 import '../../../../../../utils/colors.dart';
 import '../../../../../../utils/constants.dart';
+import '../../../../../../widgets/app_bar.dart';
 import '../../../../../../widgets/loading_widget.dart';
 
 class EvaluatorWaittingRoomScreenBody extends StatefulWidget {

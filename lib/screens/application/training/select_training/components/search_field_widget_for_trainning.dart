@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../../models/workout.dart';
 import '../../../../../provider/workout_provider.dart';
 import '../../../../../services/search/search_methods.dart';
-import '../../../../../utils/constants.dart';
-
 import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
 import '../../during_training/during_training_screen.dart';
 
 class SearchFieldWidgetForTraining extends StatelessWidget {

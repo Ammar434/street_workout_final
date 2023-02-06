@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/utils/colors.dart';
 
+import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../widgets/horizontal_line.dart';
 

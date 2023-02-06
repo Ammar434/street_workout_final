@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../../utils/constants.dart';
 
 import '../../../../../utils/colors.dart';
+import '../../../../../utils/constants.dart';
 
 class UserPersonalInformationSettingsScreen extends StatelessWidget {
   const UserPersonalInformationSettingsScreen({

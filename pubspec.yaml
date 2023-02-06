@@ -74,6 +74,7 @@ dependencies:
   camera: ^0.10.3
   video_player: ^2.5.1
   flex_seed_scheme: ^1.2.2
+  slide_countdown: ^0.4.1
 
 dev_dependencies:
   flutter_test:

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../models/custom_user.dart';
 import '../../../../../models/parc.dart';
 import '../../../../../services/firestore_methods/parc_firestore_methods.dart';
-import '../../../../../widgets/horizontal_line.dart';
-
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
+import '../../../../../widgets/horizontal_line.dart';
 import 'components/column_favorite_parc.dart';
 
 class FavoriteParcChoose extends StatefulWidget {

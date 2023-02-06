@@ -1,10 +1,10 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/achievement_screen/add_new_achievement/components/list_tile_for_instruction.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/utils/theme.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
+import 'components/list_tile_for_instruction.dart';
+import '../../../../utils/constants.dart';
+import '../../../../utils/theme.dart';
+import '../../../../widgets/app_bar.dart';
+import '../../../../widgets/rounded_button.dart';
 
 import '../../../../services/firestore_methods/rewards_firestore_methods.dart';
 import '../../../../utils/colors.dart';
@@ -100,6 +100,7 @@ class AddNewAchievementState extends State<AddNewAchievement> {
                   content: "You submited your reward we will analyse it quickly and publish ASAP",
                   contentType: ContentType.success,
                 );
+                if (!mounted) return;
                 Navigator.pop(context);
               }
             }

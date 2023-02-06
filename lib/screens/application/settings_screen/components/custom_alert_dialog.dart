@@ -99,7 +99,11 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          LottieBuilder.network("https://assets9.lottiefiles.com/packages/lf20_j6fywzxe.json"),
+          LottieBuilder.network(
+            "https://assets9.lottiefiles.com/packages/lf20_j6fywzxe.json",
+            height: kPaddingValue * 15,
+            fit: BoxFit.cover,
+          ),
           const Text(
             "Delete your account",
             style: TextStyle(

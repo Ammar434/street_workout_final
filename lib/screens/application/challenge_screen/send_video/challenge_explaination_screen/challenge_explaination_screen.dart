@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/send_video/record_video_screen/record_video_screen.dart';
-import 'package:street_workout_final/widgets/rounded_button.dart';
 
 import '../../../../../models/rewards.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
+import '../../../../../widgets/rounded_button.dart';
+import '../record_video_screen/record_video_screen.dart';
 import 'components/build_image_and_id.dart';
 import 'components/build_instructions.dart';
 

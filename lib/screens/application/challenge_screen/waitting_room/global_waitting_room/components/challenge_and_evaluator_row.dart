@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/waitting_room/global_waitting_room/components/user_detail_column_widget.dart';
 
 import '../../../../../../models/challenge.dart';
 import '../../../../../../utils/constants.dart';
+import 'user_detail_column_widget.dart';
 
 class ChallengerAndEvaluatorRow extends StatelessWidget {
   const ChallengerAndEvaluatorRow({

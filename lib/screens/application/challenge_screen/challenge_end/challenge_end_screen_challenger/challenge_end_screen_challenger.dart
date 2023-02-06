@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/provider/challenge_provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_end/challenge_end_screen_challenger/components/body_challenge_failed.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_end/challenge_end_screen_challenger/components/body_challenge_succeeded.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import '../../../../../provider/challenge_provider.dart';
+import 'components/body_challenge_failed.dart';
+import 'components/body_challenge_succeeded.dart';
+import '../../../../../widgets/loading_widget.dart';
 
 class ChallengeEndChallengerScreen extends StatelessWidget {
   const ChallengeEndChallengerScreen({Key? key}) : super(key: key);

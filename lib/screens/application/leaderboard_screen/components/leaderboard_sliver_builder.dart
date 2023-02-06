@@ -11,15 +11,12 @@ import 'tile_leaderboard_row.dart';
 class LeaderboardSliverBuilder extends StatelessWidget {
   const LeaderboardSliverBuilder({
     Key? key,
-    required this.categorie,
   }) : super(key: key);
-
-  final String categorie;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Leaderboard>>(
-      future: LeaderboardFirestoreMethods().leaderboardList(categorie),
+      future: LeaderboardFirestoreMethods().leaderboardList(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Leaderboard> leaderboardList = snapshot.data!;

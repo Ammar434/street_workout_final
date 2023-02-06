@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';
-import 'package:street_workout_final/services/record_video/record_video_methods.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
-import 'package:street_workout_final/widgets/snackbar.dart';
+import '../../challenge_start/challenge_start_screen.dart';
+import '../../../../../services/record_video/record_video_methods.dart';
+import '../../../../../widgets/app_bar.dart';
+import '../../../../../widgets/loading_widget.dart';
+import '../../../../../widgets/snackbar.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPage extends StatefulWidget {

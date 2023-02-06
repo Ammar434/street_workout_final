@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../utils/constants.dart';
 
+import '../utils/constants.dart';
 import 'loading_widget.dart';
 
 showLoadingDialog(BuildContext context) {

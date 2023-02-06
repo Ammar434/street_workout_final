@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../../../../utils/constants.dart';
 import '../../../../widgets/loading_widget.dart';
-
 import '../../profile_screen/profile_screen.dart';
 
 class DrawerTopWidget extends StatelessWidget {

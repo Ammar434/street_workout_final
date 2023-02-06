@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../provider/training_provider.dart';
+
 import '../../../../models/custom_user.dart';
+import '../../../../provider/training_provider.dart';
 import '../../../../provider/user_provider.dart';
-import 'components/app_bar_for_trainning.dart';
-import 'components/date_select_builder.dart';
 import '../../../../utils/constants.dart';
 import '../../../../utils/text_style.dart';
+import 'components/app_bar_for_trainning.dart';
+import 'components/date_select_builder.dart';
 import 'components/no_training_found_widget.dart';
 import 'components/training_found_widget.dart';
 

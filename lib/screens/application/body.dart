@@ -40,17 +40,18 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: AppBar(
-        title: const Text("Street Workout Fighters"),
-        elevation: 0.0,
-        // backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {
-            z.toggle!();
-          },
-        ),
-      ),
+      appBar: (index != 2 && index != 1)
+          ? AppBar(
+              title: const Text("Street Workout Fighters"),
+              elevation: 0.0,
+              leading: IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  z.toggle!();
+                },
+              ),
+            )
+          : null,
       body: IndexedStack(
         index: index,
         children: const [

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/screens/application/favorite_parc/favorite_parc_empty_screen.dart';
+import 'package:street_workout_final/utils/constants.dart';
+import '../favorite_parc/favorite_parc_empty_screen.dart';
+import 'components/countdown.dart';
+import '../../../services/firestore_methods/leaderboard_firestore_methods.dart';
+import '../../../widgets/loading_widget.dart';
 
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
-import '../../../utils/colors.dart';
-import '../../../utils/constants.dart';
 import 'components/leaderboard_sliver_builder.dart';
 
 class LeaderboardScreen extends StatelessWidget {
@@ -20,47 +22,26 @@ class LeaderboardScreen extends StatelessWidget {
         displayButton: false,
       );
     }
-    return DefaultTabController(
-      length: 4,
-      child: Column(
-        children: [
-          TabBar(
-            indicatorColor: primaryColor,
-            indicator: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.circular(
-                kRadiusValue,
-              ),
-            ),
-            labelColor: Colors.white,
-            // unselectedLabelColor: Colors.black,
-            tabs: const [
-              Tab(text: "Day"),
-              Tab(text: 'Week'),
-              Tab(text: 'Month'),
-              Tab(text: 'Year'),
-            ],
-          ),
-          const Expanded(
-            child: TabBarView(
+
+    return FutureBuilder<Duration>(
+      future: LeaderboardFirestoreMethods().timeLeft(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return SafeArea(
+            child: Column(
               children: [
-                LeaderboardSliverBuilder(
-                  categorie: "day",
+                SizedBox(
+                  height: kPaddingValue * 5,
                 ),
-                LeaderboardSliverBuilder(
-                  categorie: "week",
-                ),
-                LeaderboardSliverBuilder(
-                  categorie: "month",
-                ),
-                LeaderboardSliverBuilder(
-                  categorie: "year",
-                ),
+                // const Text("Leaderboard"),
+                Countdown(duration: snapshot.data),
+                const Expanded(child: LeaderboardSliverBuilder()),
               ],
             ),
-          ),
-        ],
-      ),
+          );
+        }
+        return const LoadingWidget();
+      },
     );
   }
 }

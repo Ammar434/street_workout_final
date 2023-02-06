@@ -1,6 +1,6 @@
 import 'package:flex_seed_scheme/flex_seed_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/colors.dart';
+import 'colors.dart';
 
 final ColorScheme schemeDark = SeedColorScheme.fromSeeds(
   brightness: Brightness.dark,

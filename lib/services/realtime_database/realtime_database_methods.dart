@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+
 import '../../models/challenge.dart';
 import '../../models/custom_user.dart';
 import '../firestore_methods/user_firestore_methods.dart';

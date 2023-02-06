@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/send_video/self_record_select_challenge_screen/self_record_select_challenge_screen.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
 
 import '../../../../utils/constants.dart';
+import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/rounded_button.dart';
+import 'self_record_select_challenge_screen/self_record_select_challenge_screen.dart';
 
 class SendVideoScreen extends StatelessWidget {
   const SendVideoScreen({Key? key}) : super(key: key);

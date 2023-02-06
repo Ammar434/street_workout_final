@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../../../models/custom_user.dart';
 import '../../../../../../provider/user_provider.dart';
 import '../../../../../../utils/constants.dart';

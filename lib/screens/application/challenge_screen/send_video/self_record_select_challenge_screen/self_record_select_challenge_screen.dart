@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/send_video/challenge_explaination_screen/challenge_explaination_screen.dart';
-import 'package:street_workout_final/services/firestore_methods/rewards_firestore_methods.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
+import '../challenge_explaination_screen/challenge_explaination_screen.dart';
+import '../../../../../services/firestore_methods/rewards_firestore_methods.dart';
+import '../../../../../widgets/app_bar.dart';
 import '../../../../../models/custom_user.dart';
 import '../../../../../models/rewards.dart';
 import '../../../../../provider/user_provider.dart';

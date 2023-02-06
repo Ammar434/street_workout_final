@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../models/workout.dart';
 import '../../../../provider/workout_provider.dart';
-import '../add_workout/add_workout.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/constants.dart';
 import '../../../../utils/text_style.dart';
 import '../../../../widgets/app_bar.dart';
-
+import '../add_workout/add_workout.dart';
 import '../during_training/during_training_screen.dart';
 import 'components/dropdown_dialog.dart';
 

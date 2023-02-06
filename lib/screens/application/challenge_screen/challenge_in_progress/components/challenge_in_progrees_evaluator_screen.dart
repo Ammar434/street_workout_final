@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_end/challenge_end_screen_evaluator/challenge_end_screen_evaluator.dart';
-import 'package:street_workout_final/screens/application/challenge_screen/challenge_in_progress/components/selectable_row_emoji.dart';
-import 'package:street_workout_final/utils/colors.dart';
 
 import '../../../../../models/challenge.dart';
 import '../../../../../provider/challenge_provider.dart';
+import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../widgets/rounded_button.dart';
+import '../../challenge_end/challenge_end_screen_evaluator/challenge_end_screen_evaluator.dart';
 import '../../waitting_room/global_waitting_room/components/user_detail_column_widget.dart';
 import 'build_rating.dart';
+import 'selectable_row_emoji.dart';
 
 class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
   const ChallengeInProgressEvaluatorScreen({

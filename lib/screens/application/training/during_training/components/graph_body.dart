@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../models/training.dart';
 import '../../../../../models/workout.dart';
-import 'chart.dart';
 import '../../../../../services/training/training_services.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
-
+import 'chart.dart';
 import 'drop_down_for_graph_type.dart';
 
 class GraphBody extends StatefulWidget {

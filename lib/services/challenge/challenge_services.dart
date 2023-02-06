@@ -1,4 +1,4 @@
-import 'package:street_workout_final/services/geolocalisation/geolocalisation.dart';
+import '../geolocalisation/geolocalisation.dart';
 
 class ChallengeServices {
   Geolocalisation geolocalisation = Geolocalisation();

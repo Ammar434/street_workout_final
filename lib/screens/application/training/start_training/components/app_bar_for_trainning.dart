@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../select_training/select_trainning_screen.dart';
+
 import '../../../../../models/custom_user.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/text_style.dart';
 import '../../../../../widgets/solid_circle_icon.dart';
+import '../../select_training/select_trainning_screen.dart';
 
 class AppBarForTrainning extends StatelessWidget {
   String greetings() {

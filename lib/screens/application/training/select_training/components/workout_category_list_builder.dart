@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../../widgets/horizontal_line.dart';
 
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/text_style.dart';
+import '../../../../../widgets/horizontal_line.dart';
 import '../../select_exercice/select_exercice_screen.dart';
 
 List<String> categoryNames = [

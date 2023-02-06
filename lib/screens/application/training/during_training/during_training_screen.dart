@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../../models/workout.dart';
-import '../countdown/count_down.dart';
 import '../../../../utils/colors.dart';
 import '../../../../widgets/app_bar.dart';
-
+import '../countdown/count_down.dart';
 import 'components/graph_body.dart';
 import 'components/history_body.dart';
 import 'components/track_body.dart';

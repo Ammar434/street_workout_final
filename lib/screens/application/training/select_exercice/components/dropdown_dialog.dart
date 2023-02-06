@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../../../models/workout.dart';
 import '../../../../../provider/workout_provider.dart';
-import '../../add_workout/add_workout.dart';
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/constants.dart';
 import '../../../../../utils/text_style.dart';
 import '../../../../../widgets/solid_circle_icon.dart';
+import '../../add_workout/add_workout.dart';
 
 class DropdownDialog extends StatelessWidget {
   const DropdownDialog({

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/models/rewards.dart';
-import 'package:street_workout_final/services/firestore_methods/rewards_firestore_methods.dart';
-import 'package:street_workout_final/utils/constants.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
+import '../../../../../../models/rewards.dart';
+import '../../../../../../services/firestore_methods/rewards_firestore_methods.dart';
+import '../../../../../../utils/constants.dart';
+import '../../../../../../widgets/loading_widget.dart';
 
 class ChallengeDescription extends StatelessWidget {
   const ChallengeDescription({Key? key, required this.rewardId, required this.isChallenger}) : super(key: key);

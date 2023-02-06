@@ -2,12 +2,12 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:street_workout_final/screens/authentication/user_information_gathering/welcome_screen.dart';
-import 'package:street_workout_final/widgets/loading_widget.dart';
 
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/image_picker.dart';
+import '../../../widgets/loading_widget.dart';
 import '../../../widgets/snackbar.dart';
+import '../user_information_gathering/welcome_screen.dart';
 import 'components/register_screen_body.dart';
 
 class RegisterScreen extends StatefulWidget {

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
+
+import '../../../models/custom_user.dart';
 import '../../../models/rewards.dart';
-import 'profile_screen_body_top.dart';
 import '../../../services/firebase_storage/firebase_storage_methods.dart';
 import '../../../services/firestore_methods/rewards_firestore_methods.dart';
-import '../../../models/custom_user.dart';
 import '../../../services/firestore_methods/user_firestore_methods.dart';
+import '../../../widgets/app_bar.dart';
 import '../../../widgets/loading_widget.dart';
 import 'components/profile_screen_body_tab.dart';
+import 'profile_screen_body_top.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key, required this.userUid, this.userProvided}) : super(key: key);

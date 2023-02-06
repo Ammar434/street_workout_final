@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'components/search_field_widget_for_trainning.dart';
-import '../../../../utils/constants.dart';
 
+import '../../../../utils/constants.dart';
+import 'components/search_field_widget_for_trainning.dart';
 import 'components/workout_category_list_builder.dart';
 
 class SelectTrainningScreen extends StatelessWidget {
