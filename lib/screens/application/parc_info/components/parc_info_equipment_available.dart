@@ -23,7 +23,7 @@ class ParcInfoEquipmentAvailableRow extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 8.0),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).primaryColorLight,
               image: DecorationImage(
                   image: AssetImage(
                     listMaterialAvailable[index].image,
@@ -32,10 +32,6 @@ class ParcInfoEquipmentAvailableRow extends StatelessWidget {
             ),
             child: Tooltip(
               message: listMaterialAvailable[index].name,
-              // child: Image.asset(
-              //   listMaterialAvailable[index].image,
-              //   fit: BoxFit.fitHeight,
-              // ),
             ),
           );
         },

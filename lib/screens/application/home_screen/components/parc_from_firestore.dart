@@ -55,13 +55,14 @@ class _ParcFromFirestoreState extends State<ParcFromFirestore> {
           );
         }
         if (snapshot.data!.docs.isEmpty) {
-          return const SizedBox(
+          return SizedBox(
             height: 200,
             width: double.infinity,
             child: Center(
               child: Text(
                 "No parcs arround you for the moments, please check the See all section",
                 textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
           );

@@ -85,7 +85,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
 
     parcFirestoreMethods = ParcFirestoreMethods();
     userFirestoreMethods = UserFirestoreMethods();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabSelection);
     loadData();
   }
@@ -146,13 +146,17 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
       );
       await UserProvider().refreshUser();
 
-      isMyFavoriteParc = customUser.favoriteParc.contains(widget.parcId);
+      setState(() {
+        customUser = Provider.of<UserProvider>(context, listen: false).getUser!;
+        isMyFavoriteParc = customUser.favoriteParc.contains(widget.parcId);
+        debugPrint("isMyfav $isMyFavoriteParc");
+        Navigator.pop(context);
+      });
       listCustomUser = await parcFirestoreMethods.getAllAthleteOfParc(widget.parcId);
-      debugPrint("len ${listCustomUser.length}");
-      if (!mounted) {
-        return;
-      }
-      Navigator.pop(context);
+      // debugPrint("len ${listCustomUser.length}");
+      // if (!mounted) {
+      //   return;
+      // }
     } else {
       customShowSnackBar(
         title: "Error",
@@ -189,7 +193,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(kPaddingValue),
                 child: PopUpMenuWidget(
                   function1: addPhoto,
                   function2: () {
@@ -213,6 +217,9 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
                 // shrinkWrap: true,
                 children: [
                   ParcInfoTopPart(parc: parc, champion: champion),
+                  SizedBox(
+                    height: kPaddingValue * 2,
+                  ),
                   ParcInfoTabDisplay(
                     parc: parc,
                     tabController: _tabController,

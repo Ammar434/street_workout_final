@@ -20,10 +20,7 @@ class BuildAthleteTab extends StatelessWidget {
             padding: EdgeInsets.only(top: kPaddingValue),
             child: Text(
               listCustomUser.isEmpty ? "No user train in this parc for the moment" : "Total athlete who train in this park ${listCustomUser.length}",
-              style: TextStyle(
-                fontStyle: FontStyle.italic,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           );
         }
@@ -42,7 +39,7 @@ class BuildAthleteTab extends StatelessWidget {
               ),
               Text(
                 listCustomUser[index - 1].userName,
-                style: const TextStyle(fontSize: 15),
+                style: Theme.of(context).textTheme.bodySmall,
               )
             ],
           ),

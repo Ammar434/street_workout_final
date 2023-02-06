@@ -26,17 +26,19 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "Nearby park",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, ViewAllParcScreen.name);
                     },
-                    child: const Text(
+                    child: Text(
                       "See all",
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Colors.white70),
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            color: Theme.of(context).hintColor,
+                          ),
                     ),
                   ),
                 ],

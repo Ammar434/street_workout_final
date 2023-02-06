@@ -42,7 +42,10 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
       extendBody: true,
       appBar: (index != 2 && index != 1)
           ? AppBar(
-              title: const Text("Street Workout Fighters"),
+              title: Text(
+                "Street Workout Fighters",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
               elevation: 0.0,
               leading: IconButton(
                 icon: const Icon(Icons.menu),
@@ -63,8 +66,8 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.transparent,
-        buttonBackgroundColor: Theme.of(context).colorScheme.secondary,
-        color: Theme.of(context).colorScheme.secondary,
+        buttonBackgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        color: Theme.of(context).colorScheme.secondaryContainer,
         height: 56.sp,
         onTap: (value) {
           setState(

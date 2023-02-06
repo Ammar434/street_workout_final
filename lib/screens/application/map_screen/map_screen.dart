@@ -51,31 +51,37 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? const LoadingWidget()
-        : SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: double.infinity,
-            child: GoogleMap(
-              //For drag map
-              gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                Factory<OneSequenceGestureRecognizer>(
-                  () => EagerGestureRecognizer(),
-                ),
-              },
-              mapType: MapType.normal,
-              myLocationEnabled: true,
-              zoomControlsEnabled: false,
-              markers: markers,
-              onMapCreated: ((GoogleMapController controller) async {
-                String syle = await DefaultAssetBundle.of(context).loadString("assets/maps/map_template.json");
-                controller.setMapStyle(syle);
-              }),
-              initialCameraPosition: CameraPosition(
-                zoom: 14,
-                target: userCurrentPosition,
+    if (isLoading) {
+      return const LoadingWidget();
+    } else {
+      return SafeArea(
+        bottom: false,
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          child: GoogleMap(
+            //For drag map
+            gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+              Factory<OneSequenceGestureRecognizer>(
+                () => EagerGestureRecognizer(),
               ),
+            },
+            mapType: MapType.normal,
+            myLocationEnabled: true,
+            zoomControlsEnabled: false,
+            // liteModeEnabled: true,
+            markers: markers,
+            onMapCreated: ((GoogleMapController controller) async {
+              String syle = await DefaultAssetBundle.of(context).loadString("assets/maps/map_template.json");
+              controller.setMapStyle(syle);
+            }),
+            initialCameraPosition: CameraPosition(
+              zoom: 14,
+              target: userCurrentPosition,
             ),
-          );
+          ),
+        ),
+      );
+    }
   }
 }

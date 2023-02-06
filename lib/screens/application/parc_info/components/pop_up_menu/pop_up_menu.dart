@@ -26,36 +26,34 @@ class PopUpMenuWidget extends StatelessWidget {
     List<PopupMenuEntry> menuList = [
       PopupMenuItem(
         child: ListTile(
-          leading: FaIcon(
+          leading: const FaIcon(
             FontAwesomeIcons.camera,
-            color: Theme.of(context).colorScheme.secondary,
           ),
           title: Text(
             "Add photo",
-            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           onTap: function1,
         ),
       ),
       PopupMenuItem(
         child: ListTile(
-          leading: FaIcon(
+          leading: const FaIcon(
             FontAwesomeIcons.shareNodes,
-            color: Theme.of(context).colorScheme.secondary,
           ),
           title: Text(
             "Share now",
-            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           onTap: function2,
         ),
       ),
       PopupMenuItem(
         child: RoundedButton(
-          height: 100,
+          height: 50,
           onTap: function3,
-          text: isFavoriteParc ? "Remove from main parc" : "Add to main parc",
-          color: isFavoriteParc ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
+          text: isFavoriteParc ? "Remove from favorite" : "Add to favorite",
+          color: isFavoriteParc ? Theme.of(context).colorScheme.secondary : Theme.of(context).disabledColor,
           isLoading: isLoading,
         ),
       ),
@@ -68,7 +66,7 @@ class PopUpMenuWidget extends StatelessWidget {
       constraints: BoxConstraints(
         minWidth: MediaQuery.of(context).size.width / 1.45,
       ),
-      color: Theme.of(context).iconTheme.color,
+      color: Theme.of(context).cardColor,
       itemBuilder: (BuildContext context) {
         return menuList;
       },

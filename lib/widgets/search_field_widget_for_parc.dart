@@ -22,16 +22,14 @@ class SearchFieldWidgetForParc extends StatelessWidget {
       ),
       textFieldConfiguration: TextFieldConfiguration(
         autofocus: false,
-        style: DefaultTextStyle.of(context).style.copyWith(fontStyle: FontStyle.italic),
+        style: Theme.of(context).textTheme.bodySmall,
         decoration: InputDecoration(
-          hintText: "Find your parc by typing name or address",
+          hintText: "Type parc name or address",
           suffixIcon: const Icon(
             Icons.search,
-            // color: secondaryColor,
           ),
           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
           focusedBorder: OutlineInputBorder(
-            // borderSide:  BorderSide(color: tertiaryColor),
             borderRadius: BorderRadius.all(Radius.circular(kRadiusValue)),
           ),
         ),
@@ -41,7 +39,7 @@ class SearchFieldWidgetForParc extends StatelessWidget {
       },
       itemBuilder: (BuildContext context, Map<String, dynamic> suggestion) {
         return ListTile(
-          tileColor: Colors.transparent,
+          tileColor: Theme.of(context).cardColor,
           leading: SizedBox(
             height: double.maxFinite,
             width: kPaddingValue,
@@ -55,17 +53,12 @@ class SearchFieldWidgetForParc extends StatelessWidget {
           ),
           title: Text(
             suggestion['name'],
-            style: const TextStyle(
-              // color: backgroundColor,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           subtitle: Text(
             suggestion['completeAddress'],
-            style: const TextStyle(
-              // color: backgroundColor,
-              fontStyle: FontStyle.italic,
-            ),
+            style: Theme.of(context).textTheme.bodyMedium,
+            textAlign: TextAlign.justify,
           ),
         );
       },

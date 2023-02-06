@@ -24,6 +24,10 @@ class RoundedButton extends StatelessWidget {
   // final Color secondaryColor;
   @override
   Widget build(BuildContext context) {
+    Color? c = color;
+    if (color == null) {
+      c = Theme.of(context).colorScheme.secondaryContainer;
+    }
     return GestureDetector(
       onTap: !isLoading ? onTap : null,
       child: AnimatedContainer(
@@ -32,7 +36,7 @@ class RoundedButton extends StatelessWidget {
         height: height ?? kDefaultButtonSize,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
-          color: shouldAnimate ? Colors.green : Theme.of(context).colorScheme.secondaryContainer,
+          color: shouldAnimate ? Colors.green : c,
         ),
         duration: const Duration(milliseconds: 500),
         child: Center(
