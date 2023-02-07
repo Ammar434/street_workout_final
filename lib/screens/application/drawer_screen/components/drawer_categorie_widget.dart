@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../../widgets/snackbar.dart';
 import '../../achievement_screen/achievement_screen.dart';
-import '../../favorite_parc/favorite_parc_empty_screen.dart';
 import 'drawer_categorie_tile.dart';
 
 class DrawerCategorieWidget extends StatelessWidget {
   const DrawerCategorieWidget({
     Key? key,
+    required this.scaffoldKey,
   }) : super(key: key);
-
+  final GlobalKey<ScaffoldState> scaffoldKey;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,7 +26,8 @@ class DrawerCategorieWidget extends StatelessWidget {
           iconData: FontAwesomeIcons.gamepad,
           text: "Statistique",
           onTap: () {
-            Navigator.pushNamed(context, FavoriteParcEmptyScreen.name);
+            showSnackbarBuildLater(globalKey: scaffoldKey);
+            // Navigator.pushNamed(context, FavoriteParcEmptyScreen.name);
           },
         ),
       ],

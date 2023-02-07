@@ -47,11 +47,14 @@ class _DrawerBodyState extends State<DrawerBody> {
     loadData();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     CustomUser customUser = Provider.of<UserProvider>(context).getUser!;
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +71,9 @@ class _DrawerBodyState extends State<DrawerBody> {
             height: kPaddingValue,
           ),
           const HorizontalLine(),
-          const DrawerCategorieWidget(),
+          DrawerCategorieWidget(
+            scaffoldKey: _scaffoldKey,
+          ),
           const HorizontalLine(),
           const DrawerBottomWidget(),
           const HorizontalLine(),
