@@ -19,6 +19,8 @@ class UserDetailColumnItem extends StatelessWidget {
   final bool shouldAnimate;
   @override
   Widget build(BuildContext context) {
+    debugPrint("shouldANimate $shouldAnimate");
+
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -32,10 +34,19 @@ class UserDetailColumnItem extends StatelessWidget {
           ),
           AnimatedDefaultTextStyle(
             duration: const Duration(milliseconds: 500),
-            style: shouldAnimate ? Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.green) : Theme.of(context).textTheme.titleSmall!,
+            style: shouldAnimate
+                ? TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: fontSize,
+                    color: Colors.green,
+                  )
+                : TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: fontSize,
+                    // color: primaryColor,
+                  ),
             child: Text(
               userName,
-              style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
         ],

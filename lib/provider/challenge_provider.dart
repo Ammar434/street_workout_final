@@ -161,8 +161,9 @@ class ChallengeProvider extends ChangeNotifier {
       }
       await writeChallengeToRealtimeDatabase(false);
       await writeChallengeToRealtimeDatabase(true);
-
+      debugPrint("_challenge.isChallengerReady ${_challenge.isEvaluatorReady}");
       res = "Success";
+      notifyListeners();
     } catch (e) {
       res = e.toString();
     }

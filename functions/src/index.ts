@@ -6,26 +6,26 @@ const fieldValue = admin.firestore.FieldValue;
 
 admin.initializeApp();
 
-exports.testPurposeOnly = functions.https.onRequest((request, response) => {
-  const path = "leaderboard/leaderboard_document";
+// exports.testPurposeOnly = functions.https.onRequest((request, response) => {
+//   const path = "leaderboard/leaderboard_document";
 
-  const promise = admin.firestore().doc(path).get();
+//   const promise = admin.firestore().doc(path).get();
 
-  const promise2 = promise.then(async (snapshot) => {
-    const data = snapshot.data();
-    if (data) {
-      const a = await reverseGeocoding(10, 34);
-      console.log(a);
-      response.send("User added");
-    } else {
-      response.send("User not added");
-    }
-  });
-  promise2.catch((error) => {
-    console.log(error);
-    response.status(500).send(error);
-  });
-});
+//   const promise2 = promise.then(async (snapshot) => {
+//     const data = snapshot.data();
+//     if (data) {
+//       const a = await reverseGeocoding(10, 34);
+//       console.log(a);
+//       response.send("User added");
+//     } else {
+//       response.send("User not added");
+//     }
+//   });
+//   promise2.catch((error) => {
+//     console.log(error);
+//     response.status(500).send(error);
+//   });
+// });
 
 async function addAddressToInitialParc(parcId: string, address: string) {
   const document = admin.firestore().doc("parcs/" + parcId);
@@ -189,7 +189,7 @@ exports.addNewUserToLeaderboard = functions.firestore
 // // Une fonction qui trie leaderboard
 
 exports.sortLeaderboard = functions.pubsub
-  .schedule("every 130 minutes")
+  .schedule("every 60 minutes")
   .onRun(async (context) => {
     console.log("This will be run every 130 minutes!");
 
@@ -201,7 +201,12 @@ exports.sortLeaderboard = functions.pubsub
       let listOfAllUser = data.list;
 
       listOfAllUser = listOfAllUser.sort((a: any, b: any) => {
-        return b.userPoint - a.userPoint;
+        const userAPoint =
+          a.userPoint + a.numberOfEvaluation * 5 + a.numberOfContribution * 2;
+        const userBPoint =
+          b.userPoint + b.numberOfEvaluation * 5 + b.numberOfContribution * 2;
+
+        return userBPoint - userAPoint;
       });
       await admin.firestore().doc("leaderboard/leaderboard_document").set(
         {
@@ -216,11 +221,35 @@ exports.sortLeaderboard = functions.pubsub
     return null;
   });
 
-//Avoir le document quand isChallengeEnd finit pour les 2
+// Avoir le document quand isChallengeEnd finit pour les 2
 
 // Verifier si challenge success
-//Increment nb challenge evaluator
+// Increment nb challenge evaluator
 // increment nb challenge challenger et ajouter liste challenge si succes
+async function incrementUserPoint(userId: string, incrementOf: number) {
+  const document = admin.firestore().doc("users/" + userId);
+
+  return await document.update({
+    points: fieldValue.increment(incrementOf),
+  });
+}
+
+async function incrementUserEvaluation(userId: string, incrementOf: number) {
+  const document = admin.firestore().doc("users/" + userId);
+
+  return await document.update({
+    numberOfEvaluation: fieldValue.increment(incrementOf),
+  });
+}
+
+async function addRewardToUser(userId: string, reward: string) {
+  return await admin
+    .firestore()
+    .doc(`users/${userId}`)
+    .update({
+      rewards: fieldValue.arrayUnion(reward),
+    });
+}
 
 exports.simpleDbFunction = functions.database
   .ref("/{parcId}/evaluator/{evaluatorId}")
@@ -232,11 +261,28 @@ exports.simpleDbFunction = functions.database
     if (challengeEndChallenger != true && challengeEndEvaluator != true) {
       return null;
     }
-    const 
-    console.log("Challenge End Evaluator");
+    const executionRating = challengeData.executionRating;
+    const repetitionRating = challengeData.repetitionRating;
 
+    if (executionRating == -1 && repetitionRating == -1) {
+      return null;
+    }
+    // Increment evaluator contribution
+    const evaluatorId = challengeData.evaluatorUid;
+    await incrementUserEvaluation(evaluatorId, 1);
 
+    // Challenge is succeeded
+    if ((executionRating + repetitionRating) / 2 >= 3) {
+      const challengerId = challengeData.challengerUid;
+      const rewardId = challengeData.challengeId;
+      await incrementUserPoint(challengerId, 1);
 
+      await addRewardToUser(challengerId, rewardId);
+    }
+
+    await console.log("Challenge End Evaluator");
+
+    snap.after.ref.remove();
     return null;
 
     // if (context.authType === "ADMIN") {
