@@ -53,7 +53,7 @@ class PopUpMenuWidget extends StatelessWidget {
           height: 50,
           onTap: function3,
           text: isFavoriteParc ? "Remove from favorite" : "Add to favorite",
-          color: isFavoriteParc ? Theme.of(context).colorScheme.secondary : Theme.of(context).disabledColor,
+          color: isFavoriteParc ? Theme.of(context).colorScheme.secondaryContainer : Theme.of(context).disabledColor,
           isLoading: isLoading,
         ),
       ),

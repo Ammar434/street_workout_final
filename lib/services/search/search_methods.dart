@@ -23,7 +23,6 @@ class SearchMethods {
 
         parcName = parcName.toLowerCase();
         parcAddress = parcAddress.toLowerCase();
-
         if (parcName.contains(query) || parcAddress.contains(query)) {
           list.add(value);
         }
