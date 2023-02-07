@@ -22,14 +22,14 @@ class ParcEquipmentSelectableRow extends StatelessWidget {
             aspectRatio: 1,
             child: InkWell(
               borderRadius: BorderRadius.circular(kRadiusValue),
-              splashColor: Theme.of(context).colorScheme.secondary,
+              // splashColor: Theme.of(context).primaryColorLight,
               customBorder: const CircleBorder(),
               onTap: () => function(materialAvailableList[index]),
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: selectedIndex.contains(materialAvailableList[index]) ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
+                  color: selectedIndex.contains(materialAvailableList[index]) ? Theme.of(context).colorScheme.secondary : Theme.of(context).primaryColorLight,
                 ),
                 child: Image.asset(
                   materialAvailableList[index].image,

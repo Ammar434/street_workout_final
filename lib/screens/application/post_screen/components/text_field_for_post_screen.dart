@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 
-
 class TextFIeldForPostScreen extends StatelessWidget {
   const TextFIeldForPostScreen({
     Key? key,
@@ -14,9 +13,12 @@ class TextFIeldForPostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: textEditingControllerParcName,
-      style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 15),
+      style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: "Enter parc name",
+        hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: Theme.of(context).hintColor,
+            ),
         border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),

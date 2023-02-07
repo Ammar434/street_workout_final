@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
-import 'package:google_place/google_place.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../models/custom_user.dart';
@@ -11,7 +10,6 @@ import '../../models/material_available.dart';
 import '../../models/parc.dart';
 import '../../models/post_for_existant_parc.dart';
 import '../firebase_storage/firebase_storage_methods.dart';
-import '../geolocalisation/geolocalisation.dart';
 import 'user_firestore_methods.dart';
 
 class ParcFirestoreMethods {
@@ -23,15 +21,15 @@ class ParcFirestoreMethods {
   Future<String> uploadPost({
     required List listFile,
     required String parcName,
-    required String parcAddress,
     required List<MaterialAvailable> materialAvailable,
-    required String uid,
-    required placeId,
+    required String userId,
+    required latitude,
+    required longitude,
   }) async {
     GeoHasher geoHasher = GeoHasher();
     List<String> materialAvailableString = [];
     String res = "Some error occured";
-    if (materialAvailable.isEmpty && parcName.isEmpty && parcAddress.isEmpty && listFile.isEmpty) {
+    if (materialAvailable.isEmpty && parcName.isEmpty && (longitude == 0 && latitude == 0) && listFile.isEmpty) {
       return "Please complete all infos";
     }
     if (materialAvailable.isEmpty) {
@@ -40,35 +38,33 @@ class ParcFirestoreMethods {
     if (parcName.isEmpty) {
       return "Please enter parc name";
     }
-    if (parcAddress.isEmpty) {
-      return "Please enter parc address";
-    }
+
     if (listFile.isEmpty) {
       return "Please sent one photo";
     }
-    if (placeId == "") {
-      return "Please enter a valid place";
+    if ((longitude == 0 && latitude == 0)) {
+      return "Please enter a select a valid point on map";
     }
     try {
-      DetailsResult? detailsResult = await Geolocalisation().getDetailsResultFromGooglePlaceId(placeId);
+      // FetchPlaceResponse? detailsResult = await Geolocalisation().getDetailsResultFromGooglePlaceId(placeId);
       for (MaterialAvailable m in materialAvailable) {
         materialAvailableString.add(m.name);
       }
       String postId = _uuid.v1();
       String parcId = _uuid.v1();
 
-      GeoPoint geoPoint;
-      if (detailsResult != null) {
-        geoPoint = GeoPoint(
-          detailsResult.geometry!.location!.lat!,
-          detailsResult.geometry!.location!.lng!,
-        );
-      } else {
-        geoPoint = const GeoPoint(0, 0);
-      }
+      GeoPoint geoPoint = GeoPoint(latitude, longitude);
+      // if (detailsResult != null) {
+      //   geoPoint = GeoPoint(
+      //     detailsResult.place!.latLng!.lat,
+      //     detailsResult.place!.latLng!.lng,
+      //   );
+      // } else {
+      //   geoPoint = const GeoPoint(0, 0);
+      // }
 
       Parc post = Parc(
-        userUidWhoPublish: uid,
+        userUidWhoPublish: userId,
         postId: postId,
         parcId: parcId,
         datePublished: DateTime.now().toString(),
@@ -76,7 +72,8 @@ class ParcFirestoreMethods {
         materialAvailable: materialAvailableString,
         mainPhoto: '',
         name: parcName,
-        completeAddress: detailsResult != null ? detailsResult.formattedAddress! : parcAddress,
+        completeAddress: "",
+        // completeAddress: detailsResult != null ? detailsResult.place!.address! : parcAddress,
         geoPoint: geoPoint,
         userUidChampion: '',
         isPublished: false,
@@ -85,19 +82,19 @@ class ParcFirestoreMethods {
 
       await _firebaseFirestore.collection("parcs").doc(parcId).set(post.toJson());
 
-      await _firebaseFirestore.collection("datas").doc("all_parcs_references").update({
-        parcId: {
-          "completeAddress": parcAddress,
-          "name": parcName,
-          "id": parcId,
-          "geoPoint": geoPoint,
-        }
-      });
+      // await _firebaseFirestore.collection("datas").doc("all_parcs_references").update({
+      //   parcId: {
+      //     "completeAddress": parcAddress,
+      //     "name": parcName,
+      //     "id": parcId,
+      //     "geoPoint": geoPoint,
+      //   }
+      // });
       for (Uint8List file in listFile) {
         await uploadImageToAExistingParc(
           file: file,
           parcId: parcId,
-          userUidWhoPublish: uid,
+          userUidWhoPublish: userId,
         );
       }
 
@@ -107,7 +104,8 @@ class ParcFirestoreMethods {
           "mainPhoto": querySnapshot.docs[0].data()['postUrl'],
         },
       );
-      res = await _userFirestoreMethods.incrementUserContribution(listFile.length);
+      res = "Success";
+      // res = await _userFirestoreMethods.incrementUserContribution(listFile.length);
     } catch (e) {
       res = e.toString();
     }

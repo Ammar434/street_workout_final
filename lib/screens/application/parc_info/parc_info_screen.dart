@@ -111,7 +111,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
     });
 
     if (res == "success") {
-      await userFirestoreMethods.incrementUserContribution(1);
+      // await userFirestoreMethods.incrementUserContribution(1);
       customShowSnackBar(
         title: "Thank's",
         content: "Your content will appear soon",

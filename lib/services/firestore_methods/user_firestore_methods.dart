@@ -30,23 +30,23 @@ class UserFirestoreMethods {
     return user;
   }
 
-  Future<String> incrementUserContribution(int value) async {
-    String res = "Some error occured";
-    try {
-      await _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
-        {
-          "numberOfContribution": FieldValue.increment(value),
-        },
-      );
+  // Future<String> incrementUserContribution(int value) async {
+  //   String res = "Some error occured";
+  //   try {
+  //     await _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
+  //       {
+  //         "numberOfContribution": FieldValue.increment(value),
+  //       },
+  //     );
 
-      res = "success";
-    } catch (e) {
-      debugPrint(e.toString());
-      res = e.toString();
-    }
+  //     res = "success";
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //     res = e.toString();
+  //   }
 
-    return res;
-  }
+  //   return res;
+  // }
 
   Future<String> updateUserProfileImage(
     Uint8List file,

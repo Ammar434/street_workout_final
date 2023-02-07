@@ -5,10 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as google;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_place/google_place.dart';
 import 'package:http/http.dart' as http;
-
 import '../../models/parc.dart';
 import '../../utils/dev.dart';
 import '../firebase_storage/firebase_storage_methods.dart';
@@ -77,32 +76,33 @@ class Geolocalisation {
     return responseJason["features"][2]['text'].toString();
   }
 
-  Future<List<AutocompletePrediction>> autocompletQuery(String input) async {
-    List<AutocompletePrediction> list = [];
-    var googlePlace = GooglePlace(dotenv.env['googleMapKey']!);
-    if (input.isNotEmpty) {
-      var result = await googlePlace.autocomplete.get(input);
-      if (result != null && result.predictions != null) {
-        debugPrint(result.predictions!.toString());
+  // Future<List<AutocompletePrediction>> autocompletQuery(String input) async {
+  //   List<AutocompletePrediction> list = [];
+  //   var googlePlace = FlutterGooglePlacesSdk(dotenv.env['googleMapKey']!);
+  //   if (input.isNotEmpty) {
+  //     var result = await googlePlace.findAutocompletePredictions(input);
+  //     debugPrint(result.predictions.toString());
 
-        list = result.predictions!;
-      }
-    }
-    return list;
-  }
+  //     list = result.predictions;
+  //   }
+  //   return list;
+  // }
 
-  Future<DetailsResult?> getDetailsResultFromGooglePlaceId(String placeId) async {
-    var googlePlace = GooglePlace(dotenv.env['googleMapKey']!);
-    DetailsResult? detailsResult;
-    var result = await googlePlace.details.get(placeId);
-    if (result != null && result.result != null) {
-      detailsResult = result.result;
-      // debugPrint(detailsResult!.geometry!.location!.lat.toString());
-      // debugPrint(detailsResult.addressComponents.toString());
-      // debugPrint(detailsResult.formattedAddress.toString());
-    }
-    return detailsResult;
-  }
+  // Future<FetchPlaceResponse?> getDetailsResultFromGooglePlaceId(String placeId) async {
+  //   var googlePlace = FlutterGooglePlacesSdk(dotenv.env['googleMapKey']!);
+  //   FetchPlaceResponse? detailsResult;
+  //   FetchPlaceResponse result = await googlePlace.fetchPlace(placeId, fields: [
+  //     PlaceField.Address,
+  //     PlaceField.Location,
+  //   ]);
+  //   // if (result. != null) {
+  //   //   detailsResult = result.result;
+  //   //   // debugPrint(detailsResult!.geometry!.location!.lat.toString());
+  //   //   // debugPrint(detailsResult.addressComponents.toString());
+  //   //   // debugPrint(detailsResult.formattedAddress.toString());
+  //   // }
+  //   return result;
+  // }
 
   Future<Set<Marker>> getAllMarker(Function(String) onTap) async {
     Set<Marker> markers = {};
@@ -118,7 +118,7 @@ class Geolocalisation {
 
           Marker marker = Marker(
             markerId: MarkerId(value['id']),
-            position: LatLng(geoPoint.latitude, geoPoint.longitude),
+            position: google.LatLng(geoPoint.latitude, geoPoint.longitude),
             icon: bitmapDescriptor,
             infoWindow: InfoWindow(
               title: value['name'],

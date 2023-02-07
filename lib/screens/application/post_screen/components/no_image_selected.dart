@@ -15,20 +15,18 @@ class NoImageSelectedWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
+        children: [
           Icon(
             FontAwesomeIcons.circlePlus,
+            color: Theme.of(context).hintColor,
             // size: SizeConfig.heightMultiplier * 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(
             "Ajouter vos photos",
-            style: TextStyle(
-              // fontSize: SizeConfig.heightMultiplier * 2,
-              fontWeight: FontWeight.w600,
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
             textAlign: TextAlign.center,
           )
         ],

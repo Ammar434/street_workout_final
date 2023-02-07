@@ -1,22 +1,25 @@
-import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_place/google_place.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/models/custom_user.dart';
+import 'package:street_workout_final/services/firestore_methods/parc_firestore_methods.dart';
 
 import '../../../models/material_available.dart';
 import '../../../provider/user_provider.dart';
-import '../../../services/firestore_methods/parc_firestore_methods.dart';
+import '../../../services/geolocalisation/geolocalisation.dart';
 import '../../../services/image_picker.dart';
 import '../../../widgets/app_bar.dart';
+import '../../../widgets/loading_widget.dart';
 import '../../../widgets/rounded_button.dart';
 import 'components/add_photo.dart';
+import 'components/enter_parc_detail.dart';
 import 'components/parc_info_selectable_row.dart';
-import 'components/search_field_for_post_screen.dart';
-import 'components/text_field_for_post_screen.dart';
 
 List userSelectedImageList = [];
 
@@ -31,16 +34,32 @@ class _PostScreenState extends State<PostScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   late TextEditingController textEditingControllerParcName;
-  late TextEditingController textEditingControllerParcAddress;
   List<MaterialAvailable> selectedMaterial = [];
   bool isLoading = false;
-  String placeID = "";
+  late final Geolocalisation _geolocalisation;
+  late LatLng userCurrentPosition;
 
-  Future<void> publishPost({
-    required String parcName,
-    required String parcAddress,
-    required String uid,
-  }) async {
+  var lat = 0.0;
+  var long = 0.0;
+
+  GoogleMapController? mapController; //contrller for Google map
+  CameraPosition? cameraPosition;
+
+  void loadData() async {
+    setState(() {
+      isLoading = true;
+    });
+    _geolocalisation = Geolocalisation();
+
+    Position p = await _geolocalisation.determinePosition();
+    userCurrentPosition = LatLng(p.latitude, p.longitude);
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  Future<void> publishPost() async {
     String title = "";
     String content = "";
     ContentType contentType;
@@ -48,16 +67,20 @@ class _PostScreenState extends State<PostScreen> {
       isLoading = true;
     });
     try {
+      CustomUser currentUser = Provider.of<UserProvider>(context, listen: false).getUser!;
+
       String res = await ParcFirestoreMethods().uploadPost(
         listFile: userSelectedImageList,
-        parcName: parcName,
-        parcAddress: parcAddress,
+        parcName: textEditingControllerParcName.text,
         materialAvailable: selectedMaterial,
-        uid: uid,
-        placeId: placeID,
+        userId: currentUser.uid,
+        latitude: lat,
+        longitude: long,
       );
 
-      if (res == "success") {
+      debugPrint("res $res");
+
+      if (res == "Success") {
         title = "Posted";
         content = "Thank's! Your content will be appear soon";
         contentType = ContentType.success;
@@ -75,9 +98,10 @@ class _PostScreenState extends State<PostScreen> {
     setState(() {
       isLoading = false;
     });
+    lat = 0.0;
+    long = 0.0;
     userSelectedImageList = [];
     selectedMaterial = [];
-    textEditingControllerParcAddress.clear();
     textEditingControllerParcName.clear();
 
     customShowSnackBar(
@@ -104,32 +128,25 @@ class _PostScreenState extends State<PostScreen> {
     setState(() {});
   }
 
-  void functionForPrediction(AutocompletePrediction suggestion) {
-    textEditingControllerParcAddress.text = suggestion.description!;
-    placeID = suggestion.placeId!;
-  }
-
   @override
   void initState() {
     super.initState();
+    loadData();
+
     textEditingControllerParcName = TextEditingController();
-    textEditingControllerParcAddress = TextEditingController();
   }
 
   @override
   void dispose() {
     userSelectedImageList = [];
     selectedMaterial = [];
-    textEditingControllerParcAddress.clear();
     textEditingControllerParcName.clear();
     textEditingControllerParcName.dispose();
-    textEditingControllerParcAddress.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       key: _scaffoldKey,
       appBar: buildAppBar(context, "Add new parc"),
@@ -152,48 +169,19 @@ class _PostScreenState extends State<PostScreen> {
                 ),
                 EnterParcDetails(
                   textEditingControllerParcName: textEditingControllerParcName,
-                  textEditingControllerParcAddress: textEditingControllerParcAddress,
-                  functionForPrediction: functionForPrediction,
+                  // functionForPrediction: functionForPrediction,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: kPaddingValue),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "Material available",
-                            style: TextStyle(
-                              // fontSize: SizeConfig.heightMultiplier * 3,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          IconButton(
-                            icon: FaIcon(
-                              FontAwesomeIcons.solidCircleQuestion,
-                              size: kDefaultIconsSize / 1.5,
-                            ),
-                            onPressed: () {
-                              debugPrint("");
-                            },
-                          ),
-                        ],
-                      ),
-                      ParcEquipmentSelectableRow(
-                        function: addToSelectedIndexList,
-                        selectedIndex: selectedMaterial,
-                      )
-                    ],
-                  ),
+                SizedBox(
+                  height: kPaddingValue * 2,
+                ),
+                buildMap(context),
+                buildEquipmentSelect(context),
+                SizedBox(
+                  height: kPaddingValue * 2,
                 ),
                 RoundedButton(
                   onTap: () async {
-                    await publishPost(
-                      parcName: textEditingControllerParcName.text,
-                      parcAddress: textEditingControllerParcAddress.text,
-                      uid: userProvider.getUser!.uid,
-                    );
+                    await publishPost();
                   },
                   text: "Publish",
                   isLoading: isLoading,
@@ -205,56 +193,134 @@ class _PostScreenState extends State<PostScreen> {
       ),
     );
   }
-}
 
-class EnterParcDetails extends StatelessWidget {
-  const EnterParcDetails({
-    Key? key,
-    required this.textEditingControllerParcName,
-    required this.textEditingControllerParcAddress,
-    required this.functionForPrediction,
-  }) : super(key: key);
+  Container buildMap(BuildContext context) {
+    return Container(
+      height: 300,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(kRadiusValue),
+        color: Theme.of(context).cardColor,
+      ),
+      child: isLoading
+          ? const LoadingWidget()
+          : ClipRRect(
+              borderRadius: BorderRadius.circular(kRadiusValue),
+              child: Stack(
+                children: [
+                  GoogleMap(
+                    //For drag map
+                    gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                      Factory<OneSequenceGestureRecognizer>(
+                        () => EagerGestureRecognizer(),
+                      ),
+                    },
+                    mapType: MapType.hybrid,
+                    myLocationEnabled: false,
+                    zoomControlsEnabled: false,
+                    // liteModeEnabled: true,
+                    // markers: markers,
+                    onMapCreated: ((GoogleMapController controller) async {
+                      String syle = await DefaultAssetBundle.of(context).loadString("assets/maps/map_template.json");
+                      controller.setMapStyle(syle);
+                      setState(() {
+                        mapController = controller;
+                      });
+                    }),
+                    initialCameraPosition: CameraPosition(
+                      zoom: 16,
+                      target: userCurrentPosition,
+                    ),
+                    onCameraMove: (CameraPosition cp) {
+                      cameraPosition = cp; //when map is dragging
+                    },
+                    onCameraIdle: () async {
+                      lat = cameraPosition!.target.latitude;
+                      long = cameraPosition!.target.longitude;
+                      debugPrint("lat $lat $long");
+                    },
+                  ),
+                  Center(
+                    child: FaIcon(
+                      FontAwesomeIcons.locationDot,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+    );
+  }
 
-  final TextEditingController textEditingControllerParcName;
-  final TextEditingController textEditingControllerParcAddress;
-  final Function(AutocompletePrediction) functionForPrediction;
-  @override
-  Widget build(BuildContext context) {
+  Column buildEquipmentSelect(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: kPaddingValue,
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              "Enter parc informations",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+            Text(
+              "Material available",
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             IconButton(
               icon: FaIcon(
                 FontAwesomeIcons.solidCircleQuestion,
-                size: kDefaultIconsSize / 1.5,
+                size: kDefaultIconsSize,
+                color: Theme.of(context).hintColor,
               ),
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => Dialog(
+                    alignment: Alignment.center,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(kPaddingValue),
+                    ),
+                    elevation: 0,
+                    backgroundColor: Theme.of(context).cardColor,
+                    child: Container(
+                      key: const Key('1'),
+                      margin: EdgeInsets.all(kPaddingValue),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(kRadiusValue),
+                        boxShadow: const [
+                          BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Text(
+                            "If the park you add does not have a popular name, you have the honor of naming that park.",
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              "Close",
+                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: Theme.of(context).colorScheme.secondary,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
-        SizedBox(
-          height: kPaddingValue,
-        ),
-        TextFIeldForPostScreen(
-          textEditingControllerParcName: textEditingControllerParcName,
-        ),
-        SizedBox(
-          height: kPaddingValue,
-        ),
-        SearchFieldForPostScreen(
-          textEditingControllerParcAddress: textEditingControllerParcAddress,
-          function: functionForPrediction,
+        ParcEquipmentSelectableRow(
+          function: addToSelectedIndexList,
+          selectedIndex: selectedMaterial,
         ),
       ],
     );

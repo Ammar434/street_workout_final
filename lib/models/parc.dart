@@ -37,7 +37,6 @@ class Parc {
         "datePublished": datePublished,
         "athletesWhoTrainInThisParc": athletesWhoTrainInThisParc,
         "materialAvailable": materialAvailable,
-        "parcMainPhoto": mainPhoto,
         "geoPoint": geoPoint,
         "name": name,
         "completeAddress": completeAddress,

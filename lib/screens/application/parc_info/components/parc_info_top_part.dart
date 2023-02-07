@@ -34,20 +34,23 @@ class ParcInfoTopPart extends StatelessWidget {
         SizedBox(
           height: kSmallPaddingValue,
         ),
-        Row(
-          children: [
-            FaIcon(
-              FontAwesomeIcons.locationDot,
-              size: kDefaultIconsSize,
-            ),
-            SizedBox(
-              width: kPaddingValue,
-            ),
-            Text(
-              parc.completeAddress,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-          ],
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              FaIcon(
+                FontAwesomeIcons.locationDot,
+                size: kDefaultIconsSize,
+              ),
+              SizedBox(
+                width: kPaddingValue,
+              ),
+              Text(
+                parc.completeAddress,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ],
+          ),
         ),
         SizedBox(
           height: kPaddingValue * 2,
