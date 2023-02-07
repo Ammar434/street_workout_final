@@ -43,7 +43,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
       appBar: (index != 2 && index != 1)
           ? AppBar(
               title: Text(
-                "Street Fighters",
+                "Fit Fighters",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               elevation: 0.0,
