@@ -16,18 +16,14 @@ class ProfileScreenBodyTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle textStyle = const TextStyle(
-      fontWeight: FontWeight.bold,
-    );
     return Column(
       children: [
-        TabBar(
-          tabs: const [
+        const TabBar(
+          tabs: [
             Tab(text: 'Photos'),
             Tab(text: 'Rewards'),
             // Tab(text: 'Workout'),
           ],
-          indicatorColor: Theme.of(context).colorScheme.secondary,
         ),
         Expanded(
           child: TabBarView(
@@ -36,7 +32,7 @@ class ProfileScreenBodyTab extends StatelessWidget {
                   ? Center(
                       child: Text(
                         "No image upload yet",
-                        style: textStyle,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     )
                   : StaggeredGridView(
@@ -46,7 +42,7 @@ class ProfileScreenBodyTab extends StatelessWidget {
                   ? Center(
                       child: Text(
                         "No rewards gain yet",
-                        style: textStyle,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     )
                   : RewardGridView(listReward: listReward),

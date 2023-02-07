@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 
-
 class UserPersonalInformationSettingsScreen extends StatelessWidget {
   const UserPersonalInformationSettingsScreen({
     Key? key,
@@ -14,13 +13,9 @@ class UserPersonalInformationSettingsScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "USER PERSONAL INFORMATION",
-          style: TextStyle(
-            // color: Theme.of(context).colorScheme.secondary,
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         SizedBox(
           height: kPaddingValue,
@@ -28,7 +23,7 @@ class UserPersonalInformationSettingsScreen extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadiusValue),
-            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+            color: Theme.of(context).cardColor,
           ),
           padding: EdgeInsets.all(kPaddingValue),
           child: child,

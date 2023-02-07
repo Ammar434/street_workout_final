@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class CustomButtonForTrainingScreen extends StatelessWidget {
   const CustomButtonForTrainingScreen({
     Key? key,
@@ -25,7 +24,10 @@ class CustomButtonForTrainingScreen extends StatelessWidget {
         child: Column(
           children: [
             FaIcon(iconData),
-            Text(text),
+            Text(
+              text,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ],
         ),
       ),

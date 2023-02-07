@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../models/workout.dart';
 import '../../../../widgets/app_bar.dart';
 import '../countdown/count_down.dart';
-import 'components/graph_body.dart';
 import 'components/history_body.dart';
 import 'components/track_body.dart';
 
@@ -61,13 +60,12 @@ class _DuringTrainingScreenState extends State<DuringTrainingScreen> {
           length: 3,
           child: Column(
             children: [
-              TabBar(
-                tabs: const [
+              const TabBar(
+                tabs: [
                   Tab(text: 'Track'),
                   Tab(text: 'History'),
                   Tab(text: 'Graph'),
                 ],
-                indicatorColor: Theme.of(context).colorScheme.secondary,
               ),
               Expanded(
                 child: TabBarView(
@@ -78,9 +76,12 @@ class _DuringTrainingScreenState extends State<DuringTrainingScreen> {
                     HistoryBody(
                       workout: widget.workout,
                     ),
-                    GraphBody(
-                      workout: widget.workout,
-                    ),
+                    const Center(
+                      child: Text("This part will be added on the next release"),
+                    )
+                    // GraphBody(
+                    //   workout: widget.workout,
+                    // ),
                   ],
                 ),
               ),

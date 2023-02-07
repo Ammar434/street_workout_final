@@ -38,8 +38,8 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Theme.of(context).colorScheme.secondary,
-                  Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.secondaryContainer,
+                  Theme.of(context).colorScheme.tertiaryContainer,
                   Colors.transparent,
                 ],
               ),
@@ -57,10 +57,7 @@ class ChallengeInProgressChallengerScreen extends StatelessWidget {
                   Text(
                     'You re being evaluated now, do your best champion but always remmenber there is no honor and no progress in cheating. ',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   SizedBox(
                     height: kPaddingValue * 5,

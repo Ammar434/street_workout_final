@@ -27,17 +27,11 @@ class BodyForChallengeSucceeded extends StatelessWidget {
         ),
         Text(
           "Congrats ${currentUser.userName}!",
-          style: TextStyle(
-            fontSize: kDefaultTitleSize,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         Text(
           "You're succedeed the challenge !",
-          style: TextStyle(
-            fontSize: kDefaultTitleSize,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         SizedBox(
           height: kPaddingValue,
@@ -45,11 +39,7 @@ class BodyForChallengeSucceeded extends StatelessWidget {
         Text(
           "That's your ${currentUser.rewards.length + 1} challenge. Keep going you're a beast",
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: kDefaultTitleSize * 0.6,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
-          ),
+          style: Theme.of(context).textTheme.titleSmall,
         )
       ],
     );

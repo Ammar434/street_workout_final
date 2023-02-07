@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ammar434.streetWorkoutFighter.street_workout_final">
+    package="com.ammar434.streetWorkoutFighter.fit_fighter">
 
     <application
         android:name="${applicationName}"
         android:roundIcon="@mipmap/round_launcher"
         android:icon="@mipmap/ic_launcher"
-        android:label="street_workout_final">
+        android:label="Fit Fighter">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

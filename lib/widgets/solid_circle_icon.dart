@@ -9,7 +9,7 @@ class SolidCircleIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: iconSize * 1,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).splashColor,
       child: FaIcon(
         iconData,
         size: iconSize,

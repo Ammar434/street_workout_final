@@ -89,7 +89,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
       key: const Key('1'),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(kPaddingValue),
         boxShadow: const [
           BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
@@ -103,27 +103,20 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
             height: kPaddingValue * 15,
             fit: BoxFit.cover,
           ),
-          const Text(
+          Text(
             "Delete your account",
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
-              // color: backgroundColor,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-          const SizedBox(
-            height: 15,
+          SizedBox(
+            height: kPaddingValue,
           ),
-          const Text(
+          Text(
             "This operation is irreversible",
-            style: TextStyle(
-              fontSize: 14,
-              // color: backgroundColor,
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
-            height: 22,
+          SizedBox(
+            height: kPaddingValue,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -132,13 +125,11 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text(
+                child: Text(
                   "Cancel",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    // color: backgroundColor,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
               TextButton(
@@ -148,13 +139,12 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
                   });
                   // Navigator.of(context).pop();
                 },
-                child: const Text(
+                child: Text(
                   "Confirm",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
             ],
@@ -169,7 +159,7 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
       key: const Key('2'),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(kPaddingValue),
         boxShadow: const [
           BoxShadow(color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
@@ -180,13 +170,9 @@ class CustomDialogBoxState extends State<CustomDialogBox> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Text(
+            Text(
               "Type your password",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w600,
-                // color: backgroundColor,
-              ),
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(
               height: kPaddingValue,

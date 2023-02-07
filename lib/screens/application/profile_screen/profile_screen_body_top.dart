@@ -17,13 +17,11 @@ class ProfileScreenBodyTop extends StatelessWidget {
     return SliverList(
       delegate: SliverChildListDelegate(
         [
-          Container(
-            width: double.infinity,
-            height: 250.sp,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(user.profileImage),
-                fit: BoxFit.contain,
+          SizedBox(
+            height: 200.sp,
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                user.profileImage,
               ),
             ),
           ),
@@ -33,7 +31,6 @@ class ProfileScreenBodyTop extends StatelessWidget {
           UserInformationDisplay(
             name: user.userName,
             favoriteParc: "",
-            // favoriteParc: user.favoriteParc.isEmpty ? "The user's favorite park has not been filled in" : user.favoriteParc[0],
             userContribution: user.numberOfContribution,
             userTrainingPoint: user.points,
             userEvaluation: user.numberOfEvaluation,

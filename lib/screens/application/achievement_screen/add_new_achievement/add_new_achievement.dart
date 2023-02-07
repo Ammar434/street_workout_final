@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
+import '../../../../services/firestore_methods/rewards_firestore_methods.dart';
 import 'components/list_tile_for_instruction.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/rounded_button.dart';
 
-import '../../../../services/firestore_methods/rewards_firestore_methods.dart';
 import 'components/selectable_image.dart';
 
 final List<String> _listRewardCatgory = [
   "Mental",
   "Others",
   "Social",
-  "Strengh",
+  "Strength",
 ];
 
 class AddNewAchievement extends StatefulWidget {
@@ -69,15 +69,11 @@ class AddNewAchievementState extends State<AddNewAchievement> {
         onStepContinue: () async {
           if (currentStep == 0) {
             setState(() => currentStep++);
-          }
-          if (currentStep == 1 && rewardName != "") {
+          } else if (currentStep == 1 && rewardName != "") {
             setState(() => currentStep++);
-          }
-          if (currentStep == 2 && listInstruction.isNotEmpty) {
+          } else if (currentStep == 2 && listInstruction.isNotEmpty) {
             setState(() => currentStep++);
-          }
-
-          if (currentStep == 3) {
+          } else {
             String path = "assets/images/achievements/asset_$_selectedImageIndex.png";
 
             String res = await RewardsFirestoreMethods().addRewards(
@@ -98,6 +94,31 @@ class AddNewAchievementState extends State<AddNewAchievement> {
               Navigator.pop(context);
             }
           }
+
+          // if (currentStep == 3) {
+          //   setState(() => currentStep++);
+          // }
+          // if (currentStep == 4) {
+          //   String path = "assets/images/achievements/asset_$_selectedImageIndex.png";
+
+          //   String res = await RewardsFirestoreMethods().addRewards(
+          //     rewardName,
+          //     selectedReward,
+          //     path,
+          //     listInstruction,
+          //   );
+
+          //   if (res == "Success") {
+          //     customShowSnackBar(
+          //       globalKey: _scaffoldKey,
+          //       title: "Success",
+          //       content: "You submited your reward we will analyse it quickly and publish ASAP",
+          //       contentType: ContentType.success,
+          //     );
+          //     if (!mounted) return;
+          //     Navigator.pop(context);
+          //   }
+          // }
         },
         onStepCancel: () {
           if (currentStep != 0) {
@@ -141,7 +162,10 @@ class AddNewAchievementState extends State<AddNewAchievement> {
   Step buildStep3() {
     return Step(
       isActive: currentStep >= 2,
-      title: const Text("Add instructions"),
+      title: Text(
+        "Add instructions",
+        style: Theme.of(context).textTheme.titleSmall,
+      ),
       content: Column(
         children: [
           SizedBox(
@@ -197,7 +221,10 @@ class AddNewAchievementState extends State<AddNewAchievement> {
   Step buildStep2() {
     return Step(
       isActive: currentStep >= 1,
-      title: const Text("Choose reward name"),
+      title: Text(
+        "Choose reward name",
+        style: Theme.of(context).textTheme.titleSmall,
+      ),
       content: TextField(
         maxLength: 30,
         decoration: InputDecoration(
@@ -215,29 +242,29 @@ class AddNewAchievementState extends State<AddNewAchievement> {
   Step buildStep1() {
     return Step(
       isActive: currentStep >= 0,
-      title: const Text('Select reward category'),
-      content: DefaultTextStyle(
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.secondary,
-          fontSize: 22.0,
-        ),
-        child: Column(
-          children: List.generate(
-            _listRewardCatgory.length,
-            (index) {
-              return RadioListTile(
-                title: Text(_listRewardCatgory[index]),
-                value: _listRewardCatgory[index],
-                groupValue: selectedReward,
-                activeColor: Theme.of(context).colorScheme.secondary,
-                onChanged: (value) {
-                  setState(() {
-                    selectedReward = value.toString();
-                  });
-                },
-              );
-            },
-          ),
+      title: Text(
+        'Select reward category',
+        style: Theme.of(context).textTheme.titleSmall,
+      ),
+      content: Column(
+        children: List.generate(
+          _listRewardCatgory.length,
+          (index) {
+            return RadioListTile(
+              title: Text(
+                _listRewardCatgory[index],
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              value: _listRewardCatgory[index],
+              groupValue: selectedReward,
+              activeColor: Theme.of(context).colorScheme.secondary,
+              onChanged: (value) {
+                setState(() {
+                  selectedReward = value.toString();
+                });
+              },
+            );
+          },
         ),
       ),
     );

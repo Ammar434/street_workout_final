@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/widgets/app_bar.dart';
 
 class AccountNotificationScreen extends StatelessWidget {
   const AccountNotificationScreen({Key? key}) : super(key: key);
@@ -8,6 +9,7 @@ class AccountNotificationScreen extends StatelessWidget {
     bool isSwitch = false;
     return SafeArea(
       child: Scaffold(
+        appBar: buildAppBar(context, ""),
         body: Column(
           children: [
             Row(
@@ -19,7 +21,10 @@ class AccountNotificationScreen extends StatelessWidget {
                     isSwitch = v;
                   },
                 ),
-                const Text("Receive our weekly mail to enhance your trainings"),
+                const FittedBox(
+                    child: Text(
+                  "Receive our weekly mail",
+                )),
               ],
             )
           ],

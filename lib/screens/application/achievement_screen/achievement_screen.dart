@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:street_workout_final/widgets/app_bar.dart';
 
 import '../../../models/rewards.dart';
 import '../../../services/firestore_methods/rewards_firestore_methods.dart';
@@ -55,20 +55,7 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: Center(
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: FaIcon(
-                FontAwesomeIcons.chevronLeft,
-                size: kDefaultIconAppBarSize,
-              ),
-            ),
-          ),
-          title: const Text("Achievements"),
-        ),
+        appBar: buildAppBar(context, "Rewards"),
         body: FutureBuilder(
           future: RewardsFirestoreMethods().getRewardsSnapshot(),
           builder: (context, AsyncSnapshot<List<RewardsCategory>> list) {
@@ -88,16 +75,7 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
                 children: [
                   TabBar(
                     controller: tabController,
-                    indicatorColor: Theme.of(context).colorScheme.secondary,
                     indicatorSize: TabBarIndicatorSize.tab,
-                    indicator: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(
-                        kRadiusValue,
-                      ),
-                    ),
-                    labelColor: Colors.white,
-                    labelStyle: const TextStyle(fontWeight: FontWeight.bold),
                     onTap: (int index) {
                       scrollController.animateTo(
                         list.data!.elementAt(index).offsetFrom,
@@ -112,6 +90,9 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: kPaddingValue,
+                  ),
                   Expanded(
                     child: ListView.builder(
                       itemCount: list.data!.length,
@@ -120,17 +101,11 @@ class _AchievementScreenState extends State<AchievementScreen> with SingleTicker
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SizedBox(
-                                height: categoryHeight,
-                                child: Text(
-                                  list.data![index].name,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: kDefaultTitleSize * 0.75,
-                                  ),
-                                ),
+                            SizedBox(
+                              height: categoryHeight,
+                              child: Text(
+                                list.data![index].name,
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ),
                             ...List.generate(

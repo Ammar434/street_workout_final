@@ -22,19 +22,13 @@ class SendVideoScreen extends StatelessWidget {
                 "assets/lotties/empty.json",
               ),
             ),
-            const Text(
+            Text(
               "No one to evaluate you?",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-            const Text(
+            Text(
               "Don't worry you can record yourself we will evaluate your performance as soon as possible",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
+              style: Theme.of(context).textTheme.titleSmall,
               textAlign: TextAlign.center,
             ),
             SizedBox(

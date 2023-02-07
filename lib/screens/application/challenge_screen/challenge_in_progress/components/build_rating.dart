@@ -3,7 +3,6 @@ import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class BuildRating extends StatelessWidget {
   const BuildRating({
     super.key,
@@ -24,7 +23,7 @@ class BuildRating extends StatelessWidget {
           const HorizontalLine(),
           Text(
             "$challengerName managed to do the number of repetitions indicated?",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.sp),
+            style: Theme.of(context).textTheme.titleSmall,
             textAlign: TextAlign.center,
           ),
           Center(
@@ -44,7 +43,7 @@ class BuildRating extends StatelessWidget {
           const HorizontalLine(),
           Text(
             "In your opinion how was the global form of the mouvement",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.sp),
+            style: Theme.of(context).textTheme.titleSmall,
             textAlign: TextAlign.center,
           ),
           SizedBox(

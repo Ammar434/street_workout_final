@@ -39,8 +39,14 @@ class HistoryBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(date),
+              Text(
+                date,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
               const HorizontalLine(),
+              SizedBox(
+                height: kPaddingValue,
+              ),
               ...List.generate(
                 listSets.length,
                 (index2) => Row(
@@ -52,6 +58,7 @@ class HistoryBody extends StatelessWidget {
                       child: Text(
                         "${listSets[index2].weight} kgs",
                         textAlign: TextAlign.right,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ),
                     SizedBox(
@@ -59,6 +66,7 @@ class HistoryBody extends StatelessWidget {
                       child: Text(
                         "${listSets[index2].numberOfRep} reps",
                         textAlign: TextAlign.right,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ),
                   ],

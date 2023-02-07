@@ -49,7 +49,7 @@ class DrawerTopWidget extends StatelessWidget {
                 children: [
                   Text(
                     userName,
-                    style: const TextStyle(fontWeight: FontWeight.w900),
+                    style: Theme.of(context).textTheme.titleSmall,
                     maxLines: 2,
                   ),
                   Row(
@@ -63,6 +63,7 @@ class DrawerTopWidget extends StatelessWidget {
                       ),
                       Text(
                         userCity,
+                        style: Theme.of(context).textTheme.titleSmall,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],

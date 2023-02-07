@@ -130,11 +130,7 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
             },
             child: Text(
               flag ? "Stop" : "Retry",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: kDefaultTitleSize * 0.75,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
           SizedBox(
@@ -149,13 +145,13 @@ class _ChallengerWaittinRoomScreenState extends State<ChallengerWaittinRoomScree
     if (flag) {
       return const ChallengeIsStartWidget();
     } else {
-      return Text(
-        "No evaluator arround you for the moment. Please retry or send us your video",
-        textAlign: TextAlign.center,
-        key: const Key("2"),
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: kDefaultTitleSize * 0.75,
+      return Padding(
+        padding: EdgeInsets.all(kPaddingValue),
+        child: Text(
+          "No evaluator arround you for the moment. Please retry or send us your video",
+          textAlign: TextAlign.center,
+          key: const Key("2"),
+          style: Theme.of(context).textTheme.titleSmall,
         ),
       );
     }

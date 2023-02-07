@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../../models/rewards.dart';
 
@@ -20,12 +19,9 @@ class BuildInstruction extends StatelessWidget {
           SizedBox(
             height: kPaddingValue * 5,
           ),
-          const Text(
+          Text(
             'What you have to do:',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           SizedBox(
             height: kPaddingValue,
@@ -33,8 +29,11 @@ class BuildInstruction extends StatelessWidget {
           ...List.generate(
             reward.description.length,
             (index) => ListTile(
-              leading: const FaIcon(FontAwesomeIcons.solidCircle),
-              title: Text(reward.description[index]),
+              leading: const Icon(Icons.circle_rounded),
+              title: Text(
+                reward.description[index],
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
             ),
           ),
           SizedBox(

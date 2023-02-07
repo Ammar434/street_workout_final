@@ -18,8 +18,11 @@ class StartTrainingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomUser currentUser = Provider.of<UserProvider>(context).getUser!;
     TrainingProvider trainingProvider = Provider.of<TrainingProvider>(context);
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+
     return SafeArea(
       child: Scaffold(
+        key: scaffoldKey,
         body: Padding(
           padding: EdgeInsets.all(kPaddingValue),
           child: Column(
@@ -30,13 +33,9 @@ class StartTrainingScreen extends StatelessWidget {
               SizedBox(
                 height: kPaddingValue * 2,
               ),
-              const Text(
+              Text(
                 "Ready to train?",
-                style: TextStyle(
-                  fontSize: 30,
-                  letterSpacing: 0.1,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               SizedBox(
                 height: kPaddingValue * 1,
@@ -45,11 +44,15 @@ class StartTrainingScreen extends StatelessWidget {
               SizedBox(
                 height: kPaddingValue * 2,
               ),
-              Text("Your workout", style: Theme.of(context).textTheme.bodyLarge),
+              Text("Your workout", style: Theme.of(context).textTheme.titleMedium),
               SizedBox(
                 height: kSmallPaddingValue,
               ),
-              trainingProvider.getTrainingOfTheDay() == null ? const NoTrainingFoundWidget() : const TrainingFoundWidget(),
+              trainingProvider.getTrainingOfTheDay() == null
+                  ? NoTrainingFoundWidget(
+                      scaffoldKey: scaffoldKey,
+                    )
+                  : const TrainingFoundWidget(),
             ],
           ),
         ),

@@ -31,8 +31,8 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Theme.of(context).colorScheme.secondary,
-                Theme.of(context).colorScheme.secondary,
+                Theme.of(context).colorScheme.secondaryContainer,
+                Theme.of(context).colorScheme.tertiaryContainer,
                 Colors.transparent,
               ],
             ),
@@ -45,7 +45,6 @@ class ChallengeInProgressEvaluatorScreen extends StatelessWidget {
                   imageUrl: challenge.evaluatorImageUrl,
                   userName: challenge.evaluatorName,
                   imageRadius: kRadiusValueImageProfile,
-                  fontSize: 18.sp,
                   shouldAnimate: false,
                 ),
                 SizedBox(

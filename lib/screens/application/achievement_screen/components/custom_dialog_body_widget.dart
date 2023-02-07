@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 import 'package:lottie/lottie.dart';
 
-import 'alert_dialog_button_widget.dart';
-
 class CustomDialogBodyWidget extends StatelessWidget {
   const CustomDialogBodyWidget({
     Key? key,
@@ -19,7 +17,7 @@ class CustomDialogBodyWidget extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.5,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadiusValue),
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).cardColor,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -27,37 +25,27 @@ class CustomDialogBodyWidget extends StatelessWidget {
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     // Spacer(),
-                    CircleAvatar(
-                      backgroundColor: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
-                      radius: 80,
-                      child: Lottie.network("https://assets7.lottiefiles.com/packages/lf20_touohxv0.json", repeat: false),
+                    Lottie.network(
+                      "https://assets7.lottiefiles.com/packages/lf20_touohxv0.json",
+                      repeat: false,
+                      height: kPaddingValue * 15,
+                      fit: BoxFit.cover,
                     ),
                     SizedBox(
                       height: kPaddingValue,
                     ),
+                    Text("Congrats!", style: Theme.of(context).textTheme.titleMedium),
                     Text(
-                      "Congrats!",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Text(
-                      "You just Unlocked New Level",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontSize: 16,
-                      ),
+                      "You already have this reward",
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ],
                 ),
               ),
               //   Spacer(),
-              const AlertDialogButtonWidget(),
             ],
           ),
         ),

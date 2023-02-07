@@ -7,8 +7,9 @@ import 'cutom_button_for_trainning_screen.dart';
 class NoTrainingFoundWidget extends StatelessWidget {
   const NoTrainingFoundWidget({
     Key? key,
+    required this.scaffoldKey,
   }) : super(key: key);
-
+  final GlobalKey<ScaffoldState> scaffoldKey;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -34,12 +35,16 @@ class NoTrainingFoundWidget extends StatelessWidget {
               CustomButtonForTrainingScreen(
                 iconData: FontAwesomeIcons.copy,
                 text: "Copy previous workout",
-                onTap: () {},
+                onTap: () {
+                  showSnackbarBuildLater(globalKey: scaffoldKey);
+                },
               ),
               CustomButtonForTrainingScreen(
                 iconData: FontAwesomeIcons.solidCopy,
                 text: "Copy someone workout",
                 onTap: () {
+                  showSnackbarBuildLater(globalKey: scaffoldKey);
+
                   // print(trainingProvider.listTrainingFromProvider.length);
                 },
               ),

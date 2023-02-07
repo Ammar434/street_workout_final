@@ -34,7 +34,10 @@ class Leaderboard {
   static Leaderboard leaderboardFromSnapshot(Map<String, dynamic> snapshot) {
     // var snapshot = documentSnapshot.data() as Map<String, dynamic>;
     return Leaderboard(
-      userId: snapshot['userId'], userName: snapshot['userName'], userProfileImage: snapshot['userProfileImage'], userPoint: snapshot['userPoint'],
+      userId: snapshot['userId'],
+      userName: snapshot['userName'],
+      userProfileImage: snapshot['userProfileImage'],
+      userPoint: snapshot['userPoint'],
       // userPointDay: snapshot['userPointDay'],
       // userPointWeek: snapshot['userPointWeek'],
       // userPointMonth: snapshot['userPointMonth'],

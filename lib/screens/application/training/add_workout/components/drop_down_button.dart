@@ -14,13 +14,12 @@ class DropdownButtonWorkout extends StatelessWidget {
       height: 55.sp,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary, //background color of dropdown button
+          color: Theme.of(context).cardColor, //background color of dropdown button
           border: Border.all(color: const Color(0xFF62656f), width: 1), //border of dropdown button
           borderRadius: BorderRadius.circular(kRadiusValue), //border raiuds of dropdown button
         ),
         child: DropdownButton<String>(
           value: dropdownValue,
-          dropdownColor: Theme.of(context).colorScheme.secondary,
           iconSize: kDefaultIconAppBarSize,
           icon: Padding(
             padding: EdgeInsets.only(right: kPaddingValue),
@@ -28,7 +27,7 @@ class DropdownButtonWorkout extends StatelessWidget {
               FontAwesomeIcons.chevronDown,
             ),
           ),
-          style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 15),
+          style: Theme.of(context).textTheme.bodyMedium,
           isExpanded: true,
           underline: const SizedBox(),
           onChanged: function,

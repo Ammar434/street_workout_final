@@ -8,6 +8,7 @@ class LeaderboardFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final String _collectionPath = "leaderboard";
   final String _documentPath = "leaderboard_document";
+
   // Future<void> addLeadearboard(CustomUser user) async {
   //   Leaderboard leaderboard = Leaderboard(
   //     userId: user.uid,
@@ -46,7 +47,7 @@ class LeaderboardFirestoreMethods {
     }
     // debugPrint("hello${leaderboardList.length}");
 
-    leaderboardList.sort((a, b) => b.userPoint.compareTo(a.userPoint));
+    // leaderboardList.sort((a, b) => b.userPoint.compareTo(a.userPoint));
     // if (categorie == "day") leaderboardList.sort((a, b) => b.userPointDay.compareTo(a.userPointDay));
     // if (categorie == "week") leaderboardList.sort((a, b) => b.userPointWeek.compareTo(a.userPointWeek));
     // if (categorie == "month") leaderboardList.sort((a, b) => b.userPointMonth.compareTo(a.userPointMonth));

@@ -41,17 +41,15 @@ class SettingsTile extends StatelessWidget {
               children: [
                 Text(
                   text1,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
                 Visibility(
                   visible: text2.isNotEmpty ? true : false,
                   child: Text(
                     text2,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).hintColor,
+                        ),
                   ),
                 ),
               ],
@@ -59,7 +57,7 @@ class SettingsTile extends StatelessWidget {
             const Spacer(),
             Icon(
               isArrow ? Icons.arrow_forward_ios_rounded : null,
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).hintColor,
             ),
           ],
         ),

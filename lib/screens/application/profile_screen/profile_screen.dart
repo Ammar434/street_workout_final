@@ -22,7 +22,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isLoading = false;
-  final int tabCategorieLenght = 3;
+  final int tabCategorieLenght = 2;
 
   List<String> listUrlImage = [];
   List<Reward> listReward = [];
@@ -55,28 +55,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context, ""),
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      //   title: Row(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     children: [
-      //       GestureDetector(
-      //         onTap: () => Navigator.pop(context),
-      //         child: SolidCircleIcon(
-      //           iconData: FontAwesomeIcons.chevronLeft,
-      //           iconSize: kDefaultIconsSize,
-      //         ),
-      //       ),
-      //       GestureDetector(
-      //         onTap: () => openUrl(context, "instagramLink"),
-      //         child: SolidCircleIcon(
-      //           iconData: FontAwesomeIcons.instagram,
-      //           iconSize: kDefaultIconsSize,
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
       body: isLoading
           ? const LoadingWidget()
           : ProfileScreenBody(

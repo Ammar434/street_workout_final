@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: initTheme(),
-            title: 'Street Workout Fighter',
+            title: 'Fit Brawl',
             home: const AuthenticationHandler(),
             routes: routes,
           ),

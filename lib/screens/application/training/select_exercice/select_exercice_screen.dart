@@ -45,11 +45,9 @@ class SelectExerciceScreen extends StatelessWidget {
       child: Scaffold(
         appBar: buildAppBar(context, workoutCategory),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).colorScheme.secondary,
           onPressed: onFloattingActionPress,
-          child: FaIcon(
+          child: const FaIcon(
             FontAwesomeIcons.plus,
-            color: Theme.of(context).iconTheme.color,
           ),
         ),
         body: Padding(
@@ -101,13 +99,13 @@ class SelectExerciceScreen extends StatelessWidget {
                           Center(
                             child: Card(
                               elevation: 10,
-                              color: Colors.black.withOpacity(0.5),
+                              color: Theme.of(context).cardColor.withOpacity(0.8),
                               child: SizedBox(
                                 height: 30,
                                 child: Center(
                                   child: Text(
                                     workoutList[index].name,
-                                    style: Theme.of(context).textTheme.bodyLarge,
+                                    style: Theme.of(context).textTheme.titleSmall,
                                   ),
                                 ),
                               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:street_workout_final/common_libs.dart';
 import '../../../../../provider/challenge_provider.dart';
 import 'components/body_challenge_failed.dart';
 import 'components/body_challenge_succeeded.dart';
@@ -26,9 +27,13 @@ class ChallengeEndChallengerScreen extends StatelessWidget {
           builder: (context, model, child) {
             if (model.getChallenge.isChallengeEndEvaluator == false) {
               return Column(
-                children: const [
-                  LoadingWidget(),
-                  Text("Waitting for evaluator to finish evaluation"),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const LoadingWidget(),
+                  SizedBox(
+                    height: kPaddingValue,
+                  ),
+                  const Text("Waitting for evaluator to finish evaluation"),
                 ],
               );
             }

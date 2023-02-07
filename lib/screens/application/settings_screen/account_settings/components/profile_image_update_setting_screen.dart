@@ -15,10 +15,7 @@ import '../../../../../widgets/rounded_button.dart';
 class ProfileImageUpdateSettingScreen extends StatefulWidget {
   const ProfileImageUpdateSettingScreen({
     Key? key,
-    required this.customUser,
   }) : super(key: key);
-
-  final CustomUser customUser;
 
   @override
   State<ProfileImageUpdateSettingScreen> createState() => _ProfileImageUpdateSettingScreenState();
@@ -31,18 +28,15 @@ class _ProfileImageUpdateSettingScreenState extends State<ProfileImageUpdateSett
 
   @override
   Widget build(BuildContext context) {
-    // CustomUser customUser = Provider.of<UserProvider>(context).getUser;
+    CustomUser? customUser = Provider.of<UserProvider>(context, listen: true).getUser;
+    imageUrl = customUser!.profileImage;
 
-    imageUrl = widget.customUser.profileImage;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "PHOTO",
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         SizedBox(
           height: kPaddingValue,
@@ -50,38 +44,35 @@ class _ProfileImageUpdateSettingScreenState extends State<ProfileImageUpdateSett
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadiusValue),
-            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+            color: Theme.of(context).cardColor,
           ),
           padding: EdgeInsets.all(kPaddingValue),
           child: Row(
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
                 backgroundImage: NetworkImage(imageUrl),
                 radius: kRadiusValue * 5,
-                backgroundColor: Theme.of(context).colorScheme.secondary,
                 child: isLoading ? const LoadingWidget() : null,
               ),
               SizedBox(
                 width: kPaddingValue,
               ),
-              RoundedButton(
-                onTap: () async {
-                  Uint8List file = await pickImage(ImageSource.gallery);
-                  setState(() {
-                    isLoading = true;
-                  });
-                  await UserFirestoreMethods().updateUserProfileImage(file);
-                  setState(() {
-                    isLoading = false;
-                  });
-                  if (!mounted) return;
-                  Provider.of<UserProvider>(context).refreshUser();
-                },
-                text: "Change profile image",
-                color: Theme.of(context).colorScheme.secondary,
-                width: MediaQuery.of(context).size.width / 2,
-                fontSize: 14,
+              Expanded(
+                child: RoundedButton(
+                  onTap: () async {
+                    Uint8List file = await pickImage(ImageSource.gallery);
+                    setState(() {
+                      isLoading = true;
+                    });
+                    await UserFirestoreMethods().updateUserProfileImage(file);
+                    setState(() {
+                      isLoading = false;
+                    });
+                    if (!mounted) return;
+                    Provider.of<UserProvider>(context).refreshUser();
+                  },
+                  text: "Change profile image",
+                ),
               ),
             ],
           ),

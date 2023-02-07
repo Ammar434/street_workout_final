@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../provider/challenge_provider.dart';
@@ -51,13 +50,15 @@ class GlobalWaittingRoomScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.popUntil(context, (route) => route.isFirst);
                   },
-                  icon: FaIcon(
-                    FontAwesomeIcons.chevronLeft,
-                    size: kDefaultIconAppBarSize,
+                  icon: const Icon(
+                    Icons.chevron_left,
                   ),
                 ),
               ),
-              title: const Text("Lobby"),
+              title: Text(
+                "Lobby",
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
             ),
             body: Container(
               decoration: BoxDecoration(
@@ -65,9 +66,9 @@ class GlobalWaittingRoomScreen extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Theme.of(context).colorScheme.secondary,
+                    Theme.of(context).colorScheme.secondaryContainer,
+                    Theme.of(context).colorScheme.tertiaryContainer,
                     Colors.transparent,
-                    Theme.of(context).colorScheme.secondary,
                   ],
                 ),
               ),

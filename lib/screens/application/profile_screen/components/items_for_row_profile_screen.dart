@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 
-
 class ItemForRowProfileScreen extends StatelessWidget {
   const ItemForRowProfileScreen({
     Key? key,
@@ -20,22 +19,14 @@ class ItemForRowProfileScreen extends StatelessWidget {
         children: [
           Text(
             value.toString(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20.sp,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           SizedBox(
             height: kSmallPaddingValue,
           ),
           Text(
             categorieName,
-            style: TextStyle(
-              // fontWeight: FontWeight.bold,
-              fontSize: 12.sp,
-              // fontStyle: FontStyle.italic,
-              color: Theme.of(context).hintColor,
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ],
       ),

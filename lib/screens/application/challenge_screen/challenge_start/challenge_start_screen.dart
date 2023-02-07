@@ -31,6 +31,8 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
   late ChallengeServices challengeServices;
 
   bool isLoading = true;
+  bool isLoadingBtn1 = false;
+  bool isLoadingBtn2 = false;
   String? parcId;
 
   void navigateToSelectChallengeScreen() {
@@ -53,6 +55,10 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
   }
 
   void challengerFunction() async {
+    setState(() {
+      isLoadingBtn1 = true;
+    });
+
     if (currentUser.favoriteParc.isEmpty) {
       Navigator.push(
         context,
@@ -65,9 +71,16 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
 
       navigateToSelectChallengeScreen();
     }
+    setState(() {
+      isLoadingBtn1 = false;
+    });
   }
 
   void evaluatorFunction() async {
+    setState(() {
+      isLoadingBtn2 = true;
+    });
+
     if (currentUser.favoriteParc.isEmpty) {
       Navigator.push(
         context,
@@ -91,6 +104,9 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
         Navigator.pushNamed(context, EvaluatorWaittingRoomScreen.name);
       }
     }
+    setState(() {
+      isLoadingBtn2 = false;
+    });
   }
 
   void loadData() async {
@@ -131,6 +147,8 @@ class _ChallengeStartScreenState extends State<ChallengeStartScreen> with Single
                 ChallengeIsNotStartWidget(
                   challengerOnTap: challengerFunction,
                   evaluatorOnTap: evaluatorFunction,
+                  isLoadingBtn1: isLoadingBtn1,
+                  isLoadingBtn2: isLoadingBtn2,
                 ),
               ],
             ),

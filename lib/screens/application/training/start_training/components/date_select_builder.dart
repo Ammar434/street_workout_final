@@ -79,7 +79,7 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
               width: itemWidth,
               margin: EdgeInsets.all(kSmallPaddingValue),
               decoration: BoxDecoration(
-                color: index == daySelected ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
+                color: index == daySelected ? Theme.of(context).colorScheme.secondaryContainer : Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(kRadiusValue * 4),
               ),
               child: Column(
@@ -87,14 +87,16 @@ class _DateSelectBuilderState extends State<DateSelectBuilder> {
                 children: [
                   Text(
                     currentDateValue,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   SizedBox(
                     height: kSmallPaddingValue,
                   ),
                   Text(
                     currentDateName,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ],
               ),

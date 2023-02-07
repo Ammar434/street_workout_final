@@ -38,7 +38,7 @@ class AppBarForTrainning extends StatelessWidget {
         ),
         Text(
           greetings(),
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         const Spacer(),
         GestureDetector(

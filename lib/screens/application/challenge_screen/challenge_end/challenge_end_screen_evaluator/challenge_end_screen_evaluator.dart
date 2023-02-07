@@ -45,17 +45,11 @@ class ChallengeEndScreenEvaluator extends StatelessWidget {
             ),
             Text(
               "You're the best ${currentUser.userName}!",
-              style: TextStyle(
-                fontSize: kDefaultTitleSize,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             Text(
               "Always remmenber",
-              style: TextStyle(
-                fontSize: kDefaultTitleSize,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             SizedBox(
               height: kPaddingValue,
@@ -63,11 +57,7 @@ class ChallengeEndScreenEvaluator extends StatelessWidget {
             Text(
               "You just raised yourself by lifting others.",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: kDefaultTitleSize * 0.6,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-              ),
+              style: Theme.of(context).textTheme.titleSmall,
             )
           ],
         ),

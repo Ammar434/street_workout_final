@@ -21,7 +21,7 @@ class AddFavoriteParc extends StatelessWidget {
           children: [
             Flexible(
               child: Container(
-                height: 100,
+                height: 80.sp,
                 margin: EdgeInsets.all(25.sp),
                 child: Center(
                   child: FaIcon(
@@ -31,12 +31,10 @@ class AddFavoriteParc extends StatelessWidget {
                 ),
               ),
             ),
-            const FittedBox(
+            FittedBox(
               child: Text(
                 "Add parc",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
           ],

@@ -28,7 +28,7 @@ class TrainingFoundWidget extends StatelessWidget {
           width: double.infinity,
           child: Card(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadiusValue)),
-            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+            color: Theme.of(context).cardColor,
             elevation: 10,
             // margin: EdgeInsets.all(kSmallPaddingValue * 5),
             child: Padding(
@@ -37,7 +37,10 @@ class TrainingFoundWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(workout.name),
+                      Text(
+                        workout.name,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
                     ],
                   ),
                   const HorizontalLine(),
@@ -46,10 +49,19 @@ class TrainingFoundWidget extends StatelessWidget {
                     ((index2) {
                       return Row(
                         children: [
-                          Text("${index2 + 1} ."),
+                          Text(
+                            "${index2 + 1} .",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                           SizedBox(width: kPaddingValue),
-                          Text("Weight ${listSets[index2].weight}"),
-                          Text("Reps ${listSets[index2].numberOfRep}"),
+                          Text(
+                            "Weight ${listSets[index2].weight}",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          Text(
+                            "Reps ${listSets[index2].numberOfRep}",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ],
                       );
                     }),

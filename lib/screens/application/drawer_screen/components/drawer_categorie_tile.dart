@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class DrawerCategorieTile extends StatelessWidget {
   const DrawerCategorieTile({
     Key? key,
@@ -35,9 +34,7 @@ class DrawerCategorieTile extends StatelessWidget {
             ),
             Text(
               text,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           ],
         ),

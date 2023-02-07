@@ -39,11 +39,6 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
     });
   }
 
-  TextStyle textStyle = const TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-  );
-
   @override
   void initState() {
     initData();
@@ -60,71 +55,71 @@ class _FavoriteParcChooseState extends State<FavoriteParcChoose> {
           children: [
             Text(
               "MY FAVORITE PARC",
-              style: textStyle,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             Text(
-              "($lenListParc)",
-              style: textStyle,
+              "( $lenListParc )",
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           ],
         ),
         SizedBox(
           height: kPaddingValue,
         ),
-        Container(
-          height: 400.sp,
-          padding: EdgeInsets.all(kPaddingValue),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(kRadiusValue),
-            color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Row(
-                  children: [
-                    ColumnFavoriteParc(
-                      index: 0,
-                      listeParc: listParc,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: VerticalDivider(
-                        color: Theme.of(context).colorScheme.secondary,
-                        width: 1,
-                        thickness: 1,
-                        indent: 10,
-                        endIndent: 10,
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.all(kPaddingValue),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(kRadiusValue),
+              color: Theme.of(context).cardColor,
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      ColumnFavoriteParc(
+                        index: 0,
+                        listeParc: listParc,
                       ),
-                    ),
-                    ColumnFavoriteParc(
-                      index: 1,
-                      listeParc: listParc,
-                    ),
-                  ],
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: VerticalDivider(
+                          width: 2,
+                          thickness: 2,
+                          indent: 10,
+                          endIndent: 10,
+                        ),
+                      ),
+                      ColumnFavoriteParc(
+                        index: 1,
+                        listeParc: listParc,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const HorizontalLine(),
-              Expanded(
-                child: Row(
-                  children: [
-                    ColumnFavoriteParc(
-                      index: 2,
-                      listeParc: listParc,
-                    ),
-                    ColumnFavoriteParc(
-                      index: 3,
-                      listeParc: listParc,
-                    ),
-                    ColumnFavoriteParc(
-                      index: 4,
-                      listeParc: listParc,
-                    ),
-                  ],
-                ),
-              )
-            ],
+                const HorizontalLine(),
+                Expanded(
+                  child: Row(
+                    children: [
+                      ColumnFavoriteParc(
+                        index: 2,
+                        listeParc: listParc,
+                      ),
+                      ColumnFavoriteParc(
+                        index: 3,
+                        listeParc: listParc,
+                      ),
+                      ColumnFavoriteParc(
+                        index: 4,
+                        listeParc: listParc,
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ],

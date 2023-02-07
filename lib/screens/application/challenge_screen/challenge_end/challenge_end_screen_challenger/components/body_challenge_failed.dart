@@ -26,17 +26,11 @@ class BodyChallengeFailed extends StatelessWidget {
         ),
         Text(
           "Ahh so close ${currentUser.userName}!",
-          style: TextStyle(
-            fontSize: kDefaultTitleSize,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         Text(
           "Always remmenber",
-          style: TextStyle(
-            fontSize: kDefaultTitleSize,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         SizedBox(
           height: kPaddingValue,
@@ -44,11 +38,7 @@ class BodyChallengeFailed extends StatelessWidget {
         Text(
           "In life, there is no such thing as impossible; it’s always possible. ~",
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: kDefaultTitleSize * 0.6,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
-          ),
+          style: Theme.of(context).textTheme.titleSmall,
         )
       ],
     );

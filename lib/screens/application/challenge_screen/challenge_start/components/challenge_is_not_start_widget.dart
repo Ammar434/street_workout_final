@@ -9,11 +9,14 @@ class ChallengeIsNotStartWidget extends StatelessWidget {
     Key? key,
     required this.challengerOnTap,
     required this.evaluatorOnTap,
+    required this.isLoadingBtn1,
+    required this.isLoadingBtn2,
   }) : super(key: key);
 
   final GestureTapCallback challengerOnTap;
   final GestureTapCallback evaluatorOnTap;
-
+  final bool isLoadingBtn1;
+  final bool isLoadingBtn2;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,19 +24,13 @@ class ChallengeIsNotStartWidget extends StatelessWidget {
       // color: Colors.red,
       child: Column(
         children: [
-          const Text(
+          Text(
             "Welcome to the Challenge",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-          const Text(
+          Text(
             "Here you can unlock new levels, improve your score and challenge others.",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
             textAlign: TextAlign.center,
           ),
           SizedBox(
@@ -46,6 +43,7 @@ class ChallengeIsNotStartWidget extends StatelessWidget {
                 RoundedButton(
                   onTap: challengerOnTap,
                   text: "Get assessed",
+                  isLoading: isLoadingBtn1,
                 ),
                 SizedBox(
                   height: kSmallPaddingValue,
@@ -53,6 +51,7 @@ class ChallengeIsNotStartWidget extends StatelessWidget {
                 RoundedButton(
                   onTap: evaluatorOnTap,
                   text: "Rate someone",
+                  isLoading: isLoadingBtn2,
                 ),
                 SizedBox(
                   height: kSmallPaddingValue,
@@ -69,15 +68,9 @@ class ChallengeIsNotStartWidget extends StatelessWidget {
                 ),
               );
             },
-            child: const Text(
+            child: Text(
               "What if no appraiser is available?",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-                color: Colors.blueGrey,
-                fontStyle: FontStyle.italic,
-              ),
-              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Theme.of(context).hintColor),
             ),
           ),
         ],

@@ -24,7 +24,12 @@ class CustomTileForAchievement extends StatelessWidget {
     bool isAchievementComplete = currentUser.rewards.contains(rewards.id);
     return GestureDetector(
       onTap: () {
-        const CustomDialogBodyWidget();
+        if (isAchievementComplete) {
+          showDialog(
+            context: context,
+            builder: (context) => const CustomDialogBodyWidget(),
+          );
+        }
       },
       child: Container(
         padding: EdgeInsets.all(kPaddingValue / 2),
@@ -33,7 +38,7 @@ class CustomTileForAchievement extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
-          color: const Color(0xff181A1E),
+          color: Theme.of(context).cardColor,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +51,7 @@ class CustomTileForAchievement extends StatelessWidget {
                 ),
                 AspectRatio(
                   aspectRatio: 1,
-                  child: Image.network(
+                  child: Image.asset(
                     rewards.imageUrl,
                   ),
                 ),

@@ -49,7 +49,7 @@ class WorkoutCategoryListBuilder extends StatelessWidget {
                   ),
                   Text(
                     categoryNames[index],
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const Spacer(),
                   FaIcon(

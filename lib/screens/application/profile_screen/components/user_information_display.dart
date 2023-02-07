@@ -26,21 +26,14 @@ class UserInformationDisplay extends StatelessWidget {
         Center(
           child: Text(
             name,
-            style: TextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: 18.sp,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
         ),
         Center(
           child: Text(
             favoriteParc,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontStyle: FontStyle.italic,
-              fontSize: 16.sp,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
         ),

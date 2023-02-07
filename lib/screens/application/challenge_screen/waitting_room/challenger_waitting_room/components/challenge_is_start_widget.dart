@@ -19,7 +19,7 @@ class ChallengeIsStartWidget extends StatelessWidget {
       margin: EdgeInsets.all(kRadiusValue),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kRadiusValue),
-        color: Theme.of(context).colorScheme.secondary.withOpacity(0.15),
+        color: Theme.of(context).cardColor,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,12 +27,9 @@ class ChallengeIsStartWidget extends StatelessWidget {
           SizedBox(
             height: kPaddingValue,
           ),
-          const Text(
+          Text(
             "Finding evaluator arround you",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           const HorizontalLine(),
           FirebaseAnimatedListWidget(currentUser: currentUser),

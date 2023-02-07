@@ -22,7 +22,7 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
         children: [
           Text(
             "Describe ${widget.challengerName} with one picture",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.sp),
+            style: Theme.of(context).textTheme.titleSmall,
             textAlign: TextAlign.center,
           ),
 
@@ -36,7 +36,7 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
                 padding: EdgeInsets.all(kSmallPaddingValue),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(kRadiusValue),
-                  color: selectIndex == index ? Theme.of(context).hoverColor : null,
+                  color: selectIndex == index ? Theme.of(context).splashColor : null,
                 ),
                 child: InkWell(
                   onTap: () {
@@ -59,7 +59,7 @@ class _SelectableEmojiRowState extends State<SelectableEmojiRow> {
                       Text(
                         mapEmoji.values.elementAt(index).emojiText,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.titleSmall,
                       )
                     ],
                   ),

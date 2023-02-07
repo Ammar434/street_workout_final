@@ -24,3 +24,22 @@ void customShowSnackBar({
   );
   ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(snackBar);
 }
+
+void showSnackbarBuildLater({
+  required GlobalKey<ScaffoldState> globalKey,
+}) {
+  SnackBar snackBar = SnackBar(
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    duration: const Duration(seconds: 5),
+    margin: EdgeInsets.zero,
+    content: AwesomeSnackbarContent(
+      inMaterialBanner: true,
+      title: "Not develop yet",
+      message: "We will add this functionality on the next release",
+      contentType: ContentType.help,
+    ),
+  );
+  ScaffoldMessenger.of(globalKey.currentContext!).showSnackBar(snackBar);
+}

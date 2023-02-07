@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 
-
 class GenderSettingsScreen extends StatelessWidget {
   const GenderSettingsScreen({
     Key? key,
@@ -15,19 +14,15 @@ class GenderSettingsScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "GENDER",
-          style: TextStyle(
-            // color: Theme.of(context).colorScheme.secondary,
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         SizedBox(
           height: kPaddingValue,
         ),
         Container(
-          height: 50,
+          height: 50.sp,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadiusValue),
             color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
@@ -39,7 +34,7 @@ class GenderSettingsScreen extends StatelessWidget {
                   onTap: onTap,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: isMale ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
+                      color: isMale ? Theme.of(context).colorScheme.secondaryContainer : Theme.of(context).colorScheme.tertiaryContainer,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(
                           kRadiusValue,
@@ -49,13 +44,10 @@ class GenderSettingsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    child: const Center(
+                    child: Center(
                         child: Text(
                       "Male",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
+                      style: Theme.of(context).textTheme.titleSmall,
                     )),
                   ),
                 ),
@@ -65,7 +57,7 @@ class GenderSettingsScreen extends StatelessWidget {
                   onTap: onTap,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: !isMale ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.secondary,
+                      color: !isMale ? Theme.of(context).colorScheme.secondaryContainer : Theme.of(context).colorScheme.tertiaryContainer,
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(
                           kRadiusValue,

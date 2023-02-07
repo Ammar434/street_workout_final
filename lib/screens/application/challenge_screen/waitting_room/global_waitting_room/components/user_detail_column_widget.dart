@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 
-
 class UserDetailColumnItem extends StatelessWidget {
   const UserDetailColumnItem({
     Key? key,
@@ -33,20 +32,10 @@ class UserDetailColumnItem extends StatelessWidget {
           ),
           AnimatedDefaultTextStyle(
             duration: const Duration(milliseconds: 500),
-            style: shouldAnimate
-                ? TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: fontSize,
-                    color: Colors.green,
-                  )
-                : TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: fontSize,
-                    // color: Theme.of(context).colorScheme.secondary,
-                  ),
+            style: shouldAnimate ? Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.green) : Theme.of(context).textTheme.titleSmall!,
             child: Text(
               userName,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
         ],

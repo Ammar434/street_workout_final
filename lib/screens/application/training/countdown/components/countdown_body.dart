@@ -1,5 +1,6 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import "package:street_workout_final/common_libs.dart";
 
 class CountDownBody extends StatelessWidget {
@@ -7,10 +8,12 @@ class CountDownBody extends StatelessWidget {
     Key? key,
     required this.duration,
     required this.controller,
+    required this.playingSound,
   }) : super(key: key);
 
   final int duration;
   final CountDownController controller;
+  final bool playingSound;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +27,11 @@ class CountDownBody extends StatelessWidget {
 
       height: MediaQuery.of(context).size.height / 2,
 
-      ringColor: Theme.of(context).colorScheme.secondary,
+      ringColor: Theme.of(context).highlightColor,
 
       fillColor: Theme.of(context).colorScheme.secondary,
 
-      backgroundColor: Theme.of(context).colorScheme.secondary,
+      backgroundColor: Theme.of(context).primaryColor,
 
       strokeWidth: kPaddingValue,
 
@@ -36,11 +39,7 @@ class CountDownBody extends StatelessWidget {
       strokeCap: StrokeCap.square,
 
       // Text Style for Countdown Text.
-      textStyle: const TextStyle(
-        fontSize: 33.0,
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-      ),
+      textStyle: Theme.of(context).textTheme.titleLarge,
 
       textFormat: CountdownTextFormat.S,
 
@@ -66,6 +65,10 @@ class CountDownBody extends StatelessWidget {
       onComplete: () {
         // Here, do whatever you want
         controller.reset();
+        if (playingSound == true) {
+          SystemSound.play(SystemSoundType.click);
+        }
+
         debugPrint('Countdown Ended');
       },
 

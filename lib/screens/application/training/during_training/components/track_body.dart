@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -38,11 +39,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
     if (listSets.isEmpty) {
       createExpansionPanel();
     } else {
-      // print(listSets.length);
       for (Sets s in listSets) {
-        // print(s.id);
-        // print(s.weight);
-        // print(s.numberOfRep);
         initialiseExpansionPanel(s);
       }
     }
@@ -88,56 +85,62 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
     listIsExpanded.add(true);
     listOfUniqueKey.add(UniqueKey());
 
-    if (listItem.length > 1) {
-      animatedListKey.currentState!.insertItem(
-        listItem.length - 1,
-        duration: duration,
-      );
-    }
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      if (listItem.length > 1) {
+        animatedListKey.currentState!.insertItem(
+          listItem.length - 1,
+          duration: duration,
+        );
+      }
+    });
   }
 
   void removeExpansionPanel(int index) {
-    animatedListKey.currentState!.removeItem(index, (_, animation) {
-      return SlideTransition(
-        position: animation.drive(
-          Tween(begin: const Offset(1, 0), end: const Offset(0, 0)).chain(
-            CurveTween(curve: Curves.easeInOutCubic),
-          ),
-        ),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kRadiusValue),
-          ),
-          elevation: 10,
-          color: Colors.red,
-          child: ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const FaIcon(FontAwesomeIcons.trash),
-                Text("Deleting", style: Theme.of(context).textTheme.bodyLarge),
-              ],
+    print("length ${listItem.length}");
+
+    if (listItem.length > 1) {
+      animatedListKey.currentState!.removeItem(index, (_, animation) {
+        return SlideTransition(
+          position: animation.drive(
+            Tween(begin: const Offset(1, 0), end: const Offset(0, 0)).chain(
+              CurveTween(curve: Curves.easeInOutCubic),
             ),
           ),
-        ),
-      );
-    }, duration: duration);
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(kRadiusValue),
+            ),
+            elevation: 10,
+            color: Colors.red,
+            child: ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const FaIcon(FontAwesomeIcons.trash),
+                  Text("Deleting", style: Theme.of(context).textTheme.bodyLarge),
+                ],
+              ),
+            ),
+          ),
+        );
+      }, duration: duration);
 
-    //Delete from the list of set
-    String idToFInd = listItem[index].toString();
-    trainingProvider.removeSetToWorkout(widget.workout.id, idToFInd);
+      //Delete from the list of set
+      String idToFInd = listItem[index].toString();
+      trainingProvider.removeSetToWorkout(widget.workout.id, idToFInd);
 
-    listTextEdittingController[index].dispose();
-    listTextEdittingController[index + 1].dispose();
+      listTextEdittingController[index].dispose();
+      listTextEdittingController[index + 1].dispose();
 
-    //List of two text editing controloer because the are join two by two
-    listTextEdittingController.removeAt(index);
-    listTextEdittingController.removeAt(index);
-    listIsExpanded.removeAt(index);
+      //List of two text editing controloer because the are join two by two
+      listTextEdittingController.removeAt(index);
+      listTextEdittingController.removeAt(index);
+      listIsExpanded.removeAt(index);
 
-    listOfUniqueKey.removeAt(index);
+      listOfUniqueKey.removeAt(index);
 
-    listItem.removeAt(index);
+      listItem.removeAt(index);
+    }
   }
 
   void expandTile(int index) async {
@@ -196,7 +199,10 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    print("length ${listItem.length}");
+
     initialiseTrainingAndWorkout();
+
     super.initState();
   }
 
@@ -218,10 +224,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
     return Scaffold(
       key: scaffoldKey,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        onPressed: () {
-          createExpansionPanel();
-        },
+        onPressed: () => createExpansionPanel(),
         child: FaIcon(
           FontAwesomeIcons.plus,
           color: Theme.of(context).iconTheme.color,
@@ -266,11 +269,12 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
 
   ExpansionTile buildExpansionTile(int index) {
     return ExpansionTile(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadiusValue)),
+      backgroundColor: Theme.of(context).cardColor,
       key: listOfUniqueKey[index],
       initiallyExpanded: listIsExpanded[index],
       onExpansionChanged: (bool isExpand) => onCheckButtonTap(index),
-      iconColor: Colors.white,
-      textColor: Colors.white,
+      iconColor: Theme.of(context).iconTheme.color,
       leading: IconButton(
         padding: EdgeInsets.zero,
         onPressed: () => removeExpansionPanel(index),
@@ -281,19 +285,29 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
         onPressed: () => onCheckButtonTap(index),
         icon: listIsExpanded[index]
             ? const FaIcon(FontAwesomeIcons.circle)
-            : FaIcon(
+            : const FaIcon(
                 FontAwesomeIcons.solidCircleCheck,
-                color: Theme.of(context).iconTheme.color,
               ),
       ),
       title: listIsExpanded[index]
-          ? Text("Set #${index + 1}")
+          ? Text(
+              "Set #${index + 1}",
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            )
           : Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               Text(
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                 "${listTextEdittingController[index * 2].text} kgs",
               ),
               Text(
                 "${listTextEdittingController[index * 2 + 1].text} reps",
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
             ]),
       children: [
@@ -302,7 +316,12 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
           children: [
             Padding(
               padding: EdgeInsets.only(left: kPaddingValue),
-              child: const Text("Weight (kgs)"),
+              child: Text(
+                "Weight (kgs)",
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
             ),
             const HorizontalLine(),
             Row(
@@ -346,7 +365,12 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
           children: [
             Padding(
               padding: EdgeInsets.only(left: kPaddingValue),
-              child: const Text("Reps "),
+              child: Text(
+                "Reps ",
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
             ),
             const HorizontalLine(),
             Row(

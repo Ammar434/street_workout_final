@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 
 import '../../../../../../models/rewards.dart';
 
@@ -20,12 +19,12 @@ class BuildImageAndId extends StatelessWidget {
           Expanded(child: Image.asset("assets/images/challenge/asset_1.png")),
           Text(
             "Challenge #${reward.id.substring(reward.id.length - 5)}",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: kDefaultTitleSize,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-          const Text("If you never try you'll never know"),
+          Text(
+            "If you never try you'll never know",
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
         ],
       ),
     );

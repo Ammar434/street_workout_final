@@ -31,9 +31,8 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
         style: DefaultTextStyle.of(context).style.copyWith(fontStyle: FontStyle.italic),
         decoration: InputDecoration(
           hintText: "Search workout",
-          prefixIcon: Icon(
+          prefixIcon: const Icon(
             Icons.search,
-            color: Theme.of(context).colorScheme.secondary,
           ),
           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(kRadiusValue))),
           focusedBorder: OutlineInputBorder(
@@ -47,24 +46,20 @@ class SearchFieldWidgetForTraining extends StatelessWidget {
       },
       itemBuilder: (BuildContext context, Workout suggestion) {
         return ListTile(
-          tileColor: Colors.transparent,
+          tileColor: Theme.of(context).cardColor,
           leading: SizedBox(
             height: double.maxFinite,
             width: kPaddingValue,
-            child: Align(
+            child: const Align(
               alignment: Alignment.centerLeft,
               child: FaIcon(
                 FontAwesomeIcons.dumbbell,
-                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           ),
           title: Text(
             suggestion.name,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         );
       },

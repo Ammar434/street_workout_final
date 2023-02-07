@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-
 List<Color> defaultColors = [
   Colors.red,
   Colors.pink,
@@ -45,7 +44,7 @@ class ColorPickerForAddWorkout extends StatelessWidget {
           ),
           child: Text(
             "Color",
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
         const HorizontalLine(),

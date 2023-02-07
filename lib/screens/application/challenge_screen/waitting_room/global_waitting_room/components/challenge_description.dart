@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../../models/rewards.dart';
 import '../../../../../../services/firestore_methods/rewards_firestore_methods.dart';
 import '../../../../../../widgets/loading_widget.dart';
@@ -22,12 +21,9 @@ class ChallengeDescription extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     'What you have to do:',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   SizedBox(
                     height: kPaddingValue,
@@ -35,8 +31,11 @@ class ChallengeDescription extends StatelessWidget {
                   ...List.generate(
                     instructions.length,
                     (index) => ListTile(
-                      leading: const FaIcon(FontAwesomeIcons.solidCircle),
-                      title: Text(instructions[index]),
+                      leading: const Icon(Icons.circle_rounded),
+                      title: Text(
+                        instructions[index],
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
                     ),
                   ),
                   SizedBox(

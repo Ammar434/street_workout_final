@@ -22,7 +22,7 @@ class DrawerCategorieWidget extends StatelessWidget {
           },
         ),
         DrawerCategorieTile(
-          iconData: FontAwesomeIcons.chartLine,
+          iconData: FontAwesomeIcons.gamepad,
           text: "Statistique",
           onTap: () {
             Navigator.pushNamed(context, FavoriteParcEmptyScreen.name);

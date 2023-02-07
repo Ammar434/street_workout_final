@@ -77,7 +77,6 @@ class _RecordVideoScreenState extends State<RecordVideoScreen> {
               Padding(
                 padding: const EdgeInsets.all(25),
                 child: FloatingActionButton(
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
                   child: Icon(
                     _isRecording ? Icons.stop : Icons.circle,
                     color: Theme.of(context).iconTheme.color,

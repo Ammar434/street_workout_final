@@ -15,14 +15,14 @@ class DrawerBottomWidget extends StatelessWidget {
     return Column(
       children: [
         DrawerCategorieTile(
-          iconData: FontAwesomeIcons.briefcase,
+          iconData: FontAwesomeIcons.dumbbell,
           text: "Start a training",
           onTap: () {
             Navigator.pushNamed(context, StartTrainingScreen.name);
           },
         ),
         DrawerCategorieTile(
-          iconData: FontAwesomeIcons.calendar,
+          iconData: FontAwesomeIcons.khanda,
           text: "Start a challenge",
           onTap: () {
             Navigator.pushNamed(context, ChallengeStartScreen.name);

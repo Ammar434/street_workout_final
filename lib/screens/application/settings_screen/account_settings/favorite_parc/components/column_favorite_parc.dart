@@ -27,10 +27,9 @@ class ColumnFavoriteParc extends StatelessWidget {
         children: [
           Flexible(
             child: Container(
-              height: 100,
+              height: 80.sp,
               margin: EdgeInsets.all(25.sp),
               decoration: BoxDecoration(
-                color: Colors.orange,
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: NetworkImage(listeParc[index].mainPhoto),
@@ -42,9 +41,7 @@ class ColumnFavoriteParc extends StatelessWidget {
           FittedBox(
             child: Text(
               listeParc[index].name,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.titleSmall,
               maxLines: 2,
             ),
           ),

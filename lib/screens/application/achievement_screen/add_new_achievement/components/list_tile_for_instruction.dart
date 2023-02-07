@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class ListTileForInstruction extends StatelessWidget {
   const ListTileForInstruction({
     Key? key,
@@ -27,14 +26,18 @@ class ListTileForInstruction extends StatelessWidget {
           ),
           trailing: InkWell(
             onTap: onClicked,
-            child: const FaIcon(
+            child: FaIcon(
               FontAwesomeIcons.trash,
+              size: kDefaultIconsSize,
             ),
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kRadiusValue),
           ),
-          title: Text(item),
+          title: Text(
+            item,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
         ),
       ),
     );

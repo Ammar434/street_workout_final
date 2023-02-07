@@ -91,17 +91,13 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
             FaIcon(
               FontAwesomeIcons.clock,
               size: kDefaultIconsSize,
-              color: Theme.of(context).colorScheme.secondary,
             ),
             SizedBox(
               width: kPaddingValue,
             ),
             Text(
               "Wait time",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: kDefaultTitleSize * 0.75,
-              ),
+              style: Theme.of(context).textTheme.titleSmall,
             )
           ],
         ),
@@ -134,12 +130,9 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                 opacity: 1 - opacityLevel,
                 duration: const Duration(seconds: 1),
                 child: Text(
-                  "Finding evaluator arround you",
+                  "Finding someone who whant to be evaluated",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: kDefaultTitleSize * 0.75,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               AnimatedOpacity(
@@ -151,12 +144,9 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
                   Navigator.pop(context);
                 },
                 child: Text(
-                  "No one whan't to do a challenge arround you for the moment. Please try again.",
+                  "No one whan't to do a challenge arround you for the moment. Please try later.",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: kDefaultTitleSize * 0.75,
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
             ],
@@ -169,12 +159,8 @@ class _EvaluatorWaittingRoomScreenBodyState extends State<EvaluatorWaittingRoomS
               Navigator.pop(context);
             },
             child: Text(
-              "Stop challenge",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: kDefaultTitleSize * 0.75,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
+              "Stop searching",
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
         ),

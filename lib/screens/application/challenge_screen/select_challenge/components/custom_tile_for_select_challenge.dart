@@ -38,7 +38,7 @@ class CustomTileForSelectChallenge extends StatelessWidget {
                 ),
                 AspectRatio(
                   aspectRatio: 1,
-                  child: Image.network(
+                  child: Image.asset(
                     rewards.imageUrl,
                   ),
                 ),
@@ -53,19 +53,8 @@ class CustomTileForSelectChallenge extends StatelessWidget {
               children: [
                 Text(
                   rewards.title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
-                // Text(
-                //   rewards.subtitle,
-                //   style:  TextStyle(
-                //     // fontStyle: FontStyle.italic,
-                //     fontWeight: FontWeight.w200,
-                //     fontSize: 14,
-                //   ),
-                // ),
               ],
             ),
             const Spacer(),

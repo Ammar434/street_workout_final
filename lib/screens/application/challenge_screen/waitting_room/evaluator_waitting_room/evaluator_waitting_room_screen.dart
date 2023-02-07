@@ -13,8 +13,8 @@ class EvaluatorWaittingRoomScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ChallengeProvider>(
       builder: (context, model, child) {
-        debugPrint("inse ${model.getChallenge.parcId}");
-        debugPrint("inse ${model.getChallenge.evaluatorUid}");
+        // debugPrint("inse ${model.getChallenge.parcId}");
+        // debugPrint("inse ${model.getChallenge.evaluatorUid}");
 
         if (model.getChallenge.challengerUid == "") {
           return const EvaluatorWaittingRoomScreenBody();

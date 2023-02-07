@@ -36,6 +36,7 @@ class _PostScreenState extends State<PostScreen> {
   late TextEditingController textEditingControllerParcName;
   List<MaterialAvailable> selectedMaterial = [];
   bool isLoading = false;
+  bool isMapLoading = false;
   late final Geolocalisation _geolocalisation;
   late LatLng userCurrentPosition;
 
@@ -152,44 +153,46 @@ class _PostScreenState extends State<PostScreen> {
       appBar: buildAppBar(context, "Add new parc"),
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
-            child: Column(
-              children: [
-                AddPhoto(
-                  function1: selectImage,
-                  function2: (index) {
-                    setState(
-                      () {
-                        userSelectedImageList.removeAt(index);
-                      },
-                    );
-                  },
+        child: isLoading
+            ? const LoadingWidget()
+            : SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
+                  child: Column(
+                    children: [
+                      AddPhoto(
+                        function1: selectImage,
+                        function2: (index) {
+                          setState(
+                            () {
+                              userSelectedImageList.removeAt(index);
+                            },
+                          );
+                        },
+                      ),
+                      EnterParcDetails(
+                        textEditingControllerParcName: textEditingControllerParcName,
+                        // functionForPrediction: functionForPrediction,
+                      ),
+                      SizedBox(
+                        height: kPaddingValue * 2,
+                      ),
+                      buildMap(context),
+                      buildEquipmentSelect(context),
+                      SizedBox(
+                        height: kPaddingValue * 2,
+                      ),
+                      RoundedButton(
+                        onTap: () async {
+                          await publishPost();
+                        },
+                        text: "Publish",
+                        isLoading: isLoading,
+                      ),
+                    ],
+                  ),
                 ),
-                EnterParcDetails(
-                  textEditingControllerParcName: textEditingControllerParcName,
-                  // functionForPrediction: functionForPrediction,
-                ),
-                SizedBox(
-                  height: kPaddingValue * 2,
-                ),
-                buildMap(context),
-                buildEquipmentSelect(context),
-                SizedBox(
-                  height: kPaddingValue * 2,
-                ),
-                RoundedButton(
-                  onTap: () async {
-                    await publishPost();
-                  },
-                  text: "Publish",
-                  isLoading: isLoading,
-                ),
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
     );
   }
@@ -201,7 +204,7 @@ class _PostScreenState extends State<PostScreen> {
         borderRadius: BorderRadius.circular(kRadiusValue),
         color: Theme.of(context).cardColor,
       ),
-      child: isLoading
+      child: isMapLoading
           ? const LoadingWidget()
           : ClipRRect(
               borderRadius: BorderRadius.circular(kRadiusValue),
@@ -239,10 +242,10 @@ class _PostScreenState extends State<PostScreen> {
                       debugPrint("lat $lat $long");
                     },
                   ),
-                  Center(
+                  const Center(
                     child: FaIcon(
                       FontAwesomeIcons.locationDot,
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Colors.red,
                     ),
                   ),
                 ],

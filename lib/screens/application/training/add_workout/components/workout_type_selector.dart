@@ -22,7 +22,7 @@ class WorkoutTypeSelector extends StatelessWidget {
           ),
           child: Text(
             "Type",
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
         const HorizontalLine(),
@@ -30,7 +30,10 @@ class WorkoutTypeSelector extends StatelessWidget {
           workoutType.length,
           (index) {
             return RadioListTile(
-              title: Text(workoutType[index]),
+              title: Text(
+                workoutType[index],
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
               value: workoutType[index],
               groupValue: currentOptions,
               activeColor: Theme.of(context).colorScheme.secondary,
