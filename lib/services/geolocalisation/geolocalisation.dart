@@ -108,7 +108,7 @@ class Geolocalisation {
     Set<Marker> markers = {};
     DocumentSnapshot documentSnapshot = await firebaseFirestore.collection("datas").doc("all_parcs_references").get();
     Map<String, dynamic> map = documentSnapshot.data() as Map<String, dynamic>;
-    Uint8List markerIcon = await FirebaseStorageMethods().getBytesFromAsset('assets/maps/location_marker.png', 150);
+    Uint8List markerIcon = await FirebaseStorageMethods().getBytesFromAsset('assets/maps/location_marker.png', 75);
 
     BitmapDescriptor bitmapDescriptor = BitmapDescriptor.fromBytes(markerIcon);
     try {
@@ -142,7 +142,7 @@ class Geolocalisation {
 
     Position userCurrentPosition = await determinePosition();
     GeoPoint userPark = userFavoriteParc.geoPoint!;
-    int maxDistanceBetweenUserAndParc = 250;
+    int maxDistanceBetweenUserAndParc = 500;
     distance = Geolocator.distanceBetween(
       userCurrentPosition.latitude,
       userCurrentPosition.longitude,

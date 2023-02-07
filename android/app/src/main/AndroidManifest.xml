@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ammar434.streetWorkoutFighter.fit_fighter">
+    package="com.ammar434.streetWorkoutFighter.street_workout_final">
 
     <application
         android:name="${applicationName}"

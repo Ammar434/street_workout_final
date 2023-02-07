@@ -24,9 +24,12 @@ class _DrawerBodyState extends State<DrawerBody> {
   late Geolocalisation geolocalisation;
   late Position currentPosition;
   String currentUserCity = "unknown";
-  bool isLoading = true;
+  bool isLoading = false;
 
   Future<void> loadData() async {
+    setState(() {
+      isLoading = true;
+    });
     currentPosition = await geolocalisation.determinePosition();
     currentUserCity = await geolocalisation.reverseGeocoding(currentPosition);
     if (currentUserCity == "") {

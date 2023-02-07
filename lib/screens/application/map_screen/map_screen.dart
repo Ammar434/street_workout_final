@@ -72,7 +72,9 @@ class _MapScreenState extends State<MapScreen> {
             // liteModeEnabled: true,
             markers: markers,
             onMapCreated: ((GoogleMapController controller) async {
-              String syle = await DefaultAssetBundle.of(context).loadString("assets/maps/map_template.json");
+              String syle = await DefaultAssetBundle.of(context).loadString(
+                "assets/maps/map_template.json",
+              );
               controller.setMapStyle(syle);
             }),
             initialCameraPosition: CameraPosition(

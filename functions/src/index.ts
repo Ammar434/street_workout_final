@@ -34,7 +34,7 @@ async function addAddressToInitialParc(parcId: string, address: string) {
     {
       completeAddress: address,
     },
-    {merge: true}
+    { merge: true }
   );
 }
 
@@ -75,7 +75,7 @@ exports.addParcReference = functions.firestore
             completeAddress: _completeAddress,
           },
         },
-        {merge: true}
+        { merge: true }
       );
     // .then(() => {
     //   console.log("Parc " + _id + " added");
@@ -189,9 +189,9 @@ exports.addNewUserToLeaderboard = functions.firestore
 // // Une fonction qui trie leaderboard
 
 exports.sortLeaderboard = functions.pubsub
-  .schedule("every 5 minutes")
+  .schedule("every 130 minutes")
   .onRun(async (context) => {
-    console.log("This will be run every 5 minutes!");
+    console.log("This will be run every 130 minutes!");
 
     const path = "leaderboard/leaderboard_document";
 
@@ -207,11 +207,41 @@ exports.sortLeaderboard = functions.pubsub
         {
           list: listOfAllUser,
         },
-        {merge: true}
+        { merge: true }
       );
     } else {
       console.log("Error during sorting");
     }
 
     return null;
+  });
+
+//Avoir le document quand isChallengeEnd finit pour les 2
+
+// Verifier si challenge success
+//Increment nb challenge evaluator
+// increment nb challenge challenger et ajouter liste challenge si succes
+
+exports.simpleDbFunction = functions.database
+  .ref("/{parcId}/evaluator/{evaluatorId}")
+  .onWrite(async (snap, context) => {
+    const challengeData = snap.after.val();
+    const challengeEndEvaluator = challengeData.isChallengeEndEvaluator;
+    const challengeEndChallenger = challengeData.isChallengeEndChallenger;
+
+    if (challengeEndChallenger != true && challengeEndEvaluator != true) {
+      return null;
+    }
+    const 
+    console.log("Challenge End Evaluator");
+
+
+
+    return null;
+
+    // if (context.authType === "ADMIN") {
+    //   // do something
+    // } else if (context.authType === "USER") {
+    //   console.log(snap.val(), "written by", context.auth.uid);
+    // }
   });
