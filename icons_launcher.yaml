@@ -1,0 +1,7 @@
+icons_launcher:
+  image_path: "assets/images/challenge/asset_6.png"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
