@@ -249,14 +249,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
-  faker_dart:
-    dependency: "direct main"
-    description:
-      name: faker_dart
-      sha256: dfa2a28dddbacf6ed96bdfba013ac24c5ce85073831fdc8f0b6ae7ae15cb09bc
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.11"
   ffi:
     dependency: transitive
     description:
