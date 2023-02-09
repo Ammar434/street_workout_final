@@ -24,21 +24,19 @@ class WorkoutCategoryListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // WorkoutProvider workoutProvider = Provider.of<WorkoutProvider>(context);
-
-    // int length = workoutProvider.listWorkoutFromProvider.length;
     return ListView.separated(
       itemCount: categoryNames.length,
       shrinkWrap: true,
       itemBuilder: (context, index) => Column(
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
-            child: GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SelectExerciceScreen(workoutCategory: categoryNames[index])),
-              ),
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SelectExerciceScreen(workoutCategory: categoryNames[index])),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: kPaddingValue),
               child: Row(
                 children: [
                   CircleAvatar(
@@ -49,7 +47,7 @@ class WorkoutCategoryListBuilder extends StatelessWidget {
                   ),
                   Text(
                     categoryNames[index],
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
                   ),
                   const Spacer(),
                   FaIcon(

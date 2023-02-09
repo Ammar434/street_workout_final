@@ -96,7 +96,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
   }
 
   void removeExpansionPanel(int index) {
-    print("length ${listItem.length}");
+    // print("length ${listItem.length}");
 
     if (listItem.length > 1) {
       animatedListKey.currentState!.removeItem(index, (_, animation) {
@@ -199,7 +199,7 @@ class _TrackBodyState extends State<TrackBody> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    print("length ${listItem.length}");
+    // print("length ${listItem.length}");
 
     initialiseTrainingAndWorkout();
 

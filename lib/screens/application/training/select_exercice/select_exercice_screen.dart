@@ -59,8 +59,6 @@ class SelectExerciceScreen extends StatelessWidget {
               Offset offset = index.isEven ? Offset(-(cardSize + kSmallPaddingValue), 0) : Offset.zero;
               return GestureDetector(
                 onTap: () {
-                  // workoutProvider.updateSharedPrefrences();
-                  // workoutProvider.syncDataWithProvider();
                   Navigator.push(
                     context,
                     MaterialPageRoute(

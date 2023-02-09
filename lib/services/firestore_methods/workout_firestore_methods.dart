@@ -1,116 +1,54 @@
-import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 
-import '../firebase_storage/firebase_storage_methods.dart';
+import '../../models/workout.dart';
 
 class WorkoutFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirebaseStorageMethods _storageMethods = FirebaseStorageMethods();
 
-  Future<String> updateUserProfileImage(
-    Uint8List file,
+  Future<String> addWorkoutToFirestore(
+    String id,
+    String name,
+    String type,
+    Color color,
+    String image,
+    String category,
   ) async {
-    String res = "Some error occured";
+    String res = "Some error occurred";
+    Workout workout = Workout(
+      id: id,
+      name: name,
+      type: type,
+      color: color,
+      image: image,
+      category: category,
+    );
+
     try {
-      String url = await _storageMethods.uploadImageToStorage(
-        "profilePics",
-        file,
-        false,
-      );
-
-      await _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
-        {
-          "profileImage": url,
-        },
-      );
-
-      res = "success";
+      await _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).collection("workouts").doc(workout.id).set(
+            workout.toJson(),
+          );
+      res = "Success";
     } catch (e) {
-      debugPrint(e.toString());
       res = e.toString();
     }
-
     return res;
   }
 
-  Future<String> changeUserFavoriteParc(String parcId) async {
-    String res = "Some error occured";
-    try {
-      _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
-        {
-          "favoriteParc": parcId,
-        },
+  Future<List<Workout>> getWorkoutSnapshot() async {
+    List<Workout> listWorkout = [];
+    final QuerySnapshot<Map<String, dynamic>> workoutQuery = await _firebaseFirestore.collection("workout").get();
+
+    for (int i = 0; i < workoutQuery.size; i++) {
+      final DocumentSnapshot document = workoutQuery.docs.elementAt(i);
+      Map<dynamic, dynamic> documentMap = document.data() as Map<dynamic, dynamic>;
+      listWorkout.add(
+        Workout.fromJson(documentMap),
       );
-
-      res = "success";
-    } catch (e) {
-      debugPrint(e.toString());
-      res = e.toString();
     }
 
-    return res;
-  }
-
-  Future<String> updateUserData({
-    required int age,
-    required double weight,
-    required double height,
-    required bool gender,
-  }) async {
-    String res = "Some error occured";
-    try {
-      _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
-        {
-          "gender": gender ? "male" : "female",
-          "height": height,
-          "weight": weight,
-          "age": age,
-        },
-      );
-
-      res = "success";
-    } catch (e) {
-      debugPrint(e.toString());
-      res = e.toString();
-    }
-
-    return res;
-  }
-
-  Future<String> updateLastPosition({required Position position}) async {
-    String res = "Some error occured";
-    try {
-      _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).update(
-        {
-          'lastPosition': GeoPoint(position.latitude, position.longitude),
-        },
-      );
-
-      res = "success";
-    } catch (e) {
-      debugPrint(e.toString());
-      res = e.toString();
-    }
-
-    return res;
-  }
-
-  Future<String> deleteUserData() async {
-    String res = "Some error occured";
-    try {
-      _firebaseFirestore.collection("users").doc(_firebaseAuth.currentUser!.uid).delete();
-
-      res = "success";
-    } catch (e) {
-      debugPrint(e.toString());
-      res = e.toString();
-    }
-
-    return res;
+    return listWorkout;
   }
 }

@@ -2,58 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uuid/uuid.dart';
+import 'package:street_workout_final/services/firestore_methods/workout_firestore_methods.dart';
 
 import '../models/workout.dart';
 
 String kWorkoutList = "workoutList";
 
-List<Workout> listWorkouts = [
-  Workout(
-    id: const Uuid().v1(),
-    name: "Pull up",
-    type: "WorkoutType.weightAndRep",
-    color: const Color.fromARGB(15, 211, 35, 35),
-    image: "https://images.contentstack.io/v3/assets/blt45c082eaf9747747/blt546bfa7d4976da24/5de0b808f623107d34dbf973/beginner_pullups.jpg?width=1200&height=630&fit=crop",
-    category: 'Abs',
-  ),
-  Workout(
-    id: const Uuid().v1(),
-    name: "Pull up",
-    type: "WorkoutType.weightAndRep",
-    color: const Color.fromARGB(15, 211, 35, 35),
-    image: "https://images.contentstack.io/v3/assets/blt45c082eaf9747747/blt546bfa7d4976da24/5de0b808f623107d34dbf973/beginner_pullups.jpg?width=1200&height=630&fit=crop",
-    category: 'Abs',
-  ),
-  Workout(
-    id: const Uuid().v1(),
-    name: "Pull up",
-    type: "WorkoutType.weightAndRep",
-    color: const Color.fromARGB(15, 211, 35, 35),
-    image: "https://images.contentstack.io/v3/assets/blt45c082eaf9747747/blt546bfa7d4976da24/5de0b808f623107d34dbf973/beginner_pullups.jpg?width=1200&height=630&fit=crop",
-    category: 'Abs',
-  ),
-  Workout(
-    id: const Uuid().v1(),
-    name: "Pull up",
-    type: "WorkoutType.weightAndRep",
-    color: const Color.fromARGB(15, 211, 35, 35),
-    image: "https://images.contentstack.io/v3/assets/blt45c082eaf9747747/blt546bfa7d4976da24/5de0b808f623107d34dbf973/beginner_pullups.jpg?width=1200&height=630&fit=crop",
-    category: 'Abs',
-  ),
-];
-
 class WorkoutProvider extends ChangeNotifier {
-  List<Workout> _listWorkouts = [
-    Workout(
-      id: const Uuid().v1(),
-      name: "Pull up",
-      type: "WorkoutType.weightAndRep",
-      color: const Color.fromARGB(15, 211, 35, 35),
-      image: "https://images.contentstack.io/v3/assets/blt45c082eaf9747747/blt546bfa7d4976da24/5de0b808f623107d34dbf973/beginner_pullups.jpg?width=1200&height=630&fit=crop",
-      category: 'Abs',
-    ),
-  ];
+  List<Workout> _listWorkouts = [];
 
   List<Workout> get listWorkoutFromProvider => _listWorkouts;
 
@@ -88,9 +44,6 @@ class WorkoutProvider extends ChangeNotifier {
     for (Workout w in _listWorkouts) {
       String t = (jsonEncode(w.toJson()));
       jsonToSave.add(t);
-      // print(t);
-      // Workout test = Workout.fromJson(jsonDecode(t));
-      // print(test.id);
     }
 
     // print(jsonToSave);
@@ -102,10 +55,22 @@ class WorkoutProvider extends ChangeNotifier {
   Future syncDataWithProvider() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var result = prefs.getStringList(kWorkoutList);
-    // print(result);
 
     if (result != null) {
+      List<Workout> fromFirebase = await WorkoutFirestoreMethods().getWorkoutSnapshot();
       _listWorkouts = result.map((f) => Workout.fromJson(json.decode(f))).toList();
+
+      for (Workout w in fromFirebase) {
+        bool canBeAdded = true;
+        for (Workout w2 in _listWorkouts) {
+          if (w.id == w2.id) {
+            canBeAdded = false;
+          }
+        }
+        if (canBeAdded) {
+          _listWorkouts.add(w);
+        }
+      }
     }
 
     notifyListeners();

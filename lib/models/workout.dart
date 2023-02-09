@@ -35,35 +35,4 @@ class Workout {
       type: json["type"],
     );
   }
-  // void addSetOfRep(String id, double weight, int numberOfRep) {
-  //   bool isSetAlreadyExist = false;
-  //   Sets s = Sets(
-  //     numberOfRep: numberOfRep,
-  //     weight: weight,
-  //     distance: 0,
-  //     duration: Duration.zero,
-  //     id: id,
-  //   );
-  //   for (Sets s in listSets) {
-  //     if (s.id == id) {
-  //       isSetAlreadyExist = true;
-  //       s.weight = weight;
-  //       s.numberOfRep = numberOfRep;
-  //     }
-  //   }
-  //   if (!isSetAlreadyExist) {
-  //     listSets.add(s);
-  //   }
-  // }
-
-  // Workout clone() {
-  //   return Workout(
-  //     id: id,
-  //     name: name,
-  //     type: type,
-  //     color: color,
-  //     image: image,
-  //     listSets: [],
-  //   );
-  // }
 }
