@@ -54,7 +54,16 @@
     <key>NSCameraUsageDescription</key>
     <string>Need to record user when the user decide to record himself, if no other user is available arround him to assessed him directly</string>
     <key>NSMicrophoneUsageDescription</key>
-    <string>This app needs access to location when in the background, to alway give the </string>
+    <string>This app need access to microphone to use the camera</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app required access to the photo liblary for publish content in the app</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Allow user to check nearby parc arround him</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+    </dict>
 
 </dict>
 </plist>
