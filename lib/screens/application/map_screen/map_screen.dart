@@ -2,6 +2,8 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -71,30 +73,38 @@ class MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: isLoading
-          ? const LoadingWidget()
-          : GoogleMap(
-              mapType: MapType.normal,
-              myLocationEnabled: true,
-              zoomControlsEnabled: false,
-              initialCameraPosition: CameraPosition(
-                zoom: 14,
-                target: userCurrentPosition,
-              ),
-              markers: markers,
-              onMapCreated: (GoogleMapController controller) async {
-                String syle = await DefaultAssetBundle.of(context).loadString(
-                  "assets/maps/map_template.json",
-                );
+    return SafeArea(
+      bottom: false,
+      child: Scaffold(
+        body: isLoading
+            ? const LoadingWidget()
+            : GoogleMap(
+                mapType: MapType.normal,
+                myLocationEnabled: true,
+                zoomControlsEnabled: false,
+                initialCameraPosition: CameraPosition(
+                  zoom: 14,
+                  target: userCurrentPosition,
+                ),
+                markers: markers,
+                gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                  Factory<OneSequenceGestureRecognizer>(
+                    () => EagerGestureRecognizer(),
+                  ),
+                },
+                onMapCreated: (GoogleMapController controller) async {
+                  String syle = await DefaultAssetBundle.of(context).loadString(
+                    "assets/maps/map_template.json",
+                  );
 
-                controller.setMapStyle(syle);
-                _controller.complete(controller);
-                _manager.setMapId(controller.mapId);
-              },
-              onCameraMove: _manager.onCameraMove,
-              onCameraIdle: _manager.updateMap,
-            ),
+                  controller.setMapStyle(syle);
+                  _controller.complete(controller);
+                  _manager.setMapId(controller.mapId);
+                },
+                onCameraMove: _manager.onCameraMove,
+                onCameraIdle: _manager.updateMap,
+              ),
+      ),
     );
   }
 

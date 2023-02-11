@@ -1,8 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import "package:street_workout_final/common_libs.dart";
+import 'package:street_workout_final/models/custom_user.dart';
 
 import '../../../../models/parc.dart';
+import '../../../../provider/user_provider.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/loading_widget.dart';
 import '../components/parc_display_card.dart';
@@ -16,6 +20,9 @@ class ViewAllParcScreen extends StatefulWidget {
 
 class _ViewAllParcScreenState extends State<ViewAllParcScreen> {
   late ScrollController scrollController;
+  late CustomUser currentUser;
+  late GeoHasher geoHasher;
+  String geoHash = "";
 
   void onListen() {
     setState(() {});
@@ -23,6 +30,9 @@ class _ViewAllParcScreenState extends State<ViewAllParcScreen> {
 
   @override
   void initState() {
+    currentUser = Provider.of<UserProvider>(context, listen: false).getUser!;
+    geoHasher = GeoHasher();
+    geoHash = geoHasher.encode(currentUser.lastPosition.longitude, currentUser.lastPosition.latitude, precision: 5);
     scrollController = ScrollController();
     scrollController.addListener(onListen);
     super.initState();
@@ -42,7 +52,19 @@ class _ViewAllParcScreenState extends State<ViewAllParcScreen> {
       child: Scaffold(
         appBar: buildAppBar(context, 'All parc'),
         body: FutureBuilder(
-            future: FirebaseFirestore.instance.collection("parcs").where("isPublished", isEqualTo: true).limit(100).get(),
+            future: FirebaseFirestore.instance
+                .collection("parcs")
+                .where(
+                  'geoHash',
+                  isGreaterThanOrEqualTo: geoHash.substring(0, 4),
+                )
+                .where(
+                  'geoHash',
+                  isLessThanOrEqualTo: geoHash,
+                )
+                .orderBy("geoHash", descending: true)
+                .limit(25)
+                .get(),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data!.docs.isEmpty) {
@@ -66,7 +88,7 @@ class _ViewAllParcScreenState extends State<ViewAllParcScreen> {
 
                       if (opacity > 1) opacity = 1;
                       if (opacity < 0) opacity = 0;
-                      if (scale > 1) scale = 1;
+                      if (percent > 1) scale = 1;
                       Parc parc = Parc.postFromSnapshot(snapshot.data!.docs[index]);
                       return Opacity(
                         opacity: opacity,

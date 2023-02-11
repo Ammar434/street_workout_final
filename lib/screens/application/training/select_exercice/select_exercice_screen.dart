@@ -19,13 +19,10 @@ class SelectExerciceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double cardSize = 80.sp;
-    WorkoutProvider workoutProvider = Provider.of<WorkoutProvider>(context);
-    // workoutProvider.syncDataWithProvider();
-    List<Workout> workoutList = workoutProvider.listWorkoutFromProvider
-        .where(
-          (Workout w) => (w.category == workoutCategory),
-        )
-        .toList();
+    WorkoutProvider workoutProvider = Provider.of<WorkoutProvider>(
+      context,
+    );
+    List<Workout> workoutList = workoutProvider.listWorkoutFromProvider;
 
     void onFloattingActionPress() {
       Navigator.push(

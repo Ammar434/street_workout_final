@@ -103,7 +103,9 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                         children: <Widget>[
                           const ProfileImageUpdateSettingScreen(),
                           _spacing,
-                          Expanded(child: FavoriteParcChoose(customUser: customUser)),
+                          Expanded(
+                            child: FavoriteParcChoose(customUser: customUser),
+                          ),
                           _spacing,
                           UserPersonalInformationSettingsScreen(child: buildColumnSlider()),
                           _spacing,

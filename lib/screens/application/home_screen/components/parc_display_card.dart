@@ -67,7 +67,6 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: kPaddingValue),
       width: double.infinity,
       height: pacrDisplayCardHeight,
       decoration: BoxDecoration(

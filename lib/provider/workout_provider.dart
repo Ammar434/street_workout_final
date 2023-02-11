@@ -55,16 +55,16 @@ class WorkoutProvider extends ChangeNotifier {
   Future syncDataWithProvider() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var result = prefs.getStringList(kWorkoutList);
+    _listWorkouts = await WorkoutFirestoreMethods().getWorkoutSnapshot();
 
     if (result != null) {
-      List<Workout> fromFirebase = await WorkoutFirestoreMethods().getWorkoutSnapshot();
-      _listWorkouts = result.map((f) => Workout.fromJson(json.decode(f))).toList();
-
-      for (Workout w in fromFirebase) {
+      List<Workout> fromStorage = result.map((f) => Workout.fromJson(json.decode(f))).toList();
+      for (Workout w in fromStorage) {
         bool canBeAdded = true;
         for (Workout w2 in _listWorkouts) {
           if (w.id == w2.id) {
             canBeAdded = false;
+            break;
           }
         }
         if (canBeAdded) {

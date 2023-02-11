@@ -1,47 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Leaderboard {
   final String userId;
   final String userName;
   final String userProfileImage;
+  final int numberOfEvaluation;
+  final int numberOfContribution;
   final int userPoint;
-  // final int userPointDay;
-  // final int userPointWeek;
-  // final int userPointMonth;
-  // final int userPointYear;
 
   Leaderboard({
     required this.userId,
     required this.userName,
     required this.userProfileImage,
     required this.userPoint,
-    // required this.userPointWeek,
-    // required this.userPointDay,
-    // required this.userPointMonth,
-    // required this.userPointYear,
+    required this.numberOfContribution,
+    required this.numberOfEvaluation,
   });
 
-  // Map<String, dynamic> toJson() => {
-  //       "userId": userId,
-  //       "userName": userName,
-  //       "userProfileImage": userProfileImage,
-  //       "userPoint": userPoint,
-
-  //       // "userPointDay": userPointDay,
-  //       // "userPointWeek": userPointWeek,
-  //       // "userPointMonth": userPointMonth,
-  //       // "userPointYear": userPointYear,
-  //     };
-
-  static Leaderboard leaderboardFromSnapshot(Map<String, dynamic> snapshot) {
-    // var snapshot = documentSnapshot.data() as Map<String, dynamic>;
+  static Leaderboard leaderboardFromSnapshot(DocumentSnapshot documentSnapshot) {
+    var snapshot = documentSnapshot.data() as Map<String, dynamic>;
     return Leaderboard(
-      userId: snapshot['userId'],
+      userId: snapshot['uid'],
       userName: snapshot['userName'],
-      userProfileImage: snapshot['userProfileImage'],
-      userPoint: snapshot['userPoint'],
-      // userPointDay: snapshot['userPointDay'],
-      // userPointWeek: snapshot['userPointWeek'],
-      // userPointMonth: snapshot['userPointMonth'],
-      // userPointYear: snapshot['userPointYear'],
+      userProfileImage: snapshot['profileImage'],
+      userPoint: snapshot['points'],
+      numberOfContribution: snapshot['numberOfContribution'],
+      numberOfEvaluation: snapshot['numberOfEvaluation'],
     );
   }
 }

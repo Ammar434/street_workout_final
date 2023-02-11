@@ -15,7 +15,12 @@ class AddFavoriteParc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
-        onTap: (() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ViewAllParcScreen()))),
+        onTap: (() => Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ViewAllParcScreen(),
+              ),
+            )),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

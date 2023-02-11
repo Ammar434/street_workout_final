@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:street_workout_final/screens/application/parc_info/parc_info_screen.dart';
 
 import '../../../../../../models/parc.dart';
 import 'add_favorite_parc.dart';
@@ -16,36 +17,60 @@ class ColumnFavoriteParc extends StatelessWidget {
   final List<Parc> listeParc;
   @override
   Widget build(BuildContext context) {
+    print("index $index");
     if (index > listeParc.length - 1) {
       return AddFavoriteParc(
         small: (index > 1),
       );
     }
+    ImageProvider imageProvider;
+
+    if (listeParc[index].mainPhoto.isEmpty) {
+      imageProvider = const AssetImage(
+        "assets/images/errors/no_picture.png",
+      );
+    } else {
+      imageProvider = NetworkImage(listeParc[index].mainPhoto);
+    }
     return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Flexible(
-            child: Container(
-              height: 80.sp,
-              margin: EdgeInsets.all(25.sp),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(listeParc[index].mainPhoto),
-                  fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: (() => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ParcInfoScreen(
+                  parc: listeParc[index],
+                  parcId: listeParc[index].parcId,
+                ),
+              ),
+            )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              child: Container(
+                height: 80.sp,
+                margin: EdgeInsets.all(25.sp),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-          ),
-          FittedBox(
-            child: Text(
-              listeParc[index].name,
-              style: Theme.of(context).textTheme.titleSmall,
-              maxLines: 2,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Text(
+                listeParc[index].name,
+                style: Theme.of(context).textTheme.titleSmall,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

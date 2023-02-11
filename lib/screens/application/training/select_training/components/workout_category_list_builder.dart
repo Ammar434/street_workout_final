@@ -33,7 +33,11 @@ class WorkoutCategoryListBuilder extends StatelessWidget {
             behavior: HitTestBehavior.opaque,
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SelectExerciceScreen(workoutCategory: categoryNames[index])),
+              MaterialPageRoute(
+                builder: (context) => SelectExerciceScreen(
+                  workoutCategory: categoryNames[index],
+                ),
+              ),
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: kPaddingValue),

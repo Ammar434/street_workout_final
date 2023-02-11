@@ -30,7 +30,7 @@ class DropdownDialog extends StatelessWidget {
         child: PopupMenuButton(
           elevation: 10,
           offset: offset,
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).cardColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kRadiusValue),
           ),
