@@ -58,6 +58,12 @@ class AddNewAchievementState extends State<AddNewAchievement> {
   }
 
   @override
+  void deactivate() {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    super.deactivate();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,

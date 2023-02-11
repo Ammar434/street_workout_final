@@ -2,8 +2,8 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import fetch from "cross-fetch";
 import * as geofire from "geofire-common";
-import {v4 as uuidv4} from "uuid";
-import {GeoPoint} from "firebase-admin/firestore";
+import { v4 as uuidv4 } from "uuid";
+import { GeoPoint } from "firebase-admin/firestore";
 const fieldValue = admin.firestore.FieldValue;
 
 admin.initializeApp();
@@ -76,7 +76,7 @@ async function addAddressToInitialParc(parcId: string, address: string) {
     {
       completeAddress: address,
     },
-    {merge: true}
+    { merge: true }
   );
 }
 
@@ -93,7 +93,7 @@ async function addLatLongToInitialParc(
     {
       geoPoint: geopoint,
     },
-    {merge: true}
+    { merge: true }
   );
 }
 
@@ -118,7 +118,7 @@ async function addToAllParcReference(
           completeAddress: completeAddress,
         },
       },
-      {merge: true}
+      { merge: true }
     );
 }
 
@@ -274,13 +274,10 @@ async function addUserToLeaderboard(
   id: string,
   name: string,
   image: string,
-  point: number
+  point: number,
+  numberOfEvaluation: number,
+  numberOfContribution: number
 ) {
-  console.log("id " + id);
-  console.log("name " + name);
-  console.log("image " + image);
-  console.log("point " + point);
-
   return await admin
     .firestore()
     .doc("leaderboard/leaderboard_document")
@@ -290,6 +287,8 @@ async function addUserToLeaderboard(
         userId: id,
         userPoint: point,
         userProfileImage: image,
+        numberOfEvaluation: numberOfEvaluation,
+        numberOfContribution: numberOfContribution,
       }),
     });
 }
@@ -303,14 +302,23 @@ exports.addNewUserToLeaderboard = functions.firestore
     const _id = newUser.uid;
     const _userProfileImage = newUser.profileImage;
     const _userPoint = newUser.points;
+    const _numberOfEvaluation = newUser.numberOfEvaluation;
+    const _numberOfContribution = newUser.numberOfContribution;
 
-    return addUserToLeaderboard(_id, _name, _userProfileImage, _userPoint);
+    return addUserToLeaderboard(
+      _id,
+      _name,
+      _userProfileImage,
+      _userPoint,
+      _numberOfEvaluation,
+      _numberOfContribution
+    );
   });
 
 // // Une fonction qui trie leaderboard
 
 exports.sortLeaderboard = functions.pubsub
-  .schedule("every 300 minutes")
+  .schedule("every 3600 minutes")
   .onRun(async (context) => {
     console.log("This will be run every 300 minutes!");
 
@@ -320,12 +328,9 @@ exports.sortLeaderboard = functions.pubsub
     const data = promise.data();
     if (data) {
       let listOfAllUser = data.list;
-
-      listOfAllUser = listOfAllUser.sort((a: any, b: any) => {
-        const userAPoint =
-          a.userPoint + a.numberOfEvaluation * 5 + a.numberOfContribution * 2;
-        const userBPoint =
-          b.userPoint + b.numberOfEvaluation * 5 + b.numberOfContribution * 2;
+      listOfAllUser = listOfAllUser.sort(async (a: any, b: any) => {
+        const userAPoint = await getUserPoint(a.uid);
+        const userBPoint = await getUserPoint(b.uid);
 
         return userBPoint - userAPoint;
       });
@@ -333,7 +338,7 @@ exports.sortLeaderboard = functions.pubsub
         {
           list: listOfAllUser,
         },
-        {merge: true}
+        { merge: true }
       );
     } else {
       console.log("Error during sorting");
@@ -369,7 +374,7 @@ exports.getTheTopUserOfEachParc = functions.pubsub
         {
           userUidChampion: athleteWithMostPoint,
         },
-        {merge: true}
+        { merge: true }
       );
     });
 
@@ -381,9 +386,9 @@ exports.getTheTopUserOfEachParc = functions.pubsub
 // Verifier si challenge success
 // Increment nb challenge evaluator
 // increment nb challenge challenger et ajouter liste challenge si succes
+
 async function incrementUserPoint(userId: string, incrementOf: number) {
   const document = admin.firestore().doc("users/" + userId);
-
   return await document.update({
     points: fieldValue.increment(incrementOf),
   });
@@ -406,7 +411,7 @@ async function addRewardToUser(userId: string, reward: string) {
     });
 }
 
-async function getUserPoint(userId: string) {
+async function getUserPoint(userId: string): Promise<number> {
   const promise = await admin
     .firestore()
     .doc("users/" + userId)
