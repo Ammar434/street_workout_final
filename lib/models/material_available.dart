@@ -22,6 +22,10 @@ class MaterialAvailable {
         listMaterialAvailable.add(materialAvailable4);
       } else if (s == materialAvailable5.name) {
         listMaterialAvailable.add(materialAvailable5);
+      } else if (s == materialAvailable6.name) {
+        listMaterialAvailable.add(materialAvailable6);
+      } else if (s == materialAvailable7.name) {
+        listMaterialAvailable.add(materialAvailable7);
       }
     }
     return listMaterialAvailable;
@@ -52,6 +56,14 @@ MaterialAvailable materialAvailable5 = MaterialAvailable(
   name: "High vertical bar",
   image: "assets/images/exercices/image_exercice5.png",
 );
+MaterialAvailable materialAvailable6 = MaterialAvailable(
+  name: "Rings station",
+  image: "assets/images/exercices/image_exercice6.png",
+);
+MaterialAvailable materialAvailable7 = MaterialAvailable(
+  name: "Abs",
+  image: "assets/images/exercices/image_exercice7.png",
+);
 
 List<MaterialAvailable> materialAvailableList = [
   materialAvailable0,
@@ -60,4 +72,6 @@ List<MaterialAvailable> materialAvailableList = [
   materialAvailable3,
   materialAvailable4,
   materialAvailable5,
+  materialAvailable6,
+  materialAvailable7,
 ];

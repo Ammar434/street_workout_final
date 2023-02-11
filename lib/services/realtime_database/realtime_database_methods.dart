@@ -57,7 +57,7 @@ class RealtimeDatabaseMethods {
     List<CustomUser> list = [];
     try {
       for (int i = 0; i < listChallenge.length; i++) {
-        CustomUser c = await UserFirestoreMethods().findUserByUid(listChallenge[i].evaluatorUid);
+        CustomUser? c = await UserFirestoreMethods().findUserByUid(listChallenge[i].evaluatorUid);
         list.add(c);
       }
     } catch (error) {

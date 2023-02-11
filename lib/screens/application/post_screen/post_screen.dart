@@ -37,6 +37,7 @@ class _PostScreenState extends State<PostScreen> {
   List<MaterialAvailable> selectedMaterial = [];
   bool isLoading = false;
   bool isMapLoading = false;
+  bool isBtnLoading = false;
   late final Geolocalisation _geolocalisation;
   late LatLng userCurrentPosition;
 
@@ -65,7 +66,7 @@ class _PostScreenState extends State<PostScreen> {
     String content = "";
     ContentType contentType;
     setState(() {
-      isLoading = true;
+      isBtnLoading = true;
     });
     try {
       CustomUser currentUser = Provider.of<UserProvider>(context, listen: false).getUser!;
@@ -77,6 +78,7 @@ class _PostScreenState extends State<PostScreen> {
         userId: currentUser.uid,
         latitude: lat,
         longitude: long,
+        isAdmin: currentUser.isAdmin,
       );
 
       debugPrint("res $res");
@@ -97,7 +99,7 @@ class _PostScreenState extends State<PostScreen> {
     }
 
     setState(() {
-      isLoading = false;
+      isBtnLoading = false;
     });
     lat = 0.0;
     long = 0.0;
@@ -187,7 +189,7 @@ class _PostScreenState extends State<PostScreen> {
                           await publishPost();
                         },
                         text: "Publish",
-                        isLoading: isLoading,
+                        isLoading: isBtnLoading,
                       ),
                     ],
                   ),

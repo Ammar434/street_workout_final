@@ -1,31 +1,73 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import fetch from "cross-fetch";
-
+import * as geofire from "geofire-common";
+import {v4 as uuidv4} from "uuid";
+import {GeoPoint} from "firebase-admin/firestore";
 const fieldValue = admin.firestore.FieldValue;
 
 admin.initializeApp();
 
-// exports.testPurposeOnly = functions.https.onRequest((request, response) => {
-//   const path = "leaderboard/leaderboard_document";
+// ##########################################################################################
+// User function
+// ##########################################################################################
+async function incrementUserContribution(userId: string, incrementOf: number) {
+  const document = admin.firestore().doc("users/" + userId);
+  await document.update({
+    numberOfContribution: fieldValue.increment(incrementOf),
+  });
+}
+// ##########################################################################################
 
-//   const promise = admin.firestore().doc(path).get();
+// ##########################################################################################
+// Parc function
+// ##########################################################################################
+exports.createNewParc = functions.https.onRequest(async (request, response) => {
+  const _parcId = uuidv4();
+  const _parcName = request.query.name;
+  const _materialAvailable = request.query.materialAvailable;
+  const _completeAddress = request.query.completeAddress;
+  let point = [0, 0];
 
-//   const promise2 = promise.then(async (snapshot) => {
-//     const data = snapshot.data();
-//     if (data) {
-//       const a = await reverseGeocoding(10, 34);
-//       console.log(a);
-//       response.send("User added");
-//     } else {
-//       response.send("User not added");
-//     }
-//   });
-//   promise2.catch((error) => {
-//     console.log(error);
-//     response.status(500).send(error);
-//   });
-// });
+  if (typeof _completeAddress === "string") {
+    point = await geocoding(_completeAddress);
+  }
+  const _lat = point[0];
+  const _long = point[1];
+
+  const _geopoint = new GeoPoint(_lat, _long);
+  const _geoHash = geofire.geohashForLocation([_lat, _long], 5);
+  try {
+    await admin.firestore().collection("parcs").doc(_parcId).set({
+      postId: _parcId,
+      userUidWhoPublish: "M4qhuxrn6FVEigyVITg0elgHgfN2",
+      parcId: _parcId,
+      datePublished: Date.now(),
+      athletesWhoTrainInThisParc: [],
+      materialAvailable: _materialAvailable,
+      geoPoint: _geopoint,
+      name: _parcName,
+      completeAddress: _completeAddress,
+      userUidChampion: "",
+      isPublished: true,
+      geoHash: _geoHash,
+      mainPhoto: "",
+    });
+    if (typeof _parcName === "string" && typeof _completeAddress === "string") {
+      await addToAllParcReference(
+        _parcId,
+        _parcName,
+        _lat,
+        _long,
+        _completeAddress
+      );
+    }
+
+    response.status(200).send("Ok");
+  } catch (e) {
+    response.status(400).send(`error ${e}`);
+  }
+});
 
 async function addAddressToInitialParc(parcId: string, address: string) {
   const document = admin.firestore().doc("parcs/" + parcId);
@@ -34,8 +76,50 @@ async function addAddressToInitialParc(parcId: string, address: string) {
     {
       completeAddress: address,
     },
-    { merge: true }
+    {merge: true}
   );
+}
+
+async function addLatLongToInitialParc(
+  parcId: string,
+  lat: number,
+  long: number
+) {
+  const geopoint = new GeoPoint(lat, long);
+
+  const document = admin.firestore().doc("parcs/" + parcId);
+
+  await document.set(
+    {
+      geoPoint: geopoint,
+    },
+    {merge: true}
+  );
+}
+
+async function addToAllParcReference(
+  parcId: string,
+  name: string,
+  lat: number,
+  long: number,
+  completeAddress: string
+) {
+  const geoPoint = new GeoPoint(lat, long);
+
+  await admin
+    .firestore()
+    .doc("datas/all_parcs_references")
+    .set(
+      {
+        [parcId]: {
+          name: name,
+          id: parcId,
+          geoPoint: geoPoint,
+          completeAddress: completeAddress,
+        },
+      },
+      {merge: true}
+    );
 }
 
 async function reverseGeocoding(lat: number, long: number): Promise<string> {
@@ -50,52 +134,72 @@ async function reverseGeocoding(lat: number, long: number): Promise<string> {
   return completeAddress;
 }
 
+async function geocoding(address: string): Promise<[number, number]> {
+  const APIKEY = process.env.GOOGLEMAPKEY as string;
+  const MAINURL = "https://maps.googleapis.com/maps/api/geocode/json";
+  const uri = `${MAINURL}?address=${address}&key=${APIKEY}`;
+  console.log(uri);
+  const response = await fetch(uri);
+  const data = await response.json();
+
+  const lat = data.results[0].geometry.location.lat;
+  const long = data.results[0].geometry.location.lng;
+  console.log(`lat ${lat}`);
+  console.log(`long ${long}`);
+
+  return [lat, long];
+}
+
+async function addGeoHash(parcId: string, lat: number, lng: number) {
+  const hash = await geofire.geohashForLocation([lat, lng], 5);
+  const document = admin.firestore().doc("parcs/" + parcId);
+
+  await document.update({
+    geoHash: hash,
+  });
+}
+async function addParcPhoto(parcId: string, photoUrl: string) {
+  console.log("parcId");
+  console.log(parcId);
+  const document = await admin
+    .firestore()
+    .doc("parcs/" + parcId)
+    .get();
+
+  const data = document.data();
+  if (data != null) {
+    const mainUrl = data.mainPhoto;
+    if (mainUrl == "") {
+      await admin
+        .firestore()
+        .doc("parcs/" + parcId)
+        .update({
+          mainPhoto: photoUrl,
+        });
+    }
+  }
+}
 exports.addParcReference = functions.firestore
   .document("parcs/{parcId}")
   .onCreate(async (snapshot) => {
     const newParc = snapshot.data();
-    const _name = newParc.name;
     const _id = newParc.parcId;
+    let _completeAddress = newParc.completeAddress;
     const _geoPoint = newParc.geoPoint;
-    const lat = _geoPoint.latitude;
-    const long = _geoPoint.longitude;
-    const _completeAddress = await reverseGeocoding(lat, long);
-    console.log("idé " + _id);
-    await addAddressToInitialParc(_id, _completeAddress);
+    let _lat = _geoPoint.latitude;
+    let _long = _geoPoint.longitude;
+    if (_lat == 0 && _long == 0) {
+      const geoPoint = await geocoding(_completeAddress);
+      _lat = geoPoint[0];
+      _long = geoPoint[1];
+      await addLatLongToInitialParc(_id, _lat, _long);
+    } else if (_completeAddress == "") {
+      _completeAddress = await reverseGeocoding(_lat, _long);
+      await addAddressToInitialParc(_id, _completeAddress);
+    }
 
-    await admin
-      .firestore()
-      .doc("datas/all_parcs_references")
-      .set(
-        {
-          [_id]: {
-            name: _name,
-            id: _id,
-            geoPoint: _geoPoint,
-            completeAddress: _completeAddress,
-          },
-        },
-        { merge: true }
-      );
-    // .then(() => {
-    //   console.log("Parc " + _id + " added");
-    //   return null;
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    //   return null;
-    // });
+    await addGeoHash(_id, _lat, _long);
   });
-
-// Une fonction qui increment contribution user
-
-async function incrementUserContribution(userId: string, incrementOf: number) {
-  const document = admin.firestore().doc("users/" + userId);
-
-  await document.update({
-    numberOfContribution: fieldValue.increment(incrementOf),
-  });
-}
 
 exports.listenToParcValidate = functions.firestore
   .document("parcs/{parcId}")
@@ -114,9 +218,16 @@ exports.listenToParcValidate = functions.firestore
 
     // Retrieve the user who publish this parc
     const userId = data.userUidWhoPublish;
-
+    const _name = data.name;
+    const _id = data.parcId;
+    const _completeAddress = data.completeAddress;
+    const _geoPoint = data.geoPoint;
+    const _lat = _geoPoint.latitude;
+    const _long = _geoPoint.longitude;
     try {
-      return await incrementUserContribution(userId, pointToIncrement);
+      await addToAllParcReference(_id, _name, _lat, _long, _completeAddress);
+      await incrementUserContribution(userId, pointToIncrement);
+      return "Success";
     } catch (e) {
       return "caught ";
     }
@@ -130,7 +241,6 @@ exports.listenToParcPhotoValidate = functions.firestore
     // Retrieve the current and previous value
     const data = change.after.data();
     const previousData = change.before.data();
-
     // We'll only update if the parc has been validate by a admin.
     // This is crucial to prevent infinite loops.
     if (data.isPublished == previousData.isPublished) {
@@ -138,14 +248,25 @@ exports.listenToParcPhotoValidate = functions.firestore
     }
 
     // Retrieve the user who publish this parc
+    const parcId = change.after.ref.parent.parent?.id;
+    console.log("parcId");
+    console.log(parcId);
     const userId = data.userUidWhoPublish;
 
     try {
-      return await incrementUserContribution(userId, pointToIncrement);
+      await incrementUserContribution(userId, pointToIncrement);
+      await addParcPhoto(parcId!, data.postUrl);
+      return "Success";
     } catch (e) {
       return "caught ";
     }
   });
+
+// ##########################################################################################
+
+// ##########################################################################################
+// Leaderboard
+// ##########################################################################################
 
 // // Une fonction qui ajoute nouveau user a list leaderboard
 
@@ -189,9 +310,9 @@ exports.addNewUserToLeaderboard = functions.firestore
 // // Une fonction qui trie leaderboard
 
 exports.sortLeaderboard = functions.pubsub
-  .schedule("every 60 minutes")
+  .schedule("every 300 minutes")
   .onRun(async (context) => {
-    console.log("This will be run every 130 minutes!");
+    console.log("This will be run every 300 minutes!");
 
     const path = "leaderboard/leaderboard_document";
 
@@ -212,13 +333,47 @@ exports.sortLeaderboard = functions.pubsub
         {
           list: listOfAllUser,
         },
-        { merge: true }
+        {merge: true}
       );
     } else {
       console.log("Error during sorting");
     }
 
     return null;
+  });
+
+exports.getTheTopUserOfEachParc = functions.pubsub
+  .schedule("every 3600 minutes")
+  .onRun(async (context) => {
+    console.log("This will be run every 3600 minutes!");
+
+    const path = "parcs";
+
+    const promise = await admin.firestore().collection(path).get();
+    let athleteWithMostPoint = "";
+    // Iterate over all parc in database
+    promise.forEach(async (doc) => {
+      const data = doc.data();
+      const parcId = data.parcId;
+
+      const listUser = data.athletesWhoTrainInThisParc;
+      athleteWithMostPoint = listUser.reduce(
+        (prev: string, current: string) => {
+          const athleteAPoint = getUserPoint(prev);
+          const athleteBPoint = getUserPoint(current);
+
+          return athleteAPoint > athleteBPoint ? prev : current;
+        }
+      );
+      await admin.firestore().doc(`parcs/${parcId}`).set(
+        {
+          userUidChampion: athleteWithMostPoint,
+        },
+        {merge: true}
+      );
+    });
+
+    return "Success";
   });
 
 // Avoir le document quand isChallengeEnd finit pour les 2
@@ -251,7 +406,25 @@ async function addRewardToUser(userId: string, reward: string) {
     });
 }
 
-exports.simpleDbFunction = functions.database
+async function getUserPoint(userId: string) {
+  const promise = await admin
+    .firestore()
+    .doc("users/" + userId)
+    .get();
+  const data = promise.data();
+
+  const point =
+    data!.userPoint +
+    data!.numberOfEvaluation * 5 +
+    data!.numberOfContribution * 2;
+
+  return point;
+}
+
+// ##########################################################################################
+// Challenge
+// ##########################################################################################
+exports.listenToChallengeFinished = functions.database
   .ref("/{parcId}/evaluator/{evaluatorId}")
   .onWrite(async (snap, context) => {
     const challengeData = snap.after.val();
@@ -291,3 +464,4 @@ exports.simpleDbFunction = functions.database
     //   console.log(snap.val(), "written by", context.auth.uid);
     // }
   });
+// ##########################################################################################

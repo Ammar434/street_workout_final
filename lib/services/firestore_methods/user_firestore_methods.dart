@@ -12,7 +12,7 @@ class UserFirestoreMethods {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseStorageMethods _storageMethods = FirebaseStorageMethods();
-  final String defaultUser = "AGe5UouEVnSbysldos7RgEudr7b2";
+  final String defaultUser = "M4qhuxrn6FVEigyVITg0elgHgfN2";
   Future<CustomUser> findUserByUid(String uid) async {
     CustomUser? user;
     try {

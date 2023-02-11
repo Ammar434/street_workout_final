@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
@@ -25,8 +24,9 @@ class ParcFirestoreMethods {
     required String userId,
     required latitude,
     required longitude,
+    required bool isAdmin,
   }) async {
-    GeoHasher geoHasher = GeoHasher();
+    // GeoHasher geoHasher = GeoHasher();
     List<String> materialAvailableString = [];
     String res = "Some error occured";
     if (materialAvailable.isEmpty && parcName.isEmpty && (longitude == 0 && latitude == 0) && listFile.isEmpty) {
@@ -54,20 +54,12 @@ class ParcFirestoreMethods {
       String parcId = _uuid.v1();
 
       GeoPoint geoPoint = GeoPoint(latitude, longitude);
-      // if (detailsResult != null) {
-      //   geoPoint = GeoPoint(
-      //     detailsResult.place!.latLng!.lat,
-      //     detailsResult.place!.latLng!.lng,
-      //   );
-      // } else {
-      //   geoPoint = const GeoPoint(0, 0);
-      // }
 
       Parc post = Parc(
         userUidWhoPublish: userId,
         postId: postId,
         parcId: parcId,
-        datePublished: DateTime.now().toString(),
+        datePublished: Timestamp.now().millisecondsSinceEpoch,
         athletesWhoTrainInThisParc: [],
         materialAvailable: materialAvailableString,
         mainPhoto: '',
@@ -76,25 +68,18 @@ class ParcFirestoreMethods {
         // completeAddress: detailsResult != null ? detailsResult.place!.address! : parcAddress,
         geoPoint: geoPoint,
         userUidChampion: '',
-        isPublished: false,
-        geoHash: geoHasher.encode(geoPoint.longitude, geoPoint.latitude, precision: 5),
+        isPublished: isAdmin,
+        geoHash: "",
       );
 
       await _firebaseFirestore.collection("parcs").doc(parcId).set(post.toJson());
 
-      // await _firebaseFirestore.collection("datas").doc("all_parcs_references").update({
-      //   parcId: {
-      //     "completeAddress": parcAddress,
-      //     "name": parcName,
-      //     "id": parcId,
-      //     "geoPoint": geoPoint,
-      //   }
-      // });
       for (Uint8List file in listFile) {
         await uploadImageToAExistingParc(
           file: file,
           parcId: parcId,
           userUidWhoPublish: userId,
+          isAdmin: isAdmin,
         );
       }
 
@@ -116,6 +101,7 @@ class ParcFirestoreMethods {
     required Uint8List file,
     required String parcId,
     required String userUidWhoPublish,
+    required bool isAdmin,
   }) async {
     String res = "Some error occured";
     try {
@@ -132,7 +118,7 @@ class ParcFirestoreMethods {
         datePublished: DateTime.now().toString(),
         postUrl: photoUrl,
         likes: [],
-        isPublished: false,
+        isPublished: isAdmin,
       );
 
       _firebaseFirestore.collection("parcs").doc(parcId).collection("posts").doc(postId).set(post.toJson());
@@ -185,7 +171,7 @@ class ParcFirestoreMethods {
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot = await _firebaseFirestore.collection("parcs").doc(parcId).get();
 
       for (String uid in documentSnapshot.data()!['athletesWhoTrainInThisParc']) {
-        CustomUser customUser = await _userFirestoreMethods.findUserByUid(uid);
+        CustomUser? customUser = await _userFirestoreMethods.findUserByUid(uid);
         listUser.add(customUser);
       }
     } catch (e) {

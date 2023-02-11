@@ -91,6 +91,7 @@ class AuthenticationMethod {
         instagramProfile: "",
         rewards: [],
         lastPosition: geoPoint,
+        isAdmin: false,
       );
       await _firebaseFirestore.collection('users').doc(credential.user!.uid).set(customUser.toJson());
       res = "success";

@@ -16,7 +16,13 @@ service cloud.firestore {
     match /rewards/{document=**} {
     	allow read,write: if true;
     }
+    
      match /leaderboard/{document=**} {
+    	allow read:if request.auth != null;
+      allow write: if false;
+    }
+    
+     match /workout/{document=**} {
     	allow read:if request.auth != null;
       allow write: if false;
     }

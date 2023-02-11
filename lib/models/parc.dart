@@ -20,7 +20,7 @@ class Parc {
   final String userUidWhoPublish;
   final String userUidChampion;
   final String parcId;
-  final String datePublished;
+  final int datePublished;
   final String mainPhoto;
   final List<dynamic> materialAvailable;
   final List<dynamic> athletesWhoTrainInThisParc;
@@ -43,6 +43,7 @@ class Parc {
         "userUidChampion": userUidChampion,
         "isPublished": isPublished,
         "geoHash": geoHash,
+        "mainPhoto": mainPhoto,
       };
 
   static Parc postFromSnapshot(DocumentSnapshot documentSnapshot) {

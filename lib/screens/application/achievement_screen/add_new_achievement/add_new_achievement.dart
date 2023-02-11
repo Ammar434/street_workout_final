@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import "package:street_workout_final/common_libs.dart";
+import '../../../../provider/user_provider.dart';
 import '../../../../services/firestore_methods/rewards_firestore_methods.dart';
 import 'components/list_tile_for_instruction.dart';
 import '../../../../widgets/app_bar.dart';
@@ -81,6 +83,7 @@ class AddNewAchievementState extends State<AddNewAchievement> {
               selectedReward,
               path,
               listInstruction,
+              Provider.of<UserProvider>(context).getUser!.isAdmin,
             );
 
             if (res == "Success") {

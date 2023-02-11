@@ -13,13 +13,23 @@ class ParcMainPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ImageProvider imageProvider;
+
+    if (parc.mainPhoto.isEmpty) {
+      imageProvider = const AssetImage(
+        "assets/images/errors/no_picture.png",
+      );
+    } else {
+      imageProvider = NetworkImage(parc.mainPhoto);
+    }
+
     return AspectRatio(
       aspectRatio: 3 / 2,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kRadiusValue),
           image: DecorationImage(
-            image: NetworkImage(parc.mainPhoto),
+            image: imageProvider,
             fit: BoxFit.cover,
           ),
         ),

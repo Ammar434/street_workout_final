@@ -16,13 +16,14 @@ class RewardsFirestoreMethods {
     String categorie,
     String imagePath,
     List<String> description,
+    bool isAdmin,
   ) async {
     Reward rewards = Reward(
       id: _uuid.v1(),
       title: title,
       imageUrl: imagePath,
       description: description,
-      isPublish: false,
+      isPublish: isAdmin,
     );
     String res = "Some error occurred";
     try {

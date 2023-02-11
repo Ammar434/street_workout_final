@@ -42,7 +42,7 @@ class _ViewAllParcScreenState extends State<ViewAllParcScreen> {
       child: Scaffold(
         appBar: buildAppBar(context, 'All parc'),
         body: FutureBuilder(
-            future: FirebaseFirestore.instance.collection("parcs").where("isPublished", isEqualTo: true).get(),
+            future: FirebaseFirestore.instance.collection("parcs").where("isPublished", isEqualTo: true).limit(100).get(),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data!.docs.isEmpty) {

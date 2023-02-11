@@ -33,6 +33,7 @@ class ParcInfoEquipmentAvailableRow extends StatelessWidget {
                     fit: BoxFit.scaleDown),
               ),
               child: Tooltip(
+                triggerMode: TooltipTriggerMode.tap,
                 message: listMaterialAvailable[index].name,
               ),
             );

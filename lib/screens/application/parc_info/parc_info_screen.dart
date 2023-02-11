@@ -104,6 +104,7 @@ class _ParcInfoScreenState extends State<ParcInfoScreen> with SingleTickerProvid
       file: file,
       parcId: widget.parcId,
       userUidWhoPublish: customUser.uid,
+      isAdmin: customUser.isAdmin,
     );
 
     setState(() {
