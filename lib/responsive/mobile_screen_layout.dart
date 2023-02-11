@@ -10,11 +10,5 @@ class MobileScreenLayout extends StatelessWidget {
     // Provider.of<UserProvider>(context).refreshUser();
     // return AddNewAchievement();
     return const MainScreen();
-    // return  StartTrainingScreen();
-    // return  ChallengeInProgressScreen(
-    //   isChallenger: true,
-    // );
-
-    // return  SendVideoScreen();
   }
 }

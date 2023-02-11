@@ -73,7 +73,7 @@ dependencies:
   flex_seed_scheme: ^1.2.2
   slide_countdown: ^0.4.1
   cloud_functions: ^4.0.7
-  fluster: ^1.2.0
+  google_maps_cluster_manager: ^3.0.0+1
 
 dev_dependencies:
   flutter_test:

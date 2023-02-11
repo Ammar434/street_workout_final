@@ -1,17 +1,14 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as google;
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:street_workout_final/common_libs.dart';
 import '../../models/parc.dart';
+import '../../screens/application/map_screen/components/parc_marker.dart';
 import '../../utils/dev.dart';
-import '../firebase_storage/firebase_storage_methods.dart';
 import '../firestore_methods/parc_firestore_methods.dart';
 import '../firestore_methods/user_firestore_methods.dart';
 
@@ -77,56 +74,23 @@ class Geolocalisation {
     return responseJason["features"][2]['text'].toString();
   }
 
-  // Future<List<AutocompletePrediction>> autocompletQuery(String input) async {
-  //   List<AutocompletePrediction> list = [];
-  //   var googlePlace = FlutterGooglePlacesSdk(dotenv.env['googleMapKey']!);
-  //   if (input.isNotEmpty) {
-  //     var result = await googlePlace.findAutocompletePredictions(input);
-  //     debugPrint(result.predictions.toString());
-
-  //     list = result.predictions;
-  //   }
-  //   return list;
-  // }
-
-  // Future<FetchPlaceResponse?> getDetailsResultFromGooglePlaceId(String placeId) async {
-  //   var googlePlace = FlutterGooglePlacesSdk(dotenv.env['googleMapKey']!);
-  //   FetchPlaceResponse? detailsResult;
-  //   FetchPlaceResponse result = await googlePlace.fetchPlace(placeId, fields: [
-  //     PlaceField.Address,
-  //     PlaceField.Location,
-  //   ]);
-  //   // if (result. != null) {
-  //   //   detailsResult = result.result;
-  //   //   // debugPrint(detailsResult!.geometry!.location!.lat.toString());
-  //   //   // debugPrint(detailsResult.addressComponents.toString());
-  //   //   // debugPrint(detailsResult.formattedAddress.toString());
-  //   // }
-  //   return result;
-  // }
-
-  Future<Set<Marker>> getAllMarker(Function(String) onTap) async {
-    Set<Marker> markers = {};
+  Future<List<ParcMarker>> getAllMarker() async {
+    List<ParcMarker> markers = [];
     DocumentSnapshot documentSnapshot = await firebaseFirestore.collection("datas").doc("all_parcs_references").get();
     Map<String, dynamic> map = documentSnapshot.data() as Map<String, dynamic>;
-    Uint8List markerIcon = await FirebaseStorageMethods().getBytesFromAsset('assets/maps/location_marker.png', 100.sp.toInt());
 
-    BitmapDescriptor bitmapDescriptor = BitmapDescriptor.fromBytes(markerIcon);
     try {
       map.forEach(
         (key, value) async {
           GeoPoint geoPoint = value['geoPoint'] as GeoPoint;
 
-          Marker marker = Marker(
-            markerId: MarkerId(value['id']),
-            position: google.LatLng(geoPoint.latitude, geoPoint.longitude),
-            icon: bitmapDescriptor,
-            infoWindow: InfoWindow(
-              title: value['name'],
-              snippet: value['completeAddress'],
-              onTap: () => onTap(value["id"]),
-            ),
+          ParcMarker marker = ParcMarker(
+            name: value['name'],
+            latLng: google.LatLng(geoPoint.latitude, geoPoint.longitude),
+            address: value['completeAddress'],
+            id: value['id'],
           );
+
           markers.add(marker);
         },
       );
