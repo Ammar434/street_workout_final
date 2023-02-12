@@ -74,7 +74,6 @@ class MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      bottom: false,
       child: Scaffold(
         body: isLoading
             ? const LoadingWidget()

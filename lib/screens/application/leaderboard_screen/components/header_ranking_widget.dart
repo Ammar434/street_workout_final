@@ -49,7 +49,7 @@ class HeaderRankingWIdget extends StatelessWidget {
                 ),
               ),
               Text(
-                leaderboard.userPoint.toString(),
+                  (leaderboard.userPoint + leaderboard.numberOfContribution + leaderboard.numberOfEvaluation).toString(),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
