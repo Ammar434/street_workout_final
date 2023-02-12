@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../../common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/post_screen/components/text_field_for_post_screen.dart';
+import 'text_field_for_post_screen.dart';
 
 class EnterParcDetails extends StatefulWidget {
   const EnterParcDetails({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 
+import "../../../common_libs.dart";
 import '../../../widgets/rounded_button.dart';
 
 class RecoverPasswordConfirmScreen extends StatelessWidget {

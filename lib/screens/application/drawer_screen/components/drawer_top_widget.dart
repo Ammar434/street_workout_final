@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../../common_libs.dart";
 
 import '../../../../widgets/loading_widget.dart';
 import '../../profile_screen/profile_screen.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../../../../common_libs.dart";
 import '../../../../../../models/rewards.dart';
 import '../../../../../../services/firestore_methods/rewards_firestore_methods.dart';
 import '../../../../../../widgets/loading_widget.dart';

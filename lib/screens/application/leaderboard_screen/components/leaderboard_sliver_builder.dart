@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/models/leaderboard.dart';
-import 'package:street_workout_final/screens/application/leaderboard_screen/components/tile_leaderboard_row.dart';
+import '../../../../models/leaderboard.dart';
+import 'tile_leaderboard_row.dart';
 
 import '../../../../utils/constants.dart';
 import '../../../../utils/gradients.dart';

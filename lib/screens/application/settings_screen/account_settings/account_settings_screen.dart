@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
-import 'package:street_workout_final/screens/application/settings_screen/account_settings/components/gender_setting_screen.dart';
-import 'package:street_workout_final/screens/application/settings_screen/account_settings/components/user_personal_information_settings_screen.dart';
-import 'package:street_workout_final/screens/application/settings_screen/account_settings/favorite_parc/favorite_parc_choose.dart';
 
+import "../../../../common_libs.dart";
 import '../../../../models/custom_user.dart';
 import '../../../../services/firestore_methods/user_firestore_methods.dart';
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/rounded_button.dart';
 import '../../../../widgets/slider_widget.dart';
+import 'components/gender_setting_screen.dart';
 import 'components/profile_image_update_setting_screen.dart';
+import 'components/user_personal_information_settings_screen.dart';
+import 'favorite_parc/favorite_parc_choose.dart';
 
 class AccountSettingsScreen extends StatefulWidget {
   const AccountSettingsScreen({

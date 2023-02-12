@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
-import 'package:street_workout_final/widgets/app_bar.dart';
+import "../../../common_libs.dart";
+import '../../../widgets/app_bar.dart';
 
 import '../../../models/rewards.dart';
 import '../../../services/firestore_methods/rewards_firestore_methods.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
+import "../../../common_libs.dart";
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/image_picker.dart';
 import '../../../widgets/loading_widget.dart';

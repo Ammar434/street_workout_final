@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../common_libs.dart";
 
 import '../../../authentication_handler.dart';
 import '../../../services/authentication/authentication_method.dart';
 import 'components/login_screen_body.dart';
-
 
 class LoginScreen extends StatefulWidget {
   static String name = "loginScreen";

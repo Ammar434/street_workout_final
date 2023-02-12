@@ -1,6 +1,6 @@
 import 'package:flex_seed_scheme/flex_seed_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/utils/text_style.dart';
+import 'text_style.dart';
 
 ThemeData initTheme() {
   Color backgroundColor = const Color(0xff010819);

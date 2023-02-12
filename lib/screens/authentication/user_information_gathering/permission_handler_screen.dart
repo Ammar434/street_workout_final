@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 import 'package:geolocator/geolocator.dart';
 
 import '../../../authentication_handler.dart';
+import "../../../common_libs.dart";
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/geolocalisation/geolocalisation.dart';
 import '../../../widgets/rounded_button.dart';

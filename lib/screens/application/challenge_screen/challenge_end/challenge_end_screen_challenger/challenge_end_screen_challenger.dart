@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/common_libs.dart';
+import '../../../../../common_libs.dart';
 import '../../../../../provider/challenge_provider.dart';
 import 'components/body_challenge_failed.dart';
 import 'components/body_challenge_succeeded.dart';

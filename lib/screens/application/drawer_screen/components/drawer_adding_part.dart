@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/post_screen/post_screen.dart';
+import '../../post_screen/post_screen.dart';
 
 import '../../achievement_screen/add_new_achievement/add_new_achievement.dart';
 import 'drawer_categorie_tile.dart';

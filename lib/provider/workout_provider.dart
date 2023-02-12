@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:street_workout_final/services/firestore_methods/workout_firestore_methods.dart';
+import '../services/firestore_methods/workout_firestore_methods.dart';
 
 import '../models/workout.dart';
 

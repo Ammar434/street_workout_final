@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../../common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +22,11 @@ class SelectExerciceScreen extends StatelessWidget {
     WorkoutProvider workoutProvider = Provider.of<WorkoutProvider>(
       context,
     );
-    List<Workout> workoutList = workoutProvider.listWorkoutFromProvider;
+    List<Workout> workoutList = workoutProvider.listWorkoutFromProvider
+        .where(
+          (Workout w) => (w.category == workoutCategory),
+        )
+        .toList();
 
     void onFloattingActionPress() {
       Navigator.push(

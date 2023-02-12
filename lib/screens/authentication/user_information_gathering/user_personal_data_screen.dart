@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../common_libs.dart";
 
 import '../../../services/authentication/authentication_method.dart';
 import '../../../widgets/rounded_button.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import "../../../../../common_libs.dart";
 
 class BuildRating extends StatelessWidget {
   const BuildRating({

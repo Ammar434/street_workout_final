@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../../common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:street_workout_final/screens/application/parc_info/display_parc_champion.dart';
+import '../display_parc_champion.dart';
 
 import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';

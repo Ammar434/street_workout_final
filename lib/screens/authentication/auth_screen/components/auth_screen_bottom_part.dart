@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 
+import "../../../../common_libs.dart";
 import '../../login_screen/login_screen.dart';
 import '../../register_screen/register_screen.dart';
 

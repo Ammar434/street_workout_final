@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
+
+import 'screens/application/achievement_screen/achievement_screen.dart';
 import 'screens/application/achievement_screen/add_new_achievement/add_new_achievement.dart';
+import 'screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';
 import 'screens/application/challenge_screen/send_video/self_record_select_challenge_screen/self_record_select_challenge_screen.dart';
 import 'screens/application/challenge_screen/waitting_room/challenger_waitting_room/challenger_waitting_room_screen.dart';
 import 'screens/application/challenge_screen/waitting_room/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
-import 'screens/application/training/select_training/select_trainning_screen.dart';
-import 'screens/application/achievement_screen/achievement_screen.dart';
-import 'screens/application/challenge_screen/challenge_start/challenge_start_screen.dart';
 // import 'screens/application/challenge_screen/challenger_waitting_room/challenger_waitting_room_screen.dart';
 // import 'screens/application/challenge_screen/evaluator_waitting_room/evaluator_waitting_room_screen.dart';
 import 'screens/application/home_screen/view_all_parc/view_all_parc_screen.dart';
 import 'screens/application/main_screen.dart';
 import 'screens/application/post_screen/post_screen.dart';
 import 'screens/application/settings_screen/account_notification/account_notification_screen.dart';
+import 'screens/application/training/select_training/select_trainning_screen.dart';
+import 'screens/application/training/start_training/start_training_screen.dart';
 // import 'screens/application/training/select_training/select_trainning_screen.dart';
 import 'screens/authentication/login_screen/login_screen.dart';
 import 'screens/authentication/recover_password_screen/recover_password_confirm_screen.dart';
 import 'screens/authentication/recover_password_screen/recover_password_screen.dart';
 import 'screens/authentication/register_screen/register_screen.dart';
-
-import 'screens/application/training/start_training/start_training_screen.dart';
 import 'screens/authentication/user_information_gathering/gender_screen.dart';
 import 'screens/authentication/user_information_gathering/permission_handler_screen.dart';
 import 'screens/authentication/user_information_gathering/user_personal_data_screen.dart';

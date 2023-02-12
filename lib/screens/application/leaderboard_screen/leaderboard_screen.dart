@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 import 'package:provider/provider.dart';
-import '../favorite_parc/favorite_parc_empty_screen.dart';
-import 'components/countdown.dart';
-import '../../../services/firestore_methods/leaderboard_firestore_methods.dart';
-import '../../../widgets/loading_widget.dart';
 
+import "../../../common_libs.dart";
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
+import '../../../services/firestore_methods/leaderboard_firestore_methods.dart';
+import '../../../widgets/loading_widget.dart';
+import '../favorite_parc/favorite_parc_empty_screen.dart';
+import 'components/countdown.dart';
 import 'components/leaderboard_sliver_builder.dart';
 
 class LeaderboardScreen extends StatelessWidget {
@@ -30,10 +30,13 @@ class LeaderboardScreen extends StatelessWidget {
           return SafeArea(
             child: Column(
               children: [
-                SizedBox(
-                  height: kPaddingValue * 5,
+                Text(
+                  "Leaderboard",
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                //  Text("Leaderboard"),
+                SizedBox(
+                  height: kPaddingValue * 2,
+                ),
                 Countdown(duration: snapshot.data),
                 const Expanded(child: LeaderboardSliverBuilder()),
               ],

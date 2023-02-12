@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../../../common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../select_training/select_trainning_screen.dart';
 import 'cutom_button_for_trainning_screen.dart';

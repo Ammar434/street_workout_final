@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import "package:street_workout_final/common_libs.dart";
-import 'package:street_workout_final/models/custom_user.dart';
 
+import "../../../../common_libs.dart";
+import '../../../../models/custom_user.dart';
 import '../../../../models/parc.dart';
 import '../../../../provider/user_provider.dart';
 import '../../../../widgets/app_bar.dart';

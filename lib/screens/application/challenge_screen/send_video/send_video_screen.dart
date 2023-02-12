@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 import 'package:lottie/lottie.dart';
 
+import "../../../../common_libs.dart";
 import '../../../../widgets/app_bar.dart';
 import '../../../../widgets/rounded_button.dart';
 import 'self_record_select_challenge_screen/self_record_select_challenge_screen.dart';

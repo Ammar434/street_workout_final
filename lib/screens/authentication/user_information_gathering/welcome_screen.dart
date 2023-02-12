@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../common_libs.dart";
 
 import '../../../services/secure_storage/secure_storage_methods.dart';
 import '../../../widgets/loading_widget.dart';

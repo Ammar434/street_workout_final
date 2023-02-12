@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 import 'package:flutter/scheduler.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import '../../challenge_end/challenge_end_screen_challenger/challenge_end_screen_challenger.dart';
-import '../../../../../widgets/rounded_button.dart';
 
+import "../../../../../common_libs.dart";
 import '../../../../../provider/challenge_provider.dart';
+import '../../../../../widgets/rounded_button.dart';
+import '../../challenge_end/challenge_end_screen_challenger/challenge_end_screen_challenger.dart';
 
 class ChallengeInProgressChallengerScreen extends StatelessWidget {
   const ChallengeInProgressChallengerScreen({

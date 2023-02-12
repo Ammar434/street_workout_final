@@ -1,9 +1,9 @@
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import "../../../../../../common_libs.dart";
 import '../../../../../../models/challenge.dart';
 import '../../../../../../models/custom_user.dart';
 import '../../../../../../provider/challenge_provider.dart';

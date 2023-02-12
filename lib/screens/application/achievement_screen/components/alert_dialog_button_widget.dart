@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
-
+import "../../../../common_libs.dart";
 
 class AlertDialogButtonWidget extends StatelessWidget {
   const AlertDialogButtonWidget({

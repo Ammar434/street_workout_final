@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 
+import "../../../../common_libs.dart";
 import 'items_for_row_profile_screen.dart';
 
 class UserInformationDisplay extends StatelessWidget {

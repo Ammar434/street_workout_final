@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../common_libs.dart";
 
 import 'components/auth_screen_bottom_part.dart';
 import 'components/auth_screen_mid_part.dart';

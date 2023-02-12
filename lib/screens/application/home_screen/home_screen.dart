@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 
+import "../../../common_libs.dart";
 import '../../../widgets/search_field_widget_for_parc.dart';
 import 'components/parc_from_firestore.dart';
 import 'home_header.dart';

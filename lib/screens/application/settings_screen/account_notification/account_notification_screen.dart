@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:street_workout_final/widgets/app_bar.dart';
+
+import '../../../../widgets/app_bar.dart';
 
 class AccountNotificationScreen extends StatelessWidget {
   const AccountNotificationScreen({Key? key}) : super(key: key);

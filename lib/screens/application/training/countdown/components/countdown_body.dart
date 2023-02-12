@@ -1,7 +1,7 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../../../common_libs.dart";
 
 class CountDownBody extends StatelessWidget {
   const CountDownBody({

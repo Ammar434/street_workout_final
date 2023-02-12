@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
 
+import "../../../../../common_libs.dart";
 import '../../../../../models/rewards.dart';
 import '../../../../../widgets/rounded_button.dart';
 import '../record_video_screen/record_video_screen.dart';

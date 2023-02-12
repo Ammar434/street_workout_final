@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../../../common_libs.dart";
 import '../../challenge_start/challenge_start_screen.dart';
 import '../../../../../services/record_video/record_video_methods.dart';
 import '../../../../../widgets/app_bar.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../../../../common_libs.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:street_workout_final/screens/application/parc_info/parc_info_screen.dart';
+import '../../../../parc_info/parc_info_screen.dart';
 
 import '../../../../../../models/parc.dart';
 import 'add_favorite_parc.dart';

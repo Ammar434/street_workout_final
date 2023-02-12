@@ -3,12 +3,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import "package:street_workout_final/common_libs.dart";
+import "../../../common_libs.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:street_workout_final/models/custom_user.dart';
-import 'package:street_workout_final/services/firestore_methods/parc_firestore_methods.dart';
+import '../../../models/custom_user.dart';
+import '../../../services/firestore_methods/parc_firestore_methods.dart';
 
 import '../../../models/material_available.dart';
 import '../../../provider/user_provider.dart';
