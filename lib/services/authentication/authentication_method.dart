@@ -133,6 +133,7 @@ class AuthenticationMethod {
     String res = "Some error occured";
     try {
       await _firebaseAuth.signOut();
+
     } catch (e) {
       res = e.toString();
     }

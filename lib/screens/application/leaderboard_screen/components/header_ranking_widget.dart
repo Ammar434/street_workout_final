@@ -18,28 +18,27 @@ class HeaderRankingWIdget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProfileScreen(
-              userUid: leaderboard.userId,
-            ),
+    return SliverToBoxAdapter(
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
+        children: [
+          LottieBuilder.network(
+            "https://assets1.lottiefiles.com/private_files/lf30_i5wfnbcg.json",
+            repeat: true,
           ),
-        );
-      },
-      child: SliverToBoxAdapter(
-        child: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.center,
-          children: [
-            LottieBuilder.network(
-              "https://assets1.lottiefiles.com/private_files/lf30_i5wfnbcg.json",
-              repeat: true,
-            ),
-            // Image.asset("assets/images/leaderboard/star_explosion.png"),
-            Column(
+          // Image.asset("assets/images/leaderboard/star_explosion.png"),
+          GestureDetector(
+   onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ProfileScreen(
+            userUid: leaderboard.userId,
+          ),
+        ),
+      );},
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
@@ -72,8 +71,8 @@ class HeaderRankingWIdget extends StatelessWidget {
                 )
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

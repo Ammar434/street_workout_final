@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -24,6 +26,25 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Need to record user when the user decide to record himself, if no other user is available arround him to assessed him directly</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow user to check nearby parc around him</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs don't need access to location when in the background.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to location when open,to display to user all the favorite street workout parc arround him. We need the location to also check if user is near a known street workout parc to allow him to access to some part of the applications</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app need access to microphone to use the camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app required access to the photo library for choosing a profile photo or to publish content (photos of parc) in the app</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -31,39 +52,16 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>This app needs access to location when open,to display to user all the favorite street workout parc arround him. We need the location to also check if user is near a known street workout parc to allow him to access  to some part of the applications</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>This app needs don't need access to location when in the background.</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Need to record user when the user decide to record himself, if no other user is available arround him to assessed him directly</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>This app need access to microphone to use the camera</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app required access to the photo liblary for publish content in the app</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Allow user to check nearby parc arround him</string>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsLocalNetworking</key>
-        <true/>
-    </dict>
-
 </dict>
 </plist>
