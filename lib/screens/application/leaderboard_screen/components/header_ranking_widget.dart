@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/screens/application/profile_screen/profile_screen.dart';
 import "../../../../common_libs.dart";
 import 'package:lottie/lottie.dart';
 
@@ -17,50 +18,62 @@ class HeaderRankingWIdget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.center,
-        children: [
-          LottieBuilder.network(
-            "https://assets1.lottiefiles.com/private_files/lf30_i5wfnbcg.json",
-            repeat: true,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProfileScreen(
+              userUid: leaderboard.userId,
+            ),
           ),
-          // Image.asset("assets/images/leaderboard/star_explosion.png"),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: kPaddingValue,
-              ),
-              RoundedCircleUserProfileWidget(
-                gradient: gradient,
-                radius: kRadiusValue * 6,
-                imageUrl: leaderboard.userProfileImage,
-              ),
-              SizedBox(
-                height: kPaddingValue,
-              ),
-              Text(
-                leaderboard.userName,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+        );
+      },
+      child: SliverToBoxAdapter(
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            LottieBuilder.network(
+              "https://assets1.lottiefiles.com/private_files/lf30_i5wfnbcg.json",
+              repeat: true,
+            ),
+            // Image.asset("assets/images/leaderboard/star_explosion.png"),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: kPaddingValue,
                 ),
-              ),
-              Text(
+                RoundedCircleUserProfileWidget(
+                  gradient: gradient,
+                  radius: kRadiusValue * 6,
+                  imageUrl: leaderboard.userProfileImage,
+                ),
+                SizedBox(
+                  height: kPaddingValue,
+                ),
+                Text(
+                  leaderboard.userName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
                   (leaderboard.userPoint + leaderboard.numberOfContribution + leaderboard.numberOfEvaluation).toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: kPaddingValue,
-              )
-            ],
-          ),
-        ],
+                SizedBox(
+                  height: kPaddingValue,
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -14,6 +14,7 @@ import 'package:street_workout_final/services/geolocalisation/geolocalisation.da
 import 'package:street_workout_final/widgets/loading_widget.dart';
 
 import '../../../services/firebase_storage/firebase_storage_methods.dart';
+import '../../../utils/constants.dart';
 import '../parc_info/parc_info_screen.dart';
 import 'components/parc_marker.dart';
 
@@ -74,10 +75,14 @@ class MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      bottom: false,
       child: Scaffold(
         body: isLoading
             ? const LoadingWidget()
             : GoogleMap(
+                padding: EdgeInsets.only(
+                  bottom: kPaddingValue * 3,
+                ),
                 mapType: MapType.normal,
                 myLocationEnabled: true,
                 zoomControlsEnabled: false,

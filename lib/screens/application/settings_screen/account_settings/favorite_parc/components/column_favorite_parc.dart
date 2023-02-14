@@ -17,7 +17,6 @@ class ColumnFavoriteParc extends StatelessWidget {
   final List<Parc> listeParc;
   @override
   Widget build(BuildContext context) {
-    print("index $index");
     if (index > listeParc.length - 1) {
       return AddFavoriteParc(
         small: (index > 1),

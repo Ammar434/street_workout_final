@@ -37,8 +37,12 @@ class LeaderboardScreen extends StatelessWidget {
                 SizedBox(
                   height: kPaddingValue * 2,
                 ),
-                Countdown(duration: snapshot.data),
-                const Expanded(child: LeaderboardSliverBuilder()),
+                Countdown(
+                  duration: snapshot.data,
+                ),
+                const Expanded(
+                  child: LeaderboardSliverBuilder(),
+                ),
               ],
             ),
           );

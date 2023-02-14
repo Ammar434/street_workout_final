@@ -16,7 +16,14 @@ class LeaderboardSliverBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection("users").orderBy("rank", descending: false).limit(100).snapshots(),
+      stream: FirebaseFirestore.instance
+          .collection("users")
+          .orderBy(
+            "rank",
+            descending: false,
+          )
+          .limit(100)
+          .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting || snapshot.connectionState == ConnectionState.none) {
           return const SizedBox(
@@ -38,7 +45,6 @@ class LeaderboardSliverBuilder extends StatelessWidget {
             ),
           );
         }
-        print("size${snapshot.data!.size}");
         Leaderboard topAthlete = Leaderboard.leaderboardFromSnapshot(snapshot.data!.docs[0]);
 
         return Padding(
