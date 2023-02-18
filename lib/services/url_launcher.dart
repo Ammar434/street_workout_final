@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-String paypalUrl = "https://www.paypal.com/donate/?hosted_button_id=Q5XB555WSK47W";
-String koFiUrl = "https://ko-fi.com/ammarhoussenbay";
+String privacyPolicy = "https://ammar434.github.io/privacy-policy-fitness-fighter/";
 
 Future<void> openUrl(BuildContext context, String url) async {
   final Uri uri = Uri.parse(url);

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "../../../common_libs.dart";
 import 'package:provider/provider.dart';
-import 'account_notification/account_notification_screen.dart';
 
 import '../../../models/custom_user.dart';
 import '../../../provider/user_provider.dart';
 import '../../../services/authentication/authentication_method.dart';
 import '../../../services/url_launcher.dart';
-import '../../../utils/icons.dart';
 import 'account_settings/account_settings_screen.dart';
 import 'components/custom_alert_dialog.dart';
 import 'components/settings_group.dart';
@@ -52,7 +51,7 @@ class SettingsScreen extends StatelessWidget {
                 text2: "Newsletter, App Updates",
                 isArrow: true,
                 press: () {
-                  Navigator.pushNamed(context, AccountNotificationScreen.name);
+                  // Navigator.pushNamed(context, AccountNotificationScreen.name);
                 },
               ),
               SettingsTile(
@@ -102,26 +101,26 @@ class SettingsScreen extends StatelessWidget {
             ],
           ),
           SettingsGroup(
-            textSettingGroup: 'Donate us',
+            textSettingGroup: 'Others',
             widgetList: [
               SettingsTile(
-                icon: Icons.paypal_rounded,
+                icon: Icons.lock,
                 iconBackgroundColor: const Color(0xff009cde),
-                text1: "Donate with paypal",
+                text1: "Privacy and security",
                 text2: "",
                 isArrow: false,
                 press: () async {
-                  await openUrl(context, paypalUrl);
+                  await openUrl(context, privacyPolicy);
                 },
               ),
               SettingsTile(
-                icon: CustomIcon.kofi,
+                icon: FontAwesomeIcons.gift,
                 iconBackgroundColor: const Color(0xffFF5F5F),
-                text1: "Support me on Ko-fi",
+                text1: "Checkout Our Others Apps!",
                 text2: "",
                 isArrow: false,
                 press: () async {
-                  await openUrl(context, paypalUrl);
+                  // await openUrl(context, paypalUrl);
                 },
               ),
             ],

@@ -10,7 +10,7 @@ import '../../parc_info/parc_info_screen.dart';
 import 'parc_display_card_info.dart';
 import 'parc_display_card_mage.dart';
 
-double pacrDisplayCardHeight = 400;
+double parcDisplayCardHeight = 400;
 
 class ParcDisplayCard extends StatefulWidget {
   const ParcDisplayCard({
@@ -69,42 +69,42 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: kPaddingValue),
       width: double.infinity,
-      height: pacrDisplayCardHeight,
+      height: parcDisplayCardHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kRadiusValue),
-          color: Theme.of(context).primaryColorDark,
+        color: Theme.of(context).primaryColorDark,
       ),
       child: isLoading
           ? const LoadingWidget()
           : Column(
-            children: [
-              ParcDisplayCardImage(
-                imageUrl: widget.parc.mainPhoto,
-                onTap: onParcTap,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+              children: [
+                ParcDisplayCardImage(
+                  imageUrl: widget.parc.mainPhoto,
+                  onTap: onParcTap,
                 ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: kPaddingValue,
-                    ),
-                    ParcDisplayCardInfo(
-                      parcName: widget.parc.name,
-                      champion: userChampion,
-                      creator: userWhoPublished,
-                    ),
-                    RoundedButton(
-                      text: 'More information',
-                      onTap: onParcTap,
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: kPaddingValue,
+                      ),
+                      ParcDisplayCardInfo(
+                        parcName: widget.parc.name,
+                        champion: userChampion,
+                        creator: userWhoPublished,
+                      ),
+                      RoundedButton(
+                        text: 'More information',
+                        onTap: onParcTap,
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
     );
   }
 }

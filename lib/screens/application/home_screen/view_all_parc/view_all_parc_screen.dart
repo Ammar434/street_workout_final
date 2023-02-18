@@ -80,9 +80,9 @@ class _ViewAllParcScreenState extends State<ViewAllParcScreen> {
                     // physics:   NeverScrollableScrollPhysics(),
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (BuildContext context, int index) {
-                      double itemPositionOffset = pacrDisplayCardHeight * index;
+                      double itemPositionOffset = parcDisplayCardHeight * index;
                       double difference = scrollController.offset - itemPositionOffset;
-                      double percent = 1 - (difference / pacrDisplayCardHeight);
+                      double percent = 1 - (difference / parcDisplayCardHeight);
                       double opacity = percent;
                       double scale = percent;
 

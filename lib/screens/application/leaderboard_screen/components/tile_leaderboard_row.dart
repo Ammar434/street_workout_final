@@ -18,7 +18,7 @@ class TileLeaderboardRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: kSmallPaddingValue),
+      padding: EdgeInsets.symmetric(vertical: kSmallPaddingValue * 2),
       child: GestureDetector(
         onTap: () {
           Navigator.push(
@@ -28,7 +28,8 @@ class TileLeaderboardRow extends StatelessWidget {
                 userUid: leaderboard.userId,
               ),
             ),
-          );},
+          );
+        },
         child: Row(
           children: [
             Text(
@@ -47,7 +48,7 @@ class TileLeaderboardRow extends StatelessWidget {
               width: kPaddingValue,
             ),
             SizedBox(
-              width: 100,
+              // width: 100,
               child: Text(
                 leaderboard.userName,
                 style: const TextStyle(
@@ -57,7 +58,7 @@ class TileLeaderboardRow extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              leaderboard.userPoint.toString(),
+              (leaderboard.userPoint + leaderboard.numberOfContribution + leaderboard.numberOfEvaluation).toString(),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
