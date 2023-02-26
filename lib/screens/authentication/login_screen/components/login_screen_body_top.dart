@@ -8,24 +8,26 @@ class LoginScreenBodyTop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: kPaddingValue,
-        ),
-        Text(
-          "Let's sign you in",
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        Text(
-          "Welcome back, you've been missed!",
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        SizedBox(
-          height: kPaddingValue * 5,
-        ),
-      ],
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: kPaddingValue,
+          ),
+          Text(
+            "Let's sign you in",
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Text(
+            "Welcome back, you've been missed!",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          SizedBox(
+            height: kPaddingValue * 5,
+          ),
+        ],
+      ),
     );
   }
 }

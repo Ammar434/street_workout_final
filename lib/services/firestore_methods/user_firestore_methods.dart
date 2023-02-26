@@ -14,6 +14,7 @@ class UserFirestoreMethods {
   final FirebaseStorageMethods _storageMethods = FirebaseStorageMethods();
   final String defaultUser = "M4qhuxrn6FVEigyVITg0elgHgfN2";
   Future<CustomUser> findUserByUid(String uid) async {
+    if (uid.isEmpty ) uid = defaultUser;
     CustomUser? user;
     try {
       DocumentSnapshot documentSnapshot = await _firebaseFirestore.collection("users").doc(uid).get();

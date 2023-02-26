@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:street_workout_final/widgets/app_bar.dart';
 import "../../../common_libs.dart";
 
 import '../../../authentication_handler.dart';
@@ -60,11 +61,20 @@ class _LoginScreenState extends State<LoginScreen> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
-        body: LoginScreenBody(
-          emailController: _emailController,
-          passwordController: _passwordController,
-          isLoading: isLoading,
-          loginUser: loginUser,
+        resizeToAvoidBottomInset: false,
+
+        body: SingleChildScrollView(
+          reverse: true,
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: LoginScreenBody(
+              emailController: _emailController,
+              passwordController: _passwordController,
+              isLoading: isLoading,
+              loginUser: loginUser,
+
+            ),
+          ),
         ),
       ),
     );

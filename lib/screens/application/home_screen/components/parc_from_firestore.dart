@@ -21,8 +21,10 @@ class ParcFromFirestore extends StatefulWidget {
 class _ParcFromFirestoreState extends State<ParcFromFirestore> {
   late CustomUser currentUser;
   late GeoHasher geoHasher;
+  bool isLoading = false;
   String geoHash = "";
   loadData() async {
+
     currentUser = Provider.of<UserProvider>(context, listen: false).getUser!;
     geoHasher = GeoHasher();
     geoHash = geoHasher.encode(currentUser.lastPosition.longitude, currentUser.lastPosition.latitude, precision: 5);
@@ -79,6 +81,7 @@ class _ParcFromFirestoreState extends State<ParcFromFirestore> {
           },
         );
       },
+
     );
   }
 }

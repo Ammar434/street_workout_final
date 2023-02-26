@@ -15,23 +15,25 @@ class LoginScreenBodyInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFieldInput(
-          textEditingController: emailController,
-          hintText: "Email",
-          textInputType: TextInputType.emailAddress,
-        ),
-        SizedBox(
-          height: kPaddingValue,
-        ),
-        TextFieldInput(
-          textEditingController: passwordController,
-          hintText: "Password",
-          textInputType: TextInputType.visiblePassword,
-          isPassword: true,
-        ),
-      ],
+    return Expanded(
+      child: Column(
+        children: [
+          TextFieldInput(
+            textEditingController: emailController,
+            hintText: "Email",
+            textInputType: TextInputType.emailAddress,
+          ),
+          SizedBox(
+            height: kPaddingValue,
+          ),
+          TextFieldInput(
+            textEditingController: passwordController,
+            hintText: "Password",
+            textInputType: TextInputType.visiblePassword,
+            isPassword: true,
+          ),
+        ],
+      ),
     );
   }
 }

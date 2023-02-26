@@ -37,7 +37,7 @@ class MapScreenState extends State<MapScreen> {
   bool isLoading = true;
 
   void loadData() async {
-    markerIcon = await FirebaseStorageMethods().getBytesFromAsset('assets/maps/location_marker.png', 125.sp.toInt());
+    markerIcon = await FirebaseStorageMethods().getBytesFromAsset('assets/maps/location_marker.png', 100.sp.toInt());
 
     _geolocalisation = Geolocalisation();
     Position p = await _geolocalisation.determinePosition();
@@ -74,12 +74,12 @@ class MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      // bottom: true,
+      bottom: false,
       child: Scaffold(
         body: isLoading
             ? const LoadingWidget()
             : GoogleMap(
-                padding: const EdgeInsets.only(top: 100, right: 10, bottom: 200),
+                padding:  EdgeInsets.only(bottom: 50.sp),
                 mapType: MapType.normal,
                 myLocationEnabled: true,
                 zoomControlsEnabled: false,

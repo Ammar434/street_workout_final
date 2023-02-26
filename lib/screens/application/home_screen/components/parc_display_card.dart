@@ -34,9 +34,11 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
     setState(() {
       isLoading = true;
     });
+    userFirestoreMethods = UserFirestoreMethods();
+
     userWhoPublished = await userFirestoreMethods.findUserByUid(widget.parc.userUidWhoPublish);
 
-    userChampion = await userFirestoreMethods.findUserByUid(widget.parc.userUidChampion);
+   userChampion = await userFirestoreMethods.findUserByUid(widget.parc.userUidChampion);
 
     setState(() {
       isLoading = false;
@@ -45,7 +47,6 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
 
   @override
   void initState() {
-    userFirestoreMethods = UserFirestoreMethods();
     loadData();
     super.initState();
   }
@@ -74,7 +75,9 @@ class _ParcDisplayCardState extends State<ParcDisplayCard> {
         borderRadius: BorderRadius.circular(kRadiusValue),
         color: Theme.of(context).primaryColorDark,
       ),
-      child: isLoading
+      child:
+
+      isLoading
           ? const LoadingWidget()
           : Column(
               children: [

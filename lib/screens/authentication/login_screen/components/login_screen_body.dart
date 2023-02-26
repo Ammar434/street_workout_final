@@ -28,14 +28,14 @@ class LoginScreenBody extends StatelessWidget {
         padding: EdgeInsets.all(kPaddingValue),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Flexible(child: SizedBox()),
             const LoginScreenBodyTop(),
             LoginScreenBodyInput(
               emailController: emailController,
               passwordController: passwordController,
             ),
+
             LoginScreenBodyBottom(
               isLoading: isLoading,
               loginUser: loginUser,

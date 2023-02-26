@@ -104,7 +104,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ? const LoadingWidget()
         : Scaffold(
             key: _scaffoldKey,
-            resizeToAvoidBottomInset: true, // set it to false
+
+            resizeToAvoidBottomInset: false, // set it to false
             body: RegisterScreenBody(
               image: _image,
               selectImage: selectImage,
