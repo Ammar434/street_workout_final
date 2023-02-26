@@ -56,6 +56,7 @@ class RegisterScreenBody extends StatelessWidget {
                   text: "Register",
                   isLoading: isLoading,
                 ),
+                SizedBox(height: MediaQuery.of(context).viewInsets.bottom)
               ],
             ),
           ),

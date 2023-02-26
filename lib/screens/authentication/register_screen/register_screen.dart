@@ -105,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         : Scaffold(
             key: _scaffoldKey,
 
-            resizeToAvoidBottomInset: false, // set it to false
+            resizeToAvoidBottomInset: true, // set it to false
             body: RegisterScreenBody(
               image: _image,
               selectImage: selectImage,
