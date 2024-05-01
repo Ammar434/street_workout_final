@@ -59,7 +59,7 @@ class MapScreenState extends State<MapScreen> {
     return ClusterManager<ParcMarker>(
       items,
       _updateMarkers,
-      markerBuilder: _markerBuilder,
+      markerBuilder: (dynamic item) => _markerBuilder(item as Cluster<ParcMarker>),
       extraPercent: 0.2,
       stopClusteringZoom: 14.0,
     );
@@ -79,7 +79,7 @@ class MapScreenState extends State<MapScreen> {
         body: isLoading
             ? const LoadingWidget()
             : GoogleMap(
-                padding:  EdgeInsets.only(bottom: 50.sp),
+                padding: EdgeInsets.only(bottom: 50.sp),
                 mapType: MapType.normal,
                 myLocationEnabled: true,
                 zoomControlsEnabled: false,
