@@ -1,4 +1,4 @@
-# This My PC
+# Street workout project
 
 <div align="center">
 
@@ -11,7 +11,9 @@
 
 
 ## App Presentation
-<img src="docs/screenshot_1.png" height="500em" />&nbsp;<img src="docs/screenshot_2.png" height="500em" />&nbsp;<img src="docs/screenshot_3.png" height="500em" />&nbsp;<img src="docs/screenshot_4.png" height="500em" />&nbsp;
+
+https://github.com/Ammar434/street_workout_final/assets/50246683/4cc69156-baac-4e25-aea1-749a18fbf398
+
 
 ## Test it from AppStore or PlayStore
 
